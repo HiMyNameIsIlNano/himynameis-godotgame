@@ -1,0 +1,24 @@
+{
+  "ingredients": [
+    {
+      "id": "wheat",
+      "category": "BASIC"
+    },
+    {
+      "id": "water",
+      "category": "BASIC"
+    },
+    {
+      "id": "salt",
+      "category": "SPICE"
+    },
+    {
+      "id": "pepper",
+      "category": "SPICE"
+    },
+    {
+      "id": "beef",
+      "category": "MEAT"
+    }
+  ]
+}

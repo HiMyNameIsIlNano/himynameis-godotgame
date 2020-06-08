@@ -1,0 +1,14 @@
+version: '3'
+services:
+  demo-db:
+    environment:
+      - POSTGRES_PASSWORD=mydb
+      - POSTGRES_USER=demouser
+    image: library/postgres:12.2
+    ports:
+      - 5454:5432
+    volumes:
+      - ./init-db:/docker-entrypoint-initdb.d
+      - demo-db-data:/var/lib/demo-db/data
+volumes:
+  demo-db-data: null

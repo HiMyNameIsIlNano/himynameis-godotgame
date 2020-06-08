@@ -1,0 +1,113 @@
+buildscript {
+    dependencies {
+        classpath "org.jsonschema2pojo:jsonschema2pojo-gradle-plugin:${js2pVersion}"
+    }
+}
+
+plugins {
+    id 'org.springframework.boot' version "$springBootVersion"
+    id 'io.spring.dependency-management' version "$springDependencyManagentVersion"
+}
+
+apply plugin: 'jsonschema2pojo'
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = javaVersion
+
+configurations {
+    developmentOnly
+    runtimeClasspath {
+        extendsFrom developmentOnly
+    }
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+dependencies {
+    // Spring boot
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa'
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-rest'
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-security'
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-validation'
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web'
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-websocket'
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-actuator'
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-undertow'
+    implementation group: 'org.flywaydb', name: 'flyway-core'
+
+    // Devtools
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+    // Demo Protobuf
+    implementation project(":protobuf:protobufgen")
+
+    // protobuf
+    compile group: 'com.google.protobuf', name: 'protobuf-java', version: protobufVersion
+    compile group: 'com.google.protobuf', name: 'protobuf-java-util', version: protobufVersion
+
+    compile group: 'org.jsonschema2pojo', name: 'jsonschema2pojo-gradle-plugin', version: jsonToPojoVersion
+
+    implementation group: 'org.springdoc', name: 'springdoc-openapi-ui', version: openApiVersion
+
+    // Lombok
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
+    // Postgres
+    runtimeOnly 'org.postgresql:postgresql'
+
+    // Definition Generator
+    runtime group: 'com.example.demo', name: 'definition-generator', version: generatorVersion
+
+    implementation group: 'org.jsoup', name: 'jsoup', version: '1.13.1'
+
+    // Test
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+    testImplementation 'org.springframework.security:spring-security-test'
+}
+
+jsonSchema2Pojo {
+    annotationStyle = 'jackson2'
+    source = files("${project.projectDir}/src/main/resources/json")
+    targetDirectory = file("${project.projectDir}/src/main/java/com/example/demo/generated-definition")
+    sourceType = 'json'
+    classNameSuffix = 'Definition'
+    includeAdditionalProperties = false
+    includeToString = false
+    targetPackage = 'com.example.demo.domain.generated'
+}
+
+def outputPackage = 'com.example.demo.domain'
+def enumExporterArgs = [
+        '--inputFileDirectory', "${project.projectDir}/src/main/resources/json",
+        '--inputFile', 'ingredient.json',
+        '--outputClassName', 'IngredientDefinitionEnum',
+        '--outputDomain', "${outputPackage}.recipe.ingredient.model",
+        '--filterFunction', '$.ingredients[*].id',
+        '--updateDbEnum',
+        '--dbEnumOutputFolder', "${project.projectDir}/src/main/resources/db/migration"
+]
+tasks.register("generateEnumDefinitionConstants", JavaExec) {
+    description 'Generates/Updates enum classes reading the definition files (json) '
+    group 'generate constants'
+
+    args = enumExporterArgs
+    classpath = configurations.runtime
+    main = 'gradle.DefinitionEnumGenerator'
+}
+
+task listJars {
+    // https://discuss.gradle.org/t/what-is-dolast-for/27731
+    // The doLast creates a task action that runs when the task executes. Without it, you’re running the code at configuration time on every build.
+    doLast {
+        configurations.runtime.each { File file -> println file.name }
+    }
+}
+
+test {
+    useJUnitPlatform()
+}

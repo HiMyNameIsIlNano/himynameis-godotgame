@@ -1,0 +1,6 @@
+include 'backend'
+include "protobuf:generated"
+include 'definition-generator'
+
+rootProject.name = 'demo'
+project(":protobuf:generated").name = 'protobufgen'

@@ -1,0 +1,85 @@
+import com.google.protobuf.gradle.GenerateProtoTask;
+
+buildscript {
+    dependencies {
+        classpath "com.google.protobuf:protobuf-gradle-plugin:$protobufGradleVersion"
+    }
+}
+
+apply plugin: 'com.google.protobuf'
+
+dependencies {
+    compile group: 'com.google.protobuf', name: 'protobuf-java', version: protobufVersion
+}
+
+sourceCompatibility = javaVersion
+
+sourceSets {
+    main {
+        proto {
+            srcDir "schema"
+        }
+    }
+}
+
+def configs = []
+protobuf {
+    // Download protoc from the repositories
+    protoc {
+        artifact = "com.google.protobuf:protoc:$protobufVersion"
+    }
+
+    generateProtoTasks {
+        all().each { task ->
+            task.builtins {
+                java {
+                    outputSubDir = 'java'
+                }
+                configs += java
+            }
+
+            task.outputs.upToDateWhen { false }
+            task.dependsOn += 'clean'
+        }
+    }
+
+    generatedFilesBaseDir = "$projectDir/build/generated"
+}
+
+tasks.register('copyGenerated') {
+    dependsOn 'copyGeneratedJava'
+}
+tasks.register('copyGeneratedJava', Sync) {
+    mustRunAfter 'generateProto'
+    from "$projectDir/build/generated/main/java"
+    into project(':protobuf:protobufgen').file('src/generated/java')
+    outputs.upToDateWhen { false }
+
+    eachFile { target ->
+        File targetFile = new File(destinationDir, target.path)
+        if (targetFile.exists() && file.length() == targetFile.length() && file.getText() == targetFile.getText()) {
+            exclude()
+            preserve {
+                include(target.path)
+            }
+        }
+    }
+}
+
+clean {
+    doFirst {
+        tasks.withType(GenerateProtoTask).configureEach { task ->
+            configs.each { config ->
+                delete fileTree(task.getOutputDir(config)) {
+                    exclude '**/*.meta'
+                }
+            }
+        }
+    }
+}
+
+build {
+    dependsOn 'generateProto'
+    dependsOn 'copyGenerated'
+}
+

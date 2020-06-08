@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+option java_package = "com.example.demo.protobuf";
+option java_outer_classname = "RecipeProto";
+
+message RecipeResearchResponse {
+    repeated RecipeDTO recipes = 1;
+}
+
+message RecipeDTO {
+    string name = 1;
+    string difficulty = 2;
+    string category = 3;
+    repeated IngredientAmountDTO ingredient_amount = 4;
+}
+
+message IngredientAmountDTO {
+    string ingredient_id = 1;
+    AmountDTO amount = 2;
+}
+
+message AmountDTO {
+    int32 amount = 1;
+    string unit_of_measure = 2;
+}
+
+message RecipeInitRequest {
+    int32 amount = 1;
+}
+
+message RecipeRemoveRequest {
+    string name = 1;
+}

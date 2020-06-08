@@ -1,0 +1,15 @@
+allprojects {
+    repositories {
+        mavenLocal()
+        jcenter()
+    }
+}
+
+subprojects {
+    apply plugin: 'java'
+
+    buildscript.repositories {
+        mavenLocal()
+        jcenter()
+    }
+}

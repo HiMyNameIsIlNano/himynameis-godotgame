@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+option java_package = "com.example.demo.protobuf";
+option java_outer_classname = "ScraperProto";
+
+message ItemListResponse {
+    string context = 1;
+    string type = 2;
+    repeated ListItemDTO itemListElement = 3;
+    int32 numberOfItems = 4;
+}
+
+message ListItemDTO {
+    string type = 1;
+    int32 position = 2;
+    string url = 3;
+}

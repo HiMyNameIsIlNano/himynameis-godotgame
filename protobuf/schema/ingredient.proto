@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+option java_package = "com.example.demo.protobuf";
+option java_outer_classname = "IngredientProto";
+
+message IngredientListResponse {
+    repeated IngredientDTO ingredients = 1;
+}
+
+message IngredientDTO {
+    string id = 1;
+    CategoryEnum category = 2;
+
+    enum CategoryEnum {
+        BASIC = 0;
+        SPICE = 1;
+        MEAT = 2;
+    }
+}
+
+message IngredientResponse {
+    IngredientDTO ingredient = 1;
+}

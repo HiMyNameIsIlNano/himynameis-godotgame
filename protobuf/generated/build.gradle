@@ -1,0 +1,19 @@
+apply plugin: 'java'
+
+version 'unspecified'
+
+sourceCompatibility = javaVersion
+
+sourceSets {
+    main {
+        java {
+            srcDir "src/generated/java"
+        }
+    }
+}
+
+dependencies {
+    // TODO: this is strange
+    compile group: 'com.google.protobuf', name: 'protobuf-java', version: protobufVersion
+    implementation group: 'com.google.protobuf', name: 'protobuf-javalite', version: protobufVersion
+}
