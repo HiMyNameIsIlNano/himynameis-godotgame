@@ -43,34 +43,40 @@ public final class ScraperProto {
         getTypeBytes();
 
     /**
-     * <code>repeated .ListItemDTO itemListElement = 3;</code>
+     * <code>repeated .ListItemDTO item_list_element = 3;</code>
      */
     java.util.List<com.example.demo.protobuf.ScraperProto.ListItemDTO> 
         getItemListElementList();
     /**
-     * <code>repeated .ListItemDTO itemListElement = 3;</code>
+     * <code>repeated .ListItemDTO item_list_element = 3;</code>
      */
     com.example.demo.protobuf.ScraperProto.ListItemDTO getItemListElement(int index);
     /**
-     * <code>repeated .ListItemDTO itemListElement = 3;</code>
+     * <code>repeated .ListItemDTO item_list_element = 3;</code>
      */
     int getItemListElementCount();
     /**
-     * <code>repeated .ListItemDTO itemListElement = 3;</code>
+     * <code>repeated .ListItemDTO item_list_element = 3;</code>
      */
     java.util.List<? extends com.example.demo.protobuf.ScraperProto.ListItemDTOOrBuilder> 
         getItemListElementOrBuilderList();
     /**
-     * <code>repeated .ListItemDTO itemListElement = 3;</code>
+     * <code>repeated .ListItemDTO item_list_element = 3;</code>
      */
     com.example.demo.protobuf.ScraperProto.ListItemDTOOrBuilder getItemListElementOrBuilder(
         int index);
 
     /**
-     * <code>int32 numberOfItems = 4;</code>
+     * <code>int32 number_of_items = 4;</code>
      * @return The numberOfItems.
      */
     int getNumberOfItems();
+
+    /**
+     * <code>int32 total_pages = 5;</code>
+     * @return The totalPages.
+     */
+    int getTotalPages();
   }
   /**
    * Protobuf type {@code ItemListResponse}
@@ -145,6 +151,11 @@ public final class ScraperProto {
             case 32: {
 
               numberOfItems_ = input.readInt32();
+              break;
+            }
+            case 40: {
+
+              totalPages_ = input.readInt32();
               break;
             }
             default: {
@@ -254,49 +265,59 @@ public final class ScraperProto {
       }
     }
 
-    public static final int ITEMLISTELEMENT_FIELD_NUMBER = 3;
+    public static final int ITEM_LIST_ELEMENT_FIELD_NUMBER = 3;
     private java.util.List<com.example.demo.protobuf.ScraperProto.ListItemDTO> itemListElement_;
     /**
-     * <code>repeated .ListItemDTO itemListElement = 3;</code>
+     * <code>repeated .ListItemDTO item_list_element = 3;</code>
      */
     public java.util.List<com.example.demo.protobuf.ScraperProto.ListItemDTO> getItemListElementList() {
       return itemListElement_;
     }
     /**
-     * <code>repeated .ListItemDTO itemListElement = 3;</code>
+     * <code>repeated .ListItemDTO item_list_element = 3;</code>
      */
     public java.util.List<? extends com.example.demo.protobuf.ScraperProto.ListItemDTOOrBuilder> 
         getItemListElementOrBuilderList() {
       return itemListElement_;
     }
     /**
-     * <code>repeated .ListItemDTO itemListElement = 3;</code>
+     * <code>repeated .ListItemDTO item_list_element = 3;</code>
      */
     public int getItemListElementCount() {
       return itemListElement_.size();
     }
     /**
-     * <code>repeated .ListItemDTO itemListElement = 3;</code>
+     * <code>repeated .ListItemDTO item_list_element = 3;</code>
      */
     public com.example.demo.protobuf.ScraperProto.ListItemDTO getItemListElement(int index) {
       return itemListElement_.get(index);
     }
     /**
-     * <code>repeated .ListItemDTO itemListElement = 3;</code>
+     * <code>repeated .ListItemDTO item_list_element = 3;</code>
      */
     public com.example.demo.protobuf.ScraperProto.ListItemDTOOrBuilder getItemListElementOrBuilder(
         int index) {
       return itemListElement_.get(index);
     }
 
-    public static final int NUMBEROFITEMS_FIELD_NUMBER = 4;
+    public static final int NUMBER_OF_ITEMS_FIELD_NUMBER = 4;
     private int numberOfItems_;
     /**
-     * <code>int32 numberOfItems = 4;</code>
+     * <code>int32 number_of_items = 4;</code>
      * @return The numberOfItems.
      */
     public int getNumberOfItems() {
       return numberOfItems_;
+    }
+
+    public static final int TOTAL_PAGES_FIELD_NUMBER = 5;
+    private int totalPages_;
+    /**
+     * <code>int32 total_pages = 5;</code>
+     * @return The totalPages.
+     */
+    public int getTotalPages() {
+      return totalPages_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -325,6 +346,9 @@ public final class ScraperProto {
       if (numberOfItems_ != 0) {
         output.writeInt32(4, numberOfItems_);
       }
+      if (totalPages_ != 0) {
+        output.writeInt32(5, totalPages_);
+      }
       unknownFields.writeTo(output);
     }
 
@@ -347,6 +371,10 @@ public final class ScraperProto {
       if (numberOfItems_ != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(4, numberOfItems_);
+      }
+      if (totalPages_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(5, totalPages_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -371,6 +399,8 @@ public final class ScraperProto {
           .equals(other.getItemListElementList())) return false;
       if (getNumberOfItems()
           != other.getNumberOfItems()) return false;
+      if (getTotalPages()
+          != other.getTotalPages()) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -387,11 +417,13 @@ public final class ScraperProto {
       hash = (37 * hash) + TYPE_FIELD_NUMBER;
       hash = (53 * hash) + getType().hashCode();
       if (getItemListElementCount() > 0) {
-        hash = (37 * hash) + ITEMLISTELEMENT_FIELD_NUMBER;
+        hash = (37 * hash) + ITEM_LIST_ELEMENT_FIELD_NUMBER;
         hash = (53 * hash) + getItemListElementList().hashCode();
       }
-      hash = (37 * hash) + NUMBEROFITEMS_FIELD_NUMBER;
+      hash = (37 * hash) + NUMBER_OF_ITEMS_FIELD_NUMBER;
       hash = (53 * hash) + getNumberOfItems();
+      hash = (37 * hash) + TOTAL_PAGES_FIELD_NUMBER;
+      hash = (53 * hash) + getTotalPages();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -538,6 +570,8 @@ public final class ScraperProto {
         }
         numberOfItems_ = 0;
 
+        totalPages_ = 0;
+
         return this;
       }
 
@@ -577,6 +611,7 @@ public final class ScraperProto {
           result.itemListElement_ = itemListElementBuilder_.build();
         }
         result.numberOfItems_ = numberOfItems_;
+        result.totalPages_ = totalPages_;
         onBuilt();
         return result;
       }
@@ -661,6 +696,9 @@ public final class ScraperProto {
         }
         if (other.getNumberOfItems() != 0) {
           setNumberOfItems(other.getNumberOfItems());
+        }
+        if (other.getTotalPages() != 0) {
+          setTotalPages(other.getTotalPages());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -857,7 +895,7 @@ public final class ScraperProto {
           com.example.demo.protobuf.ScraperProto.ListItemDTO, com.example.demo.protobuf.ScraperProto.ListItemDTO.Builder, com.example.demo.protobuf.ScraperProto.ListItemDTOOrBuilder> itemListElementBuilder_;
 
       /**
-       * <code>repeated .ListItemDTO itemListElement = 3;</code>
+       * <code>repeated .ListItemDTO item_list_element = 3;</code>
        */
       public java.util.List<com.example.demo.protobuf.ScraperProto.ListItemDTO> getItemListElementList() {
         if (itemListElementBuilder_ == null) {
@@ -867,7 +905,7 @@ public final class ScraperProto {
         }
       }
       /**
-       * <code>repeated .ListItemDTO itemListElement = 3;</code>
+       * <code>repeated .ListItemDTO item_list_element = 3;</code>
        */
       public int getItemListElementCount() {
         if (itemListElementBuilder_ == null) {
@@ -877,7 +915,7 @@ public final class ScraperProto {
         }
       }
       /**
-       * <code>repeated .ListItemDTO itemListElement = 3;</code>
+       * <code>repeated .ListItemDTO item_list_element = 3;</code>
        */
       public com.example.demo.protobuf.ScraperProto.ListItemDTO getItemListElement(int index) {
         if (itemListElementBuilder_ == null) {
@@ -887,7 +925,7 @@ public final class ScraperProto {
         }
       }
       /**
-       * <code>repeated .ListItemDTO itemListElement = 3;</code>
+       * <code>repeated .ListItemDTO item_list_element = 3;</code>
        */
       public Builder setItemListElement(
           int index, com.example.demo.protobuf.ScraperProto.ListItemDTO value) {
@@ -904,7 +942,7 @@ public final class ScraperProto {
         return this;
       }
       /**
-       * <code>repeated .ListItemDTO itemListElement = 3;</code>
+       * <code>repeated .ListItemDTO item_list_element = 3;</code>
        */
       public Builder setItemListElement(
           int index, com.example.demo.protobuf.ScraperProto.ListItemDTO.Builder builderForValue) {
@@ -918,7 +956,7 @@ public final class ScraperProto {
         return this;
       }
       /**
-       * <code>repeated .ListItemDTO itemListElement = 3;</code>
+       * <code>repeated .ListItemDTO item_list_element = 3;</code>
        */
       public Builder addItemListElement(com.example.demo.protobuf.ScraperProto.ListItemDTO value) {
         if (itemListElementBuilder_ == null) {
@@ -934,7 +972,7 @@ public final class ScraperProto {
         return this;
       }
       /**
-       * <code>repeated .ListItemDTO itemListElement = 3;</code>
+       * <code>repeated .ListItemDTO item_list_element = 3;</code>
        */
       public Builder addItemListElement(
           int index, com.example.demo.protobuf.ScraperProto.ListItemDTO value) {
@@ -951,7 +989,7 @@ public final class ScraperProto {
         return this;
       }
       /**
-       * <code>repeated .ListItemDTO itemListElement = 3;</code>
+       * <code>repeated .ListItemDTO item_list_element = 3;</code>
        */
       public Builder addItemListElement(
           com.example.demo.protobuf.ScraperProto.ListItemDTO.Builder builderForValue) {
@@ -965,7 +1003,7 @@ public final class ScraperProto {
         return this;
       }
       /**
-       * <code>repeated .ListItemDTO itemListElement = 3;</code>
+       * <code>repeated .ListItemDTO item_list_element = 3;</code>
        */
       public Builder addItemListElement(
           int index, com.example.demo.protobuf.ScraperProto.ListItemDTO.Builder builderForValue) {
@@ -979,7 +1017,7 @@ public final class ScraperProto {
         return this;
       }
       /**
-       * <code>repeated .ListItemDTO itemListElement = 3;</code>
+       * <code>repeated .ListItemDTO item_list_element = 3;</code>
        */
       public Builder addAllItemListElement(
           java.lang.Iterable<? extends com.example.demo.protobuf.ScraperProto.ListItemDTO> values) {
@@ -994,7 +1032,7 @@ public final class ScraperProto {
         return this;
       }
       /**
-       * <code>repeated .ListItemDTO itemListElement = 3;</code>
+       * <code>repeated .ListItemDTO item_list_element = 3;</code>
        */
       public Builder clearItemListElement() {
         if (itemListElementBuilder_ == null) {
@@ -1007,7 +1045,7 @@ public final class ScraperProto {
         return this;
       }
       /**
-       * <code>repeated .ListItemDTO itemListElement = 3;</code>
+       * <code>repeated .ListItemDTO item_list_element = 3;</code>
        */
       public Builder removeItemListElement(int index) {
         if (itemListElementBuilder_ == null) {
@@ -1020,14 +1058,14 @@ public final class ScraperProto {
         return this;
       }
       /**
-       * <code>repeated .ListItemDTO itemListElement = 3;</code>
+       * <code>repeated .ListItemDTO item_list_element = 3;</code>
        */
       public com.example.demo.protobuf.ScraperProto.ListItemDTO.Builder getItemListElementBuilder(
           int index) {
         return getItemListElementFieldBuilder().getBuilder(index);
       }
       /**
-       * <code>repeated .ListItemDTO itemListElement = 3;</code>
+       * <code>repeated .ListItemDTO item_list_element = 3;</code>
        */
       public com.example.demo.protobuf.ScraperProto.ListItemDTOOrBuilder getItemListElementOrBuilder(
           int index) {
@@ -1037,7 +1075,7 @@ public final class ScraperProto {
         }
       }
       /**
-       * <code>repeated .ListItemDTO itemListElement = 3;</code>
+       * <code>repeated .ListItemDTO item_list_element = 3;</code>
        */
       public java.util.List<? extends com.example.demo.protobuf.ScraperProto.ListItemDTOOrBuilder> 
            getItemListElementOrBuilderList() {
@@ -1048,14 +1086,14 @@ public final class ScraperProto {
         }
       }
       /**
-       * <code>repeated .ListItemDTO itemListElement = 3;</code>
+       * <code>repeated .ListItemDTO item_list_element = 3;</code>
        */
       public com.example.demo.protobuf.ScraperProto.ListItemDTO.Builder addItemListElementBuilder() {
         return getItemListElementFieldBuilder().addBuilder(
             com.example.demo.protobuf.ScraperProto.ListItemDTO.getDefaultInstance());
       }
       /**
-       * <code>repeated .ListItemDTO itemListElement = 3;</code>
+       * <code>repeated .ListItemDTO item_list_element = 3;</code>
        */
       public com.example.demo.protobuf.ScraperProto.ListItemDTO.Builder addItemListElementBuilder(
           int index) {
@@ -1063,7 +1101,7 @@ public final class ScraperProto {
             index, com.example.demo.protobuf.ScraperProto.ListItemDTO.getDefaultInstance());
       }
       /**
-       * <code>repeated .ListItemDTO itemListElement = 3;</code>
+       * <code>repeated .ListItemDTO item_list_element = 3;</code>
        */
       public java.util.List<com.example.demo.protobuf.ScraperProto.ListItemDTO.Builder> 
            getItemListElementBuilderList() {
@@ -1086,14 +1124,14 @@ public final class ScraperProto {
 
       private int numberOfItems_ ;
       /**
-       * <code>int32 numberOfItems = 4;</code>
+       * <code>int32 number_of_items = 4;</code>
        * @return The numberOfItems.
        */
       public int getNumberOfItems() {
         return numberOfItems_;
       }
       /**
-       * <code>int32 numberOfItems = 4;</code>
+       * <code>int32 number_of_items = 4;</code>
        * @param value The numberOfItems to set.
        * @return This builder for chaining.
        */
@@ -1104,12 +1142,42 @@ public final class ScraperProto {
         return this;
       }
       /**
-       * <code>int32 numberOfItems = 4;</code>
+       * <code>int32 number_of_items = 4;</code>
        * @return This builder for chaining.
        */
       public Builder clearNumberOfItems() {
         
         numberOfItems_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int totalPages_ ;
+      /**
+       * <code>int32 total_pages = 5;</code>
+       * @return The totalPages.
+       */
+      public int getTotalPages() {
+        return totalPages_;
+      }
+      /**
+       * <code>int32 total_pages = 5;</code>
+       * @param value The totalPages to set.
+       * @return This builder for chaining.
+       */
+      public Builder setTotalPages(int value) {
+        
+        totalPages_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 total_pages = 5;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearTotalPages() {
+        
+        totalPages_ = 0;
         onChanged();
         return this;
       }
@@ -1967,12 +2035,13 @@ public final class ScraperProto {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\rscraper.proto\"o\n\020ItemListResponse\022\017\n\007c" +
-      "ontext\030\001 \001(\t\022\014\n\004type\030\002 \001(\t\022%\n\017itemListEl" +
-      "ement\030\003 \003(\0132\014.ListItemDTO\022\025\n\rnumberOfIte" +
-      "ms\030\004 \001(\005\":\n\013ListItemDTO\022\014\n\004type\030\001 \001(\t\022\020\n" +
-      "\010position\030\002 \001(\005\022\013\n\003url\030\003 \001(\tB)\n\031com.exam" +
-      "ple.demo.protobufB\014ScraperProtob\006proto3"
+      "\n\rscraper.proto\"\210\001\n\020ItemListResponse\022\017\n\007" +
+      "context\030\001 \001(\t\022\014\n\004type\030\002 \001(\t\022\'\n\021item_list" +
+      "_element\030\003 \003(\0132\014.ListItemDTO\022\027\n\017number_o" +
+      "f_items\030\004 \001(\005\022\023\n\013total_pages\030\005 \001(\005\":\n\013Li" +
+      "stItemDTO\022\014\n\004type\030\001 \001(\t\022\020\n\010position\030\002 \001(" +
+      "\005\022\013\n\003url\030\003 \001(\tB)\n\031com.example.demo.proto" +
+      "bufB\014ScraperProtob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -1983,7 +2052,7 @@ public final class ScraperProto {
     internal_static_ItemListResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_ItemListResponse_descriptor,
-        new java.lang.String[] { "Context", "Type", "ItemListElement", "NumberOfItems", });
+        new java.lang.String[] { "Context", "Type", "ItemListElement", "NumberOfItems", "TotalPages", });
     internal_static_ListItemDTO_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_ListItemDTO_fieldAccessorTable = new

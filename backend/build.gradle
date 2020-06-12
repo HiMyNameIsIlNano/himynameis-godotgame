@@ -23,12 +23,14 @@ configurations {
     compileOnly {
         extendsFrom annotationProcessor
     }
+    generator {
+        extendsFrom runtime
+    }
 }
 
 dependencies {
     // Spring boot
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa'
-    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-rest'
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-security'
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-validation'
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web'
@@ -59,7 +61,7 @@ dependencies {
     runtimeOnly 'org.postgresql:postgresql'
 
     // Definition Generator
-    runtime group: 'com.example.demo', name: 'definition-generator', version: generatorVersion
+    generator group: 'com.example.demo', name: 'definition-generator', version: generatorVersion
 
     implementation group: 'org.jsoup', name: 'jsoup', version: '1.13.1'
 
@@ -73,7 +75,7 @@ dependencies {
 jsonSchema2Pojo {
     annotationStyle = 'jackson2'
     source = files("${project.projectDir}/src/main/resources/json")
-    targetDirectory = file("${project.projectDir}/src/main/java/com/example/demo/generated-definition")
+    targetDirectory = file("${project.projectDir}/generated/sources/generated-definition")
     sourceType = 'json'
     classNameSuffix = 'Definition'
     includeAdditionalProperties = false

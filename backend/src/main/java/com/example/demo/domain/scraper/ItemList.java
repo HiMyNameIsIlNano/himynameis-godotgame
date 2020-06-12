@@ -53,6 +53,16 @@ public class ItemList {
 		return numberOfItems;
 	}
 
+	public Integer totalPages;
+
+	public Integer getTotalPages() {
+		return totalPages;
+	}
+
+	public void setTotalPages(int totalPages) {
+		this.totalPages = totalPages;
+	}
+
 	@Override
 	public int hashCode() {
 		int result = 1;

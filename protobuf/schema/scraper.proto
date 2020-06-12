@@ -6,8 +6,9 @@ option java_outer_classname = "ScraperProto";
 message ItemListResponse {
     string context = 1;
     string type = 2;
-    repeated ListItemDTO itemListElement = 3;
-    int32 numberOfItems = 4;
+    repeated ListItemDTO item_list_element = 3;
+    int32 number_of_items = 4;
+    int32 total_pages = 5;
 }
 
 message ListItemDTO {

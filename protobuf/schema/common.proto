@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "com.example.demo.protobuf";
+option java_outer_classname = "CommonProto";
+
+message EmptyResponse {
+
+}
