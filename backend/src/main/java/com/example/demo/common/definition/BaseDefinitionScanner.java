@@ -1,25 +1,34 @@
 package com.example.demo.common.definition;
 
-import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider;
 import org.springframework.core.type.filter.AnnotationTypeFilter;
 import org.springframework.core.type.filter.AssignableTypeFilter;
+import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
 import javax.persistence.DiscriminatorValue;
 import java.util.HashMap;
 import java.util.Map;
 
 @Slf4j
-@UtilityClass
+@Service
 public class BaseDefinitionScanner extends DefinitionScanner {
+
+    static private BaseDefinitionScanner _SELF;
 
     private final String FILE_EXT = "json";
     private final Map<Class<?>, String> DEFINITION_TO_FILE = new HashMap<>();
 
-    static {
+    @PostConstruct
+    void init() {
+        _SELF = this;
         initDefinitionToFileMap();
+    }
+
+    public static BaseDefinitionScanner unwrap() {
+        return _SELF;
     }
 
     public String getJsonFileForType(Class<? extends BaseDefinition> clazz) {
@@ -29,7 +38,7 @@ public class BaseDefinitionScanner extends DefinitionScanner {
     private void initDefinitionToFileMap() {
         ClassPathScanningCandidateComponentProvider scanner = createDiscriminatorValueScanner();
         scanner.findCandidateComponents(BASE_PACKAGE)
-                .forEach(BaseDefinitionScanner::handleBaseDefinitions);
+                .forEach(this::handleBaseDefinitions);
     }
 
     private ClassPathScanningCandidateComponentProvider createDiscriminatorValueScanner() {

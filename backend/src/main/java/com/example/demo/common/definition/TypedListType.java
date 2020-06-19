@@ -1,5 +1,6 @@
 package com.example.demo.common.definition;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.hibernate.HibernateException;
 import org.hibernate.engine.spi.SharedSessionContractImplementor;
 import org.hibernate.usertype.DynamicParameterizedType;
@@ -53,14 +54,13 @@ public class TypedListType<T extends BaseDefinition> implements UserType, Dynami
 
         Array array = rs.getArray(names[0]);
         List<BaseDefinition> baseDefinitions = fromDbValues(array);
-        //return ArrayUtils.toPrimitive(definitionArray);
-        return null;
+        return ArrayUtils.toPrimitive(baseDefinitions);
     }
 
     private List<BaseDefinition> fromDbValues(Array array) throws SQLException {
         String[] javaArray = (String[]) array.getArray();
         return Arrays.asList(javaArray).stream()
-                .map(dbValue -> DefinitionLoaderScanner.getDefinitionByIdForType(dbValue, definitionClass))
+                .map(dbValue -> DefinitionLoaderScanner.unwrap().getDefinitionByIdForType(dbValue, definitionClass))
                 .collect(Collectors.toList());
     }
 

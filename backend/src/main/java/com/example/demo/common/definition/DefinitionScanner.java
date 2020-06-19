@@ -1,14 +1,25 @@
 package com.example.demo.common.definition;
 
-public abstract class DefinitionScanner {
+import org.springframework.beans.BeansException;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
+import org.springframework.stereotype.Service;
+
+@Service
+public class DefinitionScanner implements ApplicationContextAware {
 
     static final String BASE_PACKAGE = "com.example.demo.domain";
 
-    static void printErrorAndExit(Exception e) {
-        System.err.println("***************************");
+    protected ApplicationContext applicationContext;
+
+    protected void printErrorAndExit(Exception e) {
         System.err.println(e.getMessage());
-        System.err.println("***************************");
         System.exit(1);
+    }
+
+    @Override
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+        this.applicationContext = applicationContext;
     }
 
 }

@@ -1,12 +1,13 @@
 package com.example.demo.domain.recipe.ingredient;
 
-import com.example.demo.common.LoaderFor;
+import com.example.demo.common.DefinitionLoaderService;
 import com.example.demo.common.definition.BaseDefinitionScanner;
 import com.example.demo.common.definition.DefinitionLoader;
 import com.example.demo.domain.recipe.ingredient.definition.IngredientDefinition;
 import com.example.demo.domain.recipe.ingredient.definition.IngredientDefinitionList;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import javax.annotation.PostConstruct;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -14,12 +15,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import javax.annotation.PostConstruct;
 
-import org.springframework.stereotype.Service;
-
-@Service
-@LoaderFor(definition = IngredientDefinition.class)
+@DefinitionLoaderService(forDefinition = IngredientDefinition.class)
 public class IngredientDefinitionLoader implements DefinitionLoader<IngredientDefinition> {
 
     private List<IngredientDefinition> cache = null;
@@ -35,7 +32,7 @@ public class IngredientDefinitionLoader implements DefinitionLoader<IngredientDe
             return cache;
         }
 
-        String fileName = BaseDefinitionScanner.getJsonFileForType(IngredientDefinition.class);
+        String fileName = BaseDefinitionScanner.unwrap().getJsonFileForType(IngredientDefinition.class);
         URL resource = getResourceOrThrowException(fileName);
         Collection<IngredientDefinition> definitions = new ObjectMapper()
                 .readValue(new File(resource.getFile()), IngredientDefinitionList.class)

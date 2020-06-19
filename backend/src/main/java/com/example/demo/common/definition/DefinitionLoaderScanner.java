@@ -1,30 +1,43 @@
 package com.example.demo.common.definition;
 
-import com.example.demo.common.LoaderFor;
-import lombok.experimental.UtilityClass;
+import com.example.demo.common.DefinitionLoaderService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider;
 import org.springframework.core.type.filter.AnnotationTypeFilter;
 import org.springframework.core.type.filter.AssignableTypeFilter;
+import org.springframework.stereotype.Service;
 
-import java.io.IOException;
+import javax.annotation.PostConstruct;
 import java.util.HashMap;
 import java.util.Map;
 
 @Slf4j
-@UtilityClass
+@Service
 public class DefinitionLoaderScanner extends DefinitionScanner {
+
+    private static DefinitionLoaderScanner _SELF;
 
     private final Map<Class<?>, Class<?>> DEFINITION_TO_LOADER = new HashMap<>();
 
-    static {
+    @PostConstruct
+    void init() {
+        _SELF = this;
         initDefinitionToLoaderMap();
     }
 
+    public static DefinitionLoaderScanner unwrap() {
+        return _SELF;
+    }
+
+    private Class<?> getLoaderForDefinition(Class<?> definition) {
+        return DEFINITION_TO_LOADER.get(definition);
+    }
+
     public BaseDefinition getDefinitionByIdForType(String id, Class<?> definition) {
-        if (DefinitionLoader.class.isAssignableFrom(DEFINITION_TO_LOADER.get(definition))) {
-            DefinitionLoader loader = DefinitionLoader.class.cast(DEFINITION_TO_LOADER.get(definition));
+        Object bean = applicationContext.getBean(getLoaderForDefinition(definition));
+        if (bean instanceof DefinitionLoader) {
+            DefinitionLoader loader = (DefinitionLoader) bean;
             return (BaseDefinition) loader.loadById(id);
         }
 
@@ -34,12 +47,12 @@ public class DefinitionLoaderScanner extends DefinitionScanner {
     private void initDefinitionToLoaderMap() {
         ClassPathScanningCandidateComponentProvider scanner = createLoaderForScanner();
         scanner.findCandidateComponents(BASE_PACKAGE)
-                .forEach(DefinitionLoaderScanner::handleDefinitionLoader);
+                .forEach(DefinitionLoaderScanner.unwrap()::handleDefinitionLoader);
     }
 
     private ClassPathScanningCandidateComponentProvider createLoaderForScanner() {
         ClassPathScanningCandidateComponentProvider provider = new ClassPathScanningCandidateComponentProvider(false);
-        provider.addIncludeFilter(new AnnotationTypeFilter(LoaderFor.class));
+        provider.addIncludeFilter(new AnnotationTypeFilter(DefinitionLoaderService.class));
         provider.addIncludeFilter(new AssignableTypeFilter(DefinitionLoader.class));
         return provider;
     }
@@ -53,12 +66,13 @@ public class DefinitionLoaderScanner extends DefinitionScanner {
     }
 
     private void addLoaderToMap(BeanDefinition loader) throws ClassNotFoundException {
-        Class<?> clazz = Class.forName(loader.getBeanClassName());
-        LoaderFor annotation = clazz.getAnnotation(LoaderFor.class);
+        Class<?> loaderClass = Class.forName(loader.getBeanClassName());
+        DefinitionLoaderService annotation = loaderClass.getAnnotation(DefinitionLoaderService.class);
+
         if (annotation != null) {
-            DEFINITION_TO_LOADER.putIfAbsent(annotation.definition(), clazz);
+            DEFINITION_TO_LOADER.putIfAbsent(annotation.forDefinition(), loaderClass);
         } else {
-            handleMissingLoaderForValue(clazz);
+            handleMissingLoaderForValue(loaderClass);
         }
     }
 

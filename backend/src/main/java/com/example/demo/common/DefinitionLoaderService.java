@@ -10,8 +10,8 @@ import java.lang.annotation.Target;
 @Service
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface LoaderFor {
+public @interface DefinitionLoaderService {
 
-    Class<?> definition();
+    Class<?> forDefinition();
 
 }
