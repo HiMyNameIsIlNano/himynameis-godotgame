@@ -1,11 +1,12 @@
 package com.example.demo.common.definition;
 
 import java.io.IOException;
+import java.util.List;
 
-public interface DefinitionLoader<T, S> {
+public interface DefinitionLoader<T> {
 
-	T loadAll() throws IOException;
+    List<T> loadAll() throws IOException;
 
-	S loadById(String id) throws IOException;
+    T loadById(String id);
 
 }

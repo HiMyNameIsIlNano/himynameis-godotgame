@@ -3,7 +3,6 @@ package gradle;
 import java.util.Arrays;
 import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 public class DefinitionEnumGenerator {
 
 	private static final int ARGS_AMOUNT = 6;
@@ -21,7 +20,7 @@ public class DefinitionEnumGenerator {
 			}
 
 			String debugMessage = String.format("***** Generated enum from: %s ****", wrapper.getInputFile());
-			log.info(debugMessage);
+			System.out.println(debugMessage);
 		}
 	}
 

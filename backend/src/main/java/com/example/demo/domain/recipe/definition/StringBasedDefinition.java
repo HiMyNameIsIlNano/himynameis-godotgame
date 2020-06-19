@@ -7,9 +7,9 @@ import lombok.Getter;
 
 @DiscriminatorValue("string")
 @Getter
-@AllArgsConstructor
-public class StringBasedDefinition implements BaseDefinition {
+public class StringBasedDefinition extends BaseDefinition {
 
-	private String id;
-
+	public StringBasedDefinition(String id) {
+		super(id);
+	}
 }

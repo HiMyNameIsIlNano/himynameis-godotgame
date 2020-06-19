@@ -53,13 +53,28 @@ public class DbEnumGenerator extends EnumGenerator {
 
 	private void createEnumTypeStatement(FileWriter fileWriter, EnumGeneratorArgsWrapper args) throws IOException {
 		String typeName = getEnumName(args.getInputFile());
-		String enumValues = createEnumBody(args);
-		String statement = String.format("CREATE TYPE %s AS ENUM(%s);", typeName, enumValues);
+		String createEnumTypeStatement = getCreateEnumTypeStatement(typeName, args);
+		String statement = getStatement(typeName, createEnumTypeStatement);
+
 		fileWriter.append(statement);
 		fileWriter.append(EnumGeneratorArgsWrapper.NEW_LINE);
 	}
 
-	private String createEnumBody(EnumGeneratorArgsWrapper args) throws IOException {
+	private String getStatement(String typeName, String createEnumTypeStatement) {
+		return String.format("DO $$\n" +
+					"\tBEGIN\n" +
+					"\tIF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = '%s') THEN\n" +
+					"\t\t%s\n" +
+					"\tEND IF;\n" +
+					" END$$;", typeName, createEnumTypeStatement);
+	}
+
+	private String getCreateEnumTypeStatement(String typeName, EnumGeneratorArgsWrapper args) throws IOException {
+		String enumValues = getCommaSeparatedEnumValues(args);
+		return String.format("CREATE TYPE %s AS ENUM(%s);", typeName, enumValues);
+	}
+
+	private String getCommaSeparatedEnumValues(EnumGeneratorArgsWrapper args) throws IOException {
 		return getEnumValues(args).stream()
 			.map(String::toUpperCase)
 			.map(enumAsString -> "'" + enumAsString + "'")

@@ -1,57 +1,69 @@
 package com.example.demo.domain.recipe.ingredient;
 
+import com.example.demo.common.LoaderFor;
 import com.example.demo.common.definition.BaseDefinitionScanner;
 import com.example.demo.common.definition.DefinitionLoader;
+import com.example.demo.domain.recipe.ingredient.definition.IngredientDefinition;
+import com.example.demo.domain.recipe.ingredient.definition.IngredientDefinitionList;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 import javax.annotation.PostConstruct;
+
 import org.springframework.stereotype.Service;
 
 @Service
-public class IngredientDefinitionLoader implements DefinitionLoader<IngredientDefinitionList, IngredientDefinition> {
+@LoaderFor(definition = IngredientDefinition.class)
+public class IngredientDefinitionLoader implements DefinitionLoader<IngredientDefinition> {
 
-	private IngredientDefinitionList cache = null;
+    private List<IngredientDefinition> cache = null;
 
-	@PostConstruct
-	void init() throws IOException {
-		loadAll();
-	}
+    @PostConstruct
+    void init() throws IOException {
+        loadAll();
+    }
 
-	@Override
-	public IngredientDefinitionList loadAll() throws IOException {
-		if (cache != null) {
-			return cache;
-		}
+    @Override
+    public List<IngredientDefinition> loadAll() throws IOException {
+        if (cache != null) {
+            return cache;
+        }
 
-		String fileName = BaseDefinitionScanner.getJsonFileForType(IngredientDefinitionList.class);
-		URL resource = getResourceOrThrowException(fileName);
-		cache = new ObjectMapper().readValue(new File(resource.getFile()), IngredientDefinitionList.class);
+        String fileName = BaseDefinitionScanner.getJsonFileForType(IngredientDefinition.class);
+        URL resource = getResourceOrThrowException(fileName);
+        Collection<IngredientDefinition> definitions = new ObjectMapper()
+                .readValue(new File(resource.getFile()), IngredientDefinitionList.class)
+                .getDefinitions();
 
-		return cache;
-	}
+        cache = new ArrayList<>(definitions);
+        return cache;
+    }
 
-	private URL getResourceOrThrowException(String fileName) throws FileNotFoundException {
-		URL resource = getClass().getClassLoader().getResource(getResourcePath(fileName));
-		if (resource == null) {
-			throw new FileNotFoundException(fileName + "was not found");
-		}
+    private URL getResourceOrThrowException(String fileName) throws FileNotFoundException {
+        URL resource = getClass().getClassLoader().getResource(getResourcePath(fileName));
+        if (resource == null) {
+            throw new FileNotFoundException(fileName + " was not found");
+        }
 
-		return resource;
-	}
+        return resource;
+    }
 
-	private String getResourcePath(String fileName) {
-		return "json/" + fileName;
-	}
+    private String getResourcePath(String fileName) {
+        return "json/" + fileName;
+    }
 
-	@Override
-	public IngredientDefinition loadById(String id) {
-		return cache.getIngredients().stream()
-			.filter(ingredient -> id.equalsIgnoreCase(ingredient.getId()))
-			.findFirst()
-			.orElseThrow();
-	}
+    @Override
+    public IngredientDefinition loadById(String id) {
+        return cache.stream()
+                .filter(ingredient -> id.equalsIgnoreCase(ingredient.getId()))
+                .findFirst()
+                .orElseThrow();
+    }
 
 }

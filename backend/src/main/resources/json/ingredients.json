@@ -1,7 +1,8 @@
 {
-  "ingredients": [
+  "id": "ingredients.base",
+  "definitions": [
     {
-      "id": "wheat",
+      "id": "flour",
       "category": "BASIC"
     },
     {

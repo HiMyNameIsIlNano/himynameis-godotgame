@@ -1,0 +1,12 @@
+### Send POST init request for 5 recipes
+POST http://localhost:8070/recipes/init
+Content-Type: application/json
+
+{
+  "amount": 5
+}
+
+### Send GET to retrieve all the recipes
+GET http://localhost:8070/recipes/find-all
+
+###

@@ -6,6 +6,8 @@ import com.example.demo.protobuf.RecipeProto.RecipeInitRequest;
 import com.example.demo.protobuf.RecipeProto.RecipeRemoveRequest;
 import com.example.demo.protobuf.RecipeProto.RecipeResearchResponse;
 import com.example.demo.protobuf.recipe.RecipeResponseFactory;
+
+import java.io.IOException;
 import java.util.List;
 import javax.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -25,7 +27,7 @@ public class RecipeController {
 	private final RecipeResponseFactory recipeResponseFactory;
 
 	@PostMapping("/init")
-	public void init(@RequestBody RecipeInitRequest recipeInitRequest) {
+	public void init(@RequestBody RecipeInitRequest recipeInitRequest) throws IOException {
 		recipeService.initRecipes(recipeInitRequest.getAmount());
 	}
 
