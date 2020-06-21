@@ -1,8 +1,5 @@
 package com.example.demo.domain.recipe.model;
 
-import com.example.demo.common.definition.BaseDefinition;
-import com.example.demo.common.definition.StringListType;
-import com.example.demo.common.definition.TypedListType;
 import com.example.demo.common.model.BaseEntity;
 import com.example.demo.domain.recipe.definition.CategoryEnum;
 import com.example.demo.domain.recipe.definition.DifficultyEnum;
@@ -14,7 +11,6 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.NaturalId;
 import org.hibernate.annotations.Parameter;
 import org.hibernate.annotations.Type;
-import org.hibernate.annotations.TypeDef;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -27,8 +23,6 @@ import java.util.List;
 @Table(
         uniqueConstraints = @UniqueConstraint(name = "unique_recipe_constraint", columnNames = {"name"})
 )
-@TypeDef(name = "string-list", typeClass = StringListType.class, defaultForType = String[].class)
-@TypeDef(name = "typed-list", typeClass = TypedListType.class)
 public class Recipe extends BaseEntity {
 
     @NaturalId
