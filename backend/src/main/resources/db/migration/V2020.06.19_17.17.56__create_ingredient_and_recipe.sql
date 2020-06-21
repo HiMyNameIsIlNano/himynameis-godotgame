@@ -1,3 +1,4 @@
+    drop table if exists recipe cascade;
 
     create table ingredient (
        id int8 not null,
@@ -12,6 +13,7 @@
        id int8 not null,
         category varchar(255),
         difficulty varchar(255),
+        ingredient_definitions ingredient_definition[],
         name varchar(255),
         primary key (id)
     );

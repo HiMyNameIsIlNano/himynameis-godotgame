@@ -1,5 +1,6 @@
 package com.example.demo.domain.recipe.model;
 
+import com.example.demo.common.definition.BaseDefinition;
 import com.example.demo.common.definition.StringListType;
 import com.example.demo.common.definition.TypedListType;
 import com.example.demo.common.model.BaseEntity;
@@ -27,7 +28,7 @@ import java.util.List;
         uniqueConstraints = @UniqueConstraint(name = "unique_recipe_constraint", columnNames = {"name"})
 )
 @TypeDef(name = "string-list", typeClass = StringListType.class, defaultForType = String[].class)
-@TypeDef(name = "typed-list", typeClass = TypedListType.class, defaultForType = String[].class)
+@TypeDef(name = "typed-list", typeClass = TypedListType.class)
 public class Recipe extends BaseEntity {
 
     @NaturalId
@@ -43,13 +44,9 @@ public class Recipe extends BaseEntity {
     @JoinColumn(name = "recipe_id")
     private List<Ingredient> ingredients;
 
-    @Type(type = "string-list")
-    @Column(columnDefinition = "text[]")
-    private String[] strings;
-
     @Type(type = "typed-list", parameters = {
             @Parameter(name = "type", value = "ingredient_definition"),
-            @Parameter(name = "definitionClass", value = "com.example.demo.domain.recipe.ingredient.definition.IngredientDefinition")
+            @Parameter(name = "discriminatorValue", value = "ingredients")
     })
     @Column(columnDefinition = "ingredient_definition[]")
     private List<IngredientDefinition> ingredientDefinitions = new ArrayList<>();

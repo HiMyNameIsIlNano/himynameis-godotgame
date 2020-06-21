@@ -32,7 +32,7 @@ public class IngredientDefinitionLoader implements DefinitionLoader<IngredientDe
             return cache;
         }
 
-        String fileName = BaseDefinitionScanner.unwrap().getJsonFileForType(IngredientDefinition.class);
+        String fileName = BaseDefinitionScanner.getJsonFileForType(IngredientDefinition.class);
         URL resource = getResourceOrThrowException(fileName);
         Collection<IngredientDefinition> definitions = new ObjectMapper()
                 .readValue(new File(resource.getFile()), IngredientDefinitionList.class)

@@ -19,11 +19,7 @@ public class TypedListType<T extends BaseDefinition> implements UserType, Dynami
     @Override
     public void setParameterValues(Properties parameters) {
         this.type = parameters.getProperty("type");
-        try {
-            this.definitionClass = Class.forName(parameters.getProperty("definitionClass"));
-        } catch (ClassNotFoundException e) {
-            this.definitionClass = null;
-        }
+        this.definitionClass = BaseDefinitionScanner.getDefinitionFromDiscriminatorValue(parameters.getProperty("discriminatorValue"));
     }
 
     @Override
@@ -32,7 +28,7 @@ public class TypedListType<T extends BaseDefinition> implements UserType, Dynami
     }
 
     @Override
-    public Class returnedClass() {
+    public Class<?> returnedClass() {
         return this.getClass();
     }
 
@@ -48,10 +44,6 @@ public class TypedListType<T extends BaseDefinition> implements UserType, Dynami
 
     @Override
     public Object nullSafeGet(ResultSet rs, String[] names, SharedSessionContractImplementor session, Object owner) throws HibernateException, SQLException {
-        if (definitionClass == null) {
-            return null;
-        }
-
         Array array = rs.getArray(names[0]);
         List<BaseDefinition> baseDefinitions = fromDbValues(array);
         return ArrayUtils.toPrimitive(baseDefinitions);
@@ -59,7 +51,7 @@ public class TypedListType<T extends BaseDefinition> implements UserType, Dynami
 
     private List<BaseDefinition> fromDbValues(Array array) throws SQLException {
         String[] javaArray = (String[]) array.getArray();
-        return Arrays.asList(javaArray).stream()
+        return Arrays.stream(javaArray)
                 .map(dbValue -> DefinitionLoaderScanner.unwrap().getDefinitionByIdForType(dbValue, definitionClass))
                 .collect(Collectors.toList());
     }

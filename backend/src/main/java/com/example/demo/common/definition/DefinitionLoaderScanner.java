@@ -2,7 +2,10 @@ package com.example.demo.common.definition;
 
 import com.example.demo.common.DefinitionLoaderService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanDefinition;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider;
 import org.springframework.core.type.filter.AnnotationTypeFilter;
 import org.springframework.core.type.filter.AssignableTypeFilter;
@@ -14,9 +17,11 @@ import java.util.Map;
 
 @Slf4j
 @Service
-public class DefinitionLoaderScanner extends DefinitionScanner {
+public class DefinitionLoaderScanner extends DefinitionScanner implements ApplicationContextAware {
 
     private static DefinitionLoaderScanner _SELF;
+
+    private ApplicationContext applicationContext;
 
     private final Map<Class<?>, Class<?>> DEFINITION_TO_LOADER = new HashMap<>();
 
@@ -37,7 +42,7 @@ public class DefinitionLoaderScanner extends DefinitionScanner {
     public BaseDefinition getDefinitionByIdForType(String id, Class<?> definition) {
         Object bean = applicationContext.getBean(getLoaderForDefinition(definition));
         if (bean instanceof DefinitionLoader) {
-            DefinitionLoader loader = (DefinitionLoader) bean;
+            DefinitionLoader<?> loader = (DefinitionLoader<?>) bean;
             return (BaseDefinition) loader.loadById(id);
         }
 
@@ -47,7 +52,7 @@ public class DefinitionLoaderScanner extends DefinitionScanner {
     private void initDefinitionToLoaderMap() {
         ClassPathScanningCandidateComponentProvider scanner = createLoaderForScanner();
         scanner.findCandidateComponents(BASE_PACKAGE)
-                .forEach(DefinitionLoaderScanner.unwrap()::handleDefinitionLoader);
+                .forEach(this::handleDefinitionLoader);
     }
 
     private ClassPathScanningCandidateComponentProvider createLoaderForScanner() {
@@ -79,6 +84,11 @@ public class DefinitionLoaderScanner extends DefinitionScanner {
     private void handleMissingLoaderForValue(Class<?> clazz) {
         String missingAnnotationException = String.format("Missing LoaderFor annotation in %s", clazz.getName());
         printErrorAndExit(new IllegalArgumentException(missingAnnotationException));
+    }
+
+    @Override
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+        this.applicationContext = applicationContext;
     }
 
 }

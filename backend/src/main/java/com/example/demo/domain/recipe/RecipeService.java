@@ -38,7 +38,6 @@ public class RecipeService {
                 DifficultyEnum.EASY,
                 CategoryEnum.WITH_MEAT,
                 mockIngredients(),
-                new String[] {"1", "2"},
                 getRandomIngredientDefinition());
 
         recipeRepository.save(recipe);
