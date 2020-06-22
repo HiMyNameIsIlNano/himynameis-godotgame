@@ -13,9 +13,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Amount {
 
-	private int quantity;
+    private int quantity;
 
-	@Enumerated(value = EnumType.STRING)
-	private UnitOfMeasureEnum unitOfMeasure;
-
+    @Enumerated(value = EnumType.STRING)
+    private UnitOfMeasureEnum unitOfMeasure;
 }
