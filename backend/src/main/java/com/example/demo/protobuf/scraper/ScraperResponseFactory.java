@@ -4,9 +4,7 @@ import com.example.demo.domain.scraper.ItemList;
 import com.example.demo.domain.scraper.ListItem;
 import com.example.demo.protobuf.ScraperProto.ItemListResponse;
 import com.example.demo.protobuf.ScraperProto.ListItemDTO;
-
 import java.util.List;
-
 import org.springframework.stereotype.Service;
 
 @Service

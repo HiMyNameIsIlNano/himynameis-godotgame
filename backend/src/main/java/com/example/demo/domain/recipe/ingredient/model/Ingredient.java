@@ -2,17 +2,16 @@ package com.example.demo.domain.recipe.ingredient.model;
 
 import com.example.demo.common.model.BaseEntity;
 import com.example.demo.domain.recipe.definition.Amount;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import org.hibernate.annotations.Type;
-
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Type;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
@@ -25,8 +24,5 @@ public class Ingredient extends BaseEntity {
     @Column(columnDefinition = "ingredient_definition")
     private IngredientDefinitionEnum ingredientDefinition;
 
-    @Embedded
-    private Amount amount;
-
+    @Embedded private Amount amount;
 }
-

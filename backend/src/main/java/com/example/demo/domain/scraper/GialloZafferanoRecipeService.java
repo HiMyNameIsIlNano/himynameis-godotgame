@@ -1,11 +1,9 @@
 package com.example.demo.domain.scraper;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
-
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -14,7 +12,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class GialloZafferanoRecipeService implements RecipeScraper<ItemList> {
 
-    private static final String BASE_URL = "https://www.giallozafferano.it/ricerca-ricette/page%d/%s";
+    private static final String BASE_URL =
+            "https://www.giallozafferano.it/ricerca-ricette/page%d/%s";
 
     @Override
     public ItemList extractSearchResult(String text, int pageIndex) throws IOException {
@@ -28,10 +27,8 @@ public class GialloZafferanoRecipeService implements RecipeScraper<ItemList> {
             return Integer.parseInt(totalPagesElement.html());
         }
 
-        totalPagesElement = httpDocument
-                .select("div[class^=\"gz-pages\"]")
-                .select("a:last-of-type")
-                .first();
+        totalPagesElement =
+                httpDocument.select("div[class^=\"gz-pages\"]").select("a:last-of-type").first();
 
         return Integer.parseInt(totalPagesElement.html());
     }
@@ -43,11 +40,11 @@ public class GialloZafferanoRecipeService implements RecipeScraper<ItemList> {
 
     private ItemList getRecipeListFromHttpDocument(Document document) {
         int totalPages = getTotalPages(document);
-        List<String> recipeList = document
-                .select("script[type^=\"application/ld+json\"]").stream()
-                .map(Element::html)
-                .filter(element -> element.contains("\"@type\":\"ItemList\""))
-                .collect(Collectors.toList());
+        List<String> recipeList =
+                document.select("script[type^=\"application/ld+json\"]").stream()
+                        .map(Element::html)
+                        .filter(element -> element.contains("\"@type\":\"ItemList\""))
+                        .collect(Collectors.toList());
 
         return validateAndGetItemList(totalPages, recipeList);
     }

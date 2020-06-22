@@ -5,6 +5,9 @@ import com.example.demo.domain.recipe.definition.CategoryEnum;
 import com.example.demo.domain.recipe.definition.DifficultyEnum;
 import com.example.demo.domain.recipe.ingredient.definition.IngredientDefinition;
 import com.example.demo.domain.recipe.ingredient.model.Ingredient;
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,21 +15,18 @@ import org.hibernate.annotations.NaturalId;
 import org.hibernate.annotations.Parameter;
 import org.hibernate.annotations.Type;
 
-import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
-
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Getter
 @Table(
-        uniqueConstraints = @UniqueConstraint(name = "unique_recipe_constraint", columnNames = {"name"})
-)
+        uniqueConstraints =
+                @UniqueConstraint(
+                        name = "unique_recipe_constraint",
+                        columnNames = {"name"}))
 public class Recipe extends BaseEntity {
 
-    @NaturalId
-    private String name;
+    @NaturalId private String name;
 
     @Enumerated(value = EnumType.STRING)
     private DifficultyEnum difficulty;
@@ -38,11 +38,12 @@ public class Recipe extends BaseEntity {
     @JoinColumn(name = "recipe_id")
     private List<Ingredient> ingredients;
 
-    @Type(type = "typed-list", parameters = {
-            @Parameter(name = "type", value = "ingredient_definition"),
-            @Parameter(name = "discriminatorValue", value = "ingredients")
-    })
+    @Type(
+            type = "typed-list",
+            parameters = {
+                @Parameter(name = "type", value = "ingredient_definition"),
+                @Parameter(name = "discriminatorValue", value = "ingredients")
+            })
     @Column(columnDefinition = "ingredient_definition[]")
     private List<IngredientDefinition> ingredientDefinitions = new ArrayList<>();
-
 }

@@ -6,8 +6,6 @@ import com.example.demo.common.definition.DefinitionLoader;
 import com.example.demo.domain.recipe.ingredient.definition.IngredientDefinition;
 import com.example.demo.domain.recipe.ingredient.definition.IngredientDefinitionList;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
-import javax.annotation.PostConstruct;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -15,6 +13,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import javax.annotation.PostConstruct;
 
 @DefinitionLoaderService(forDefinition = IngredientDefinition.class)
 public class IngredientDefinitionLoader implements DefinitionLoader<IngredientDefinition> {
@@ -34,9 +33,10 @@ public class IngredientDefinitionLoader implements DefinitionLoader<IngredientDe
 
         String fileName = BaseDefinitionScanner.getJsonFileForType(IngredientDefinition.class);
         URL resource = getResourceOrThrowException(fileName);
-        Collection<IngredientDefinition> definitions = new ObjectMapper()
-                .readValue(new File(resource.getFile()), IngredientDefinitionList.class)
-                .getDefinitions();
+        Collection<IngredientDefinition> definitions =
+                new ObjectMapper()
+                        .readValue(new File(resource.getFile()), IngredientDefinitionList.class)
+                        .getDefinitions();
 
         cache = new ArrayList<>(definitions);
         return cache;
@@ -62,5 +62,4 @@ public class IngredientDefinitionLoader implements DefinitionLoader<IngredientDe
                 .findFirst()
                 .orElseThrow();
     }
-
 }

@@ -11,16 +11,16 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class FlywayMigrationConfiguration {
 
-	private final ObjectProvider<EntityMigrationGeneratorConfiguration> entityMigrationGeneratorConfiguration;
+    private final ObjectProvider<EntityMigrationGeneratorConfiguration>
+            entityMigrationGeneratorConfiguration;
 
-	@Bean
-	public FlywayMigrationStrategy flywayMigrationStrategy() {
-		return this::migrate;
-	}
+    @Bean
+    public FlywayMigrationStrategy flywayMigrationStrategy() {
+        return this::migrate;
+    }
 
-	protected void migrate(Flyway flyway) {
-		flyway.migrate();
-		entityMigrationGeneratorConfiguration.ifAvailable(HibernateEntityDDLGenerator::generateDDL);
-	}
-
+    protected void migrate(Flyway flyway) {
+        flyway.migrate();
+        entityMigrationGeneratorConfiguration.ifAvailable(HibernateEntityDDLGenerator::generateDDL);
+    }
 }

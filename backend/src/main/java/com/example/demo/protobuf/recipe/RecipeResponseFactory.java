@@ -7,26 +7,21 @@ import com.example.demo.protobuf.RecipeProto.AmountDTO;
 import com.example.demo.protobuf.RecipeProto.IngredientAmountDTO;
 import com.example.demo.protobuf.RecipeProto.RecipeDTO;
 import com.example.demo.protobuf.RecipeProto.RecipeResearchResponse;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.stream.Collectors;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
 @Service
 public class RecipeResponseFactory {
 
     public RecipeResearchResponse toRecipeResponse(List<Recipe> recipes) {
-        return RecipeResearchResponse.newBuilder()
-                .addAllRecipes(toRecipeDTOList(recipes))
-                .build();
+        return RecipeResearchResponse.newBuilder().addAllRecipes(toRecipeDTOList(recipes)).build();
     }
 
     private List<RecipeDTO> toRecipeDTOList(List<Recipe> recipes) {
-        return recipes.stream()
-                .map(this::toRecipeDTO)
-                .collect(Collectors.toList());
+        return recipes.stream().map(this::toRecipeDTO).collect(Collectors.toList());
     }
 
     private RecipeDTO toRecipeDTO(Recipe recipe) {
@@ -38,7 +33,8 @@ public class RecipeResponseFactory {
                 .build();
     }
 
-    private Iterable<? extends IngredientAmountDTO> toIngredientList(List<Ingredient> ingredientDefinitionList) {
+    private Iterable<? extends IngredientAmountDTO> toIngredientList(
+            List<Ingredient> ingredientDefinitionList) {
         return ingredientDefinitionList.stream().map(this::toIngredient)::iterator;
     }
 
@@ -55,5 +51,4 @@ public class RecipeResponseFactory {
                 .setUnitOfMeasure(amount.getUnitOfMeasure().getLabel())
                 .build();
     }
-
 }

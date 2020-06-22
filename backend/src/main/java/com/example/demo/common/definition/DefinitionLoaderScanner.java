@@ -1,6 +1,9 @@
 package com.example.demo.common.definition;
 
 import com.example.demo.common.DefinitionLoaderService;
+import java.util.HashMap;
+import java.util.Map;
+import javax.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanDefinition;
@@ -10,10 +13,6 @@ import org.springframework.context.annotation.ClassPathScanningCandidateComponen
 import org.springframework.core.type.filter.AnnotationTypeFilter;
 import org.springframework.core.type.filter.AssignableTypeFilter;
 import org.springframework.stereotype.Service;
-
-import javax.annotation.PostConstruct;
-import java.util.HashMap;
-import java.util.Map;
 
 @Slf4j
 @Service
@@ -51,12 +50,12 @@ public class DefinitionLoaderScanner extends DefinitionScanner implements Applic
 
     private void initDefinitionToLoaderMap() {
         ClassPathScanningCandidateComponentProvider scanner = createLoaderForScanner();
-        scanner.findCandidateComponents(BASE_PACKAGE)
-                .forEach(this::handleDefinitionLoader);
+        scanner.findCandidateComponents(BASE_PACKAGE).forEach(this::handleDefinitionLoader);
     }
 
     private ClassPathScanningCandidateComponentProvider createLoaderForScanner() {
-        ClassPathScanningCandidateComponentProvider provider = new ClassPathScanningCandidateComponentProvider(false);
+        ClassPathScanningCandidateComponentProvider provider =
+                new ClassPathScanningCandidateComponentProvider(false);
         provider.addIncludeFilter(new AnnotationTypeFilter(DefinitionLoaderService.class));
         provider.addIncludeFilter(new AssignableTypeFilter(DefinitionLoader.class));
         return provider;
@@ -72,7 +71,8 @@ public class DefinitionLoaderScanner extends DefinitionScanner implements Applic
 
     private void addLoaderToMap(BeanDefinition loader) throws ClassNotFoundException {
         Class<?> loaderClass = Class.forName(loader.getBeanClassName());
-        DefinitionLoaderService annotation = loaderClass.getAnnotation(DefinitionLoaderService.class);
+        DefinitionLoaderService annotation =
+                loaderClass.getAnnotation(DefinitionLoaderService.class);
 
         if (annotation != null) {
             DEFINITION_TO_LOADER.putIfAbsent(annotation.forDefinition(), loaderClass);
@@ -82,7 +82,8 @@ public class DefinitionLoaderScanner extends DefinitionScanner implements Applic
     }
 
     private void handleMissingLoaderForValue(Class<?> clazz) {
-        String missingAnnotationException = String.format("Missing LoaderFor annotation in %s", clazz.getName());
+        String missingAnnotationException =
+                String.format("Missing LoaderFor annotation in %s", clazz.getName());
         printErrorAndExit(new IllegalArgumentException(missingAnnotationException));
     }
 
@@ -90,5 +91,4 @@ public class DefinitionLoaderScanner extends DefinitionScanner implements Applic
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         this.applicationContext = applicationContext;
     }
-
 }

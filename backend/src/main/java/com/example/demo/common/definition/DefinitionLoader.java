@@ -8,5 +8,4 @@ public interface DefinitionLoader<T> {
     List<T> loadAll() throws IOException;
 
     T loadById(String id);
-
 }

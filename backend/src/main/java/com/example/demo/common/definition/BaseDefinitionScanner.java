@@ -1,15 +1,14 @@
 package com.example.demo.common.definition;
 
+import java.util.HashMap;
+import java.util.Map;
+import javax.persistence.DiscriminatorValue;
 import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider;
 import org.springframework.core.type.filter.AnnotationTypeFilter;
 import org.springframework.core.type.filter.AssignableTypeFilter;
-
-import javax.persistence.DiscriminatorValue;
-import java.util.HashMap;
-import java.util.Map;
 
 @Slf4j
 @UtilityClass
@@ -38,7 +37,8 @@ public class BaseDefinitionScanner extends DefinitionScanner {
     }
 
     private ClassPathScanningCandidateComponentProvider createDiscriminatorValueScanner() {
-        ClassPathScanningCandidateComponentProvider provider = new ClassPathScanningCandidateComponentProvider(false);
+        ClassPathScanningCandidateComponentProvider provider =
+                new ClassPathScanningCandidateComponentProvider(false);
         provider.addIncludeFilter(new AnnotationTypeFilter(DiscriminatorValue.class));
         provider.addIncludeFilter(new AssignableTypeFilter(BaseDefinition.class));
         return provider;
@@ -64,8 +64,8 @@ public class BaseDefinitionScanner extends DefinitionScanner {
     }
 
     private void handleMissingDiscriminatorAnnotation(Class<?> clazz) {
-        String missingAnnotationException = String.format("Missing DiscriminatorValue annotation in %s", clazz.getName());
+        String missingAnnotationException =
+                String.format("Missing DiscriminatorValue annotation in %s", clazz.getName());
         printErrorAndExit(new IllegalArgumentException(missingAnnotationException));
     }
-
 }

@@ -14,40 +14,39 @@ import org.hibernate.tool.schema.TargetType;
 @Slf4j
 public abstract class HibernateEntityDDLGenerator extends HibernateDDLGenerator {
 
-	public void generateDDL() {
-		try {
-			doCreateMigration();
-		} catch (IOException e) {
-			throw new IllegalStateException(e);
-		}
-	}
+    public void generateDDL() {
+        try {
+            doCreateMigration();
+        } catch (IOException e) {
+            throw new IllegalStateException(e);
+        }
+    }
 
-	private void doCreateMigration() throws IOException {
-		PersistenceUnitInfo persistenceUnitInfo = getEntityManagerFactoryBean().getPersistenceUnitInfo();
-		if (persistenceUnitInfo == null) {
-			throw new IllegalStateException("The persistence unit is null");
-		}
+    private void doCreateMigration() throws IOException {
+        PersistenceUnitInfo persistenceUnitInfo =
+                getEntityManagerFactoryBean().getPersistenceUnitInfo();
+        if (persistenceUnitInfo == null) {
+            throw new IllegalStateException("The persistence unit is null");
+        }
 
-		String filename = getFilename("'entity_name'");
-		writeMigrationToFile(filename, persistenceUnitInfo);
-		checkFile(filename);
-	}
+        String filename = getFilename("'entity_name'");
+        writeMigrationToFile(filename, persistenceUnitInfo);
+        checkFile(filename);
+    }
 
-	private void writeMigrationToFile(String filename, PersistenceUnitInfo persistenceUnitInfo) {
-		StandardServiceRegistry serviceRegistry = getStandardServiceRegistry();
-		MetadataSources metadataSources = new MetadataSources(new BootstrapServiceRegistryBuilder().build());
+    private void writeMigrationToFile(String filename, PersistenceUnitInfo persistenceUnitInfo) {
+        StandardServiceRegistry serviceRegistry = getStandardServiceRegistry();
+        MetadataSources metadataSources =
+                new MetadataSources(new BootstrapServiceRegistryBuilder().build());
 
-		persistenceUnitInfo
-			.getManagedClassNames()
-			.forEach(metadataSources::addAnnotatedClassName);
+        persistenceUnitInfo.getManagedClassNames().forEach(metadataSources::addAnnotatedClassName);
 
-		Metadata metadata = metadataSources.buildMetadata(serviceRegistry);
+        Metadata metadata = metadataSources.buildMetadata(serviceRegistry);
 
-		SchemaUpdate update = new SchemaUpdate(); // To create SchemaUpdate
-		update.setFormat(true);
-		update.setOutputFile(filename);
-		update.setDelimiter(";");
-		update.execute(EnumSet.of(TargetType.SCRIPT), metadata, serviceRegistry);
-	}
-
+        SchemaUpdate update = new SchemaUpdate(); // To create SchemaUpdate
+        update.setFormat(true);
+        update.setOutputFile(filename);
+        update.setDelimiter(";");
+        update.execute(EnumSet.of(TargetType.SCRIPT), metadata, serviceRegistry);
+    }
 }

@@ -5,14 +5,13 @@ import com.example.demo.domain.scraper.ItemList;
 import com.example.demo.protobuf.ScraperProto.ItemListResponse;
 import com.example.demo.protobuf.scraper.ScraperResponseFactory;
 import com.google.protobuf.util.JsonFormat;
+import java.io.IOException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.io.IOException;
 
 @Slf4j
 @RequestMapping("/external-recipe")
@@ -25,10 +24,12 @@ public class ExternalRecipeScraperController {
     private final ScraperResponseFactory scraperResponseFactory;
 
     @GetMapping("/find/{pageIndex}/{searchText}")
-    public ItemListResponse getExternalRecipe(@PathVariable(name = "searchText") String text, @PathVariable int pageIndex) {
+    public ItemListResponse getExternalRecipe(
+            @PathVariable(name = "searchText") String text, @PathVariable int pageIndex) {
         try {
             ItemList recipeList = gialloZafferanoRecipeService.extractSearchResult(text, pageIndex);
-            ItemListResponse itemListResponse = scraperResponseFactory.toScrapeRecipeResponse(recipeList);
+            ItemListResponse itemListResponse =
+                    scraperResponseFactory.toScrapeRecipeResponse(recipeList);
             log.info(JsonFormat.printer().print(itemListResponse));
             return itemListResponse;
         } catch (IOException e) {
@@ -37,5 +38,4 @@ public class ExternalRecipeScraperController {
 
         return null;
     }
-
 }

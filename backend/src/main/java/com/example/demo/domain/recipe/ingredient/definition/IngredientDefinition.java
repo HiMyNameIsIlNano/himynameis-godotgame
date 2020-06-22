@@ -1,4 +1,3 @@
-
 package com.example.demo.domain.recipe.ingredient.definition;
 
 import com.example.demo.common.definition.BaseDefinition;
@@ -6,19 +5,13 @@ import com.example.demo.domain.recipe.ingredient.model.Ingredient;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-
-import javax.persistence.DiscriminatorValue;
 import java.util.Objects;
+import javax.persistence.DiscriminatorValue;
 
-/**
- * The definition of an {@link Ingredient}.
- */
+/** The definition of an {@link Ingredient}. */
 @DiscriminatorValue("ingredients")
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({
-        "id",
-        "category"
-})
+@JsonPropertyOrder({"id", "category"})
 public class IngredientDefinition extends BaseDefinition {
 
     @JsonProperty("category")
@@ -46,5 +39,4 @@ public class IngredientDefinition extends BaseDefinition {
         }
         return Objects.equals(this, other);
     }
-
 }

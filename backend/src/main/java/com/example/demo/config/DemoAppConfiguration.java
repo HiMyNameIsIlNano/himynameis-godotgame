@@ -5,5 +5,4 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EnableTransactionManagement
-public class DemoAppConfiguration {
-}
+public class DemoAppConfiguration {}

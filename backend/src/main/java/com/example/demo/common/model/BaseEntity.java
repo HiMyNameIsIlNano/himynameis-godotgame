@@ -9,16 +9,8 @@ import javax.persistence.SequenceGenerator;
 @MappedSuperclass
 public class BaseEntity {
 
-	@Id
-	@GeneratedValue(
-		strategy = GenerationType.SEQUENCE,
-		generator = "id-sequence"
-	)
-	@SequenceGenerator(
-		name = "id-sequence",
-		sequenceName = "id_sequence",
-		allocationSize = 3
-	)
-	private Long id;
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id-sequence")
+    @SequenceGenerator(name = "id-sequence", sequenceName = "id_sequence", allocationSize = 3)
+    private Long id;
 }

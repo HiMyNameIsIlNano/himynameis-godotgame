@@ -3,18 +3,14 @@ package com.example.demo.common.definition;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import lombok.NoArgsConstructor;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Objects;
+import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({
-        "id",
-        "definitions"
-})
+@JsonPropertyOrder({"id", "definitions"})
 public class BaseDefinitionList<T> {
 
     @JsonProperty("id")
@@ -60,6 +56,4 @@ public class BaseDefinitionList<T> {
 
         return Objects.equals(this, other);
     }
-
 }
-

@@ -1,13 +1,12 @@
 package com.example.demo.common.definition;
 
+import java.io.Serializable;
+import java.sql.*;
+import java.util.Objects;
 import org.apache.commons.lang3.ArrayUtils;
 import org.hibernate.HibernateException;
 import org.hibernate.engine.spi.SharedSessionContractImplementor;
 import org.hibernate.usertype.UserType;
-
-import java.io.Serializable;
-import java.sql.*;
-import java.util.Objects;
 
 public class StringListType implements UserType {
 
@@ -32,15 +31,20 @@ public class StringListType implements UserType {
     }
 
     @Override
-    public Object nullSafeGet(ResultSet rs, String[] names, SharedSessionContractImplementor session, Object owner) throws HibernateException, SQLException {
-        // As we are getting a value that is stored in a single column, we can just read the first column
+    public Object nullSafeGet(
+            ResultSet rs, String[] names, SharedSessionContractImplementor session, Object owner)
+            throws HibernateException, SQLException {
+        // As we are getting a value that is stored in a single column, we can just read the first
+        // column
         Array array = rs.getArray(names[0]);
         String[] javaArray = (String[]) array.getArray();
         return ArrayUtils.toPrimitive(javaArray);
     }
 
     @Override
-    public void nullSafeSet(PreparedStatement st, Object value, int index, SharedSessionContractImplementor session) throws HibernateException, SQLException {
+    public void nullSafeSet(
+            PreparedStatement st, Object value, int index, SharedSessionContractImplementor session)
+            throws HibernateException, SQLException {
         Connection connection = st.getConnection();
 
         String[] castObject = (String[]) value;

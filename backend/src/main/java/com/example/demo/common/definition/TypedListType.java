@@ -1,15 +1,14 @@
 package com.example.demo.common.definition;
 
+import java.io.Serializable;
+import java.sql.*;
+import java.util.*;
+import java.util.stream.Collectors;
 import org.apache.commons.lang3.ArrayUtils;
 import org.hibernate.HibernateException;
 import org.hibernate.engine.spi.SharedSessionContractImplementor;
 import org.hibernate.usertype.DynamicParameterizedType;
 import org.hibernate.usertype.UserType;
-
-import java.io.Serializable;
-import java.sql.*;
-import java.util.*;
-import java.util.stream.Collectors;
 
 public class TypedListType<T extends BaseDefinition> implements UserType, DynamicParameterizedType {
 
@@ -19,12 +18,14 @@ public class TypedListType<T extends BaseDefinition> implements UserType, Dynami
     @Override
     public void setParameterValues(Properties parameters) {
         this.type = parameters.getProperty("type");
-        this.definitionClass = BaseDefinitionScanner.getDefinitionFromDiscriminatorValue(parameters.getProperty("discriminatorValue"));
+        this.definitionClass =
+                BaseDefinitionScanner.getDefinitionFromDiscriminatorValue(
+                        parameters.getProperty("discriminatorValue"));
     }
 
     @Override
     public int[] sqlTypes() {
-        return new int[]{Types.ARRAY};
+        return new int[] {Types.ARRAY};
     }
 
     @Override
@@ -43,7 +44,9 @@ public class TypedListType<T extends BaseDefinition> implements UserType, Dynami
     }
 
     @Override
-    public Object nullSafeGet(ResultSet rs, String[] names, SharedSessionContractImplementor session, Object owner) throws HibernateException, SQLException {
+    public Object nullSafeGet(
+            ResultSet rs, String[] names, SharedSessionContractImplementor session, Object owner)
+            throws HibernateException, SQLException {
         Array array = rs.getArray(names[0]);
         List<BaseDefinition> baseDefinitions = fromDbValues(array);
         return ArrayUtils.toPrimitive(baseDefinitions);
@@ -52,12 +55,17 @@ public class TypedListType<T extends BaseDefinition> implements UserType, Dynami
     private List<BaseDefinition> fromDbValues(Array array) throws SQLException {
         String[] javaArray = (String[]) array.getArray();
         return Arrays.stream(javaArray)
-                .map(dbValue -> DefinitionLoaderScanner.unwrap().getDefinitionByIdForType(dbValue, definitionClass))
+                .map(
+                        dbValue ->
+                                DefinitionLoaderScanner.unwrap()
+                                        .getDefinitionByIdForType(dbValue, definitionClass))
                 .collect(Collectors.toList());
     }
 
     @Override
-    public void nullSafeSet(PreparedStatement st, Object value, int index, SharedSessionContractImplementor session) throws HibernateException, SQLException {
+    public void nullSafeSet(
+            PreparedStatement st, Object value, int index, SharedSessionContractImplementor session)
+            throws HibernateException, SQLException {
         if (!(value instanceof Collection)) {
             return;
         }
@@ -72,9 +80,7 @@ public class TypedListType<T extends BaseDefinition> implements UserType, Dynami
     }
 
     private Object[] toDbValues(Collection<T> data) {
-        return data.stream()
-                .map(this::toDbValue)
-                .toArray();
+        return data.stream().map(this::toDbValue).toArray();
     }
 
     private String toDbValue(BaseDefinition definition) {

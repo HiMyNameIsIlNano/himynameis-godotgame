@@ -7,9 +7,8 @@ import org.springframework.http.converter.protobuf.ProtobufJsonFormatHttpMessage
 @Configuration
 public class ProtobufConfiguration {
 
-	@Bean
-	ProtobufJsonFormatHttpMessageConverter protobufJsonFormatHttpMessageConverter() {
-		return new ProtobufJsonFormatHttpMessageConverter();
-	}
-
+    @Bean
+    ProtobufJsonFormatHttpMessageConverter protobufJsonFormatHttpMessageConverter() {
+        return new ProtobufJsonFormatHttpMessageConverter();
+    }
 }

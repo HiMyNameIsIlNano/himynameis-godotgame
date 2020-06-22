@@ -9,14 +9,13 @@ import com.example.demo.domain.recipe.ingredient.definition.IngredientDefinition
 import com.example.demo.domain.recipe.ingredient.model.Ingredient;
 import com.example.demo.domain.recipe.ingredient.model.IngredientDefinitionEnum;
 import com.example.demo.domain.recipe.model.Recipe;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.ThreadLocalRandom;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
 @Service
@@ -34,18 +33,19 @@ public class RecipeService {
     }
 
     private void mockAndPersistRecipe(int index) throws IOException {
-        Recipe recipe = new Recipe("Recipe_" + index,
-                DifficultyEnum.EASY,
-                CategoryEnum.WITH_MEAT,
-                mockIngredients(),
-                getRandomIngredientDefinition());
+        Recipe recipe =
+                new Recipe(
+                        "Recipe_" + index,
+                        DifficultyEnum.EASY,
+                        CategoryEnum.WITH_MEAT,
+                        mockIngredients(),
+                        getRandomIngredientDefinition());
 
         recipeRepository.save(recipe);
     }
 
     private List<IngredientDefinition> getRandomIngredientDefinition() throws IOException {
-        return ingredientDefinitionLoader.loadAll()
-                .subList(0, 2);
+        return ingredientDefinitionLoader.loadAll().subList(0, 2);
     }
 
     private List<Ingredient> mockIngredients() {

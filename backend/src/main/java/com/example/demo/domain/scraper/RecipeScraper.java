@@ -4,6 +4,5 @@ import java.io.IOException;
 
 public interface RecipeScraper<T> {
 
-	T extractSearchResult(String text, int pageIndex) throws IOException;
-
+    T extractSearchResult(String text, int pageIndex) throws IOException;
 }

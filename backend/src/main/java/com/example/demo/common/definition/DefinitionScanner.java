@@ -8,5 +8,4 @@ public class DefinitionScanner {
         System.err.println(e.getMessage());
         System.exit(1);
     }
-
 }
