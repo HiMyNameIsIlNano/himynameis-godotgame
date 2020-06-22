@@ -63,7 +63,7 @@ dependencies {
     // Definition Generator
     runtime group: 'com.example.demo', name: 'definition-generator', version: generatorVersion
 
-    implementation group: 'org.jsoup', name: 'jsoup', version: '1.13.1'
+    implementation group: 'org.jsoup', name: 'jsoup', version: jsoupVersion
 
     // Test
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
