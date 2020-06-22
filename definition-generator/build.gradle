@@ -10,6 +10,10 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok:1.18.12'
 }
 
+googleJavaFormat {
+    options style: 'AOSP'
+}
+
 jar {
     manifest {
         attributes 'Implementation-Title': 'Exporter for DB and Java Enums starting from json files',

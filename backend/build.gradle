@@ -72,6 +72,10 @@ dependencies {
     testImplementation 'org.springframework.security:spring-security-test'
 }
 
+googleJavaFormat {
+    options style: 'AOSP'
+}
+
 /*jsonSchema2Pojo {
     annotationStyle = 'jackson2'
     source = files("${project.projectDir}/src/main/resources/json")
