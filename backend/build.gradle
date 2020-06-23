@@ -90,10 +90,10 @@ googleJavaFormat {
 def outputPackage = 'com.example.demo.domain'
 def enumExporterArgs = [
         '--inputFileDirectory', "${project.projectDir}/src/main/resources/json",
-        '--inputFile', 'ingredient.json',
+        '--inputFile', 'ingredients.json',
         '--outputClassName', 'IngredientDefinitionEnum',
         '--outputDomain', "${outputPackage}.recipe.ingredient.model",
-        '--filterFunction', '$.ingredients[*].id',
+        '--filterFunction', '$.definitions[*].id',
         '--updateDbEnum',
         '--dbEnumOutputFolder', "${project.projectDir}/src/main/resources/db/migration"
 ]
