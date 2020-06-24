@@ -1,0 +1,9 @@
+spring:
+  profiles:
+    include:
+      - no-security
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    username: demouser
+    password: mydb
+    url: jdbc:postgresql://demo-db:5432/demo_db

@@ -5,10 +5,27 @@ services:
       - POSTGRES_PASSWORD=mydb
       - POSTGRES_USER=demouser
     image: library/postgres:12.2
+    network_mode: bridge
+    container_name: demo-db
+    expose:
+      - 5454
     ports:
       - 5454:5432
     volumes:
       - ./init-db:/docker-entrypoint-initdb.d
       - demo-db-data:/var/lib/demo-db/data
+  recipe-planner:
+      image: demo/recipe-planner:latest
+      container_name: recipe-planner
+      network_mode: bridge
+      expose:
+        - 8071
+      ports:
+        - 8071:8071
+      restart: unless-stopped
+      depends_on:
+        - demo-db
+      links:
+        - demo-db
 volumes:
   demo-db-data: null

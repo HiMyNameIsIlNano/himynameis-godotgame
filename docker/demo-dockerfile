@@ -1,0 +1,8 @@
+FROM adoptopenjdk/openjdk11:x86_64-alpine-jdk-11.0.7_10-slim
+RUN addgroup -S ddemogroup && adduser -S demouser -G ddemogroup
+USER demouser:ddemogroup
+ARG DEPENDENCY=build/dependency
+COPY ${DEPENDENCY}/BOOT-INF/lib /app/lib
+COPY ${DEPENDENCY}/META-INF /app/META-INF
+COPY ${DEPENDENCY}/BOOT-INF/classes /app
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-Dspring.profiles.active=docker","-cp","app:app/lib/*","com.example.demo.DemoApplication"]
