@@ -26,6 +26,9 @@ configurations {
     generator {
         extendsFrom runtime
     }
+
+    // Exclude Tomcat as I want to use Undertow
+    compile.exclude module: "spring-boot-starter-tomcat"
 }
 
 dependencies {

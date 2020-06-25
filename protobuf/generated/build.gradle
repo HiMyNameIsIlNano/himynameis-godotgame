@@ -13,7 +13,5 @@ sourceSets {
 }
 
 dependencies {
-    // TODO: this is strange
     compile group: 'com.google.protobuf', name: 'protobuf-java', version: protobufVersion
-    implementation group: 'com.google.protobuf', name: 'protobuf-javalite', version: protobufVersion
 }
