@@ -1,2 +1,3 @@
-application-local.yml
-intellij-java-google-style.xml
+build/dependency/BOOT-INF/classes/http/*
+build/dependency/BOOT-INF/classes/application-local.yml
+build/dependency/BOOT-INF/classes/intellij-java-google-style.xml
