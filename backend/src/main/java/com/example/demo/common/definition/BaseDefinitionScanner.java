@@ -32,7 +32,7 @@ public class BaseDefinitionScanner extends DefinitionScanner {
 
     private void initDefinitionToFileMap() {
         ClassPathScanningCandidateComponentProvider scanner = createDiscriminatorValueScanner();
-        scanner.findCandidateComponents(BASE_PACKAGE)
+        scanner.findCandidateComponents(PACKAGE_TO_SCAN)
                 .forEach(BaseDefinitionScanner::handleBaseDefinitions);
     }
 

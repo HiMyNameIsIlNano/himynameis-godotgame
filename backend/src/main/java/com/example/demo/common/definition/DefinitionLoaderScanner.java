@@ -50,7 +50,7 @@ public class DefinitionLoaderScanner extends DefinitionScanner implements Applic
 
     private void initDefinitionToLoaderMap() {
         ClassPathScanningCandidateComponentProvider scanner = createLoaderForScanner();
-        scanner.findCandidateComponents(BASE_PACKAGE).forEach(this::handleDefinitionLoader);
+        scanner.findCandidateComponents(PACKAGE_TO_SCAN).forEach(this::handleDefinitionLoader);
     }
 
     private ClassPathScanningCandidateComponentProvider createLoaderForScanner() {

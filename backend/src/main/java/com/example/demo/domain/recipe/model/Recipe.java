@@ -38,12 +38,12 @@ public class Recipe extends BaseEntity {
     @JoinColumn(name = "recipe_id")
     private List<Ingredient> ingredients;
 
-    @Type(
+    /*@Type(
             type = "typed-list",
             parameters = {
                 @Parameter(name = "type", value = "ingredient_definition"),
                 @Parameter(name = "discriminatorValue", value = "ingredients")
             })
     @Column(columnDefinition = "ingredient_definition[]")
-    private List<IngredientDefinition> ingredientDefinitions = new ArrayList<>();
+    private List<IngredientDefinition> ingredientDefinitions = new ArrayList<>();*/
 }

@@ -15,3 +15,14 @@ spring:
     sql-migration-suffixes: .sql
 server:
   port: 8071
+
+springdoc:
+  api-docs:
+    path: /demo-api
+  packages-to-scan: com.example.demo.controller
+
+demo:
+  definition:
+    base-package: com.example.demo.domain
+  migration:
+    default-output-folder: /src/main/resources/db/migration/
