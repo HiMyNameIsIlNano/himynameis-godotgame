@@ -10,7 +10,8 @@ namespace frontend.ConsoleApp
     {
         static void Main(string[] args)
         {
-            Channel channel = new Channel("127.0.0.1:6565", ChannelCredentials.Insecure);
+            Channel channel = new Channel("127.0.0.1:6565" +
+                                          "", ChannelCredentials.Insecure);
 
             var client = new RecipeService.RecipeServiceClient(channel);
 
