@@ -21,7 +21,7 @@ public final class CommonProto {
   /**
    * Protobuf type {@code EmptyResponse}
    */
-  public  static final class EmptyResponse extends
+  public static final class EmptyResponse extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:EmptyResponse)
       EmptyResponseOrBuilder {

@@ -81,7 +81,7 @@ public final class ScraperProto {
   /**
    * Protobuf type {@code ItemListResponse}
    */
-  public  static final class ItemListResponse extends
+  public static final class ItemListResponse extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:ItemListResponse)
       ItemListResponseOrBuilder {
@@ -199,6 +199,7 @@ public final class ScraperProto {
      * <code>string context = 1;</code>
      * @return The context.
      */
+    @java.lang.Override
     public java.lang.String getContext() {
       java.lang.Object ref = context_;
       if (ref instanceof java.lang.String) {
@@ -215,6 +216,7 @@ public final class ScraperProto {
      * <code>string context = 1;</code>
      * @return The bytes for context.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getContextBytes() {
       java.lang.Object ref = context_;
@@ -235,6 +237,7 @@ public final class ScraperProto {
      * <code>string type = 2;</code>
      * @return The type.
      */
+    @java.lang.Override
     public java.lang.String getType() {
       java.lang.Object ref = type_;
       if (ref instanceof java.lang.String) {
@@ -251,6 +254,7 @@ public final class ScraperProto {
      * <code>string type = 2;</code>
      * @return The bytes for type.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getTypeBytes() {
       java.lang.Object ref = type_;
@@ -270,12 +274,14 @@ public final class ScraperProto {
     /**
      * <code>repeated .ListItemDTO item_list_element = 3;</code>
      */
+    @java.lang.Override
     public java.util.List<com.example.demo.protobuf.ScraperProto.ListItemDTO> getItemListElementList() {
       return itemListElement_;
     }
     /**
      * <code>repeated .ListItemDTO item_list_element = 3;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends com.example.demo.protobuf.ScraperProto.ListItemDTOOrBuilder> 
         getItemListElementOrBuilderList() {
       return itemListElement_;
@@ -283,18 +289,21 @@ public final class ScraperProto {
     /**
      * <code>repeated .ListItemDTO item_list_element = 3;</code>
      */
+    @java.lang.Override
     public int getItemListElementCount() {
       return itemListElement_.size();
     }
     /**
      * <code>repeated .ListItemDTO item_list_element = 3;</code>
      */
+    @java.lang.Override
     public com.example.demo.protobuf.ScraperProto.ListItemDTO getItemListElement(int index) {
       return itemListElement_.get(index);
     }
     /**
      * <code>repeated .ListItemDTO item_list_element = 3;</code>
      */
+    @java.lang.Override
     public com.example.demo.protobuf.ScraperProto.ListItemDTOOrBuilder getItemListElementOrBuilder(
         int index) {
       return itemListElement_.get(index);
@@ -306,6 +315,7 @@ public final class ScraperProto {
      * <code>int32 number_of_items = 4;</code>
      * @return The numberOfItems.
      */
+    @java.lang.Override
     public int getNumberOfItems() {
       return numberOfItems_;
     }
@@ -316,6 +326,7 @@ public final class ScraperProto {
      * <code>int32 total_pages = 5;</code>
      * @return The totalPages.
      */
+    @java.lang.Override
     public int getTotalPages() {
       return totalPages_;
     }
@@ -1127,6 +1138,7 @@ public final class ScraperProto {
        * <code>int32 number_of_items = 4;</code>
        * @return The numberOfItems.
        */
+      @java.lang.Override
       public int getNumberOfItems() {
         return numberOfItems_;
       }
@@ -1157,6 +1169,7 @@ public final class ScraperProto {
        * <code>int32 total_pages = 5;</code>
        * @return The totalPages.
        */
+      @java.lang.Override
       public int getTotalPages() {
         return totalPages_;
       }
@@ -1271,7 +1284,7 @@ public final class ScraperProto {
   /**
    * Protobuf type {@code ListItemDTO}
    */
-  public  static final class ListItemDTO extends
+  public static final class ListItemDTO extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:ListItemDTO)
       ListItemDTOOrBuilder {
@@ -1370,6 +1383,7 @@ public final class ScraperProto {
      * <code>string type = 1;</code>
      * @return The type.
      */
+    @java.lang.Override
     public java.lang.String getType() {
       java.lang.Object ref = type_;
       if (ref instanceof java.lang.String) {
@@ -1386,6 +1400,7 @@ public final class ScraperProto {
      * <code>string type = 1;</code>
      * @return The bytes for type.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getTypeBytes() {
       java.lang.Object ref = type_;
@@ -1406,6 +1421,7 @@ public final class ScraperProto {
      * <code>int32 position = 2;</code>
      * @return The position.
      */
+    @java.lang.Override
     public int getPosition() {
       return position_;
     }
@@ -1416,6 +1432,7 @@ public final class ScraperProto {
      * <code>string url = 3;</code>
      * @return The url.
      */
+    @java.lang.Override
     public java.lang.String getUrl() {
       java.lang.Object ref = url_;
       if (ref instanceof java.lang.String) {
@@ -1432,6 +1449,7 @@ public final class ScraperProto {
      * <code>string url = 3;</code>
      * @return The bytes for url.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getUrlBytes() {
       java.lang.Object ref = url_;
@@ -1863,6 +1881,7 @@ public final class ScraperProto {
        * <code>int32 position = 2;</code>
        * @return The position.
        */
+      @java.lang.Override
       public int getPosition() {
         return position_;
       }

@@ -31,5 +31,11 @@ out/
 ### VS Code ###
 .vscode/
 
+# Back end
 application-local.yml
 docker-compose-local.yml
+protobuf/generator
+
+# Front end
+frontend/frontend.ConsoleApp/bin
+frontend/frontend.ConsoleApp/obj

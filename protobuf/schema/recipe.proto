@@ -3,6 +3,8 @@ syntax = "proto3";
 option java_package = "com.example.demo.protobuf";
 option java_outer_classname = "RecipeProto";
 
+option csharp_namespace = "Com.Example.Demo.Protobuf.Recipe";
+
 message RecipeResearchResponse {
     repeated RecipeDTO recipes = 1;
 }

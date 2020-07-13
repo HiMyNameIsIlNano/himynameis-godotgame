@@ -15,5 +15,11 @@ The intent is to be able to generate sql migration automatically starting from t
 
 In order to reach the swagger docs, one can jump to the following URL: http://localhost:8071/swagger-ui
 
+## gRPC
+
+The backend exposes `gRPC` services and can be called by whatever client one wants to implement. Due to the fact that my aim is to build a `C#` client, the `:protobuf` project exports the services defined in the `*.proto` file(s) are exported as `java` and `C#` classes. 
+
 ## TODO
-- [ ] Export Rest endpoints to C# 
+- [ ] Avoid direct definition of Rest endpoints and use gRPC instead (see https://grpc.io/blog/coreos/)
+- [ ] Secure services 
+ 

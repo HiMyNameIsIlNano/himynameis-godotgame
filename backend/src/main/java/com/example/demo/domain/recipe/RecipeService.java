@@ -4,12 +4,9 @@ import com.example.demo.domain.recipe.definition.Amount;
 import com.example.demo.domain.recipe.definition.CategoryEnum;
 import com.example.demo.domain.recipe.definition.DifficultyEnum;
 import com.example.demo.domain.recipe.definition.UnitOfMeasureEnum;
-import com.example.demo.domain.recipe.ingredient.IngredientDefinitionLoader;
-import com.example.demo.domain.recipe.ingredient.definition.IngredientDefinition;
 import com.example.demo.domain.recipe.ingredient.model.Ingredient;
 import com.example.demo.domain.recipe.ingredient.model.IngredientDefinitionEnum;
 import com.example.demo.domain.recipe.model.Recipe;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -23,29 +20,22 @@ public class RecipeService {
 
     private final RecipeRepository recipeRepository;
 
-    private final IngredientDefinitionLoader ingredientDefinitionLoader;
-
-    public void initRecipes(int amount) throws IOException {
+    public void initRecipes(int amount) {
         while (amount > 0) {
             mockAndPersistRecipe(amount);
             amount--;
         }
     }
 
-    private void mockAndPersistRecipe(int index) throws IOException {
+    private void mockAndPersistRecipe(int index) {
         Recipe recipe =
                 new Recipe(
                         "Recipe_" + index,
                         DifficultyEnum.EASY,
                         CategoryEnum.WITH_MEAT,
-                        mockIngredients(),
-                        getRandomIngredientDefinition());
+                        mockIngredients());
 
         recipeRepository.save(recipe);
-    }
-
-    private List<IngredientDefinition> getRandomIngredientDefinition() throws IOException {
-        return ingredientDefinitionLoader.loadAll().subList(0, 2);
     }
 
     private List<Ingredient> mockIngredients() {

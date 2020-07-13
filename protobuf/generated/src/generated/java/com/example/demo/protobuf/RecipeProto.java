@@ -45,7 +45,7 @@ public final class RecipeProto {
   /**
    * Protobuf type {@code RecipeResearchResponse}
    */
-  public  static final class RecipeResearchResponse extends
+  public static final class RecipeResearchResponse extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:RecipeResearchResponse)
       RecipeResearchResponseOrBuilder {
@@ -138,12 +138,14 @@ public final class RecipeProto {
     /**
      * <code>repeated .RecipeDTO recipes = 1;</code>
      */
+    @java.lang.Override
     public java.util.List<com.example.demo.protobuf.RecipeProto.RecipeDTO> getRecipesList() {
       return recipes_;
     }
     /**
      * <code>repeated .RecipeDTO recipes = 1;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends com.example.demo.protobuf.RecipeProto.RecipeDTOOrBuilder> 
         getRecipesOrBuilderList() {
       return recipes_;
@@ -151,18 +153,21 @@ public final class RecipeProto {
     /**
      * <code>repeated .RecipeDTO recipes = 1;</code>
      */
+    @java.lang.Override
     public int getRecipesCount() {
       return recipes_.size();
     }
     /**
      * <code>repeated .RecipeDTO recipes = 1;</code>
      */
+    @java.lang.Override
     public com.example.demo.protobuf.RecipeProto.RecipeDTO getRecipes(int index) {
       return recipes_.get(index);
     }
     /**
      * <code>repeated .RecipeDTO recipes = 1;</code>
      */
+    @java.lang.Override
     public com.example.demo.protobuf.RecipeProto.RecipeDTOOrBuilder getRecipesOrBuilder(
         int index) {
       return recipes_.get(index);
@@ -869,7 +874,7 @@ public final class RecipeProto {
   /**
    * Protobuf type {@code RecipeDTO}
    */
-  public  static final class RecipeDTO extends
+  public static final class RecipeDTO extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:RecipeDTO)
       RecipeDTOOrBuilder {
@@ -984,6 +989,7 @@ public final class RecipeProto {
      * <code>string name = 1;</code>
      * @return The name.
      */
+    @java.lang.Override
     public java.lang.String getName() {
       java.lang.Object ref = name_;
       if (ref instanceof java.lang.String) {
@@ -1000,6 +1006,7 @@ public final class RecipeProto {
      * <code>string name = 1;</code>
      * @return The bytes for name.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getNameBytes() {
       java.lang.Object ref = name_;
@@ -1020,6 +1027,7 @@ public final class RecipeProto {
      * <code>string difficulty = 2;</code>
      * @return The difficulty.
      */
+    @java.lang.Override
     public java.lang.String getDifficulty() {
       java.lang.Object ref = difficulty_;
       if (ref instanceof java.lang.String) {
@@ -1036,6 +1044,7 @@ public final class RecipeProto {
      * <code>string difficulty = 2;</code>
      * @return The bytes for difficulty.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getDifficultyBytes() {
       java.lang.Object ref = difficulty_;
@@ -1056,6 +1065,7 @@ public final class RecipeProto {
      * <code>string category = 3;</code>
      * @return The category.
      */
+    @java.lang.Override
     public java.lang.String getCategory() {
       java.lang.Object ref = category_;
       if (ref instanceof java.lang.String) {
@@ -1072,6 +1082,7 @@ public final class RecipeProto {
      * <code>string category = 3;</code>
      * @return The bytes for category.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getCategoryBytes() {
       java.lang.Object ref = category_;
@@ -1091,12 +1102,14 @@ public final class RecipeProto {
     /**
      * <code>repeated .IngredientAmountDTO ingredient_amount = 4;</code>
      */
+    @java.lang.Override
     public java.util.List<com.example.demo.protobuf.RecipeProto.IngredientAmountDTO> getIngredientAmountList() {
       return ingredientAmount_;
     }
     /**
      * <code>repeated .IngredientAmountDTO ingredient_amount = 4;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends com.example.demo.protobuf.RecipeProto.IngredientAmountDTOOrBuilder> 
         getIngredientAmountOrBuilderList() {
       return ingredientAmount_;
@@ -1104,18 +1117,21 @@ public final class RecipeProto {
     /**
      * <code>repeated .IngredientAmountDTO ingredient_amount = 4;</code>
      */
+    @java.lang.Override
     public int getIngredientAmountCount() {
       return ingredientAmount_.size();
     }
     /**
      * <code>repeated .IngredientAmountDTO ingredient_amount = 4;</code>
      */
+    @java.lang.Override
     public com.example.demo.protobuf.RecipeProto.IngredientAmountDTO getIngredientAmount(int index) {
       return ingredientAmount_.get(index);
     }
     /**
      * <code>repeated .IngredientAmountDTO ingredient_amount = 4;</code>
      */
+    @java.lang.Override
     public com.example.demo.protobuf.RecipeProto.IngredientAmountDTOOrBuilder getIngredientAmountOrBuilder(
         int index) {
       return ingredientAmount_.get(index);
@@ -2068,7 +2084,7 @@ public final class RecipeProto {
   /**
    * Protobuf type {@code IngredientAmountDTO}
    */
-  public  static final class IngredientAmountDTO extends
+  public static final class IngredientAmountDTO extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:IngredientAmountDTO)
       IngredientAmountDTOOrBuilder {
@@ -2168,6 +2184,7 @@ public final class RecipeProto {
      * <code>string ingredient_id = 1;</code>
      * @return The ingredientId.
      */
+    @java.lang.Override
     public java.lang.String getIngredientId() {
       java.lang.Object ref = ingredientId_;
       if (ref instanceof java.lang.String) {
@@ -2184,6 +2201,7 @@ public final class RecipeProto {
      * <code>string ingredient_id = 1;</code>
      * @return The bytes for ingredientId.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getIngredientIdBytes() {
       java.lang.Object ref = ingredientId_;
@@ -2204,6 +2222,7 @@ public final class RecipeProto {
      * <code>.AmountDTO amount = 2;</code>
      * @return Whether the amount field is set.
      */
+    @java.lang.Override
     public boolean hasAmount() {
       return amount_ != null;
     }
@@ -2211,12 +2230,14 @@ public final class RecipeProto {
      * <code>.AmountDTO amount = 2;</code>
      * @return The amount.
      */
+    @java.lang.Override
     public com.example.demo.protobuf.RecipeProto.AmountDTO getAmount() {
       return amount_ == null ? com.example.demo.protobuf.RecipeProto.AmountDTO.getDefaultInstance() : amount_;
     }
     /**
      * <code>.AmountDTO amount = 2;</code>
      */
+    @java.lang.Override
     public com.example.demo.protobuf.RecipeProto.AmountDTOOrBuilder getAmountOrBuilder() {
       return getAmount();
     }
@@ -2825,7 +2846,7 @@ public final class RecipeProto {
   /**
    * Protobuf type {@code AmountDTO}
    */
-  public  static final class AmountDTO extends
+  public static final class AmountDTO extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:AmountDTO)
       AmountDTOOrBuilder {
@@ -2917,6 +2938,7 @@ public final class RecipeProto {
      * <code>int32 amount = 1;</code>
      * @return The amount.
      */
+    @java.lang.Override
     public int getAmount() {
       return amount_;
     }
@@ -2927,6 +2949,7 @@ public final class RecipeProto {
      * <code>string unit_of_measure = 2;</code>
      * @return The unitOfMeasure.
      */
+    @java.lang.Override
     public java.lang.String getUnitOfMeasure() {
       java.lang.Object ref = unitOfMeasure_;
       if (ref instanceof java.lang.String) {
@@ -2943,6 +2966,7 @@ public final class RecipeProto {
      * <code>string unit_of_measure = 2;</code>
      * @return The bytes for unitOfMeasure.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getUnitOfMeasureBytes() {
       java.lang.Object ref = unitOfMeasure_;
@@ -3281,6 +3305,7 @@ public final class RecipeProto {
        * <code>int32 amount = 1;</code>
        * @return The amount.
        */
+      @java.lang.Override
       public int getAmount() {
         return amount_;
       }
@@ -3447,7 +3472,7 @@ public final class RecipeProto {
   /**
    * Protobuf type {@code RecipeInitRequest}
    */
-  public  static final class RecipeInitRequest extends
+  public static final class RecipeInitRequest extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:RecipeInitRequest)
       RecipeInitRequestOrBuilder {
@@ -3532,6 +3557,7 @@ public final class RecipeProto {
      * <code>int32 amount = 1;</code>
      * @return The amount.
      */
+    @java.lang.Override
     public int getAmount() {
       return amount_;
     }
@@ -3843,6 +3869,7 @@ public final class RecipeProto {
        * <code>int32 amount = 1;</code>
        * @return The amount.
        */
+      @java.lang.Override
       public int getAmount() {
         return amount_;
       }
@@ -3939,7 +3966,7 @@ public final class RecipeProto {
   /**
    * Protobuf type {@code RecipeRemoveRequest}
    */
-  public  static final class RecipeRemoveRequest extends
+  public static final class RecipeRemoveRequest extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:RecipeRemoveRequest)
       RecipeRemoveRequestOrBuilder {
@@ -4026,6 +4053,7 @@ public final class RecipeProto {
      * <code>string name = 1;</code>
      * @return The name.
      */
+    @java.lang.Override
     public java.lang.String getName() {
       java.lang.Object ref = name_;
       if (ref instanceof java.lang.String) {
@@ -4042,6 +4070,7 @@ public final class RecipeProto {
      * <code>string name = 1;</code>
      * @return The bytes for name.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getNameBytes() {
       java.lang.Object ref = name_;
@@ -4534,8 +4563,9 @@ public final class RecipeProto {
       "\002 \001(\0132\n.AmountDTO\"4\n\tAmountDTO\022\016\n\006amount" +
       "\030\001 \001(\005\022\027\n\017unit_of_measure\030\002 \001(\t\"#\n\021Recip" +
       "eInitRequest\022\016\n\006amount\030\001 \001(\005\"#\n\023RecipeRe" +
-      "moveRequest\022\014\n\004name\030\001 \001(\tB(\n\031com.example" +
-      ".demo.protobufB\013RecipeProtob\006proto3"
+      "moveRequest\022\014\n\004name\030\001 \001(\tBK\n\031com.example" +
+      ".demo.protobufB\013RecipeProto\252\002 Com.Exampl" +
+      "e.Demo.Protobuf.Recipeb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

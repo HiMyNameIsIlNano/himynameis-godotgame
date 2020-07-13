@@ -14,4 +14,5 @@ sourceSets {
 
 dependencies {
     compile group: 'com.google.protobuf', name: 'protobuf-java', version: protobufVersion
+    // all the grpc dependencies are defined in the main build.gradle
 }

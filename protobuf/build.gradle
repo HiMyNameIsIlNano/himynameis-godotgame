@@ -3,13 +3,16 @@ import com.google.protobuf.gradle.GenerateProtoTask;
 buildscript {
     dependencies {
         classpath "com.google.protobuf:protobuf-gradle-plugin:$protobufGradleVersion"
+        classpath "com.google.gradle:osdetector-gradle-plugin:$osDetectorVersion"
     }
 }
 
 apply plugin: 'com.google.protobuf'
+apply plugin: 'com.google.osdetector'
 
 dependencies {
     compile group: 'com.google.protobuf', name: 'protobuf-java', version: protobufVersion
+    // all the grpc dependencies are defined in the main build.gradle
 }
 
 sourceCompatibility = javaVersion
@@ -22,6 +25,8 @@ sourceSets {
     }
 }
 
+def osFamily = osdetector.os
+def osArch = 'x64'
 def configs = []
 protobuf {
     // Download protoc from the repositories
@@ -29,12 +34,33 @@ protobuf {
         artifact = "com.google.protobuf:protoc:$protobufVersion"
     }
 
+    plugins {
+        grpc_java {
+            artifact = "io.grpc:protoc-gen-grpc-java:$grpcVersion"
+        }
+
+        grpc_csharp {
+            path = ant.path {
+                fileset(dir: "$projectDir/generator/tools/${osFamily}_${osArch}", includes: 'grpc_csharp_plugin*')
+            }
+        }
+    }
+
     generateProtoTasks {
         all().each { task ->
+            task.plugins {
+                grpc_java {}
+                grpc_csharp {}
+            }
+
             task.builtins {
+                csharp {
+                    outputSubDir = 'csharp'
+                }
                 java {
                     outputSubDir = 'java'
                 }
+                configs += csharp
                 configs += java
             }
 
@@ -47,12 +73,29 @@ protobuf {
 }
 
 tasks.register('copyGenerated') {
+    mustRunAfter 'generateProto'
+    dependsOn 'copyGeneratedCSharp'
     dependsOn 'copyGeneratedJava'
 }
+tasks.register('copyGeneratedCSharp', Sync) {
+    from "$projectDir/build/generated/main/csharp"
+    into "$rootDir/frontend/frontend.ConsoleApp/protobuf"
+
+    from "$projectDir/build/generated/main/grpc_csharp"
+    into "$rootDir/frontend/frontend.ConsoleApp/protobuf"
+
+    preserve {
+        // Keep (i.e. do not delete) the meta files in the destination directory
+        include '*.meta'
+    }
+}
 tasks.register('copyGeneratedJava', Sync) {
-    mustRunAfter 'generateProto'
     from "$projectDir/build/generated/main/java"
     into project(':protobuf:protobufgen').file('src/generated/java')
+
+    from "$projectDir/build/generated/main/grpc_java"
+    into project(':protobuf:protobufgen').file('src/generated/java')
+
     outputs.upToDateWhen { false }
 
     eachFile { target ->
@@ -65,6 +108,19 @@ tasks.register('copyGeneratedJava', Sync) {
         }
     }
 }
+
+/*
+This seems to be executed after protobuf, to we might find a way to execute it before that
+
+task downloadGrpc(type:Exec) {
+    group "chsarp grpc"
+    workingDir '.'
+    if ("${osFamily}".contains('windows')) {
+        commandLine 'cmd', '/c', 'csharp-grpc-downloader.bat'
+    } else if ("${osFamily}".contains('linux')) {
+        commandLine 'sh', '-c', 'csharp-grpc-downloader'
+    }
+}*/
 
 clean {
     doFirst {
@@ -82,4 +138,3 @@ build {
     dependsOn 'generateProto'
     dependsOn 'copyGenerated'
 }
-

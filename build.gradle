@@ -16,6 +16,17 @@ subprojects {
         apply plugin: 'com.github.sherter.google-java-format'
     }
 
+    if (name.contains('protobuf')) {
+        dependencies {
+            implementation group: 'io.grpc', name: 'grpc-netty-shaded', version: grpcVersion
+            implementation group: 'io.grpc', name: 'grpc-protobuf', version: grpcVersion
+            implementation group: 'io.grpc', name: 'grpc-stub', version: grpcVersion
+
+            // necessary for Java 9+
+            compileOnly group: 'org.apache.tomcat', name: 'annotations-api', version: apacheAnnotationsApi
+        }
+    }
+
     buildscript.repositories {
         mavenLocal()
         jcenter()

@@ -45,7 +45,7 @@ public final class IngredientProto {
   /**
    * Protobuf type {@code IngredientListResponse}
    */
-  public  static final class IngredientListResponse extends
+  public static final class IngredientListResponse extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:IngredientListResponse)
       IngredientListResponseOrBuilder {
@@ -138,12 +138,14 @@ public final class IngredientProto {
     /**
      * <code>repeated .IngredientDTO ingredients = 1;</code>
      */
+    @java.lang.Override
     public java.util.List<com.example.demo.protobuf.IngredientProto.IngredientDTO> getIngredientsList() {
       return ingredients_;
     }
     /**
      * <code>repeated .IngredientDTO ingredients = 1;</code>
      */
+    @java.lang.Override
     public java.util.List<? extends com.example.demo.protobuf.IngredientProto.IngredientDTOOrBuilder> 
         getIngredientsOrBuilderList() {
       return ingredients_;
@@ -151,18 +153,21 @@ public final class IngredientProto {
     /**
      * <code>repeated .IngredientDTO ingredients = 1;</code>
      */
+    @java.lang.Override
     public int getIngredientsCount() {
       return ingredients_.size();
     }
     /**
      * <code>repeated .IngredientDTO ingredients = 1;</code>
      */
+    @java.lang.Override
     public com.example.demo.protobuf.IngredientProto.IngredientDTO getIngredients(int index) {
       return ingredients_.get(index);
     }
     /**
      * <code>repeated .IngredientDTO ingredients = 1;</code>
      */
+    @java.lang.Override
     public com.example.demo.protobuf.IngredientProto.IngredientDTOOrBuilder getIngredientsOrBuilder(
         int index) {
       return ingredients_.get(index);
@@ -832,7 +837,7 @@ public final class IngredientProto {
   /**
    * Protobuf type {@code IngredientDTO}
    */
-  public  static final class IngredientDTO extends
+  public static final class IngredientDTO extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:IngredientDTO)
       IngredientDTOOrBuilder {
@@ -999,6 +1004,10 @@ public final class IngredientProto {
 
       public final com.google.protobuf.Descriptors.EnumValueDescriptor
           getValueDescriptor() {
+        if (this == UNRECOGNIZED) {
+          throw new java.lang.IllegalStateException(
+              "Can't get the descriptor of an unrecognized enum value.");
+        }
         return getDescriptor().getValues().get(ordinal());
       }
       public final com.google.protobuf.Descriptors.EnumDescriptor
@@ -1039,6 +1048,7 @@ public final class IngredientProto {
      * <code>string id = 1;</code>
      * @return The id.
      */
+    @java.lang.Override
     public java.lang.String getId() {
       java.lang.Object ref = id_;
       if (ref instanceof java.lang.String) {
@@ -1055,6 +1065,7 @@ public final class IngredientProto {
      * <code>string id = 1;</code>
      * @return The bytes for id.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString
         getIdBytes() {
       java.lang.Object ref = id_;
@@ -1075,14 +1086,14 @@ public final class IngredientProto {
      * <code>.IngredientDTO.CategoryEnum category = 2;</code>
      * @return The enum numeric value on the wire for category.
      */
-    public int getCategoryValue() {
+    @java.lang.Override public int getCategoryValue() {
       return category_;
     }
     /**
      * <code>.IngredientDTO.CategoryEnum category = 2;</code>
      * @return The category.
      */
-    public com.example.demo.protobuf.IngredientProto.IngredientDTO.CategoryEnum getCategory() {
+    @java.lang.Override public com.example.demo.protobuf.IngredientProto.IngredientDTO.CategoryEnum getCategory() {
       @SuppressWarnings("deprecation")
       com.example.demo.protobuf.IngredientProto.IngredientDTO.CategoryEnum result = com.example.demo.protobuf.IngredientProto.IngredientDTO.CategoryEnum.valueOf(category_);
       return result == null ? com.example.demo.protobuf.IngredientProto.IngredientDTO.CategoryEnum.UNRECOGNIZED : result;
@@ -1487,7 +1498,7 @@ public final class IngredientProto {
        * <code>.IngredientDTO.CategoryEnum category = 2;</code>
        * @return The enum numeric value on the wire for category.
        */
-      public int getCategoryValue() {
+      @java.lang.Override public int getCategoryValue() {
         return category_;
       }
       /**
@@ -1496,6 +1507,7 @@ public final class IngredientProto {
        * @return This builder for chaining.
        */
       public Builder setCategoryValue(int value) {
+        
         category_ = value;
         onChanged();
         return this;
@@ -1504,6 +1516,7 @@ public final class IngredientProto {
        * <code>.IngredientDTO.CategoryEnum category = 2;</code>
        * @return The category.
        */
+      @java.lang.Override
       public com.example.demo.protobuf.IngredientProto.IngredientDTO.CategoryEnum getCategory() {
         @SuppressWarnings("deprecation")
         com.example.demo.protobuf.IngredientProto.IngredientDTO.CategoryEnum result = com.example.demo.protobuf.IngredientProto.IngredientDTO.CategoryEnum.valueOf(category_);
@@ -1608,7 +1621,7 @@ public final class IngredientProto {
   /**
    * Protobuf type {@code IngredientResponse}
    */
-  public  static final class IngredientResponse extends
+  public static final class IngredientResponse extends
       com.google.protobuf.GeneratedMessageV3 implements
       // @@protoc_insertion_point(message_implements:IngredientResponse)
       IngredientResponseOrBuilder {
@@ -1701,6 +1714,7 @@ public final class IngredientProto {
      * <code>.IngredientDTO ingredient = 1;</code>
      * @return Whether the ingredient field is set.
      */
+    @java.lang.Override
     public boolean hasIngredient() {
       return ingredient_ != null;
     }
@@ -1708,12 +1722,14 @@ public final class IngredientProto {
      * <code>.IngredientDTO ingredient = 1;</code>
      * @return The ingredient.
      */
+    @java.lang.Override
     public com.example.demo.protobuf.IngredientProto.IngredientDTO getIngredient() {
       return ingredient_ == null ? com.example.demo.protobuf.IngredientProto.IngredientDTO.getDefaultInstance() : ingredient_;
     }
     /**
      * <code>.IngredientDTO ingredient = 1;</code>
      */
+    @java.lang.Override
     public com.example.demo.protobuf.IngredientProto.IngredientDTOOrBuilder getIngredientOrBuilder() {
       return getIngredient();
     }

@@ -48,9 +48,11 @@ dependencies {
     // Demo Protobuf
     implementation project(":protobuf:protobufgen")
 
-    // protobuf
+    // protobuf & grpc dependencies
     compile group: 'com.google.protobuf', name: 'protobuf-java', version: protobufVersion
     compile group: 'com.google.protobuf', name: 'protobuf-java-util', version: protobufVersion
+    implementation group: 'io.grpc', name: 'grpc-stub', version: grpcVersion
+    compile 'io.github.lognet:grpc-spring-boot-starter:3.5.5'
 
     // compile group: 'org.jsonschema2pojo', name: 'jsonschema2pojo-gradle-plugin', version: jsonToPojoVersion
 

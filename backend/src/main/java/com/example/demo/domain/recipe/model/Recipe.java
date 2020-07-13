@@ -3,17 +3,13 @@ package com.example.demo.domain.recipe.model;
 import com.example.demo.common.model.BaseEntity;
 import com.example.demo.domain.recipe.definition.CategoryEnum;
 import com.example.demo.domain.recipe.definition.DifficultyEnum;
-import com.example.demo.domain.recipe.ingredient.definition.IngredientDefinition;
 import com.example.demo.domain.recipe.ingredient.model.Ingredient;
-import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.NaturalId;
-import org.hibernate.annotations.Parameter;
-import org.hibernate.annotations.Type;
 
 @NoArgsConstructor
 @AllArgsConstructor
