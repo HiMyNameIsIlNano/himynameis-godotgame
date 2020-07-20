@@ -28,6 +28,25 @@ sourceSets {
 def osFamily = osdetector.os
 def osArch = 'x64'
 def configs = []
+
+def execute(cmd) {
+    def proc =  cmd.execute()
+    proc.waitFor()
+}
+
+def downloadGrpcToCsharpCompiler(String path, osFamily) {
+    def outFolder = new File(path)
+
+    if (!outFolder.exists()) {
+        outFolder.mkdirs()
+        if ("${osFamily}".contains('windows')) {
+            execute(['cmd', '/c', 'csharp-grpc-downloader.bat'])
+        } else if ("${osFamily}".contains('linux')) {
+            execute(['sh', '-c', 'csharp-grpc-downloader'])
+        }
+    }
+}
+
 protobuf {
     // Download protoc from the repositories
     protoc {
@@ -40,8 +59,11 @@ protobuf {
         }
 
         grpc_csharp {
+            def outPath = "$projectDir/generator/tools/${osFamily}_${osArch}"
+            // TODO: this is just a workaround
+            downloadGrpcToCsharpCompiler(outPath, osFamily)
             path = ant.path {
-                fileset(dir: "$projectDir/generator/tools/${osFamily}_${osArch}", includes: 'grpc_csharp_plugin*')
+                fileset(dir: "$outPath", includes: 'grpc_csharp_plugin*')
             }
         }
     }
@@ -108,19 +130,6 @@ tasks.register('copyGeneratedJava', Sync) {
         }
     }
 }
-
-/*
-This seems to be executed after protobuf, to we might find a way to execute it before that
-
-task downloadGrpc(type:Exec) {
-    group "chsarp grpc"
-    workingDir '.'
-    if ("${osFamily}".contains('windows')) {
-        commandLine 'cmd', '/c', 'csharp-grpc-downloader.bat'
-    } else if ("${osFamily}".contains('linux')) {
-        commandLine 'sh', '-c', 'csharp-grpc-downloader'
-    }
-}*/
 
 clean {
     doFirst {
