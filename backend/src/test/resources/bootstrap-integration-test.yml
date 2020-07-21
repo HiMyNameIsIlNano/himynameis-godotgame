@@ -1,0 +1,4 @@
+embedded:
+  postgresql:
+    enabled: true
+    dockerImage: postgres:12-alpine

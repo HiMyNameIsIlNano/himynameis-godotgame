@@ -26,7 +26,7 @@ public class RecipeController {
     private final RecipeResponseFactory recipeResponseFactory;
 
     @PostMapping("/init")
-    public void init(@RequestBody RecipeInitRequest recipeInitRequest) throws IOException {
+    public void init(@RequestBody RecipeInitRequest recipeInitRequest) {
         recipeService.initRecipes(recipeInitRequest.getAmount());
     }
 

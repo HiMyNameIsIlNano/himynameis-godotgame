@@ -71,6 +71,10 @@ dependencies {
     implementation group: 'org.jsoup', name: 'jsoup', version: jsoupVersion
 
     // Test
+    testCompile group: 'org.testcontainers', name: 'junit-jupiter', version: '1.14.3'
+    testImplementation group: 'org.springframework.cloud', name: 'spring-cloud-starter', version: '2.2.3.RELEASE'
+    testCompile group: 'com.playtika.testcontainers', name: 'embedded-postgresql', version: '1.78'
+
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
