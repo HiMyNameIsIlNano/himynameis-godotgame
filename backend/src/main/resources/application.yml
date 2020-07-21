@@ -13,6 +13,7 @@ spring:
     repeatable-sql-migration-prefix: R
     sql-migration-separator: __
     sql-migration-suffixes: .sql
+    baseline-on-migrate: true
 server:
   port: 8071
 
