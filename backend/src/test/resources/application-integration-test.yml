@@ -1,13 +1,9 @@
 spring:
   datasource:
-    url: jdbc:tc:postgresql://localhost:5455/demo_db
-    username: postgres
-    password: postgres
-    driverClassName: org.testcontainers.jdbc.ContainerDatabaseDriver
-  jpa:
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
-    hibernate:
-      ddl-auto: none
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://${embedded.postgresql.host}:${embedded.postgresql.port}/${embedded.postgresql.schema}
+    username: ${embedded.postgresql.user}
+    password: ${embedded.postgresql.password}
   flyway:
     enabled: true
     sql-migration-prefix: V
