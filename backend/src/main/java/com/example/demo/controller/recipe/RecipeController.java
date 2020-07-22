@@ -6,7 +6,6 @@ import com.example.demo.protobuf.RecipeProto.RecipeInitRequest;
 import com.example.demo.protobuf.RecipeProto.RecipeRemoveRequest;
 import com.example.demo.protobuf.RecipeProto.RecipeResearchResponse;
 import com.example.demo.protobuf.recipe.RecipeResponseFactory;
-import java.io.IOException;
 import java.util.List;
 import javax.transaction.Transactional;
 import lombok.RequiredArgsConstructor;

@@ -5,7 +5,6 @@ public class IntegrationTestUtils {
     private static final String BASE_URL = "http://localhost:%d";
 
     public enum RecipeUrlEnum {
-
         INIT("recipes/init"),
         FIND_ALL("recipes/find-all"),
         REMOVE_ALL("recipes/remove-all"),

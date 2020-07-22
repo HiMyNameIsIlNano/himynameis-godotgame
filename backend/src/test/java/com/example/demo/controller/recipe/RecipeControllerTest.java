@@ -15,11 +15,9 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 
 class RecipeControllerTest extends BaseIntegrationTest {
 
-    @Autowired
-    private RecipeController controller;
+    @Autowired private RecipeController controller;
 
-    @Autowired
-    private TestRestTemplate restTemplate;
+    @Autowired private TestRestTemplate restTemplate;
 
     @Test
     public void contextLoads() {
@@ -38,9 +36,7 @@ class RecipeControllerTest extends BaseIntegrationTest {
 
     private void doPostInitRecipes(int amount) {
         String initUrl = RecipeUrlEnum.toUrl(RecipeUrlEnum.INIT, getPort());
-        RecipeInitRequest initRequest = RecipeInitRequest.newBuilder()
-                .setAmount(amount)
-                .build();
+        RecipeInitRequest initRequest = RecipeInitRequest.newBuilder().setAmount(amount).build();
 
         restTemplate.postForObject(initUrl, initRequest, Void.class);
     }
@@ -81,11 +77,8 @@ class RecipeControllerTest extends BaseIntegrationTest {
 
     private void doPostDeleteOneRecipe(String name) {
         String deleteOneUrl = RecipeUrlEnum.toUrl(RecipeUrlEnum.REMOVE_SINGLE, getPort());
-        RecipeRemoveRequest deleteRequest = RecipeRemoveRequest.newBuilder()
-                .setName(name)
-                .build();
+        RecipeRemoveRequest deleteRequest = RecipeRemoveRequest.newBuilder().setName(name).build();
 
         restTemplate.postForObject(deleteOneUrl, deleteRequest, Void.class);
     }
-
 }

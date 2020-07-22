@@ -9,11 +9,9 @@ import org.springframework.test.context.ActiveProfiles;
 @ActiveProfiles("integration-test")
 public abstract class BaseIntegrationTest {
 
-    @LocalServerPort
-    private int port;
+    @LocalServerPort private int port;
 
     public int getPort() {
         return port;
     }
-
 }
