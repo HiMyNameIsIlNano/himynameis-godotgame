@@ -4,7 +4,7 @@ services:
     environment:
       - POSTGRES_PASSWORD=mydb
       - POSTGRES_USER=demouser
-    image: library/postgres:12.2
+    image: library/postgres:12.3
     network_mode: bridge
     container_name: demo-db
     expose:
