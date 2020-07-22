@@ -42,7 +42,7 @@ public class RecipeController {
     }
 
     @PostMapping("/remove-single")
-    public void removeRecipe(RecipeRemoveRequest request) {
+    public void removeRecipe(@RequestBody RecipeRemoveRequest request) {
         recipeService.removeRecipe(request.getName());
     }
 }

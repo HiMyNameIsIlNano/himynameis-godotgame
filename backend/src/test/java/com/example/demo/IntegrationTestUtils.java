@@ -11,14 +11,14 @@ public class IntegrationTestUtils {
         REMOVE_ALL("recipes/remove-all"),
         REMOVE_SINGLE("recipes/remove-single");
 
-        private String url;
+        private String requestMappingPath;
 
-        RecipeUrlEnum(String url) {
-            this.url = url;
+        RecipeUrlEnum(String requestMappingPath) {
+            this.requestMappingPath = requestMappingPath;
         }
 
-        public static final String toUrl(RecipeUrlEnum url, int port) {
-            return String.format(BASE_URL + '/' + url, port);
+        public static final String toUrl(RecipeUrlEnum urlEnum, int port) {
+            return String.format(BASE_URL + '/' + urlEnum.requestMappingPath, port);
         }
     }
 }
