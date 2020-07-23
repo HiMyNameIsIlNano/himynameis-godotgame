@@ -10,3 +10,7 @@ spring:
     repeatable-sql-migration-prefix: R
     sql-migration-separator: __
     sql-migration-suffixes: .sql
+
+grpc:
+  server:
+    port: 6566

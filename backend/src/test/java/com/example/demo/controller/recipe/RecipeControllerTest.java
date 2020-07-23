@@ -2,7 +2,7 @@ package com.example.demo.controller.recipe;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.example.demo.BaseIntegrationTest;
+import com.example.demo.BaseRestIntegrationTest;
 import com.example.demo.IntegrationTestUtils.RecipeUrlEnum;
 import com.example.demo.protobuf.RecipeProto.RecipeDTO;
 import com.example.demo.protobuf.RecipeProto.RecipeInitRequest;
@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 
-class RecipeControllerTest extends BaseIntegrationTest {
+class RecipeControllerTest extends BaseRestIntegrationTest {
 
     @Autowired private RecipeController controller;
 

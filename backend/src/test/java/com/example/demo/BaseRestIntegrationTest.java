@@ -7,7 +7,7 @@ import org.springframework.test.context.ActiveProfiles;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @ActiveProfiles("integration-test")
-public abstract class BaseIntegrationTest {
+public abstract class BaseRestIntegrationTest {
 
     @LocalServerPort private int port;
 

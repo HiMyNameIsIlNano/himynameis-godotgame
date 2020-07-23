@@ -21,6 +21,5 @@ The backend exposes `gRPC` services and can be called by whatever client one wan
 
 ## TODO
 - [ ] Secure services
-- [ ] Find a way to run the integration tests while having the application up and running
 - [ ] Test the `gRPC` endpoints and not the REST endpoints (and get rid of them)
 - [ ] Generic exception handling for REST controllers/Service
