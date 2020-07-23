@@ -21,5 +21,5 @@ The backend exposes `gRPC` services and can be called by whatever client one wan
 
 ## TODO
 - [ ] Secure services
-- [ ] Test the `gRPC` endpoints and not the REST endpoints (and get rid of them)
+- [ ] remove the REST endpoints and move to `gRPC` 
 - [ ] Generic exception handling for REST controllers/Service
