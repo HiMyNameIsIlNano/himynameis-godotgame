@@ -13,4 +13,8 @@ spring:
 
 grpc:
   server:
-    port: 6566
+    port: -1 # disable the gRPC server for the tests
+    inProcessName: test
+  client:
+    inProcess:
+      address: in-process:test # this is just bypassing the gRPC server
