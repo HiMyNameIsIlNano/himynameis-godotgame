@@ -8,9 +8,9 @@ import com.google.protobuf.Empty;
 import io.grpc.stub.StreamObserver;
 import javax.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import org.lognet.springboot.grpc.GRpcService;
+import net.devh.boot.grpc.server.service.GrpcService;
 
-@GRpcService
+@GrpcService
 @RequiredArgsConstructor
 @Transactional
 public class RecipeServiceGrpcImpl extends RecipeServiceGrpc.RecipeServiceImplBase {

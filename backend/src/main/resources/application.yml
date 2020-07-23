@@ -18,7 +18,8 @@ server:
   port: 8071
 
 grpc:
-  port: 6565
+  server:
+    port: 6565
 
 springdoc:
   api-docs:
