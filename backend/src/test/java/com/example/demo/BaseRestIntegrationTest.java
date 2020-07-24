@@ -6,7 +6,7 @@ import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.test.context.ActiveProfiles;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
-@ActiveProfiles("integration-test")
+@ActiveProfiles({"integration-test", "no-security"})
 public abstract class BaseRestIntegrationTest {
 
     @LocalServerPort private int port;
