@@ -12,12 +12,16 @@ import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.http.converter.protobuf.ProtobufJsonFormatHttpMessageConverter;
+import org.springframework.web.client.RestTemplate;
 
 class RecipeControllerTest extends BaseRestIntegrationTest {
 
     @Autowired private RecipeController controller;
 
-    @Autowired private TestRestTemplate restTemplate;
+    // @Autowired private TestRestTemplate restTemplate;
+
+    @Autowired private RestTemplate restTemplate;
 
     @Test
     public void contextLoads() {
@@ -43,6 +47,8 @@ class RecipeControllerTest extends BaseRestIntegrationTest {
 
     private RecipeResearchResponse doGetAllRecipes() {
         String findAllUrl = RecipeUrlEnum.toUrl(RecipeUrlEnum.FIND_ALL, getPort());
+
+        restTemplate.getMessageConverters().add(new ProtobufJsonFormatHttpMessageConverter());
 
         return restTemplate.getForObject(findAllUrl, RecipeResearchResponse.class);
     }
