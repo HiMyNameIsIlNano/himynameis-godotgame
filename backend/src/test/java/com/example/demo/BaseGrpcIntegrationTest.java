@@ -1,6 +1,6 @@
 package com.example.demo;
 
-import com.example.demo.grpc.GrpcIntegrationTestConfiguration;
+import com.example.demo.configuration.GrpcIntegrationTestConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.boot.web.server.LocalServerPort;
