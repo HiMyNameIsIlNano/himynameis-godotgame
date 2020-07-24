@@ -22,5 +22,4 @@ class RecipeServiceGrpcImplTest extends BaseGrpcIntegrationTest {
         Assert.assertNotNull(recipeResearchResponse);
         Assert.assertEquals(0, recipeResearchResponse.getRecipesCount());
     }
-
 }

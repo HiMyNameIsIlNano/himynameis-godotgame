@@ -14,7 +14,5 @@ import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 @ActiveProfiles("integration-test")
 public abstract class BaseGrpcIntegrationTest {
 
-    @LocalServerPort
-    private int port;
-
+    @LocalServerPort private int port;
 }
