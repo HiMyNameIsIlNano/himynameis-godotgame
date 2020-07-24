@@ -42,9 +42,7 @@ def downloadGrpcToCsharpCompiler(String path, osFamily) {
         if ("${osFamily}".contains('windows')) {
             execute(['cmd', '/c', 'csharp-grpc-downloader.bat'])
         } else if ("${osFamily}".contains('linux')) {
-            execute(['sh', '-c', 'chmod +x ./csharp-grpc-downloader.sh'])
             execute(['sh', '-c', 'csharp-grpc-downloader.sh'])
-            execute(['sh', '-c', 'chmod +x ./generator/tools/linux_x64/grpc-csharp-plugin'])
         }
     }
 }
