@@ -11,14 +11,15 @@ import com.example.demo.protobuf.RecipeProto.RecipeResearchResponse;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.web.client.RestTemplateBuilder;
-import org.springframework.http.converter.protobuf.ProtobufJsonFormatHttpMessageConverter;
+import org.springframework.boot.test.web.client.TestRestTemplate;
 
 class RecipeControllerTest extends BaseRestIntegrationTest {
 
-    @Autowired private RecipeController controller;
+    @Autowired
+    private RecipeController controller;
 
-    @Autowired private RestTemplateBuilder restTemplateBuilder;
+    @Autowired
+    private TestRestTemplate restTemplate;
 
     @Test
     public void contextLoads() {
@@ -39,19 +40,13 @@ class RecipeControllerTest extends BaseRestIntegrationTest {
         String initUrl = RecipeUrlEnum.toUrl(RecipeUrlEnum.INIT, getPort());
         RecipeInitRequest initRequest = RecipeInitRequest.newBuilder().setAmount(amount).build();
 
-        restTemplateBuilder
-                .additionalMessageConverters(new ProtobufJsonFormatHttpMessageConverter())
-                .build()
-                .postForObject(initUrl, initRequest, Void.class);
+        restTemplate.postForObject(initUrl, initRequest, Void.class);
     }
 
     private RecipeResearchResponse doGetAllRecipes() {
         String findAllUrl = RecipeUrlEnum.toUrl(RecipeUrlEnum.FIND_ALL, getPort());
 
-        return restTemplateBuilder
-                .additionalMessageConverters(new ProtobufJsonFormatHttpMessageConverter())
-                .build()
-                .getForObject(findAllUrl, RecipeResearchResponse.class);
+        return restTemplate.getForObject(findAllUrl, RecipeResearchResponse.class);
     }
 
     @Test
@@ -66,10 +61,8 @@ class RecipeControllerTest extends BaseRestIntegrationTest {
 
     private void doPostDeleteAllRecipes() {
         String deleteAllUrl = RecipeUrlEnum.toUrl(RecipeUrlEnum.REMOVE_ALL, getPort());
-        restTemplateBuilder
-                .additionalMessageConverters(new ProtobufJsonFormatHttpMessageConverter())
-                .build()
-                .postForObject(deleteAllUrl, null, Void.class);
+
+        restTemplate.postForObject(deleteAllUrl, null, Void.class);
     }
 
     @Test
@@ -89,9 +82,6 @@ class RecipeControllerTest extends BaseRestIntegrationTest {
         String deleteOneUrl = RecipeUrlEnum.toUrl(RecipeUrlEnum.REMOVE_SINGLE, getPort());
         RecipeRemoveRequest deleteRequest = RecipeRemoveRequest.newBuilder().setName(name).build();
 
-        restTemplateBuilder
-                .additionalMessageConverters(new ProtobufJsonFormatHttpMessageConverter())
-                .build()
-                .postForObject(deleteOneUrl, deleteRequest, Void.class);
+        restTemplate.postForObject(deleteOneUrl, deleteRequest, Void.class);
     }
 }
