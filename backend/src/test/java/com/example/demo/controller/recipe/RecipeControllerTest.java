@@ -9,15 +9,25 @@ import com.example.demo.protobuf.RecipeProto.RecipeInitRequest;
 import com.example.demo.protobuf.RecipeProto.RecipeRemoveRequest;
 import com.example.demo.protobuf.RecipeProto.RecipeResearchResponse;
 import org.junit.Assert;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 
 class RecipeControllerTest extends BaseRestIntegrationTest {
 
+    private static int RECIPE_AMOUNT = 5;
+
     @Autowired private RecipeController controller;
 
     @Autowired private TestRestTemplate restTemplate;
+
+    @AfterEach
+    void clean() {
+        doPostDeleteAllRecipes();
+    }
 
     @Test
     public void contextLoads() {
@@ -26,12 +36,11 @@ class RecipeControllerTest extends BaseRestIntegrationTest {
 
     @Test
     public void getAllRecipes() {
-        int amount = 5;
-        doPostInitRecipes(amount);
+        doPostInitRecipes(RECIPE_AMOUNT);
 
         RecipeResearchResponse response = doGetAllRecipes();
         Assert.assertNotNull(response);
-        Assert.assertEquals(amount, response.getRecipesCount());
+        Assert.assertEquals(RECIPE_AMOUNT, response.getRecipesCount());
     }
 
     private void doPostInitRecipes(int amount) {
@@ -49,10 +58,9 @@ class RecipeControllerTest extends BaseRestIntegrationTest {
 
     @Test
     public void deleteAllRecipes() {
-        doPostInitRecipes(5);
+        doPostInitRecipes(RECIPE_AMOUNT);
 
         doPostDeleteAllRecipes();
-
         RecipeResearchResponse response = doGetAllRecipes();
         Assert.assertNull(response);
     }
@@ -65,7 +73,7 @@ class RecipeControllerTest extends BaseRestIntegrationTest {
 
     @Test
     public void deleteOneRecipe() {
-        doPostInitRecipes(5);
+        doPostInitRecipes(RECIPE_AMOUNT);
 
         RecipeDTO recipe = doGetAllRecipes().getRecipes(0);
 
@@ -73,7 +81,7 @@ class RecipeControllerTest extends BaseRestIntegrationTest {
 
         RecipeResearchResponse response = doGetAllRecipes();
         Assert.assertNotNull(response);
-        Assert.assertEquals(4, response.getRecipesCount());
+        Assert.assertEquals(RECIPE_AMOUNT - 1, response.getRecipesCount());
     }
 
     private void doPostDeleteOneRecipe(String name) {
