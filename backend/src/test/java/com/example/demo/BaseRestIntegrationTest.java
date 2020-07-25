@@ -9,7 +9,7 @@ import org.springframework.http.converter.protobuf.ProtobufJsonFormatHttpMessage
 import org.springframework.test.context.ActiveProfiles;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT, classes = DemoApplication.class)
-@ActiveProfiles({"integration-test", "no-security"})
+@ActiveProfiles({"integration-test"})
 public abstract class BaseRestIntegrationTest {
 
     @LocalServerPort private int port;

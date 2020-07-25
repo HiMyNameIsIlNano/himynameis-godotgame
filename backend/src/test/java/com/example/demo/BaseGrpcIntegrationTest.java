@@ -8,7 +8,7 @@ import org.springframework.test.context.ActiveProfiles;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT, classes = DemoApplication.class)
 @DirtiesContext
-@ActiveProfiles({"integration-test", "no-security"})
+@ActiveProfiles({"integration-test"})
 public abstract class BaseGrpcIntegrationTest {
 
     @LocalServerPort private int port;
