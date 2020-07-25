@@ -15,7 +15,6 @@ class RecipeServiceGrpcImplTest extends BaseGrpcIntegrationTest {
     private RecipeServiceBlockingStub recipeServiceBlockingStub;
 
     @Test
-    @DirtiesContext
     public void findAll() {
         Empty request = Empty.newBuilder().build();
         RecipeResearchResponse recipeResearchResponse = recipeServiceBlockingStub.findAll(request);
