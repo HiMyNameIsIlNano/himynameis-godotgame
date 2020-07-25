@@ -1,18 +1,25 @@
 package com.example.demo;
 
-import com.example.demo.configuration.GrpcIntegrationTestConfiguration;
+import net.devh.boot.grpc.client.autoconfigure.GrpcClientAutoConfiguration;
+import net.devh.boot.grpc.server.autoconfigure.GrpcServerAutoConfiguration;
+import net.devh.boot.grpc.server.autoconfigure.GrpcServerFactoryAutoConfiguration;
+import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT, classes = DemoApplication.class)
-@SpringJUnitConfig(classes = {GrpcIntegrationTestConfiguration.class})
+@ImportAutoConfiguration({
+        GrpcServerAutoConfiguration.class,
+        GrpcServerFactoryAutoConfiguration.class,
+        GrpcClientAutoConfiguration.class
+})
 @DirtiesContext
-@ActiveProfiles("integration-test")
+@ActiveProfiles({"integration-test", "no-security"})
 public abstract class BaseGrpcIntegrationTest {
 
-    @LocalServerPort private int port;
+    @LocalServerPort
+    private int port;
 }
