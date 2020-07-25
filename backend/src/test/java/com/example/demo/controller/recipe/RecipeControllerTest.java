@@ -15,11 +15,9 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 
 class RecipeControllerTest extends BaseRestIntegrationTest {
 
-    @Autowired
-    private RecipeController controller;
+    @Autowired private RecipeController controller;
 
-    @Autowired
-    private TestRestTemplate restTemplate;
+    @Autowired private TestRestTemplate restTemplate;
 
     @Test
     public void contextLoads() {
