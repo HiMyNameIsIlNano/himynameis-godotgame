@@ -11,6 +11,5 @@ import org.springframework.test.context.ActiveProfiles;
 @ActiveProfiles({"integration-test", "no-security"})
 public abstract class BaseGrpcIntegrationTest {
 
-    @LocalServerPort
-    private int port;
+    @LocalServerPort private int port;
 }
