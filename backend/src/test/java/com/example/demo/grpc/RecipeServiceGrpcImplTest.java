@@ -7,7 +7,6 @@ import com.google.protobuf.Empty;
 import net.devh.boot.grpc.client.inject.GrpcClient;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
-import org.springframework.test.annotation.DirtiesContext;
 
 class RecipeServiceGrpcImplTest extends BaseGrpcIntegrationTest {
 
