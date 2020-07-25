@@ -1,0 +1,20 @@
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://${embedded.postgresql.host}:${embedded.postgresql.port}/${embedded.postgresql.schema}
+    username: ${embedded.postgresql.user}
+    password: ${embedded.postgresql.password}
+  flyway:
+    enabled: true
+    sql-migration-prefix: V
+    repeatable-sql-migration-prefix: R
+    sql-migration-separator: __
+    sql-migration-suffixes: .sql
+
+grpc:
+  server:
+    port: -1 # disable the gRPC server for the tests
+    inProcessName: test
+  client:
+    inProcess:
+      address: in-process:test # this is just bypassing the gRPC server

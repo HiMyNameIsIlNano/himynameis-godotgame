@@ -20,6 +20,6 @@ In order to reach the swagger docs, one can jump to the following URL: http://lo
 The backend exposes `gRPC` services and can be called by whatever client one wants to implement. Due to the fact that my aim is to build a `C#` client, the `:protobuf` project exports the services defined in the `*.proto` file(s) are exported as `java` and `C#` classes. 
 
 ## TODO
-- [ ] Avoid direct definition of Rest endpoints and use gRPC instead (see https://grpc.io/blog/coreos/)
-- [ ] Secure services 
- 
+- [ ] Secure services
+- [ ] remove the REST endpoints and move to `gRPC` 
+- [ ] Generic exception handling for REST controllers/Service

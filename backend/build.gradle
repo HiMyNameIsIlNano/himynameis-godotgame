@@ -52,7 +52,10 @@ dependencies {
     compile group: 'com.google.protobuf', name: 'protobuf-java', version: protobufVersion
     compile group: 'com.google.protobuf', name: 'protobuf-java-util', version: protobufVersion
     implementation group: 'io.grpc', name: 'grpc-stub', version: grpcVersion
-    compile 'io.github.lognet:grpc-spring-boot-starter:3.5.5'
+
+    // grpc server
+    //compile group: 'io.github.lognet', name: 'grpc-spring-boot-starter', version: grpcSpringBootServerVersion
+    compile group: 'net.devh', name: 'grpc-server-spring-boot-starter', version: grpcSpringBootVersion
 
     // compile group: 'org.jsonschema2pojo', name: 'jsonschema2pojo-gradle-plugin', version: jsonToPojoVersion
 
@@ -71,6 +74,12 @@ dependencies {
     implementation group: 'org.jsoup', name: 'jsoup', version: jsoupVersion
 
     // Test
+    testCompile group: 'org.testcontainers', name: 'junit-jupiter', version: testContainersVersion
+    testImplementation group: 'org.springframework.cloud', name: 'spring-cloud-starter', version: springBootCloudVersion
+    testCompile group: 'com.playtika.testcontainers', name: 'embedded-postgresql', version: embeddedPostgresContainerVersion
+    testImplementation group: 'io.grpc', name: 'grpc-testing', version: grpcTestingVersion
+    testImplementation group: 'net.devh', name: 'grpc-client-spring-boot-starter', version: grpcSpringBootVersion
+
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
