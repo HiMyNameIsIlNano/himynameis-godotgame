@@ -8,4 +8,10 @@ import "google/protobuf/empty.proto";
 
 service RecipeService {
   rpc FindAll(google.protobuf.Empty) returns (RecipeResearchResponse) {}
+
+  rpc Init(RecipeInitRequest) returns (google.protobuf.Empty) {}
+
+  rpc RemoveAllRecipes(google.protobuf.Empty) returns (google.protobuf.Empty) {}
+
+  rpc RemoveRecipe(RecipeRemoveRequest) returns (google.protobuf.Empty) {}
 }

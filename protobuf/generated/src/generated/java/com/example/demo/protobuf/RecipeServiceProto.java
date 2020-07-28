@@ -24,10 +24,15 @@ public final class RecipeServiceProto {
   static {
     java.lang.String[] descriptorData = {
       "\n\023recipeService.proto\032\014recipe.proto\032\033goo" +
-      "gle/protobuf/empty.proto2M\n\rRecipeServic" +
-      "e\022<\n\007FindAll\022\026.google.protobuf.Empty\032\027.R" +
-      "ecipeResearchResponse\"\000B/\n\031com.example.d" +
-      "emo.protobufB\022RecipeServiceProtob\006proto3"
+      "gle/protobuf/empty.proto2\211\002\n\rRecipeServi" +
+      "ce\022<\n\007FindAll\022\026.google.protobuf.Empty\032\027." +
+      "RecipeResearchResponse\"\000\0224\n\004Init\022\022.Recip" +
+      "eInitRequest\032\026.google.protobuf.Empty\"\000\022D" +
+      "\n\020RemoveAllRecipes\022\026.google.protobuf.Emp" +
+      "ty\032\026.google.protobuf.Empty\"\000\022>\n\014RemoveRe" +
+      "cipe\022\024.RecipeRemoveRequest\032\026.google.prot" +
+      "obuf.Empty\"\000B/\n\031com.example.demo.protobu" +
+      "fB\022RecipeServiceProtob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
