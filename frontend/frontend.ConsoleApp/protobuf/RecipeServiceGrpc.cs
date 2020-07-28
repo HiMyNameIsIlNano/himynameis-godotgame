@@ -13,6 +13,8 @@ public static partial class RecipeService
 
   static readonly grpc::Marshaller<global::Google.Protobuf.WellKnownTypes.Empty> __Marshaller_google_protobuf_Empty = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Google.Protobuf.WellKnownTypes.Empty.Parser.ParseFrom);
   static readonly grpc::Marshaller<global::Com.Example.Demo.Protobuf.Recipe.RecipeResearchResponse> __Marshaller_RecipeResearchResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Com.Example.Demo.Protobuf.Recipe.RecipeResearchResponse.Parser.ParseFrom);
+  static readonly grpc::Marshaller<global::Com.Example.Demo.Protobuf.Recipe.RecipeInitRequest> __Marshaller_RecipeInitRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Com.Example.Demo.Protobuf.Recipe.RecipeInitRequest.Parser.ParseFrom);
+  static readonly grpc::Marshaller<global::Com.Example.Demo.Protobuf.Recipe.RecipeRemoveRequest> __Marshaller_RecipeRemoveRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Com.Example.Demo.Protobuf.Recipe.RecipeRemoveRequest.Parser.ParseFrom);
 
   static readonly grpc::Method<global::Google.Protobuf.WellKnownTypes.Empty, global::Com.Example.Demo.Protobuf.Recipe.RecipeResearchResponse> __Method_FindAll = new grpc::Method<global::Google.Protobuf.WellKnownTypes.Empty, global::Com.Example.Demo.Protobuf.Recipe.RecipeResearchResponse>(
       grpc::MethodType.Unary,
@@ -20,6 +22,27 @@ public static partial class RecipeService
       "FindAll",
       __Marshaller_google_protobuf_Empty,
       __Marshaller_RecipeResearchResponse);
+
+  static readonly grpc::Method<global::Com.Example.Demo.Protobuf.Recipe.RecipeInitRequest, global::Google.Protobuf.WellKnownTypes.Empty> __Method_Init = new grpc::Method<global::Com.Example.Demo.Protobuf.Recipe.RecipeInitRequest, global::Google.Protobuf.WellKnownTypes.Empty>(
+      grpc::MethodType.Unary,
+      __ServiceName,
+      "Init",
+      __Marshaller_RecipeInitRequest,
+      __Marshaller_google_protobuf_Empty);
+
+  static readonly grpc::Method<global::Google.Protobuf.WellKnownTypes.Empty, global::Google.Protobuf.WellKnownTypes.Empty> __Method_RemoveAllRecipes = new grpc::Method<global::Google.Protobuf.WellKnownTypes.Empty, global::Google.Protobuf.WellKnownTypes.Empty>(
+      grpc::MethodType.Unary,
+      __ServiceName,
+      "RemoveAllRecipes",
+      __Marshaller_google_protobuf_Empty,
+      __Marshaller_google_protobuf_Empty);
+
+  static readonly grpc::Method<global::Com.Example.Demo.Protobuf.Recipe.RecipeRemoveRequest, global::Google.Protobuf.WellKnownTypes.Empty> __Method_RemoveRecipe = new grpc::Method<global::Com.Example.Demo.Protobuf.Recipe.RecipeRemoveRequest, global::Google.Protobuf.WellKnownTypes.Empty>(
+      grpc::MethodType.Unary,
+      __ServiceName,
+      "RemoveRecipe",
+      __Marshaller_RecipeRemoveRequest,
+      __Marshaller_google_protobuf_Empty);
 
   /// <summary>Service descriptor</summary>
   public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
@@ -32,6 +55,21 @@ public static partial class RecipeService
   public abstract partial class RecipeServiceBase
   {
     public virtual global::System.Threading.Tasks.Task<global::Com.Example.Demo.Protobuf.Recipe.RecipeResearchResponse> FindAll(global::Google.Protobuf.WellKnownTypes.Empty request, grpc::ServerCallContext context)
+    {
+      throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+    }
+
+    public virtual global::System.Threading.Tasks.Task<global::Google.Protobuf.WellKnownTypes.Empty> Init(global::Com.Example.Demo.Protobuf.Recipe.RecipeInitRequest request, grpc::ServerCallContext context)
+    {
+      throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+    }
+
+    public virtual global::System.Threading.Tasks.Task<global::Google.Protobuf.WellKnownTypes.Empty> RemoveAllRecipes(global::Google.Protobuf.WellKnownTypes.Empty request, grpc::ServerCallContext context)
+    {
+      throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+    }
+
+    public virtual global::System.Threading.Tasks.Task<global::Google.Protobuf.WellKnownTypes.Empty> RemoveRecipe(global::Com.Example.Demo.Protobuf.Recipe.RecipeRemoveRequest request, grpc::ServerCallContext context)
     {
       throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
     }
@@ -77,6 +115,54 @@ public static partial class RecipeService
     {
       return CallInvoker.AsyncUnaryCall(__Method_FindAll, null, options, request);
     }
+    public virtual global::Google.Protobuf.WellKnownTypes.Empty Init(global::Com.Example.Demo.Protobuf.Recipe.RecipeInitRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+    {
+      return Init(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+    }
+    public virtual global::Google.Protobuf.WellKnownTypes.Empty Init(global::Com.Example.Demo.Protobuf.Recipe.RecipeInitRequest request, grpc::CallOptions options)
+    {
+      return CallInvoker.BlockingUnaryCall(__Method_Init, null, options, request);
+    }
+    public virtual grpc::AsyncUnaryCall<global::Google.Protobuf.WellKnownTypes.Empty> InitAsync(global::Com.Example.Demo.Protobuf.Recipe.RecipeInitRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+    {
+      return InitAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+    }
+    public virtual grpc::AsyncUnaryCall<global::Google.Protobuf.WellKnownTypes.Empty> InitAsync(global::Com.Example.Demo.Protobuf.Recipe.RecipeInitRequest request, grpc::CallOptions options)
+    {
+      return CallInvoker.AsyncUnaryCall(__Method_Init, null, options, request);
+    }
+    public virtual global::Google.Protobuf.WellKnownTypes.Empty RemoveAllRecipes(global::Google.Protobuf.WellKnownTypes.Empty request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+    {
+      return RemoveAllRecipes(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+    }
+    public virtual global::Google.Protobuf.WellKnownTypes.Empty RemoveAllRecipes(global::Google.Protobuf.WellKnownTypes.Empty request, grpc::CallOptions options)
+    {
+      return CallInvoker.BlockingUnaryCall(__Method_RemoveAllRecipes, null, options, request);
+    }
+    public virtual grpc::AsyncUnaryCall<global::Google.Protobuf.WellKnownTypes.Empty> RemoveAllRecipesAsync(global::Google.Protobuf.WellKnownTypes.Empty request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+    {
+      return RemoveAllRecipesAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+    }
+    public virtual grpc::AsyncUnaryCall<global::Google.Protobuf.WellKnownTypes.Empty> RemoveAllRecipesAsync(global::Google.Protobuf.WellKnownTypes.Empty request, grpc::CallOptions options)
+    {
+      return CallInvoker.AsyncUnaryCall(__Method_RemoveAllRecipes, null, options, request);
+    }
+    public virtual global::Google.Protobuf.WellKnownTypes.Empty RemoveRecipe(global::Com.Example.Demo.Protobuf.Recipe.RecipeRemoveRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+    {
+      return RemoveRecipe(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+    }
+    public virtual global::Google.Protobuf.WellKnownTypes.Empty RemoveRecipe(global::Com.Example.Demo.Protobuf.Recipe.RecipeRemoveRequest request, grpc::CallOptions options)
+    {
+      return CallInvoker.BlockingUnaryCall(__Method_RemoveRecipe, null, options, request);
+    }
+    public virtual grpc::AsyncUnaryCall<global::Google.Protobuf.WellKnownTypes.Empty> RemoveRecipeAsync(global::Com.Example.Demo.Protobuf.Recipe.RecipeRemoveRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+    {
+      return RemoveRecipeAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+    }
+    public virtual grpc::AsyncUnaryCall<global::Google.Protobuf.WellKnownTypes.Empty> RemoveRecipeAsync(global::Com.Example.Demo.Protobuf.Recipe.RecipeRemoveRequest request, grpc::CallOptions options)
+    {
+      return CallInvoker.AsyncUnaryCall(__Method_RemoveRecipe, null, options, request);
+    }
     /// <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
     protected override RecipeServiceClient NewInstance(ClientBaseConfiguration configuration)
     {
@@ -89,7 +175,10 @@ public static partial class RecipeService
   public static grpc::ServerServiceDefinition BindService(RecipeServiceBase serviceImpl)
   {
     return grpc::ServerServiceDefinition.CreateBuilder()
-        .AddMethod(__Method_FindAll, serviceImpl.FindAll).Build();
+        .AddMethod(__Method_FindAll, serviceImpl.FindAll)
+        .AddMethod(__Method_Init, serviceImpl.Init)
+        .AddMethod(__Method_RemoveAllRecipes, serviceImpl.RemoveAllRecipes)
+        .AddMethod(__Method_RemoveRecipe, serviceImpl.RemoveRecipe).Build();
   }
 
   /// <summary>Register service method with a service binder with or without implementation. Useful when customizing the  service binding logic.
@@ -99,6 +188,9 @@ public static partial class RecipeService
   public static void BindService(grpc::ServiceBinderBase serviceBinder, RecipeServiceBase serviceImpl)
   {
     serviceBinder.AddMethod(__Method_FindAll, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Google.Protobuf.WellKnownTypes.Empty, global::Com.Example.Demo.Protobuf.Recipe.RecipeResearchResponse>(serviceImpl.FindAll));
+    serviceBinder.AddMethod(__Method_Init, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Com.Example.Demo.Protobuf.Recipe.RecipeInitRequest, global::Google.Protobuf.WellKnownTypes.Empty>(serviceImpl.Init));
+    serviceBinder.AddMethod(__Method_RemoveAllRecipes, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Google.Protobuf.WellKnownTypes.Empty, global::Google.Protobuf.WellKnownTypes.Empty>(serviceImpl.RemoveAllRecipes));
+    serviceBinder.AddMethod(__Method_RemoveRecipe, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Com.Example.Demo.Protobuf.Recipe.RecipeRemoveRequest, global::Google.Protobuf.WellKnownTypes.Empty>(serviceImpl.RemoveRecipe));
   }
 
 }

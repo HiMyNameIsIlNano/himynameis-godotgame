@@ -11,12 +11,14 @@ import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.hibernate.annotations.Type;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 @Entity
 @Getter
+@ToString(callSuper = true)
 public class Ingredient extends BaseEntity {
 
     @Enumerated(value = EnumType.STRING)

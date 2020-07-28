@@ -58,6 +58,99 @@ public final class RecipeServiceGrpc {
     return getFindAllMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<com.example.demo.protobuf.RecipeProto.RecipeInitRequest,
+      com.google.protobuf.Empty> getInitMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "Init",
+      requestType = com.example.demo.protobuf.RecipeProto.RecipeInitRequest.class,
+      responseType = com.google.protobuf.Empty.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<com.example.demo.protobuf.RecipeProto.RecipeInitRequest,
+      com.google.protobuf.Empty> getInitMethod() {
+    io.grpc.MethodDescriptor<com.example.demo.protobuf.RecipeProto.RecipeInitRequest, com.google.protobuf.Empty> getInitMethod;
+    if ((getInitMethod = RecipeServiceGrpc.getInitMethod) == null) {
+      synchronized (RecipeServiceGrpc.class) {
+        if ((getInitMethod = RecipeServiceGrpc.getInitMethod) == null) {
+          RecipeServiceGrpc.getInitMethod = getInitMethod =
+              io.grpc.MethodDescriptor.<com.example.demo.protobuf.RecipeProto.RecipeInitRequest, com.google.protobuf.Empty>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "Init"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.example.demo.protobuf.RecipeProto.RecipeInitRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.protobuf.Empty.getDefaultInstance()))
+              .setSchemaDescriptor(new RecipeServiceMethodDescriptorSupplier("Init"))
+              .build();
+        }
+      }
+    }
+    return getInitMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<com.google.protobuf.Empty,
+      com.google.protobuf.Empty> getRemoveAllRecipesMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "RemoveAllRecipes",
+      requestType = com.google.protobuf.Empty.class,
+      responseType = com.google.protobuf.Empty.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<com.google.protobuf.Empty,
+      com.google.protobuf.Empty> getRemoveAllRecipesMethod() {
+    io.grpc.MethodDescriptor<com.google.protobuf.Empty, com.google.protobuf.Empty> getRemoveAllRecipesMethod;
+    if ((getRemoveAllRecipesMethod = RecipeServiceGrpc.getRemoveAllRecipesMethod) == null) {
+      synchronized (RecipeServiceGrpc.class) {
+        if ((getRemoveAllRecipesMethod = RecipeServiceGrpc.getRemoveAllRecipesMethod) == null) {
+          RecipeServiceGrpc.getRemoveAllRecipesMethod = getRemoveAllRecipesMethod =
+              io.grpc.MethodDescriptor.<com.google.protobuf.Empty, com.google.protobuf.Empty>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "RemoveAllRecipes"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.protobuf.Empty.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.protobuf.Empty.getDefaultInstance()))
+              .setSchemaDescriptor(new RecipeServiceMethodDescriptorSupplier("RemoveAllRecipes"))
+              .build();
+        }
+      }
+    }
+    return getRemoveAllRecipesMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<com.example.demo.protobuf.RecipeProto.RecipeRemoveRequest,
+      com.google.protobuf.Empty> getRemoveRecipeMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "RemoveRecipe",
+      requestType = com.example.demo.protobuf.RecipeProto.RecipeRemoveRequest.class,
+      responseType = com.google.protobuf.Empty.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<com.example.demo.protobuf.RecipeProto.RecipeRemoveRequest,
+      com.google.protobuf.Empty> getRemoveRecipeMethod() {
+    io.grpc.MethodDescriptor<com.example.demo.protobuf.RecipeProto.RecipeRemoveRequest, com.google.protobuf.Empty> getRemoveRecipeMethod;
+    if ((getRemoveRecipeMethod = RecipeServiceGrpc.getRemoveRecipeMethod) == null) {
+      synchronized (RecipeServiceGrpc.class) {
+        if ((getRemoveRecipeMethod = RecipeServiceGrpc.getRemoveRecipeMethod) == null) {
+          RecipeServiceGrpc.getRemoveRecipeMethod = getRemoveRecipeMethod =
+              io.grpc.MethodDescriptor.<com.example.demo.protobuf.RecipeProto.RecipeRemoveRequest, com.google.protobuf.Empty>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "RemoveRecipe"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.example.demo.protobuf.RecipeProto.RecipeRemoveRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.protobuf.Empty.getDefaultInstance()))
+              .setSchemaDescriptor(new RecipeServiceMethodDescriptorSupplier("RemoveRecipe"))
+              .build();
+        }
+      }
+    }
+    return getRemoveRecipeMethod;
+  }
+
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -113,6 +206,27 @@ public final class RecipeServiceGrpc {
       asyncUnimplementedUnaryCall(getFindAllMethod(), responseObserver);
     }
 
+    /**
+     */
+    public void init(com.example.demo.protobuf.RecipeProto.RecipeInitRequest request,
+        io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
+      asyncUnimplementedUnaryCall(getInitMethod(), responseObserver);
+    }
+
+    /**
+     */
+    public void removeAllRecipes(com.google.protobuf.Empty request,
+        io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
+      asyncUnimplementedUnaryCall(getRemoveAllRecipesMethod(), responseObserver);
+    }
+
+    /**
+     */
+    public void removeRecipe(com.example.demo.protobuf.RecipeProto.RecipeRemoveRequest request,
+        io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
+      asyncUnimplementedUnaryCall(getRemoveRecipeMethod(), responseObserver);
+    }
+
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
@@ -122,6 +236,27 @@ public final class RecipeServiceGrpc {
                 com.google.protobuf.Empty,
                 com.example.demo.protobuf.RecipeProto.RecipeResearchResponse>(
                   this, METHODID_FIND_ALL)))
+          .addMethod(
+            getInitMethod(),
+            asyncUnaryCall(
+              new MethodHandlers<
+                com.example.demo.protobuf.RecipeProto.RecipeInitRequest,
+                com.google.protobuf.Empty>(
+                  this, METHODID_INIT)))
+          .addMethod(
+            getRemoveAllRecipesMethod(),
+            asyncUnaryCall(
+              new MethodHandlers<
+                com.google.protobuf.Empty,
+                com.google.protobuf.Empty>(
+                  this, METHODID_REMOVE_ALL_RECIPES)))
+          .addMethod(
+            getRemoveRecipeMethod(),
+            asyncUnaryCall(
+              new MethodHandlers<
+                com.example.demo.protobuf.RecipeProto.RecipeRemoveRequest,
+                com.google.protobuf.Empty>(
+                  this, METHODID_REMOVE_RECIPE)))
           .build();
     }
   }
@@ -147,6 +282,30 @@ public final class RecipeServiceGrpc {
       asyncUnaryCall(
           getChannel().newCall(getFindAllMethod(), getCallOptions()), request, responseObserver);
     }
+
+    /**
+     */
+    public void init(com.example.demo.protobuf.RecipeProto.RecipeInitRequest request,
+        io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(getInitMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
+    public void removeAllRecipes(com.google.protobuf.Empty request,
+        io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(getRemoveAllRecipesMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
+    public void removeRecipe(com.example.demo.protobuf.RecipeProto.RecipeRemoveRequest request,
+        io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(getRemoveRecipeMethod(), getCallOptions()), request, responseObserver);
+    }
   }
 
   /**
@@ -168,6 +327,27 @@ public final class RecipeServiceGrpc {
     public com.example.demo.protobuf.RecipeProto.RecipeResearchResponse findAll(com.google.protobuf.Empty request) {
       return blockingUnaryCall(
           getChannel(), getFindAllMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public com.google.protobuf.Empty init(com.example.demo.protobuf.RecipeProto.RecipeInitRequest request) {
+      return blockingUnaryCall(
+          getChannel(), getInitMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public com.google.protobuf.Empty removeAllRecipes(com.google.protobuf.Empty request) {
+      return blockingUnaryCall(
+          getChannel(), getRemoveAllRecipesMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public com.google.protobuf.Empty removeRecipe(com.example.demo.protobuf.RecipeProto.RecipeRemoveRequest request) {
+      return blockingUnaryCall(
+          getChannel(), getRemoveRecipeMethod(), getCallOptions(), request);
     }
   }
 
@@ -192,9 +372,36 @@ public final class RecipeServiceGrpc {
       return futureUnaryCall(
           getChannel().newCall(getFindAllMethod(), getCallOptions()), request);
     }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.Empty> init(
+        com.example.demo.protobuf.RecipeProto.RecipeInitRequest request) {
+      return futureUnaryCall(
+          getChannel().newCall(getInitMethod(), getCallOptions()), request);
+    }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.Empty> removeAllRecipes(
+        com.google.protobuf.Empty request) {
+      return futureUnaryCall(
+          getChannel().newCall(getRemoveAllRecipesMethod(), getCallOptions()), request);
+    }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.Empty> removeRecipe(
+        com.example.demo.protobuf.RecipeProto.RecipeRemoveRequest request) {
+      return futureUnaryCall(
+          getChannel().newCall(getRemoveRecipeMethod(), getCallOptions()), request);
+    }
   }
 
   private static final int METHODID_FIND_ALL = 0;
+  private static final int METHODID_INIT = 1;
+  private static final int METHODID_REMOVE_ALL_RECIPES = 2;
+  private static final int METHODID_REMOVE_RECIPE = 3;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -216,6 +423,18 @@ public final class RecipeServiceGrpc {
         case METHODID_FIND_ALL:
           serviceImpl.findAll((com.google.protobuf.Empty) request,
               (io.grpc.stub.StreamObserver<com.example.demo.protobuf.RecipeProto.RecipeResearchResponse>) responseObserver);
+          break;
+        case METHODID_INIT:
+          serviceImpl.init((com.example.demo.protobuf.RecipeProto.RecipeInitRequest) request,
+              (io.grpc.stub.StreamObserver<com.google.protobuf.Empty>) responseObserver);
+          break;
+        case METHODID_REMOVE_ALL_RECIPES:
+          serviceImpl.removeAllRecipes((com.google.protobuf.Empty) request,
+              (io.grpc.stub.StreamObserver<com.google.protobuf.Empty>) responseObserver);
+          break;
+        case METHODID_REMOVE_RECIPE:
+          serviceImpl.removeRecipe((com.example.demo.protobuf.RecipeProto.RecipeRemoveRequest) request,
+              (io.grpc.stub.StreamObserver<com.google.protobuf.Empty>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -279,6 +498,9 @@ public final class RecipeServiceGrpc {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
               .setSchemaDescriptor(new RecipeServiceFileDescriptorSupplier())
               .addMethod(getFindAllMethod())
+              .addMethod(getInitMethod())
+              .addMethod(getRemoveAllRecipesMethod())
+              .addMethod(getRemoveRecipeMethod())
               .build();
         }
       }

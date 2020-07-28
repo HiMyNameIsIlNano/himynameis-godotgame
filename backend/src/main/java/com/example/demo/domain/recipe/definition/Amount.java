@@ -6,11 +6,13 @@ import javax.persistence.Enumerated;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Getter
 @Embeddable
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class Amount {
 
     private int quantity;
