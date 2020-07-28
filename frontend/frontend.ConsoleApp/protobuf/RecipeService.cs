@@ -23,10 +23,14 @@ public static partial class RecipeServiceReflection {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
           "ChNyZWNpcGVTZXJ2aWNlLnByb3RvGgxyZWNpcGUucHJvdG8aG2dvb2dsZS9w",
-          "cm90b2J1Zi9lbXB0eS5wcm90bzJNCg1SZWNpcGVTZXJ2aWNlEjwKB0ZpbmRB",
-          "bGwSFi5nb29nbGUucHJvdG9idWYuRW1wdHkaFy5SZWNpcGVSZXNlYXJjaFJl",
-          "c3BvbnNlIgBCLwoZY29tLmV4YW1wbGUuZGVtby5wcm90b2J1ZkISUmVjaXBl",
-          "U2VydmljZVByb3RvYgZwcm90bzM="));
+          "cm90b2J1Zi9lbXB0eS5wcm90bzKJAgoNUmVjaXBlU2VydmljZRI8CgdGaW5k",
+          "QWxsEhYuZ29vZ2xlLnByb3RvYnVmLkVtcHR5GhcuUmVjaXBlUmVzZWFyY2hS",
+          "ZXNwb25zZSIAEjQKBEluaXQSEi5SZWNpcGVJbml0UmVxdWVzdBoWLmdvb2ds",
+          "ZS5wcm90b2J1Zi5FbXB0eSIAEkQKEFJlbW92ZUFsbFJlY2lwZXMSFi5nb29n",
+          "bGUucHJvdG9idWYuRW1wdHkaFi5nb29nbGUucHJvdG9idWYuRW1wdHkiABI+",
+          "CgxSZW1vdmVSZWNpcGUSFC5SZWNpcGVSZW1vdmVSZXF1ZXN0GhYuZ29vZ2xl",
+          "LnByb3RvYnVmLkVtcHR5IgBCLwoZY29tLmV4YW1wbGUuZGVtby5wcm90b2J1",
+          "ZkISUmVjaXBlU2VydmljZVByb3RvYgZwcm90bzM="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { global::Com.Example.Demo.Protobuf.Recipe.RecipeReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.EmptyReflection.Descriptor, },
         new pbr::GeneratedClrTypeInfo(null, null, null));

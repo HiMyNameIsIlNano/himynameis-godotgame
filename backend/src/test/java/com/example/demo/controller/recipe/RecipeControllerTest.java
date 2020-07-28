@@ -10,6 +10,7 @@ import com.example.demo.protobuf.RecipeProto.RecipeRemoveRequest;
 import com.example.demo.protobuf.RecipeProto.RecipeResearchResponse;
 import org.junit.Assert;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.web.client.TestRestTemplate;
@@ -21,6 +22,11 @@ class RecipeControllerTest extends BaseRestIntegrationTest {
     @Autowired private RecipeController controller;
 
     @Autowired private TestRestTemplate restTemplate;
+
+    @BeforeEach
+    public void init() {
+        doPostInitRecipes(RECIPE_AMOUNT);
+    }
 
     @AfterEach
     void clean() {
@@ -34,8 +40,6 @@ class RecipeControllerTest extends BaseRestIntegrationTest {
 
     @Test
     public void getAllRecipes() {
-        doPostInitRecipes(RECIPE_AMOUNT);
-
         RecipeResearchResponse response = doGetAllRecipes();
         Assert.assertNotNull(response);
         Assert.assertEquals(RECIPE_AMOUNT, response.getRecipesCount());
@@ -56,8 +60,6 @@ class RecipeControllerTest extends BaseRestIntegrationTest {
 
     @Test
     public void deleteAllRecipes() {
-        doPostInitRecipes(RECIPE_AMOUNT);
-
         doPostDeleteAllRecipes();
         RecipeResearchResponse response = doGetAllRecipes();
         Assert.assertNull(response);
@@ -71,8 +73,6 @@ class RecipeControllerTest extends BaseRestIntegrationTest {
 
     @Test
     public void deleteOneRecipe() {
-        doPostInitRecipes(RECIPE_AMOUNT);
-
         RecipeDTO recipe = doGetAllRecipes().getRecipes(0);
 
         doPostDeleteOneRecipe(recipe.getName());
