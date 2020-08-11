@@ -39,3 +39,4 @@ protobuf/generator
 # Front end
 frontend/frontend.ConsoleApp/bin
 frontend/frontend.ConsoleApp/obj
+*.old
