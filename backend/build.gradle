@@ -54,7 +54,6 @@ dependencies {
     implementation group: 'io.grpc', name: 'grpc-stub', version: grpcVersion
 
     // grpc server
-    //compile group: 'io.github.lognet', name: 'grpc-spring-boot-starter', version: grpcSpringBootServerVersion
     compile group: 'net.devh', name: 'grpc-server-spring-boot-starter', version: grpcSpringBootVersion
 
     // compile group: 'org.jsonschema2pojo', name: 'jsonschema2pojo-gradle-plugin', version: jsonToPojoVersion
