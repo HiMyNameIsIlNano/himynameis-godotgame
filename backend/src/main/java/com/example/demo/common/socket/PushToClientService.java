@@ -52,7 +52,8 @@ public class PushToClientService extends BinaryWebSocketHandler {
     }
 
     public void closeConnectionWithServerSocket() {
-        // TODO: at the moment the socket connection is not reused by the client. Therefore every time a new
+        // TODO: at the moment the socket connection is not reused by the client. Therefore every
+        // time a new
         // one is opened it is also closed in the same "transaction"
     }
 }
