@@ -1,6 +1,7 @@
 package com.example.demo.controller.socket;
 
 import com.example.demo.common.socket.PushToClientService;
+import com.example.demo.protobuf.SocketPush.SocketPushMessage;
 import java.io.IOException;
 import java.util.concurrent.ExecutionException;
 import lombok.RequiredArgsConstructor;
@@ -17,6 +18,14 @@ public class SocketController {
 
     @PostMapping("/push")
     public void testConnection() throws IOException, ExecutionException, InterruptedException {
-        pushToClientService.pushToClient("Random Text");
+        SocketPushMessage pushMessage =
+                SocketPushMessage.newBuilder().setPlayerId(4).setText("Random Text").build();
+
+        pushToClientService.pushToClient(pushMessage);
+    }
+
+    @PostMapping("/close")
+    public void closeConnection() {
+        pushToClientService.closeConnectionWithServerSocket();
     }
 }

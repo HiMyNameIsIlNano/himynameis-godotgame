@@ -1,42 +1,58 @@
 package com.example.demo.common.socket;
 
+import com.example.demo.protobuf.SocketPush.SocketPushMessage;
 import java.io.IOException;
-import java.net.DatagramPacket;
-import java.net.DatagramSocket;
-import java.net.InetAddress;
-import java.net.SocketException;
-import java.net.UnknownHostException;
+import java.net.URI;
+import java.util.concurrent.ExecutionException;
+import javax.annotation.PostConstruct;
+import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import org.springframework.web.socket.handler.TextWebSocketHandler;
+import org.springframework.web.socket.BinaryMessage;
+import org.springframework.web.socket.WebSocketHttpHeaders;
+import org.springframework.web.socket.WebSocketSession;
+import org.springframework.web.socket.client.standard.StandardWebSocketClient;
+import org.springframework.web.socket.handler.BinaryWebSocketHandler;
 
+@NoArgsConstructor
 @Service
-public class PushToClientService extends TextWebSocketHandler {
+public class PushToClientService extends BinaryWebSocketHandler {
+
+    @Value("${demo.socket-server.protocol:ws}")
+    private String socketServerProtocol;
 
     @Value("${demo.socket-server.address:localhost}")
-    private String udpSocketServerAddress;
+    private String socketServerAddress;
 
     @Value("${demo.socket-server.port:4444}")
-    private int udpSocketServerPort;
+    private int socketServerPort;
 
-    private final InetAddress UDP_SOCKET_SERVER_INET_ADDRESS = InetAddress.getByName(
-            udpSocketServerAddress);
+    private String socketServerUrl;
 
-    private final DatagramSocket socket;
-
-    public PushToClientService() throws SocketException, UnknownHostException {
-        this.socket = new DatagramSocket();
+    @PostConstruct
+    public void afterConstructInit() {
+        this.socketServerUrl =
+                String.format(
+                        "%s://%s:%s/", socketServerProtocol, socketServerAddress, socketServerPort);
     }
 
-    public void pushToClient(String text) throws IOException {
-        byte[] data = text.getBytes();
-        DatagramPacket packet =
-                new DatagramPacket(data, data.length, UDP_SOCKET_SERVER_INET_ADDRESS,
-                        udpSocketServerPort);
-        socket.send(packet);
+    public void pushToClient(SocketPushMessage message)
+            throws IOException, ExecutionException, InterruptedException {
+        WebSocketSession session = getSession();
+        session.sendMessage(new BinaryMessage(message.toByteArray()));
+        session.close();
     }
 
-    public void closeConnectionToUDPSocket() {
-        socket.close();
+    private WebSocketSession getSession() throws InterruptedException, ExecutionException {
+        // TODO: at the moment the socket connection is not reused by the client. Therefore a new
+        // one is reopened every time
+        return new StandardWebSocketClient()
+                .doHandshake(this, new WebSocketHttpHeaders(), URI.create(socketServerUrl))
+                .get();
+    }
+
+    public void closeConnectionWithServerSocket() {
+        // TODO: at the moment the socket connection is not reused by the client. Therefore every time a new
+        // one is opened it is also closed in the same "transaction"
     }
 }

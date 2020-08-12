@@ -1,53 +1,65 @@
-using System;
+using System.Text;
 using Godot;
 
-public class SocketServerButton : Godot.Button
+public class SocketServerButton : Button
 {
     private const int Port = 4444;
-    private const string SocketServerAddress = "127.0.0.1";
 
-    private Boolean _done;
-    private PacketPeerUDP _socket;
+    private WebSocketServer _server;
 
     public override void _Ready()
     {
-        _socket = new PacketPeerUDP();
+        _server = new WebSocketServer();
     }
 
     public override void _Pressed()
     {
-        if (_socket.Listen(Port, SocketServerAddress) != Error.Ok)
+        _server.Connect("client_connected", this, "OnConnected");
+        _server.Connect("client_disconnected", this, "OnDisconnected");
+        _server.Connect("client_close_request", this, "OnCloseRequest");
+        _server.Connect("data_received", this, "OnDataReceived");
+        
+        Error error = _server.Listen(Port);
+        if (error != Error.Ok)
         {
-            GD.Print("An error occurred while listening on port ", Port);
-            _done = true;
-        }
-        else
-        {
-            GD.Print("Listening on port ", Port);
-        }
-
-        while (!_done)
-        {
-            if (_socket.GetAvailablePacketCount() <= 0)
-            {
-                continue;
-            }
-
-            ReadReceivedDataAndPrint();
+            GD.PrintErr("Unable to start the server");
+            SetProcess(false);
         }
 
-
-        _socket.Close();
-        GD.Print("Exiting application");
+        GD.Print($"Socket Server listening on port {Port}");
     }
 
-    private void ReadReceivedDataAndPrint()
+    private void OnConnected(int id, string protocol)
     {
-        var data = _socket.GetPacket().ToString();
-        _done = data == "quit";
-        if (!_done)
-        {
-            GD.Print("Data received: ", data);
-        }
+        GD.Print($"Client {id} connected with protocol {protocol}");
+        _server.GetPeer(id).SetWriteMode(WebSocketPeer.WriteMode.Binary);
+    }
+
+    private void OnDisconnected(int id, bool wasClean)
+    {
+        GD.Print($"Client {id} disconnected, clean {wasClean}");
+    }
+
+    private void OnCloseRequest(int id, int code, string reason)
+    {
+        GD.Print($"Client {id} disconnecting with code: {code}, reason: {reason}");
+    }
+
+    private void OnDataReceived(int id)
+    {
+        byte[] packet = _server.GetPeer(id).GetPacket();
+        string data = Encoding.UTF8.GetString(packet);
+        GD.Print($"Got data from client {id}: {data}");
+        _server.GetPeer(id).PutPacket(packet);
+    }
+
+    public override void _Process(float delta)
+    {
+        _server.Poll();
+    }
+
+    public override void _ExitTree()
+    {
+        _server.Stop();
     }
 }
