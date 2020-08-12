@@ -1,38 +1,42 @@
 package com.example.demo.common.socket;
 
 import java.io.IOException;
-import java.net.URI;
-import java.util.concurrent.ExecutionException;
-import lombok.NoArgsConstructor;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
+import java.net.SocketException;
+import java.net.UnknownHostException;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import org.springframework.web.socket.TextMessage;
-import org.springframework.web.socket.WebSocketHttpHeaders;
-import org.springframework.web.socket.WebSocketSession;
-import org.springframework.web.socket.client.standard.StandardWebSocketClient;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
-@NoArgsConstructor
 @Service
 public class PushToClientService extends TextWebSocketHandler {
 
-    private static final String WEBSOCKET_SERVER_URL = "ws://127.0.0.1:4444/";
+    @Value("${demo.socket-server.address:localhost}")
+    private String udpSocketServerAddress;
 
-    private WebSocketSession session;
+    @Value("${demo.socket-server.port:4444}")
+    private int udpSocketServerPort;
 
-    public void pushToClient(String text)
-            throws IOException, ExecutionException, InterruptedException {
-        if (session == null) {
-            doConnect();
-        }
+    private final InetAddress UDP_SOCKET_SERVER_INET_ADDRESS = InetAddress.getByName(
+            udpSocketServerAddress);
 
-        this.session.sendMessage(new TextMessage(text));
+    private final DatagramSocket socket;
+
+    public PushToClientService() throws SocketException, UnknownHostException {
+        this.socket = new DatagramSocket();
     }
 
-    private void doConnect() throws InterruptedException, ExecutionException {
-        this.session =
-                new StandardWebSocketClient()
-                        .doHandshake(
-                                this, new WebSocketHttpHeaders(), URI.create(WEBSOCKET_SERVER_URL))
-                        .get();
+    public void pushToClient(String text) throws IOException {
+        byte[] data = text.getBytes();
+        DatagramPacket packet =
+                new DatagramPacket(data, data.length, UDP_SOCKET_SERVER_INET_ADDRESS,
+                        udpSocketServerPort);
+        socket.send(packet);
+    }
+
+    public void closeConnectionToUDPSocket() {
+        socket.close();
     }
 }
