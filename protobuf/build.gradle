@@ -100,17 +100,11 @@ tasks.register('copyGenerated') {
     dependsOn 'copyGeneratedJava'
 }
 tasks.register('copyGeneratedCSharp', Sync) {
-    /*from "$projectDir/build/generated/main/csharp"
-    into "$rootDir/frontend/frontend.ConsoleApp/protobuf"*/
-
     from "$projectDir/build/generated/main/csharp"
-    into "$rootDir/game/network/protobuf"
-
-    /*from "$projectDir/build/generated/main/grpc_csharp"
-    into "$rootDir/frontend/frontend.ConsoleApp/protobuf"*/
+    into "$rootDir/frontend/Com.Example.Common/Network/Protobuf"
 
     from "$projectDir/build/generated/main/grpc_csharp"
-    into "$rootDir/game/network/protobuf"
+    into "$rootDir/frontend/Com.Example.Common/Network/Protobuf"
 
     preserve {
         // Keep (i.e. do not delete) the meta files in the destination directory

@@ -1,2 +1,0 @@
-﻿51113
-C:\ProgramData\chocolatey\lib\godot-mono\tools\Godot_v3.2.2-stable_mono_win64\godot_v3.2.2-stable_mono_win64.exe

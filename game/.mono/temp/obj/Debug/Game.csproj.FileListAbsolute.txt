@@ -1,6 +1,0 @@
-C:\Users\User\Development\Java\recipe-planner\game\.mono\temp\bin\Debug\Game.dll
-C:\Users\User\Development\Java\recipe-planner\game\.mono\temp\bin\Debug\Game.pdb
-C:\Users\User\Development\Java\recipe-planner\game\.mono\temp\obj\Debug\Game.csprojAssemblyReference.cache
-C:\Users\User\Development\Java\recipe-planner\game\.mono\temp\obj\Debug\Game.csproj.CoreCompileInputs.cache
-C:\Users\User\Development\Java\recipe-planner\game\.mono\temp\obj\Debug\Game.dll
-C:\Users\User\Development\Java\recipe-planner\game\.mono\temp\obj\Debug\Game.pdb
