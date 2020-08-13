@@ -37,6 +37,13 @@ docker-compose-local.yml
 protobuf/generator
 
 # Front end
-frontend/frontend.ConsoleApp/bin
-frontend/frontend.ConsoleApp/obj
+# Common library
+frontend/Com.Example.Common/bin
+frontend/Com.Example.Common/obj
+
+# Game
+frontend/Com.Example.Game/.import
+frontend/Com.Example.Game/.mono
+frontend/Com.Example.Game/packages
 *.old
+
