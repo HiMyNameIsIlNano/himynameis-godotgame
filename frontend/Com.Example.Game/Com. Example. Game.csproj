@@ -50,12 +50,12 @@
       <PrivateAssets>All</PrivateAssets>
     </PackageReference>
     <Reference Include="GodotSharp">
-      <HintPath>$(ProjectDir)\.mono\assemblies\$(ApiConfiguration)\GodotSharp.dll</HintPath>
       <Private>False</Private>
+      <HintPath>$(ProjectDir)/.mono/assemblies/$(ApiConfiguration)/GodotSharp.dll</HintPath>
     </Reference>
     <Reference Include="GodotSharpEditor" Condition=" '$(Configuration)' == 'Debug' ">
-      <HintPath>$(ProjectDir)\.mono\assemblies\$(ApiConfiguration)\GodotSharpEditor.dll</HintPath>
       <Private>False</Private>
+      <HintPath>$(ProjectDir)/.mono/assemblies/$(ApiConfiguration)/GodotSharpEditor.dll</HintPath>
     </Reference>
     <Reference Include="Google.Protobuf, Version=3.12.3.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604">
       <HintPath>packages\Google.Protobuf.3.12.3\lib\net45\Google.Protobuf.dll</HintPath>
@@ -64,13 +64,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="**/*.cs" Exclude=".mono/**" />
-    <Content Include="**/*.tscn" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Com.Example.Common\Com.Example.Common.csproj">
       <Project>{36277fec-86aa-45e8-8c05-e265f86e05e0}</Project>
       <Name>Com.Example.Common</Name>
     </ProjectReference>
-    </ItemGroup>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

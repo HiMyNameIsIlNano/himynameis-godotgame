@@ -1,7 +1,7 @@
 using Com.Example.Demo.Protobuf.Socket;
 using Godot;
 
-namespace Com.Example.Game
+namespace Com.Example.Game.Scripts.Socket
 {
     public class SocketServerButton : Button
     {
@@ -12,15 +12,14 @@ namespace Com.Example.Game
             public override void _Ready()
             {
                 _server = new WebSocketServer();
-            }
-
-            public override void _Pressed()
-            {
                 _server.Connect("client_connected", this, "OnConnected");
                 _server.Connect("client_disconnected", this, "OnDisconnected");
                 _server.Connect("client_close_request", this, "OnCloseRequest");
                 _server.Connect("data_received", this, "OnDataReceived");
+            }
 
+            public override void _Pressed()
+            {
                 Error error = _server.Listen(Port);
                 if (error != Error.Ok)
                 {
