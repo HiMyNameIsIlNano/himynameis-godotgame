@@ -54,6 +54,4 @@ _sceneToLoad = "res://Scene/TitleScreen/Menu/CreditScreen.tscn"
 
 [node name="FadeIn" parent="." instance=ExtResource( 4 )]
 visible = false
-[connection signal="pressed" from="Menu/CenterRow/Buttons/NewGameButton" to="Menu/CenterRow/Buttons/NewGameButton" method="OnButtonPressed"]
-[connection signal="pressed" from="Menu/CenterRow/Buttons/CreditsButton" to="Menu/CenterRow/Buttons/CreditsButton" method="OnButtonPressed"]
 [connection signal="FadeFinished" from="FadeIn" to="." method="OnFadeInFadeFinished"]

@@ -16,4 +16,3 @@ text = "Credits Scene"
 margin_right = 268.0
 text = "Back"
 _sceneToLoad = "res://Main.tscn"
-[connection signal="pressed" from="CenterContainer/LabelContainer/Button" to="." method="_OnButtonPressed"]
