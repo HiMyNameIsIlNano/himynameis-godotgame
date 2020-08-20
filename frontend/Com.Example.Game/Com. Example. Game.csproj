@@ -49,6 +49,9 @@
       <Version>1.0.0</Version>
       <PrivateAssets>All</PrivateAssets>
     </PackageReference>
+    <Reference Include="Autofac, Version=5.2.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da">
+      <HintPath>..\..\..\..\..\.nuget\packages\autofac\5.2.0\lib\net461\Autofac.dll</HintPath>
+    </Reference>
     <Reference Include="GodotSharp">
       <Private>False</Private>
       <HintPath>$(ProjectDir)/.mono/assemblies/$(ApiConfiguration)/GodotSharp.dll</HintPath>

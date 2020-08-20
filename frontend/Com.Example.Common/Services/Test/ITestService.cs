@@ -1,7 +1,7 @@
-﻿namespace Com.Example.Common.Services.Test
+﻿namespace Com.Example.Game.Scripts.Test
 {
     public interface ITestService
     {
-        void doSomething();
+        void DoSomething();
     }
 }

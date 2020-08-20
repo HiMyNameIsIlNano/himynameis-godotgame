@@ -1,3 +1,4 @@
+using Com.Example.Common.DependencyInjection;
 using Com.Example.Game.Scripts.TitleScreen.FadeIn;
 using Godot;
 using Godot.Collections;
@@ -10,13 +11,8 @@ namespace Com.Example.Game.Scripts.GameStartup
 
         public override void _Ready()
         {
-            InitDependencyInjectionContainer();
+            DependencyInjectionFactory.Build();
             ConnectButtonsToScene();
-        }
-
-        private static void InitDependencyInjectionContainer()
-        {
-            GD.Print("Initializing the Dependency Injection context");
         }
 
         private void ConnectButtonsToScene()

@@ -1,10 +1,10 @@
 ﻿using System;
 
-namespace Com.Example.Common.Services.Test
+namespace Com.Example.Game.Scripts.Test
 {
     public class TestService : ITestService
     {
-        public void doSomething()
+        public void DoSomething()
         {
             Console.WriteLine("I am doing Something");
         }
