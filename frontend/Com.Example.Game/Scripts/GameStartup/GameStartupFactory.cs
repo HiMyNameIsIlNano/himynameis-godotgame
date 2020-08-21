@@ -19,7 +19,8 @@ namespace Com.Example.Game.Scripts.GameStartup
         {
             foreach (MenuButton menuButton in GetNode("Menu/CenterRow/Buttons").GetChildren())
             {
-                menuButton.Connect("pressed", this, "OnButtonPressed", new Array() {menuButton.GetSceneToLoad()});
+                menuButton.Connect("pressed", this, "OnButtonPressed",
+                    new Array() {menuButton.GetSceneToLoad()});
             }
         }
 
