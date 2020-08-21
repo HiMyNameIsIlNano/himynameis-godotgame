@@ -12,11 +12,11 @@ namespace Com.Example.Common.Attributes
     {
         public static void Resolve(object obj)
         {
-            IContainer container = DependencyInjectionFactory.GetContainer();
+            IContainer container = DependencyInjectionFactory.Container;
             Debug.Assert(container != null, "Container IS null");
 
             List<PropertyInfo> propertiesToInject = obj.GetType()
-                .GetProperties()
+                .GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance)
                 .Where(x => x.GetCustomAttributes(typeof(InjectedPropertyAttribute), false).Any())
                 .ToList();
 
