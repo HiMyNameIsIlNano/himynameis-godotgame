@@ -19,6 +19,10 @@ config/name="Com. Example. Game"
 run/main_scene="res://Main.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+GameInitializer="*res://Scripts/GameStartup/GameInitializer.cs"
+
 [display]
 
 window/size/width=1280

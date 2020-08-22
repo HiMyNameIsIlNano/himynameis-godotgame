@@ -69,7 +69,7 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="**/*.cs" Exclude=".mono/**" />
+    <Compile Include="**\*.cs" Exclude=".mono/**" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Com.Example.Common\Com.Example.Common.csproj">
