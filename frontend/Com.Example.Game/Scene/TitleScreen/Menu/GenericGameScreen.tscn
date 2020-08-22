@@ -1,0 +1,45 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Fonts/Syne-Extra.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Scripts/TitleScreen/Buttons/BackButton.cs" type="Script" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 24
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 24
+font_data = ExtResource( 2 )
+
+[node name="GenericScreen" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="LabelContainer" type="VBoxContainer" parent="CenterContainer"]
+margin_left = 515.0
+margin_top = 326.0
+margin_right = 765.0
+margin_bottom = 394.0
+
+[node name="Label" type="Label" parent="CenterContainer/LabelContainer"]
+margin_right = 250.0
+margin_bottom = 29.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color_shadow = Color( 0.945098, 0.498039, 0.0509804, 1 )
+text = "Game Scene"
+
+[node name="Button" type="Button" parent="CenterContainer/LabelContainer"]
+margin_top = 33.0
+margin_right = 250.0
+margin_bottom = 68.0
+custom_fonts/font = SubResource( 2 )
+text = "Text"
+script = ExtResource( 3 )
+[connection signal="pressed" from="CenterContainer/LabelContainer/Button" to="CenterContainer/LabelContainer/Button" method="OnButtonPressed"]

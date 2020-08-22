@@ -6,6 +6,16 @@ Content-Type: application/json
   "amount": 5
 }
 
+###
+
+POST http://localhost:8071/socket/push
+
+#Content-Type: application/json
+#
+#{
+#  "amount": 5
+#}
+
 ### Send GET to retrieve all the recipes
 GET http://localhost:8071/recipes/find-all
 

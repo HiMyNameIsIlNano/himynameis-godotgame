@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_package = "com.example.demo.protobuf";
+option java_outer_classname = "SocketPush";
+
+option csharp_namespace = "Com.Example.Demo.Protobuf.Socket";
+
+message SocketPushMessage {
+  int32 playerId = 1;
+  string text = 2;
+}
