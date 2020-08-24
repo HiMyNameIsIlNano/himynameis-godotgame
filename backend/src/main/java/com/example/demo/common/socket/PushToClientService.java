@@ -29,31 +29,32 @@ public class PushToClientService extends BinaryWebSocketHandler {
 
     private String socketServerUrl;
 
+    // TODO: this is not thread safe
+    WebSocketSession session = null;
+
     @PostConstruct
-    public void afterConstructInit() {
+    public void afterConstructInit() throws ExecutionException, InterruptedException {
         this.socketServerUrl =
                 String.format(
                         "%s://%s:%s/", socketServerProtocol, socketServerAddress, socketServerPort);
+        this.session = getSession();
     }
 
-    public void pushToClient(SocketPushMessage message)
-            throws IOException, ExecutionException, InterruptedException {
-        WebSocketSession session = getSession();
+    public void pushToClient(SocketPushMessage message) throws IOException {
         session.sendMessage(new BinaryMessage(message.toByteArray()));
-        session.close();
     }
 
     private WebSocketSession getSession() throws InterruptedException, ExecutionException {
-        // TODO: at the moment the socket connection is not reused by the client. Therefore a new
-        // one is reopened every time
         return new StandardWebSocketClient()
                 .doHandshake(this, new WebSocketHttpHeaders(), URI.create(socketServerUrl))
                 .get();
     }
 
-    public void closeConnectionWithServerSocket() {
-        // TODO: at the moment the socket connection is not reused by the client. Therefore every
-        // time a new
-        // one is opened it is also closed in the same "transaction"
+    public void closeConnectionWithSocketServer() throws IOException {
+        if (session == null && session.isOpen()) {
+            return;
+        }
+
+        session.close();
     }
 }

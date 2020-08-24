@@ -1,20 +1,15 @@
 ﻿using System;
-using Autofac;
 using Com.Example.Common.DependencyInjection;
 using Godot;
 
 namespace Com.Example.Game.Scripts.GameStartup
 {
-    public class GameInitializer : Node
+    public class DependencyInjectionContainerAutoload : Node
     {
-        
         public override void _Ready()
         {
-            Console.WriteLine("Creating the Beans Container");
+            Console.WriteLine("Creating the Dependency Injection Container");
             DependencyInjectionFactory.Build();
-            
-            Console.WriteLine("Startup SoSe");
-            // Call SocketServerStartup
         }
     }
 }

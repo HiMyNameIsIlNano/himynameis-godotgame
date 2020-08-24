@@ -21,7 +21,8 @@ config/icon="res://icon.png"
 
 [autoload]
 
-GameInitializer="*res://Scripts/GameStartup/GameInitializer.cs"
+DependencyInjectionContainer="*res://Scripts/GameAutoload/DependencyInjectionContainerAutoload.cs"
+UDPSocketServer="*res://Scripts/GameAutoload/UDPSocketServerAutoload.cs"
 
 [display]
 

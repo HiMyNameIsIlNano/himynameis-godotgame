@@ -25,7 +25,7 @@ public class SocketController {
     }
 
     @PostMapping("/close")
-    public void closeConnection() {
-        pushToClientService.closeConnectionWithServerSocket();
+    public void closeConnection() throws IOException {
+        pushToClientService.closeConnectionWithSocketServer();
     }
 }
