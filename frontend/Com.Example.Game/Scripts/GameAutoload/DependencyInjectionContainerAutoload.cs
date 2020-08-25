@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Com.Example.Common.DependencyInjection;
 using Godot;
 
