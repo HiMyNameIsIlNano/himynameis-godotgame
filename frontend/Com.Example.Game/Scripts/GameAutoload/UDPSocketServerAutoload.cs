@@ -2,6 +2,8 @@ using System;
 using System.Diagnostics;
 using Com.Example.Common.Attributes;
 using Com.Example.Common.Network;
+using Com.Example.Common.Services.Protobuf;
+using Com.Example.Common.Services.Socket;
 using Com.Example.Demo.Protobuf.Socket;
 using Com.Example.Game.Scripts.GameStartup;
 using Godot;
@@ -15,6 +17,10 @@ namespace Com.Example.Game.Scripts.Socket
         private WebSocketServer Server { get; set; }
 
         [InjectedProperty] private IProtobufSerializerService ProtobufSerializerService { get; set; }
+
+        [InjectedProperty] private ISocketServerService SocketServerService { get; set; }
+
+        [InjectedProperty] private IGrpcChannelService GrpcChannelService { get; set; }
 
         public override void _Ready()
         {
@@ -50,6 +56,9 @@ namespace Com.Example.Game.Scripts.Socket
             }
 
             Console.WriteLine($"Socket Server listening on port {Port}");
+
+            // TODO: if this is async we might end up managing the connection error in here...
+            SocketServerService.ClientCanConnectToServer();
         }
 
         private void OnConnected(int id, string protocol)
@@ -73,8 +82,9 @@ namespace Com.Example.Game.Scripts.Socket
         private void OnDataReceived(int id)
         {
             var data = Server.GetPeer(id).GetPacket();
-            SocketPushMessage socketPushMessage = (SocketPushMessage) ProtobufSerializerService.Deserialize(data, typeof(SocketPushMessage));
-            
+            SocketPushMessage socketPushMessage =
+                (SocketPushMessage) ProtobufSerializerService.Deserialize(data, typeof(SocketPushMessage));
+
             GD.Print(
                 $"Got data from client {id}: Player: {socketPushMessage.PlayerId} and text: {socketPushMessage.Text}");
             Server.GetPeer(id).PutPacket(data);
@@ -85,6 +95,7 @@ namespace Com.Example.Game.Scripts.Socket
         {
             Debug.Assert(Server != null, "The Server IS null");
             Server.Stop();
+            GrpcChannelService.CloseAsync();
         }
 
         public override void _Process(float delta)

@@ -6,7 +6,7 @@ option java_outer_classname = "RecipeServiceProto";
 import "recipe.proto";
 import "google/protobuf/empty.proto";
 
-service RecipeService {
+service RecipeGrpcService {
   rpc FindAll(google.protobuf.Empty) returns (RecipeResearchResponse) {}
 
   rpc Init(RecipeInitRequest) returns (google.protobuf.Empty) {}

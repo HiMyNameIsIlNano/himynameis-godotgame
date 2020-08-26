@@ -1,4 +1,7 @@
-﻿namespace Com.Example.Common.Services.Recipe
+﻿using System.Threading.Tasks;
+using Com.Example.Demo.Protobuf.Recipe;
+
+namespace Com.Example.Common.Services.Recipe
 {
     public interface IRecipeService
     {
@@ -6,6 +9,6 @@
 
         void GetRecipeWithId(int id);
 
-        void GetAllRecipes();
+        Task<RecipeResearchResponse> GetAllRecipes();
     }
 }

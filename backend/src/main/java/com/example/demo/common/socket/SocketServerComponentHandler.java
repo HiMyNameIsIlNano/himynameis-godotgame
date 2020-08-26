@@ -7,7 +7,7 @@ import java.util.concurrent.ExecutionException;
 import javax.annotation.PostConstruct;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 import org.springframework.web.socket.BinaryMessage;
 import org.springframework.web.socket.WebSocketHttpHeaders;
 import org.springframework.web.socket.WebSocketSession;
@@ -15,8 +15,8 @@ import org.springframework.web.socket.client.standard.StandardWebSocketClient;
 import org.springframework.web.socket.handler.BinaryWebSocketHandler;
 
 @NoArgsConstructor
-@Service
-public class PushToClientService extends BinaryWebSocketHandler {
+@Component
+public class SocketServerComponentHandler extends BinaryWebSocketHandler {
 
     @Value("${demo.socket-server.protocol:ws}")
     private String socketServerProtocol;
@@ -29,25 +29,36 @@ public class PushToClientService extends BinaryWebSocketHandler {
 
     private String socketServerUrl;
 
-    // TODO: this is not thread safe
-    WebSocketSession session = null;
+    private WebSocketSession session = null;
 
     @PostConstruct
-    public void afterConstructInit() throws ExecutionException, InterruptedException {
+    public void afterConstructInit() {
         this.socketServerUrl =
                 String.format(
                         "%s://%s:%s/", socketServerProtocol, socketServerAddress, socketServerPort);
-        this.session = getSession();
     }
 
-    public void pushToClient(SocketPushMessage message) throws IOException {
-        session.sendMessage(new BinaryMessage(message.toByteArray()));
+    public void connectToSocketServer() throws ExecutionException, InterruptedException {
+        if (session != null) {
+            return;
+        }
+
+        synchronized (this) {
+            session = createOrGetSession();
+        }
     }
 
-    private WebSocketSession getSession() throws InterruptedException, ExecutionException {
+    private WebSocketSession createOrGetSession() throws InterruptedException, ExecutionException {
         return new StandardWebSocketClient()
                 .doHandshake(this, new WebSocketHttpHeaders(), URI.create(socketServerUrl))
                 .get();
+    }
+
+    public void sendMessage(SocketPushMessage message)
+            throws IOException, ExecutionException, InterruptedException {
+        // This does not rule the case where the client is not up and the server still holds a connection
+        createOrGetSession();
+        session.sendMessage(new BinaryMessage(message.toByteArray()));
     }
 
     public void closeConnectionWithSocketServer() throws IOException {

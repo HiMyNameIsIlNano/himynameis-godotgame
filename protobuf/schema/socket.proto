@@ -9,3 +9,8 @@ message SocketPushMessage {
   int32 playerId = 1;
   string text = 2;
 }
+
+message SocketConnectionResponse {
+  int32 peerId = 1;
+  string text = 2;
+}

@@ -16,6 +16,6 @@ public class HTTPButton : Button
     public void OnGetAllRecipes()
     {
         Debug.Assert(RecipeService != null, "RecipeService IS null");
-        // RecipeService.GetAllRecipes();
+        RecipeService.GetAllRecipes();
     }
 }
