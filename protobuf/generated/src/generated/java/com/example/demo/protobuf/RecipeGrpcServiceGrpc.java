@@ -19,12 +19,12 @@ import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
  */
 @javax.annotation.Generated(
     value = "by gRPC proto compiler (version 1.30.2)",
-    comments = "Source: recipeService.proto")
-public final class RecipeServiceGrpc {
+    comments = "Source: recipeGrpcService.proto")
+public final class RecipeGrpcServiceGrpc {
 
-  private RecipeServiceGrpc() {}
+  private RecipeGrpcServiceGrpc() {}
 
-  public static final String SERVICE_NAME = "RecipeService";
+  public static final String SERVICE_NAME = "RecipeGrpcService";
 
   // Static method descriptors that strictly reflect the proto.
   private static volatile io.grpc.MethodDescriptor<com.google.protobuf.Empty,
@@ -38,10 +38,10 @@ public final class RecipeServiceGrpc {
   public static io.grpc.MethodDescriptor<com.google.protobuf.Empty,
       com.example.demo.protobuf.RecipeProto.RecipeResearchResponse> getFindAllMethod() {
     io.grpc.MethodDescriptor<com.google.protobuf.Empty, com.example.demo.protobuf.RecipeProto.RecipeResearchResponse> getFindAllMethod;
-    if ((getFindAllMethod = RecipeServiceGrpc.getFindAllMethod) == null) {
-      synchronized (RecipeServiceGrpc.class) {
-        if ((getFindAllMethod = RecipeServiceGrpc.getFindAllMethod) == null) {
-          RecipeServiceGrpc.getFindAllMethod = getFindAllMethod =
+    if ((getFindAllMethod = RecipeGrpcServiceGrpc.getFindAllMethod) == null) {
+      synchronized (RecipeGrpcServiceGrpc.class) {
+        if ((getFindAllMethod = RecipeGrpcServiceGrpc.getFindAllMethod) == null) {
+          RecipeGrpcServiceGrpc.getFindAllMethod = getFindAllMethod =
               io.grpc.MethodDescriptor.<com.google.protobuf.Empty, com.example.demo.protobuf.RecipeProto.RecipeResearchResponse>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "FindAll"))
@@ -50,7 +50,7 @@ public final class RecipeServiceGrpc {
                   com.google.protobuf.Empty.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   com.example.demo.protobuf.RecipeProto.RecipeResearchResponse.getDefaultInstance()))
-              .setSchemaDescriptor(new RecipeServiceMethodDescriptorSupplier("FindAll"))
+              .setSchemaDescriptor(new RecipeGrpcServiceMethodDescriptorSupplier("FindAll"))
               .build();
         }
       }
@@ -69,10 +69,10 @@ public final class RecipeServiceGrpc {
   public static io.grpc.MethodDescriptor<com.example.demo.protobuf.RecipeProto.RecipeInitRequest,
       com.google.protobuf.Empty> getInitMethod() {
     io.grpc.MethodDescriptor<com.example.demo.protobuf.RecipeProto.RecipeInitRequest, com.google.protobuf.Empty> getInitMethod;
-    if ((getInitMethod = RecipeServiceGrpc.getInitMethod) == null) {
-      synchronized (RecipeServiceGrpc.class) {
-        if ((getInitMethod = RecipeServiceGrpc.getInitMethod) == null) {
-          RecipeServiceGrpc.getInitMethod = getInitMethod =
+    if ((getInitMethod = RecipeGrpcServiceGrpc.getInitMethod) == null) {
+      synchronized (RecipeGrpcServiceGrpc.class) {
+        if ((getInitMethod = RecipeGrpcServiceGrpc.getInitMethod) == null) {
+          RecipeGrpcServiceGrpc.getInitMethod = getInitMethod =
               io.grpc.MethodDescriptor.<com.example.demo.protobuf.RecipeProto.RecipeInitRequest, com.google.protobuf.Empty>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "Init"))
@@ -81,7 +81,7 @@ public final class RecipeServiceGrpc {
                   com.example.demo.protobuf.RecipeProto.RecipeInitRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   com.google.protobuf.Empty.getDefaultInstance()))
-              .setSchemaDescriptor(new RecipeServiceMethodDescriptorSupplier("Init"))
+              .setSchemaDescriptor(new RecipeGrpcServiceMethodDescriptorSupplier("Init"))
               .build();
         }
       }
@@ -100,10 +100,10 @@ public final class RecipeServiceGrpc {
   public static io.grpc.MethodDescriptor<com.google.protobuf.Empty,
       com.google.protobuf.Empty> getRemoveAllRecipesMethod() {
     io.grpc.MethodDescriptor<com.google.protobuf.Empty, com.google.protobuf.Empty> getRemoveAllRecipesMethod;
-    if ((getRemoveAllRecipesMethod = RecipeServiceGrpc.getRemoveAllRecipesMethod) == null) {
-      synchronized (RecipeServiceGrpc.class) {
-        if ((getRemoveAllRecipesMethod = RecipeServiceGrpc.getRemoveAllRecipesMethod) == null) {
-          RecipeServiceGrpc.getRemoveAllRecipesMethod = getRemoveAllRecipesMethod =
+    if ((getRemoveAllRecipesMethod = RecipeGrpcServiceGrpc.getRemoveAllRecipesMethod) == null) {
+      synchronized (RecipeGrpcServiceGrpc.class) {
+        if ((getRemoveAllRecipesMethod = RecipeGrpcServiceGrpc.getRemoveAllRecipesMethod) == null) {
+          RecipeGrpcServiceGrpc.getRemoveAllRecipesMethod = getRemoveAllRecipesMethod =
               io.grpc.MethodDescriptor.<com.google.protobuf.Empty, com.google.protobuf.Empty>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "RemoveAllRecipes"))
@@ -112,7 +112,7 @@ public final class RecipeServiceGrpc {
                   com.google.protobuf.Empty.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   com.google.protobuf.Empty.getDefaultInstance()))
-              .setSchemaDescriptor(new RecipeServiceMethodDescriptorSupplier("RemoveAllRecipes"))
+              .setSchemaDescriptor(new RecipeGrpcServiceMethodDescriptorSupplier("RemoveAllRecipes"))
               .build();
         }
       }
@@ -131,10 +131,10 @@ public final class RecipeServiceGrpc {
   public static io.grpc.MethodDescriptor<com.example.demo.protobuf.RecipeProto.RecipeRemoveRequest,
       com.google.protobuf.Empty> getRemoveRecipeMethod() {
     io.grpc.MethodDescriptor<com.example.demo.protobuf.RecipeProto.RecipeRemoveRequest, com.google.protobuf.Empty> getRemoveRecipeMethod;
-    if ((getRemoveRecipeMethod = RecipeServiceGrpc.getRemoveRecipeMethod) == null) {
-      synchronized (RecipeServiceGrpc.class) {
-        if ((getRemoveRecipeMethod = RecipeServiceGrpc.getRemoveRecipeMethod) == null) {
-          RecipeServiceGrpc.getRemoveRecipeMethod = getRemoveRecipeMethod =
+    if ((getRemoveRecipeMethod = RecipeGrpcServiceGrpc.getRemoveRecipeMethod) == null) {
+      synchronized (RecipeGrpcServiceGrpc.class) {
+        if ((getRemoveRecipeMethod = RecipeGrpcServiceGrpc.getRemoveRecipeMethod) == null) {
+          RecipeGrpcServiceGrpc.getRemoveRecipeMethod = getRemoveRecipeMethod =
               io.grpc.MethodDescriptor.<com.example.demo.protobuf.RecipeProto.RecipeRemoveRequest, com.google.protobuf.Empty>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "RemoveRecipe"))
@@ -143,7 +143,7 @@ public final class RecipeServiceGrpc {
                   com.example.demo.protobuf.RecipeProto.RecipeRemoveRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   com.google.protobuf.Empty.getDefaultInstance()))
-              .setSchemaDescriptor(new RecipeServiceMethodDescriptorSupplier("RemoveRecipe"))
+              .setSchemaDescriptor(new RecipeGrpcServiceMethodDescriptorSupplier("RemoveRecipe"))
               .build();
         }
       }
@@ -154,50 +154,50 @@ public final class RecipeServiceGrpc {
   /**
    * Creates a new async stub that supports all call types for the service
    */
-  public static RecipeServiceStub newStub(io.grpc.Channel channel) {
-    io.grpc.stub.AbstractStub.StubFactory<RecipeServiceStub> factory =
-      new io.grpc.stub.AbstractStub.StubFactory<RecipeServiceStub>() {
+  public static RecipeGrpcServiceStub newStub(io.grpc.Channel channel) {
+    io.grpc.stub.AbstractStub.StubFactory<RecipeGrpcServiceStub> factory =
+      new io.grpc.stub.AbstractStub.StubFactory<RecipeGrpcServiceStub>() {
         @java.lang.Override
-        public RecipeServiceStub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
-          return new RecipeServiceStub(channel, callOptions);
+        public RecipeGrpcServiceStub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+          return new RecipeGrpcServiceStub(channel, callOptions);
         }
       };
-    return RecipeServiceStub.newStub(factory, channel);
+    return RecipeGrpcServiceStub.newStub(factory, channel);
   }
 
   /**
    * Creates a new blocking-style stub that supports unary and streaming output calls on the service
    */
-  public static RecipeServiceBlockingStub newBlockingStub(
+  public static RecipeGrpcServiceBlockingStub newBlockingStub(
       io.grpc.Channel channel) {
-    io.grpc.stub.AbstractStub.StubFactory<RecipeServiceBlockingStub> factory =
-      new io.grpc.stub.AbstractStub.StubFactory<RecipeServiceBlockingStub>() {
+    io.grpc.stub.AbstractStub.StubFactory<RecipeGrpcServiceBlockingStub> factory =
+      new io.grpc.stub.AbstractStub.StubFactory<RecipeGrpcServiceBlockingStub>() {
         @java.lang.Override
-        public RecipeServiceBlockingStub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
-          return new RecipeServiceBlockingStub(channel, callOptions);
+        public RecipeGrpcServiceBlockingStub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+          return new RecipeGrpcServiceBlockingStub(channel, callOptions);
         }
       };
-    return RecipeServiceBlockingStub.newStub(factory, channel);
+    return RecipeGrpcServiceBlockingStub.newStub(factory, channel);
   }
 
   /**
    * Creates a new ListenableFuture-style stub that supports unary calls on the service
    */
-  public static RecipeServiceFutureStub newFutureStub(
+  public static RecipeGrpcServiceFutureStub newFutureStub(
       io.grpc.Channel channel) {
-    io.grpc.stub.AbstractStub.StubFactory<RecipeServiceFutureStub> factory =
-      new io.grpc.stub.AbstractStub.StubFactory<RecipeServiceFutureStub>() {
+    io.grpc.stub.AbstractStub.StubFactory<RecipeGrpcServiceFutureStub> factory =
+      new io.grpc.stub.AbstractStub.StubFactory<RecipeGrpcServiceFutureStub>() {
         @java.lang.Override
-        public RecipeServiceFutureStub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
-          return new RecipeServiceFutureStub(channel, callOptions);
+        public RecipeGrpcServiceFutureStub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+          return new RecipeGrpcServiceFutureStub(channel, callOptions);
         }
       };
-    return RecipeServiceFutureStub.newStub(factory, channel);
+    return RecipeGrpcServiceFutureStub.newStub(factory, channel);
   }
 
   /**
    */
-  public static abstract class RecipeServiceImplBase implements io.grpc.BindableService {
+  public static abstract class RecipeGrpcServiceImplBase implements io.grpc.BindableService {
 
     /**
      */
@@ -263,16 +263,16 @@ public final class RecipeServiceGrpc {
 
   /**
    */
-  public static final class RecipeServiceStub extends io.grpc.stub.AbstractAsyncStub<RecipeServiceStub> {
-    private RecipeServiceStub(
+  public static final class RecipeGrpcServiceStub extends io.grpc.stub.AbstractAsyncStub<RecipeGrpcServiceStub> {
+    private RecipeGrpcServiceStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
     }
 
     @java.lang.Override
-    protected RecipeServiceStub build(
+    protected RecipeGrpcServiceStub build(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
-      return new RecipeServiceStub(channel, callOptions);
+      return new RecipeGrpcServiceStub(channel, callOptions);
     }
 
     /**
@@ -310,16 +310,16 @@ public final class RecipeServiceGrpc {
 
   /**
    */
-  public static final class RecipeServiceBlockingStub extends io.grpc.stub.AbstractBlockingStub<RecipeServiceBlockingStub> {
-    private RecipeServiceBlockingStub(
+  public static final class RecipeGrpcServiceBlockingStub extends io.grpc.stub.AbstractBlockingStub<RecipeGrpcServiceBlockingStub> {
+    private RecipeGrpcServiceBlockingStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
     }
 
     @java.lang.Override
-    protected RecipeServiceBlockingStub build(
+    protected RecipeGrpcServiceBlockingStub build(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
-      return new RecipeServiceBlockingStub(channel, callOptions);
+      return new RecipeGrpcServiceBlockingStub(channel, callOptions);
     }
 
     /**
@@ -353,16 +353,16 @@ public final class RecipeServiceGrpc {
 
   /**
    */
-  public static final class RecipeServiceFutureStub extends io.grpc.stub.AbstractFutureStub<RecipeServiceFutureStub> {
-    private RecipeServiceFutureStub(
+  public static final class RecipeGrpcServiceFutureStub extends io.grpc.stub.AbstractFutureStub<RecipeGrpcServiceFutureStub> {
+    private RecipeGrpcServiceFutureStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
     }
 
     @java.lang.Override
-    protected RecipeServiceFutureStub build(
+    protected RecipeGrpcServiceFutureStub build(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
-      return new RecipeServiceFutureStub(channel, callOptions);
+      return new RecipeGrpcServiceFutureStub(channel, callOptions);
     }
 
     /**
@@ -408,10 +408,10 @@ public final class RecipeServiceGrpc {
       io.grpc.stub.ServerCalls.ServerStreamingMethod<Req, Resp>,
       io.grpc.stub.ServerCalls.ClientStreamingMethod<Req, Resp>,
       io.grpc.stub.ServerCalls.BidiStreamingMethod<Req, Resp> {
-    private final RecipeServiceImplBase serviceImpl;
+    private final RecipeGrpcServiceImplBase serviceImpl;
     private final int methodId;
 
-    MethodHandlers(RecipeServiceImplBase serviceImpl, int methodId) {
+    MethodHandlers(RecipeGrpcServiceImplBase serviceImpl, int methodId) {
       this.serviceImpl = serviceImpl;
       this.methodId = methodId;
     }
@@ -452,9 +452,9 @@ public final class RecipeServiceGrpc {
     }
   }
 
-  private static abstract class RecipeServiceBaseDescriptorSupplier
+  private static abstract class RecipeGrpcServiceBaseDescriptorSupplier
       implements io.grpc.protobuf.ProtoFileDescriptorSupplier, io.grpc.protobuf.ProtoServiceDescriptorSupplier {
-    RecipeServiceBaseDescriptorSupplier() {}
+    RecipeGrpcServiceBaseDescriptorSupplier() {}
 
     @java.lang.Override
     public com.google.protobuf.Descriptors.FileDescriptor getFileDescriptor() {
@@ -463,21 +463,21 @@ public final class RecipeServiceGrpc {
 
     @java.lang.Override
     public com.google.protobuf.Descriptors.ServiceDescriptor getServiceDescriptor() {
-      return getFileDescriptor().findServiceByName("RecipeService");
+      return getFileDescriptor().findServiceByName("RecipeGrpcService");
     }
   }
 
-  private static final class RecipeServiceFileDescriptorSupplier
-      extends RecipeServiceBaseDescriptorSupplier {
-    RecipeServiceFileDescriptorSupplier() {}
+  private static final class RecipeGrpcServiceFileDescriptorSupplier
+      extends RecipeGrpcServiceBaseDescriptorSupplier {
+    RecipeGrpcServiceFileDescriptorSupplier() {}
   }
 
-  private static final class RecipeServiceMethodDescriptorSupplier
-      extends RecipeServiceBaseDescriptorSupplier
+  private static final class RecipeGrpcServiceMethodDescriptorSupplier
+      extends RecipeGrpcServiceBaseDescriptorSupplier
       implements io.grpc.protobuf.ProtoMethodDescriptorSupplier {
     private final String methodName;
 
-    RecipeServiceMethodDescriptorSupplier(String methodName) {
+    RecipeGrpcServiceMethodDescriptorSupplier(String methodName) {
       this.methodName = methodName;
     }
 
@@ -492,11 +492,11 @@ public final class RecipeServiceGrpc {
   public static io.grpc.ServiceDescriptor getServiceDescriptor() {
     io.grpc.ServiceDescriptor result = serviceDescriptor;
     if (result == null) {
-      synchronized (RecipeServiceGrpc.class) {
+      synchronized (RecipeGrpcServiceGrpc.class) {
         result = serviceDescriptor;
         if (result == null) {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
-              .setSchemaDescriptor(new RecipeServiceFileDescriptorSupplier())
+              .setSchemaDescriptor(new RecipeGrpcServiceFileDescriptorSupplier())
               .addMethod(getFindAllMethod())
               .addMethod(getInitMethod())
               .addMethod(getRemoveAllRecipesMethod())

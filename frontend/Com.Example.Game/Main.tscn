@@ -4,7 +4,7 @@
 [ext_resource path="res://Scene/TitleScreen/Buttons/CreditsButton.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scene/TitleScreen/Buttons/NewGameButton.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scene/TitleScreen/FadeIn/FadeIn.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scripts/GameStartup/GameStartupFactory.cs" type="Script" id=5]
+[ext_resource path="res://Scripts/TitleScreen/TitleScreenSceneInitializer.cs" type="Script" id=5]
 
 [node name="TitleScreen" type="Control"]
 anchor_right = 1.0

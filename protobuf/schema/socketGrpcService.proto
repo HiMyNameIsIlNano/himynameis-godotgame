@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "com.example.demo.protobuf";
+option java_outer_classname = "SocketServerHandlerProto";
+
+import "socket.proto";
+import "google/protobuf/empty.proto";
+
+service SocketServerGrpcService {
+
+  rpc ConnectToServer(google.protobuf.Empty) returns (SocketConnectionResponse) {}
+
+}

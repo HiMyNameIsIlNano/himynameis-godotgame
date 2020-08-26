@@ -10,6 +10,10 @@ Content-Type: application/json
 
 POST http://localhost:8071/socket/push
 
+###
+
+POST http://localhost:8071/socket/close
+
 #Content-Type: application/json
 #
 #{

@@ -9,10 +9,10 @@ import com.example.demo.BaseGrpcIntegrationTest;
 import com.example.demo.domain.recipe.RecipeService;
 import com.example.demo.grpc.recipe.DeleteAllEvent;
 import com.example.demo.grpc.recipe.DeleteOneEvent;
+import com.example.demo.protobuf.RecipeGrpcServiceGrpc.RecipeGrpcServiceBlockingStub;
 import com.example.demo.protobuf.RecipeProto.RecipeDTO;
 import com.example.demo.protobuf.RecipeProto.RecipeRemoveRequest;
 import com.example.demo.protobuf.RecipeProto.RecipeResearchResponse;
-import com.example.demo.protobuf.RecipeServiceGrpc.RecipeServiceBlockingStub;
 import com.google.protobuf.Empty;
 import net.devh.boot.grpc.client.inject.GrpcClient;
 import org.junit.Assert;
@@ -34,7 +34,7 @@ class RecipeServiceGrpcImplTest extends BaseGrpcIntegrationTest {
     @MockBean private RecipeEventListenerMock consumer;
 
     @GrpcClient("inProcess")
-    private RecipeServiceBlockingStub recipeServiceBlockingStub;
+    private RecipeGrpcServiceBlockingStub recipeServiceBlockingStub;
 
     @BeforeEach
     public void init() {

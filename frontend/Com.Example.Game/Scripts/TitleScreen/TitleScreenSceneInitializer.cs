@@ -1,17 +1,15 @@
-using Com.Example.Common.DependencyInjection;
 using Com.Example.Game.Scripts.TitleScreen.FadeIn;
 using Godot;
 using Godot.Collections;
 
 namespace Com.Example.Game.Scripts.GameStartup
 {
-    public class GameStartupFactory : Control
+    public class TitleScreenSceneInitializer : Control
     {
-        private string _scenePathToLoad;
+        private string scenePathToLoad;
 
         public override void _Ready()
         {
-            DependencyInjectionFactory.Build();
             ConnectButtonsToScene();
         }
 
@@ -31,7 +29,7 @@ namespace Com.Example.Game.Scripts.GameStartup
                 return;
             }
 
-            _scenePathToLoad = sceneToLoad;
+            scenePathToLoad = sceneToLoad;
             PlayFadeInEffect();
         }
 
@@ -44,7 +42,7 @@ namespace Com.Example.Game.Scripts.GameStartup
 
         public void OnFadeInFadeFinished()
         {
-            GetTree().ChangeScene(_scenePathToLoad);
+            GetTree().ChangeScene(scenePathToLoad);
         }
     }
 }

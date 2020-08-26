@@ -60,6 +60,9 @@ dependencies {
 
     implementation group: 'org.springdoc', name: 'springdoc-openapi-ui', version: openApiVersion
 
+    implementation group: 'org.springframework.retry', name: 'spring-retry', version: springRetryVersion
+    implementation group: 'org.springframework', name: 'spring-aspects', version: springAopVersion
+
     // Lombok
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'

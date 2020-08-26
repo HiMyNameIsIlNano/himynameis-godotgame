@@ -1,6 +1,6 @@
 package com.example.demo.controller.socket;
 
-import com.example.demo.common.socket.PushToClientService;
+import com.example.demo.common.socket.SocketServerComponentHandler;
 import com.example.demo.protobuf.SocketPush.SocketPushMessage;
 import java.io.IOException;
 import java.util.concurrent.ExecutionException;
@@ -14,18 +14,23 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/socket")
 public class SocketController {
 
-    private final PushToClientService pushToClientService;
+    private final SocketServerComponentHandler socketServerComponentHandler;
+
+    @PostMapping("/connect")
+    public void connect() throws ExecutionException, InterruptedException {
+        socketServerComponentHandler.connectToSocketServer();
+    }
 
     @PostMapping("/push")
-    public void testConnection() throws IOException, ExecutionException, InterruptedException {
+    public void pushMessage() throws IOException, ExecutionException, InterruptedException {
         SocketPushMessage pushMessage =
                 SocketPushMessage.newBuilder().setPlayerId(4).setText("Random Text").build();
 
-        pushToClientService.pushToClient(pushMessage);
+        socketServerComponentHandler.sendMessageWithRetryIfServerOffline(pushMessage);
     }
 
     @PostMapping("/close")
-    public void closeConnection() {
-        pushToClientService.closeConnectionWithServerSocket();
+    public void closeConnection() throws IOException {
+        socketServerComponentHandler.closeConnectionWithSocketServer();
     }
 }

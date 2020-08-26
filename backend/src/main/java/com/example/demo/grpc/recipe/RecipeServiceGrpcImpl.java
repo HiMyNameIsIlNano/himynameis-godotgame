@@ -1,10 +1,10 @@
 package com.example.demo.grpc.recipe;
 
 import com.example.demo.domain.recipe.RecipeService;
+import com.example.demo.protobuf.RecipeGrpcServiceGrpc;
 import com.example.demo.protobuf.RecipeProto.RecipeInitRequest;
 import com.example.demo.protobuf.RecipeProto.RecipeRemoveRequest;
 import com.example.demo.protobuf.RecipeProto.RecipeResearchResponse;
-import com.example.demo.protobuf.RecipeServiceGrpc;
 import com.example.demo.protobuf.recipe.RecipeResponseFactory;
 import com.google.protobuf.Empty;
 import io.grpc.Status;
@@ -19,7 +19,7 @@ import org.springframework.context.ApplicationEventPublisher;
 @RequiredArgsConstructor
 @Transactional
 @Slf4j
-public class RecipeServiceGrpcImpl extends RecipeServiceGrpc.RecipeServiceImplBase {
+public class RecipeServiceGrpcImpl extends RecipeGrpcServiceGrpc.RecipeGrpcServiceImplBase {
 
     private final RecipeService recipeService;
 
