@@ -26,7 +26,7 @@ public class SocketController {
         SocketPushMessage pushMessage =
                 SocketPushMessage.newBuilder().setPlayerId(4).setText("Random Text").build();
 
-        socketServerComponentHandler.sendMessage(pushMessage);
+        socketServerComponentHandler.sendMessageWithRetryIfServerOffline(pushMessage);
     }
 
     @PostMapping("/close")

@@ -6,7 +6,10 @@ import java.net.URI;
 import java.util.concurrent.ExecutionException;
 import javax.annotation.PostConstruct;
 import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.retry.annotation.Backoff;
+import org.springframework.retry.annotation.Retryable;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.BinaryMessage;
 import org.springframework.web.socket.WebSocketHttpHeaders;
@@ -16,6 +19,7 @@ import org.springframework.web.socket.handler.BinaryWebSocketHandler;
 
 @NoArgsConstructor
 @Component
+@Slf4j
 public class SocketServerComponentHandler extends BinaryWebSocketHandler {
 
     @Value("${demo.socket-server.protocol:ws}")
@@ -39,7 +43,7 @@ public class SocketServerComponentHandler extends BinaryWebSocketHandler {
     }
 
     public void connectToSocketServer() throws ExecutionException, InterruptedException {
-        if (session != null) {
+        if (session != null && session.isOpen()) {
             return;
         }
 
@@ -54,15 +58,24 @@ public class SocketServerComponentHandler extends BinaryWebSocketHandler {
                 .get();
     }
 
-    public void sendMessage(SocketPushMessage message)
+    @Retryable(
+            value = {IOException.class, ExecutionException.class, InterruptedException.class},
+            maxAttempts = 5,
+            backoff = @Backoff(10000L)
+    )
+    public void sendMessageWithRetryIfServerOffline(SocketPushMessage message)
             throws IOException, ExecutionException, InterruptedException {
-        // This does not rule the case where the client is not up and the server still holds a connection
-        createOrGetSession();
+        connectToSocketServer();
         session.sendMessage(new BinaryMessage(message.toByteArray()));
     }
 
     public void closeConnectionWithSocketServer() throws IOException {
-        if (session == null && session.isOpen()) {
+        if (session == null) {
+            return;
+        }
+
+        if (!session.isOpen()) {
+            session = null;
             return;
         }
 
