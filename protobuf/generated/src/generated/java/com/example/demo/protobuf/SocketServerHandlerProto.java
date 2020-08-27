@@ -24,13 +24,11 @@ public final class SocketServerHandlerProto {
   static {
     java.lang.String[] descriptorData = {
       "\n\027socketGrpcService.proto\032\014socket.proto\032" +
-      "\033google/protobuf/empty.proto2\250\001\n\027SocketS" +
-      "erverGrpcService\022F\n\017ConnectToServer\022\026.go" +
-      "ogle.protobuf.Empty\032\031.SocketConnectionRe" +
-      "sponse\"\000\022E\n\021CommunicatePeerId\022\026.SocketPe" +
-      "erInfoMessage\032\026.google.protobuf.Empty\"\000B" +
-      "5\n\031com.example.demo.protobufB\030SocketServ" +
-      "erHandlerProtob\006proto3"
+      "\033google/protobuf/empty.proto2a\n\027SocketSe" +
+      "rverGrpcService\022F\n\017ConnectToServer\022\026.goo" +
+      "gle.protobuf.Empty\032\031.SocketConnectionRes" +
+      "ponse\"\000B5\n\031com.example.demo.protobufB\030So" +
+      "cketServerHandlerProtob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

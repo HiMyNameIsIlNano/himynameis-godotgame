@@ -13,7 +13,6 @@ public static partial class SocketServerGrpcService
 
   static readonly grpc::Marshaller<global::Google.Protobuf.WellKnownTypes.Empty> __Marshaller_google_protobuf_Empty = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Google.Protobuf.WellKnownTypes.Empty.Parser.ParseFrom);
   static readonly grpc::Marshaller<global::Com.Example.Demo.Protobuf.Socket.SocketConnectionResponse> __Marshaller_SocketConnectionResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Com.Example.Demo.Protobuf.Socket.SocketConnectionResponse.Parser.ParseFrom);
-  static readonly grpc::Marshaller<global::Com.Example.Demo.Protobuf.Socket.SocketPeerInfoMessage> __Marshaller_SocketPeerInfoMessage = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Com.Example.Demo.Protobuf.Socket.SocketPeerInfoMessage.Parser.ParseFrom);
 
   static readonly grpc::Method<global::Google.Protobuf.WellKnownTypes.Empty, global::Com.Example.Demo.Protobuf.Socket.SocketConnectionResponse> __Method_ConnectToServer = new grpc::Method<global::Google.Protobuf.WellKnownTypes.Empty, global::Com.Example.Demo.Protobuf.Socket.SocketConnectionResponse>(
       grpc::MethodType.Unary,
@@ -21,13 +20,6 @@ public static partial class SocketServerGrpcService
       "ConnectToServer",
       __Marshaller_google_protobuf_Empty,
       __Marshaller_SocketConnectionResponse);
-
-  static readonly grpc::Method<global::Com.Example.Demo.Protobuf.Socket.SocketPeerInfoMessage, global::Google.Protobuf.WellKnownTypes.Empty> __Method_CommunicatePeerId = new grpc::Method<global::Com.Example.Demo.Protobuf.Socket.SocketPeerInfoMessage, global::Google.Protobuf.WellKnownTypes.Empty>(
-      grpc::MethodType.Unary,
-      __ServiceName,
-      "CommunicatePeerId",
-      __Marshaller_SocketPeerInfoMessage,
-      __Marshaller_google_protobuf_Empty);
 
   /// <summary>Service descriptor</summary>
   public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
@@ -40,11 +32,6 @@ public static partial class SocketServerGrpcService
   public abstract partial class SocketServerGrpcServiceBase
   {
     public virtual global::System.Threading.Tasks.Task<global::Com.Example.Demo.Protobuf.Socket.SocketConnectionResponse> ConnectToServer(global::Google.Protobuf.WellKnownTypes.Empty request, grpc::ServerCallContext context)
-    {
-      throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
-    }
-
-    public virtual global::System.Threading.Tasks.Task<global::Google.Protobuf.WellKnownTypes.Empty> CommunicatePeerId(global::Com.Example.Demo.Protobuf.Socket.SocketPeerInfoMessage request, grpc::ServerCallContext context)
     {
       throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
     }
@@ -90,22 +77,6 @@ public static partial class SocketServerGrpcService
     {
       return CallInvoker.AsyncUnaryCall(__Method_ConnectToServer, null, options, request);
     }
-    public virtual global::Google.Protobuf.WellKnownTypes.Empty CommunicatePeerId(global::Com.Example.Demo.Protobuf.Socket.SocketPeerInfoMessage request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
-    {
-      return CommunicatePeerId(request, new grpc::CallOptions(headers, deadline, cancellationToken));
-    }
-    public virtual global::Google.Protobuf.WellKnownTypes.Empty CommunicatePeerId(global::Com.Example.Demo.Protobuf.Socket.SocketPeerInfoMessage request, grpc::CallOptions options)
-    {
-      return CallInvoker.BlockingUnaryCall(__Method_CommunicatePeerId, null, options, request);
-    }
-    public virtual grpc::AsyncUnaryCall<global::Google.Protobuf.WellKnownTypes.Empty> CommunicatePeerIdAsync(global::Com.Example.Demo.Protobuf.Socket.SocketPeerInfoMessage request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
-    {
-      return CommunicatePeerIdAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
-    }
-    public virtual grpc::AsyncUnaryCall<global::Google.Protobuf.WellKnownTypes.Empty> CommunicatePeerIdAsync(global::Com.Example.Demo.Protobuf.Socket.SocketPeerInfoMessage request, grpc::CallOptions options)
-    {
-      return CallInvoker.AsyncUnaryCall(__Method_CommunicatePeerId, null, options, request);
-    }
     /// <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
     protected override SocketServerGrpcServiceClient NewInstance(ClientBaseConfiguration configuration)
     {
@@ -118,8 +89,7 @@ public static partial class SocketServerGrpcService
   public static grpc::ServerServiceDefinition BindService(SocketServerGrpcServiceBase serviceImpl)
   {
     return grpc::ServerServiceDefinition.CreateBuilder()
-        .AddMethod(__Method_ConnectToServer, serviceImpl.ConnectToServer)
-        .AddMethod(__Method_CommunicatePeerId, serviceImpl.CommunicatePeerId).Build();
+        .AddMethod(__Method_ConnectToServer, serviceImpl.ConnectToServer).Build();
   }
 
   /// <summary>Register service method with a service binder with or without implementation. Useful when customizing the  service binding logic.
@@ -129,7 +99,6 @@ public static partial class SocketServerGrpcService
   public static void BindService(grpc::ServiceBinderBase serviceBinder, SocketServerGrpcServiceBase serviceImpl)
   {
     serviceBinder.AddMethod(__Method_ConnectToServer, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Google.Protobuf.WellKnownTypes.Empty, global::Com.Example.Demo.Protobuf.Socket.SocketConnectionResponse>(serviceImpl.ConnectToServer));
-    serviceBinder.AddMethod(__Method_CommunicatePeerId, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Com.Example.Demo.Protobuf.Socket.SocketPeerInfoMessage, global::Google.Protobuf.WellKnownTypes.Empty>(serviceImpl.CommunicatePeerId));
   }
 
 }
