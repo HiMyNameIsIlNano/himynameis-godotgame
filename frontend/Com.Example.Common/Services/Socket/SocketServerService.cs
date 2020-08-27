@@ -17,7 +17,7 @@ namespace Com.Example.Common.Services.Socket
 
         public async Task ClientCanConnectToServer()
         {
-            Console.WriteLine("Signaling the Back End can connect to Server");
+            Console.WriteLine("Start signaling the Back End that a connection to Socket Server is possible...");
             SocketServerGrpcServiceClient client = new SocketServerGrpcServiceClient(_grpcChannelService.OpenOrGet());
             await client.ConnectToServerAsync(new Empty());
         }

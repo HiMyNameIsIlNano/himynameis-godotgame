@@ -20,12 +20,12 @@ In order to reach the swagger docs, one can jump to the following URL: http://lo
 The backend exposes `gRPC` services and will be called by the Client. Due to fact that the Front End is written in `C#`, the `:protobuf` project exports the services defined in the `*.proto` file(s) are exported as `java` and `C#` classes. 
 
 ## TODO
-- [ ] Secure `gRPC` services
 - [ ] Make the REST endpoints only available for local testing (i.e. active by profile)
-- [ ] Queue messages instead of retry when the connection to the Socket Server is not up and running 
-- [ ] How to gracefully manage client disconnect and reconnect 
 - [ ] It would be nice to have the peer id in each request so that the proto messages are somehow linked
 - [ ] Generic exception handling for REST controllers/Service
+- [ ] Secure `gRPC` services
+- [ ] Queue messages instead of retry when the connection to the Socket Server is not up and running 
+- [ ] How to gracefully manage client disconnect and reconnect 
 
 # Front End
 

@@ -1,8 +1,8 @@
 package com.example.demo.common.socket;
 
+import com.example.demo.domain.player.Player;
 import com.example.demo.protobuf.SocketPush.SocketPushMessage;
 import java.io.IOException;
-import java.net.URI;
 import java.util.concurrent.ExecutionException;
 import javax.annotation.PostConstruct;
 import lombok.NoArgsConstructor;
@@ -12,9 +12,7 @@ import org.springframework.retry.annotation.Backoff;
 import org.springframework.retry.annotation.Retryable;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.BinaryMessage;
-import org.springframework.web.socket.WebSocketHttpHeaders;
 import org.springframework.web.socket.WebSocketSession;
-import org.springframework.web.socket.client.standard.StandardWebSocketClient;
 import org.springframework.web.socket.handler.BinaryWebSocketHandler;
 
 @NoArgsConstructor
@@ -33,8 +31,6 @@ public class SocketServerComponentHandler extends BinaryWebSocketHandler {
 
     private String socketServerUrl;
 
-    private WebSocketSession session = null;
-
     @PostConstruct
     public void afterConstructInit() {
         this.socketServerUrl =
@@ -42,43 +38,31 @@ public class SocketServerComponentHandler extends BinaryWebSocketHandler {
                         "%s://%s:%s/", socketServerProtocol, socketServerAddress, socketServerPort);
     }
 
-    public void connectToSocketServer() throws ExecutionException, InterruptedException {
-        if (session != null && session.isOpen()) {
-            return;
-        }
-
-        synchronized (this) {
-            session = createOrGetSession();
-        }
-    }
-
-    private WebSocketSession createOrGetSession() throws InterruptedException, ExecutionException {
-        return new StandardWebSocketClient()
-                .doHandshake(this, new WebSocketHttpHeaders(), URI.create(socketServerUrl))
-                .get();
+    public void connectToSocketServer(Player player)
+            throws ExecutionException, InterruptedException {
+        SocketConnectionHolder.cachePlayerConnection(socketServerUrl, this, player);
     }
 
     @Retryable(
             value = {IOException.class, ExecutionException.class, InterruptedException.class},
             maxAttempts = 5,
-            backoff = @Backoff(10000L)
-    )
-    public void sendMessageWithRetryIfServerOffline(SocketPushMessage message)
+            backoff = @Backoff(10000L))
+    public void sendMessageToPlayerWithRetryIfServerOffline(Player player)
             throws IOException, ExecutionException, InterruptedException {
-        connectToSocketServer();
-        session.sendMessage(new BinaryMessage(message.toByteArray()));
+        connectToSocketServer(player);
+
+        SocketPushMessage pushMessage =
+                SocketPushMessage.newBuilder()
+                        .setPlayerId(player.getPlayerId())
+                        .setText("Random Text")
+                        .build();
+
+        WebSocketSession playerWebSocketSession =
+                SocketConnectionHolder.getPlayerConnection(player);
+        playerWebSocketSession.sendMessage(new BinaryMessage(pushMessage.toByteArray()));
     }
 
-    public void closeConnectionWithSocketServer() throws IOException {
-        if (session == null) {
-            return;
-        }
-
-        if (!session.isOpen()) {
-            session = null;
-            return;
-        }
-
-        session.close();
+    public void closeConnectionWithSocketServer(Player player) throws IOException {
+        SocketConnectionHolder.closePlayerConnection(player);
     }
 }

@@ -1,8 +1,9 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scene/TitleScreen/Menu/GenericGameScreen.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Scripts/TitleScreen/Buttons/HTTPButton.cs" type="Script" id=2]
+[ext_resource path="res://Scripts/TitleScreen/Buttons/RecipeHTTPButton.cs" type="Script" id=2]
 [ext_resource path="res://Fonts/Syne-Extra.ttf" type="DynamicFontData" id=3]
+
 
 [sub_resource type="DynamicFont" id=1]
 size = 24
