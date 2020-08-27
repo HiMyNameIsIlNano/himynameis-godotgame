@@ -1,6 +1,7 @@
 package com.example.demo.grpc.socket;
 
 import com.example.demo.common.socket.SocketServerComponentHandler;
+import com.example.demo.domain.player.Player;
 import com.example.demo.protobuf.SocketPush.SocketConnectionResponse;
 import com.example.demo.protobuf.SocketServerGrpcServiceGrpc;
 import com.google.protobuf.Empty;
@@ -21,7 +22,7 @@ public class SocketServerHandlerImpl
     public void connectToServer(
             Empty request, StreamObserver<SocketConnectionResponse> responseObserver) {
         try {
-            socketServerComponentHandler.connectToSocketServer();
+            socketServerComponentHandler.connectToSocketServer(new Player(1000));
         } catch (ExecutionException | InterruptedException e) {
             responseObserver.onError(Status.ABORTED.asException());
         }

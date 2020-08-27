@@ -26,14 +26,16 @@ namespace Com.Example.Demo.Protobuf.Socket {
           string.Concat(
             "Cgxzb2NrZXQucHJvdG8iMwoRU29ja2V0UHVzaE1lc3NhZ2USEAoIcGxheWVy",
             "SWQYASABKAUSDAoEdGV4dBgCIAEoCSI4ChhTb2NrZXRDb25uZWN0aW9uUmVz",
-            "cG9uc2USDgoGcGVlcklkGAEgASgFEgwKBHRleHQYAiABKAlCSgoZY29tLmV4",
-            "YW1wbGUuZGVtby5wcm90b2J1ZkIKU29ja2V0UHVzaKoCIENvbS5FeGFtcGxl",
-            "LkRlbW8uUHJvdG9idWYuU29ja2V0YgZwcm90bzM="));
+            "cG9uc2USDgoGcGVlcklkGAEgASgFEgwKBHRleHQYAiABKAkiJwoVU29ja2V0",
+            "UGVlckluZm9NZXNzYWdlEg4KBnBlZXJJZBgBIAEoBUJKChljb20uZXhhbXBs",
+            "ZS5kZW1vLnByb3RvYnVmQgpTb2NrZXRQdXNoqgIgQ29tLkV4YW1wbGUuRGVt",
+            "by5Qcm90b2J1Zi5Tb2NrZXRiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::Com.Example.Demo.Protobuf.Socket.SocketPushMessage), global::Com.Example.Demo.Protobuf.Socket.SocketPushMessage.Parser, new[]{ "PlayerId", "Text" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Com.Example.Demo.Protobuf.Socket.SocketConnectionResponse), global::Com.Example.Demo.Protobuf.Socket.SocketConnectionResponse.Parser, new[]{ "PeerId", "Text" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Com.Example.Demo.Protobuf.Socket.SocketConnectionResponse), global::Com.Example.Demo.Protobuf.Socket.SocketConnectionResponse.Parser, new[]{ "PeerId", "Text" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Com.Example.Demo.Protobuf.Socket.SocketPeerInfoMessage), global::Com.Example.Demo.Protobuf.Socket.SocketPeerInfoMessage.Parser, new[]{ "PeerId" }, null, null, null, null)
           }));
     }
     #endregion
@@ -346,6 +348,135 @@ namespace Com.Example.Demo.Protobuf.Socket {
           }
           case 18: {
             Text = input.ReadString();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class SocketPeerInfoMessage : pb::IMessage<SocketPeerInfoMessage> {
+    private static readonly pb::MessageParser<SocketPeerInfoMessage> _parser = new pb::MessageParser<SocketPeerInfoMessage>(() => new SocketPeerInfoMessage());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<SocketPeerInfoMessage> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Com.Example.Demo.Protobuf.Socket.SocketReflection.Descriptor.MessageTypes[2]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SocketPeerInfoMessage() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SocketPeerInfoMessage(SocketPeerInfoMessage other) : this() {
+      peerId_ = other.peerId_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SocketPeerInfoMessage Clone() {
+      return new SocketPeerInfoMessage(this);
+    }
+
+    /// <summary>Field number for the "peerId" field.</summary>
+    public const int PeerIdFieldNumber = 1;
+    private int peerId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int PeerId {
+      get { return peerId_; }
+      set {
+        peerId_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as SocketPeerInfoMessage);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(SocketPeerInfoMessage other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (PeerId != other.PeerId) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (PeerId != 0) hash ^= PeerId.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (PeerId != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(PeerId);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (PeerId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(PeerId);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(SocketPeerInfoMessage other) {
+      if (other == null) {
+        return;
+      }
+      if (other.PeerId != 0) {
+        PeerId = other.PeerId;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 8: {
+            PeerId = input.ReadInt32();
             break;
           }
         }

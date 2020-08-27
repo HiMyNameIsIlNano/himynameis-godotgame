@@ -12,7 +12,6 @@ namespace Com.Example.Common.Services.Protobuf
 
         public Channel CloseAsync()
         {
-            // TODO: Is this safe?.
             return GrpcChannelSingleton.CloseAsync();
         }
     }

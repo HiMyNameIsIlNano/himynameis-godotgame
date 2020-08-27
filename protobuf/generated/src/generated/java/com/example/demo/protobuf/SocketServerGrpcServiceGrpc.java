@@ -58,6 +58,37 @@ public final class SocketServerGrpcServiceGrpc {
     return getConnectToServerMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<com.example.demo.protobuf.SocketPush.SocketPeerInfoMessage,
+      com.google.protobuf.Empty> getCommunicatePeerIdMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "CommunicatePeerId",
+      requestType = com.example.demo.protobuf.SocketPush.SocketPeerInfoMessage.class,
+      responseType = com.google.protobuf.Empty.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<com.example.demo.protobuf.SocketPush.SocketPeerInfoMessage,
+      com.google.protobuf.Empty> getCommunicatePeerIdMethod() {
+    io.grpc.MethodDescriptor<com.example.demo.protobuf.SocketPush.SocketPeerInfoMessage, com.google.protobuf.Empty> getCommunicatePeerIdMethod;
+    if ((getCommunicatePeerIdMethod = SocketServerGrpcServiceGrpc.getCommunicatePeerIdMethod) == null) {
+      synchronized (SocketServerGrpcServiceGrpc.class) {
+        if ((getCommunicatePeerIdMethod = SocketServerGrpcServiceGrpc.getCommunicatePeerIdMethod) == null) {
+          SocketServerGrpcServiceGrpc.getCommunicatePeerIdMethod = getCommunicatePeerIdMethod =
+              io.grpc.MethodDescriptor.<com.example.demo.protobuf.SocketPush.SocketPeerInfoMessage, com.google.protobuf.Empty>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "CommunicatePeerId"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.example.demo.protobuf.SocketPush.SocketPeerInfoMessage.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.protobuf.Empty.getDefaultInstance()))
+              .setSchemaDescriptor(new SocketServerGrpcServiceMethodDescriptorSupplier("CommunicatePeerId"))
+              .build();
+        }
+      }
+    }
+    return getCommunicatePeerIdMethod;
+  }
+
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -113,6 +144,13 @@ public final class SocketServerGrpcServiceGrpc {
       asyncUnimplementedUnaryCall(getConnectToServerMethod(), responseObserver);
     }
 
+    /**
+     */
+    public void communicatePeerId(com.example.demo.protobuf.SocketPush.SocketPeerInfoMessage request,
+        io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
+      asyncUnimplementedUnaryCall(getCommunicatePeerIdMethod(), responseObserver);
+    }
+
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
@@ -122,6 +160,13 @@ public final class SocketServerGrpcServiceGrpc {
                 com.google.protobuf.Empty,
                 com.example.demo.protobuf.SocketPush.SocketConnectionResponse>(
                   this, METHODID_CONNECT_TO_SERVER)))
+          .addMethod(
+            getCommunicatePeerIdMethod(),
+            asyncUnaryCall(
+              new MethodHandlers<
+                com.example.demo.protobuf.SocketPush.SocketPeerInfoMessage,
+                com.google.protobuf.Empty>(
+                  this, METHODID_COMMUNICATE_PEER_ID)))
           .build();
     }
   }
@@ -147,6 +192,14 @@ public final class SocketServerGrpcServiceGrpc {
       asyncUnaryCall(
           getChannel().newCall(getConnectToServerMethod(), getCallOptions()), request, responseObserver);
     }
+
+    /**
+     */
+    public void communicatePeerId(com.example.demo.protobuf.SocketPush.SocketPeerInfoMessage request,
+        io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(getCommunicatePeerIdMethod(), getCallOptions()), request, responseObserver);
+    }
   }
 
   /**
@@ -168,6 +221,13 @@ public final class SocketServerGrpcServiceGrpc {
     public com.example.demo.protobuf.SocketPush.SocketConnectionResponse connectToServer(com.google.protobuf.Empty request) {
       return blockingUnaryCall(
           getChannel(), getConnectToServerMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public com.google.protobuf.Empty communicatePeerId(com.example.demo.protobuf.SocketPush.SocketPeerInfoMessage request) {
+      return blockingUnaryCall(
+          getChannel(), getCommunicatePeerIdMethod(), getCallOptions(), request);
     }
   }
 
@@ -192,9 +252,18 @@ public final class SocketServerGrpcServiceGrpc {
       return futureUnaryCall(
           getChannel().newCall(getConnectToServerMethod(), getCallOptions()), request);
     }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.Empty> communicatePeerId(
+        com.example.demo.protobuf.SocketPush.SocketPeerInfoMessage request) {
+      return futureUnaryCall(
+          getChannel().newCall(getCommunicatePeerIdMethod(), getCallOptions()), request);
+    }
   }
 
   private static final int METHODID_CONNECT_TO_SERVER = 0;
+  private static final int METHODID_COMMUNICATE_PEER_ID = 1;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -216,6 +285,10 @@ public final class SocketServerGrpcServiceGrpc {
         case METHODID_CONNECT_TO_SERVER:
           serviceImpl.connectToServer((com.google.protobuf.Empty) request,
               (io.grpc.stub.StreamObserver<com.example.demo.protobuf.SocketPush.SocketConnectionResponse>) responseObserver);
+          break;
+        case METHODID_COMMUNICATE_PEER_ID:
+          serviceImpl.communicatePeerId((com.example.demo.protobuf.SocketPush.SocketPeerInfoMessage) request,
+              (io.grpc.stub.StreamObserver<com.google.protobuf.Empty>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -279,6 +352,7 @@ public final class SocketServerGrpcServiceGrpc {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
               .setSchemaDescriptor(new SocketServerGrpcServiceFileDescriptorSupplier())
               .addMethod(getConnectToServerMethod())
+              .addMethod(getCommunicatePeerIdMethod())
               .build();
         }
       }

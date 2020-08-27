@@ -23,11 +23,12 @@ public static partial class SocketGrpcServiceReflection {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
           "Chdzb2NrZXRHcnBjU2VydmljZS5wcm90bxoMc29ja2V0LnByb3RvGhtnb29n",
-          "bGUvcHJvdG9idWYvZW1wdHkucHJvdG8yYQoXU29ja2V0U2VydmVyR3JwY1Nl",
-          "cnZpY2USRgoPQ29ubmVjdFRvU2VydmVyEhYuZ29vZ2xlLnByb3RvYnVmLkVt",
-          "cHR5GhkuU29ja2V0Q29ubmVjdGlvblJlc3BvbnNlIgBCNQoZY29tLmV4YW1w",
-          "bGUuZGVtby5wcm90b2J1ZkIYU29ja2V0U2VydmVySGFuZGxlclByb3RvYgZw",
-          "cm90bzM="));
+          "bGUvcHJvdG9idWYvZW1wdHkucHJvdG8yqAEKF1NvY2tldFNlcnZlckdycGNT",
+          "ZXJ2aWNlEkYKD0Nvbm5lY3RUb1NlcnZlchIWLmdvb2dsZS5wcm90b2J1Zi5F",
+          "bXB0eRoZLlNvY2tldENvbm5lY3Rpb25SZXNwb25zZSIAEkUKEUNvbW11bmlj",
+          "YXRlUGVlcklkEhYuU29ja2V0UGVlckluZm9NZXNzYWdlGhYuZ29vZ2xlLnBy",
+          "b3RvYnVmLkVtcHR5IgBCNQoZY29tLmV4YW1wbGUuZGVtby5wcm90b2J1ZkIY",
+          "U29ja2V0U2VydmVySGFuZGxlclByb3RvYgZwcm90bzM="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { global::Com.Example.Demo.Protobuf.Socket.SocketReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.EmptyReflection.Descriptor, },
         new pbr::GeneratedClrTypeInfo(null, null, null));

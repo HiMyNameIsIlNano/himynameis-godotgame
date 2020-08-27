@@ -1,5 +1,6 @@
 using System;
 using System.Diagnostics;
+using System.Threading.Tasks;
 using Com.Example.Common.Attributes;
 using Com.Example.Common.Network;
 using Com.Example.Common.Services.Protobuf;
@@ -30,6 +31,12 @@ namespace Com.Example.Game.Scripts.Socket
             RegisterProtobufParsers();
             SocketServerRegisterEvents();
             SocketServerStart();
+            SignalBackendSocketServerConnectionPossible();
+        }
+
+        private void RegisterProtobufParsers()
+        {
+            ProtobufSerializerService.RegisterSerializer(typeof(SocketPushMessage), SocketPushMessage.Parser);
         }
 
         private void SocketServerRegisterEvents()
@@ -39,11 +46,6 @@ namespace Com.Example.Game.Scripts.Socket
             Server.Connect("client_disconnected", this, nameof(OnDisconnected));
             Server.Connect("client_close_request", this, nameof(OnCloseRequest));
             Server.Connect("data_received", this, nameof(OnDataReceived));
-        }
-
-        private void RegisterProtobufParsers()
-        {
-            ProtobufSerializerService.RegisterSerializer(typeof(SocketPushMessage), SocketPushMessage.Parser);
         }
 
         private void SocketServerStart()
@@ -56,9 +58,14 @@ namespace Com.Example.Game.Scripts.Socket
             }
 
             Console.WriteLine($"Socket Server listening on port {Port}");
+        }
 
-            // TODO: if this is async we might end up managing the connection error in here...
-            SocketServerService.ClientCanConnectToServer();
+        private async Task SignalBackendSocketServerConnectionPossible()
+        {
+            Task connectToServerTask = SocketServerService.ClientCanConnectToServer();
+            // TODO: What happens if the back end is not up at the time this request is fired. 
+            await connectToServerTask.ContinueWith(ancestor =>
+                Console.WriteLine("Finish signaling the Back End that a connection to Socket Server is possible..."));
         }
 
         private void OnConnected(int id, string protocol)

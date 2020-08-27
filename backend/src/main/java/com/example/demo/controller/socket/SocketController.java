@@ -1,7 +1,7 @@
 package com.example.demo.controller.socket;
 
 import com.example.demo.common.socket.SocketServerComponentHandler;
-import com.example.demo.protobuf.SocketPush.SocketPushMessage;
+import com.example.demo.domain.player.Player;
 import java.io.IOException;
 import java.util.concurrent.ExecutionException;
 import lombok.RequiredArgsConstructor;
@@ -18,19 +18,16 @@ public class SocketController {
 
     @PostMapping("/connect")
     public void connect() throws ExecutionException, InterruptedException {
-        socketServerComponentHandler.connectToSocketServer();
+        socketServerComponentHandler.connectToSocketServer(new Player(1000));
     }
 
     @PostMapping("/push")
     public void pushMessage() throws IOException, ExecutionException, InterruptedException {
-        SocketPushMessage pushMessage =
-                SocketPushMessage.newBuilder().setPlayerId(4).setText("Random Text").build();
-
-        socketServerComponentHandler.sendMessageWithRetryIfServerOffline(pushMessage);
+        socketServerComponentHandler.sendMessageToPlayerWithRetryIfServerOffline(new Player(1000));
     }
 
     @PostMapping("/close")
     public void closeConnection() throws IOException {
-        socketServerComponentHandler.closeConnectionWithSocketServer();
+        socketServerComponentHandler.closeConnectionWithSocketServer(new Player(1000));
     }
 }
