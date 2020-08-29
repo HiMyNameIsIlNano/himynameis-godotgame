@@ -31,6 +31,8 @@ namespace Com.Example.Game.Scripts.Socket
             RegisterProtobufParsers();
             SocketServerRegisterEvents();
             SocketServerStart();
+            
+            // TODO: should this be awaited for?
             SignalBackendSocketServerConnectionPossible();
         }
 
