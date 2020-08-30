@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Com. Example. Game", "Com. Example. Game.csproj", "{C5A4B9FF-67F9-41AD-9244-88C63F38E571}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Com.Example.Game", "Com.Example.Game.csproj", "{C5A4B9FF-67F9-41AD-9244-88C63F38E571}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Com.Example.Common", "..\Com.Example.Common\Com.Example.Common.csproj", "{36277FEC-86AA-45E8-8C05-E265F86E05E0}"
 EndProject
