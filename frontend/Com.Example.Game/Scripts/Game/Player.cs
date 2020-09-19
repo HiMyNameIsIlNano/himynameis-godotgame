@@ -9,6 +9,8 @@ namespace Com.Example.Game.Scripts.Game
 {
     public class Player : KinematicBody2D
     {
+        private const string PlayerCollisionDetectorName = "PlayerCollisionDetector";
+
         private const int TileSize = 16;
         private RayCast2D PlayerCollisionDetector { get; set; }
 
@@ -25,7 +27,7 @@ namespace Com.Example.Game.Scripts.Game
         public override void _Ready()
         {
             InjectedPropertyResolver.Resolve(this);
-            PlayerCollisionDetector = GetNode<RayCast2D>("PlayerCollisionDetector");
+            PlayerCollisionDetector = GetNode<RayCast2D>(PlayerCollisionDetectorName);
         }
 
         public override void _UnhandledInput(InputEvent @event)
@@ -39,7 +41,7 @@ namespace Com.Example.Game.Scripts.Game
             MovePlayer(movement);
         }
 
-        private Vector2 TryGetPlayerMovement(InputEvent @event, out bool directionFound)
+        private static Vector2 TryGetPlayerMovement(InputEvent @event, out bool directionFound)
         {
             directionFound = false;
             string directionKey = MovementMap.Keys.FirstOrDefault(direction => @event.IsActionPressed(direction));
@@ -57,13 +59,52 @@ namespace Com.Example.Game.Scripts.Game
         private void MovePlayer(Vector2 movement)
         {
             UpdatePlayerCollisionDetector(movement);
-            if (PlayerCollisionDetector.IsColliding())
+            bool playerPickedUpBox = DetectAndGetMovableBox(out GenericBox box);
+
+            if (playerPickedUpBox)
             {
-                TestService.DoSomething();
-                return;
+                bool boxMoved = box.MoveBox(movement);
+                if (boxMoved)
+                {
+                    Position += movement;
+                }
+            }
+            else
+            {
+                Position += movement;
+            }
+        }
+
+        private bool DetectAndGetMovableBox(out GenericBox box)
+        {
+            box = null;
+            if (!IsPlayerCollidingWithAnyObject())
+            {
+                return false;
             }
 
-            Position += movement;
+            bool isMovableBoxPickUp = IsMovableBoxPickUp(out GenericBox genericBox);
+            box = genericBox;
+            return isMovableBoxPickUp;
+        }
+
+        private bool IsPlayerCollidingWithAnyObject()
+        {
+            return PlayerCollisionDetector.IsColliding();
+        }
+
+        private bool IsMovableBoxPickUp(out GenericBox box)
+        {
+            box = null;
+            Object collidingObject = PlayerCollisionDetector.GetCollider();
+
+            if (collidingObject == null || !(collidingObject is GenericBox genericBox))
+            {
+                return false;
+            }
+
+            box = genericBox;
+            return genericBox.IsInGroup(GenericBox.GetMovableBoxGroup());
         }
 
         private void UpdatePlayerCollisionDetector(Vector2 movement)

@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Concurrent;
+using Com.Example.Common.Network;
 using Google.Protobuf;
 
-namespace Com.Example.Common.Network.Protobuf.Serializer
+namespace Com.Example.Common.Services.Protobuf.Serializer
 {
     public class ProtobufSerializerService : IProtobufSerializerService
     {
