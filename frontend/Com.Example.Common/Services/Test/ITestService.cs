@@ -3,5 +3,7 @@
     public interface ITestService
     {
         void DoSomething();
+        
+        void DoTerminate();
     }
 }

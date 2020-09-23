@@ -8,5 +8,10 @@ namespace Com.Example.Game.Scripts.Test
         {
             Console.WriteLine("I am doing Something");
         }
+
+        public void DoTerminate()
+        {
+            Console.WriteLine("I am terminating Something");
+        }
     }
 }

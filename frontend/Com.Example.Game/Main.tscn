@@ -46,6 +46,8 @@ alignment = 1
 [node name="NewGameButton" parent="Menu/CenterRow/Buttons" instance=ExtResource( 3 )]
 margin_top = 158.0
 margin_bottom = 218.0
+rect_pivot_offset = Vector2( 832, -399 )
+_sceneToLoad = "res://Scene/Game/GameLevel.tscn"
 
 [node name="CreditsButton" parent="Menu/CenterRow/Buttons" instance=ExtResource( 2 )]
 margin_top = 238.0

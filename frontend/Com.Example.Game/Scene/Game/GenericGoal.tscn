@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Assets/goal.png" type="Texture" id=1]
+[ext_resource path="res://Scene/Game/GenericGoal.cs" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 7.19056, 6.53319 )
+
+[node name="Goal" type="Area2D"]
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 8, 8 )
+shape = SubResource( 1 )
+
+[node name="GoalSprite" type="Sprite" parent="CollisionShape2D"]
+position = Vector2( -8, -8 )
+texture = ExtResource( 1 )
+centered = false
+[connection signal="body_entered" from="." to="." method="_OnGoalBodyEntered"]
+[connection signal="body_exited" from="." to="." method="_OnGoalBodyExited"]
