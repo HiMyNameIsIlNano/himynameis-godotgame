@@ -1,5 +1,6 @@
 using System.Linq;
 using Com.Example.Common.Attributes;
+using Com.Example.Game.Scene.Game;
 using Com.Example.Game.Scripts.GameStartup;
 using Com.Example.Game.Scripts.Test;
 using Godot;
@@ -12,9 +13,12 @@ namespace Com.Example.Game.Scripts.Game
         private const string PlayerCollisionDetectorName = "PlayerCollisionDetector";
 
         private const int TileSize = 16;
-        private RayCast2D PlayerCollisionDetector { get; set; }
 
-        [InjectedProperty] private ITestService TestService { get; set; }
+        private const float TweenDuration = 0.3F;
+
+        private Tween PlayerTween;
+
+        private RayCast2D PlayerCollisionDetector { get; set; }
 
         private static readonly Dictionary<string, Vector2> MovementMap = new Dictionary<string, Vector2>
         {
@@ -26,12 +30,13 @@ namespace Com.Example.Game.Scripts.Game
 
         public override void _Ready()
         {
-            InjectedPropertyResolver.Resolve(this);
             PlayerCollisionDetector = GetNode<RayCast2D>(PlayerCollisionDetectorName);
+            PlayerTween = GetNode<Tween>("PlayerTween");
         }
 
         public override void _UnhandledInput(InputEvent @event)
         {
+            ChekIfPlayerResetLevelEvent(@event);
             Vector2 movement = TryGetPlayerMovement(@event, out bool isMovementEvent);
             if (!isMovementEvent)
             {
@@ -39,6 +44,14 @@ namespace Com.Example.Game.Scripts.Game
             }
 
             MovePlayer(movement);
+        }
+
+        private void ChekIfPlayerResetLevelEvent(InputEvent @event)
+        {
+            if (@event.IsActionPressed("reset"))
+            {
+                GetTree().ReloadCurrentScene();
+            }
         }
 
         private static Vector2 TryGetPlayerMovement(InputEvent @event, out bool directionFound)
@@ -58,20 +71,35 @@ namespace Com.Example.Game.Scripts.Game
 
         private void MovePlayer(Vector2 movement)
         {
-            UpdatePlayerCollisionDetector(movement);
-            bool playerPickedUpBox = DetectAndGetMovableBox(out GenericBox box);
+            if (PlayerTween.IsActive())
+            {
+                return;
+            }
 
+            UpdatePlayerCollisionDetector(movement);
+
+            PlayerTween.InterpolateProperty(this, "position",
+                Position, Position + movement,
+                TweenDuration,
+                Tween.TransitionType.Sine);
+
+            UpdatePlayerPosition(movement);
+        }
+
+        private void UpdatePlayerPosition(Vector2 movement)
+        {
+            bool playerPickedUpBox = DetectAndGetMovableBox(out GenericBox box);
             if (playerPickedUpBox)
             {
                 bool boxMoved = box.MoveBox(movement);
                 if (boxMoved)
                 {
-                    Position += movement;
+                    PlayerTween.Start();
                 }
             }
             else
             {
-                Position += movement;
+                PlayerTween.Start();
             }
         }
 

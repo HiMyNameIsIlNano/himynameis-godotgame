@@ -23,3 +23,5 @@ centered = false
 [node name="BoxCollisionDetector" type="RayCast2D" parent="."]
 position = Vector2( 8, 8 )
 cast_to = Vector2( 0, 16 )
+
+[node name="BoxTween" type="Tween" parent="."]

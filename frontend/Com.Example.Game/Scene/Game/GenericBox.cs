@@ -1,39 +1,56 @@
 using Godot;
 
-public class GenericBox : KinematicBody2D
+namespace Com.Example.Game.Scene.Game
 {
-    
-    private const string MovableBoxGroupName = "GoodBox";
-
-    private const string BoxCollisionDetectorName = "BoxCollisionDetector";
-
-    private RayCast2D BoxCollisionDetector { get; set; }
-
-    public override void _Ready()
+    public class GenericBox : KinematicBody2D
     {
-        BoxCollisionDetector = GetNode<RayCast2D>(BoxCollisionDetectorName);
-    }
+        private const string MovableBoxGroupName = "GoodBox";
 
-    public static string GetMovableBoxGroup()
-    {
-        return MovableBoxGroupName;
-    }
+        private const string BoxCollisionDetectorName = "BoxCollisionDetector";
 
-    public bool MoveBox(Vector2 movement)
-    {
-        UpdateBoxCollisionDetector(movement);
-        if (BoxCollisionDetector.IsColliding())
+        private const float TweenDuration = 0.3F;
+
+        private RayCast2D BoxCollisionDetector { get; set; }
+
+        private Tween GenericBoxTween { get; set; }
+
+        public override void _Ready()
         {
-            return false;
+            BoxCollisionDetector = GetNode<RayCast2D>(BoxCollisionDetectorName);
+            GenericBoxTween = GetNode<Tween>("BoxTween");
         }
 
-        Position += movement;
-        return true;
-    }
+        public static string GetMovableBoxGroup()
+        {
+            return MovableBoxGroupName;
+        }
 
-    private void UpdateBoxCollisionDetector(Vector2 movement)
-    {
-        BoxCollisionDetector.CastTo = movement;
-        BoxCollisionDetector.ForceRaycastUpdate();
+        public bool MoveBox(Vector2 movement)
+        {
+            if (GenericBoxTween.IsActive())
+            {
+                return false;
+            }
+
+            UpdateBoxCollisionDetector(movement);
+            if (BoxCollisionDetector.IsColliding())
+            {
+                return false;
+            }
+
+            GenericBoxTween.InterpolateProperty(this, "position",
+                Position, Position + movement,
+                TweenDuration,
+                Tween.TransitionType.Sine);
+
+            GenericBoxTween.Start();
+            return true;
+        }
+
+        private void UpdateBoxCollisionDetector(Vector2 movement)
+        {
+            BoxCollisionDetector.CastTo = movement;
+            BoxCollisionDetector.ForceRaycastUpdate();
+        }
     }
 }
