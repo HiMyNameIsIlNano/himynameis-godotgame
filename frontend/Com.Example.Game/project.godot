@@ -43,10 +43,6 @@ reset={
  ]
 }
 
-[mono]
-
-debugger_agent/wait_for_debugger=true
-
 [rendering]
 
 environment/default_clear_color=Color( 0.14902, 0.192157, 0.219608, 1 )
