@@ -1,8 +1,5 @@
 using System.Linq;
-using Com.Example.Common.Attributes;
 using Com.Example.Game.Scene.Game;
-using Com.Example.Game.Scripts.GameStartup;
-using Com.Example.Game.Scripts.Test;
 using Godot;
 using Godot.Collections;
 
@@ -16,7 +13,7 @@ namespace Com.Example.Game.Scripts.Game
 
         private const float TweenDuration = 0.3F;
 
-        private Tween PlayerTween;
+        private Tween _playerTween;
 
         private RayCast2D PlayerCollisionDetector { get; set; }
 
@@ -31,7 +28,7 @@ namespace Com.Example.Game.Scripts.Game
         public override void _Ready()
         {
             PlayerCollisionDetector = GetNode<RayCast2D>(PlayerCollisionDetectorName);
-            PlayerTween = GetNode<Tween>("PlayerTween");
+            _playerTween = GetNode<Tween>("PlayerTween");
         }
 
         public override void _UnhandledInput(InputEvent @event)
@@ -71,36 +68,45 @@ namespace Com.Example.Game.Scripts.Game
 
         private void MovePlayer(Vector2 movement)
         {
-            if (PlayerTween.IsActive())
+            if (_playerTween.IsActive())
             {
                 return;
             }
 
             UpdatePlayerCollisionDetector(movement);
 
-            PlayerTween.InterpolateProperty(this, "position",
+            _playerTween.InterpolateProperty(this, "position",
                 Position, Position + movement,
                 TweenDuration,
                 Tween.TransitionType.Sine);
 
-            UpdatePlayerPosition(movement);
+            UpdateMovableObjectPositions(movement);
         }
 
-        private void UpdatePlayerPosition(Vector2 movement)
+        private void UpdateMovableObjectPositions(Vector2 movement)
         {
             bool playerPickedUpBox = DetectAndGetMovableBox(out GenericBox box);
-            if (playerPickedUpBox)
+            if (!playerPickedUpBox)
             {
-                bool boxMoved = box.MoveBox(movement);
-                if (boxMoved)
-                {
-                    PlayerTween.Start();
-                }
+                UpdatePlayerPosition();
+                return;
             }
-            else
+
+            bool boxMoved = box.MoveBox(movement);
+            if (boxMoved)
             {
-                PlayerTween.Start();
+                _playerTween.Start();
             }
+        }
+
+        private void UpdatePlayerPosition()
+        {
+            if (IsPlayerCollidingWithAnyObject())
+            {
+                return;
+            }
+
+            _playerTween.Start();
         }
 
         private bool DetectAndGetMovableBox(out GenericBox box)
