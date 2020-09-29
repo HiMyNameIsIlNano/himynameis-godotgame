@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Com.Example.Common.Services.Protobuf;
+using Com.Example.Common.Services.Protobuf.Grpc;
 using Google.Protobuf.WellKnownTypes;
 using static SocketServerGrpcService;
 

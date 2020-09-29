@@ -1,7 +1,7 @@
 ﻿using Com.Example.Common.Network.Grpc;
 using Grpc.Core;
 
-namespace Com.Example.Common.Services.Protobuf
+namespace Com.Example.Common.Services.Protobuf.Grpc
 {
     public class GrpcChannelService : IGrpcChannelService
     {

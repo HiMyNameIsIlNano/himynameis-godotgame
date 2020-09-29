@@ -39,7 +39,11 @@ public static partial class ScraperReflection {
 
 }
 #region Messages
-public sealed partial class ItemListResponse : pb::IMessage<ItemListResponse> {
+public sealed partial class ItemListResponse : pb::IMessage<ItemListResponse>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    , pb::IBufferMessage
+#endif
+{
   private static readonly pb::MessageParser<ItemListResponse> _parser = new pb::MessageParser<ItemListResponse>(() => new ItemListResponse());
   private pb::UnknownFieldSet _unknownFields;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -173,6 +177,9 @@ public sealed partial class ItemListResponse : pb::IMessage<ItemListResponse> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public void WriteTo(pb::CodedOutputStream output) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    output.WriteRawMessage(this);
+  #else
     if (Context.Length != 0) {
       output.WriteRawTag(10);
       output.WriteString(Context);
@@ -193,7 +200,34 @@ public sealed partial class ItemListResponse : pb::IMessage<ItemListResponse> {
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
+  #endif
   }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (Context.Length != 0) {
+      output.WriteRawTag(10);
+      output.WriteString(Context);
+    }
+    if (Type.Length != 0) {
+      output.WriteRawTag(18);
+      output.WriteString(Type);
+    }
+    itemListElement_.WriteTo(ref output, _repeated_itemListElement_codec);
+    if (NumberOfItems != 0) {
+      output.WriteRawTag(32);
+      output.WriteInt32(NumberOfItems);
+    }
+    if (TotalPages != 0) {
+      output.WriteRawTag(40);
+      output.WriteInt32(TotalPages);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(ref output);
+    }
+  }
+  #endif
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public int CalculateSize() {
@@ -240,6 +274,9 @@ public sealed partial class ItemListResponse : pb::IMessage<ItemListResponse> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public void MergeFrom(pb::CodedInputStream input) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    input.ReadRawMessage(this);
+  #else
     uint tag;
     while ((tag = input.ReadTag()) != 0) {
       switch(tag) {
@@ -268,11 +305,50 @@ public sealed partial class ItemListResponse : pb::IMessage<ItemListResponse> {
         }
       }
     }
+  #endif
   }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+          break;
+        case 10: {
+          Context = input.ReadString();
+          break;
+        }
+        case 18: {
+          Type = input.ReadString();
+          break;
+        }
+        case 26: {
+          itemListElement_.AddEntriesFrom(ref input, _repeated_itemListElement_codec);
+          break;
+        }
+        case 32: {
+          NumberOfItems = input.ReadInt32();
+          break;
+        }
+        case 40: {
+          TotalPages = input.ReadInt32();
+          break;
+        }
+      }
+    }
+  }
+  #endif
 
 }
 
-public sealed partial class ListItemDTO : pb::IMessage<ListItemDTO> {
+public sealed partial class ListItemDTO : pb::IMessage<ListItemDTO>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    , pb::IBufferMessage
+#endif
+{
   private static readonly pb::MessageParser<ListItemDTO> _parser = new pb::MessageParser<ListItemDTO>(() => new ListItemDTO());
   private pb::UnknownFieldSet _unknownFields;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -379,6 +455,9 @@ public sealed partial class ListItemDTO : pb::IMessage<ListItemDTO> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public void WriteTo(pb::CodedOutputStream output) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    output.WriteRawMessage(this);
+  #else
     if (Type.Length != 0) {
       output.WriteRawTag(10);
       output.WriteString(Type);
@@ -394,7 +473,29 @@ public sealed partial class ListItemDTO : pb::IMessage<ListItemDTO> {
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
+  #endif
   }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (Type.Length != 0) {
+      output.WriteRawTag(10);
+      output.WriteString(Type);
+    }
+    if (Position != 0) {
+      output.WriteRawTag(16);
+      output.WriteInt32(Position);
+    }
+    if (Url.Length != 0) {
+      output.WriteRawTag(26);
+      output.WriteString(Url);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(ref output);
+    }
+  }
+  #endif
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public int CalculateSize() {
@@ -433,6 +534,9 @@ public sealed partial class ListItemDTO : pb::IMessage<ListItemDTO> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public void MergeFrom(pb::CodedInputStream input) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    input.ReadRawMessage(this);
+  #else
     uint tag;
     while ((tag = input.ReadTag()) != 0) {
       switch(tag) {
@@ -453,7 +557,34 @@ public sealed partial class ListItemDTO : pb::IMessage<ListItemDTO> {
         }
       }
     }
+  #endif
   }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+          break;
+        case 10: {
+          Type = input.ReadString();
+          break;
+        }
+        case 16: {
+          Position = input.ReadInt32();
+          break;
+        }
+        case 26: {
+          Url = input.ReadString();
+          break;
+        }
+      }
+    }
+  }
+  #endif
 
 }
 
