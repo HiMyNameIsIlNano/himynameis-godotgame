@@ -30,4 +30,4 @@ demo:
   definition:
     base-package: com.example.demo.domain
   migration:
-    default-output-folder: /src/main/resources/db/migration/
+    default-output-folder: backend/src/main/resources/db/migration/
