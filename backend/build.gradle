@@ -70,10 +70,13 @@ dependencies {
     // Postgres
     runtimeOnly 'org.postgresql:postgresql'
 
+    // Socket Server
+    implementation 'org.springframework.boot:spring-boot-starter-amqp'
+    testImplementation 'org.springframework.amqp:spring-rabbit-test'
+    testImplementation 'org.testcontainers:rabbitmq'
+
     // Definition Generator
     runtime group: 'com.example.demo', name: 'definition-generator', version: generatorVersion
-
-    implementation group: 'org.jsoup', name: 'jsoup', version: jsoupVersion
 
     // Test
     testCompile group: 'org.testcontainers', name: 'junit-jupiter', version: testContainersVersion

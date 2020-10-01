@@ -14,6 +14,17 @@ services:
     volumes:
       - ./init-db:/docker-entrypoint-initdb.d
       - demo-db-data:/var/lib/demo-db/data
+  demo-socket-server:
+    image: rabbitmq:3.8.9-management
+    container_name: socket-server
+    environment:
+      - RABBITMQ_DEFAULT_USER=sose-admin
+      - RABBITMQ_DEFAULT_PASS=sose-pwd
+    ports:
+      - 5672:5672
+      - 15672:15672
+    volumes:
+      - ./init-rabbitmq/rabbitmq.config:/etc/rabbitmq/rabbitmq.config:ro
   recipe-planner:
       image: demo/recipe-planner:latest
       container_name: recipe-planner
@@ -25,6 +36,7 @@ services:
       restart: unless-stopped
       depends_on:
         - demo-db
+        - demo-socket-server
       links:
         - demo-db
 volumes:

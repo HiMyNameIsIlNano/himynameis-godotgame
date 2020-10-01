@@ -23,6 +23,7 @@ config/icon="res://icon.png"
 
 DependencyInjectionContainer="*res://Scripts/GameAutoload/DependencyInjectionContainerAutoload.cs"
 UDPSocketServer="*res://Scripts/GameAutoload/UDPSocketServerAutoload.cs"
+RabbitMqMessaging="*res://Scripts/GameAutoload/RabbitMqMessagingConnection.cs"
 
 [display]
 
