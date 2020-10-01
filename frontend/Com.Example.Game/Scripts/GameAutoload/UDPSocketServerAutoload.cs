@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Com.Example.Common.Attributes;
 using Com.Example.Common.Network;
 using Com.Example.Common.Services.Protobuf;
+using Com.Example.Common.Services.Protobuf.Grpc;
 using Com.Example.Common.Services.Socket;
 using Com.Example.Demo.Protobuf.Socket;
 using Com.Example.Game.Scripts.GameStartup;

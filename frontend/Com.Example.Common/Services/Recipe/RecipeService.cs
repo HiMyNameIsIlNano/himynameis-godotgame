@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Com.Example.Common.Services.Protobuf;
+using Com.Example.Common.Services.Protobuf.Grpc;
 using Com.Example.Demo.Protobuf.Recipe;
 using Google.Protobuf.WellKnownTypes;
 using Grpc.Core;

@@ -42,7 +42,11 @@ public static partial class IngredientReflection {
 
 }
 #region Messages
-public sealed partial class IngredientListResponse : pb::IMessage<IngredientListResponse> {
+public sealed partial class IngredientListResponse : pb::IMessage<IngredientListResponse>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    , pb::IBufferMessage
+#endif
+{
   private static readonly pb::MessageParser<IngredientListResponse> _parser = new pb::MessageParser<IngredientListResponse>(() => new IngredientListResponse());
   private pb::UnknownFieldSet _unknownFields;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -120,11 +124,25 @@ public sealed partial class IngredientListResponse : pb::IMessage<IngredientList
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public void WriteTo(pb::CodedOutputStream output) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    output.WriteRawMessage(this);
+  #else
     ingredients_.WriteTo(output, _repeated_ingredients_codec);
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
+  #endif
   }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    ingredients_.WriteTo(ref output, _repeated_ingredients_codec);
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(ref output);
+    }
+  }
+  #endif
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public int CalculateSize() {
@@ -147,6 +165,9 @@ public sealed partial class IngredientListResponse : pb::IMessage<IngredientList
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public void MergeFrom(pb::CodedInputStream input) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    input.ReadRawMessage(this);
+  #else
     uint tag;
     while ((tag = input.ReadTag()) != 0) {
       switch(tag) {
@@ -159,11 +180,34 @@ public sealed partial class IngredientListResponse : pb::IMessage<IngredientList
         }
       }
     }
+  #endif
   }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+          break;
+        case 10: {
+          ingredients_.AddEntriesFrom(ref input, _repeated_ingredients_codec);
+          break;
+        }
+      }
+    }
+  }
+  #endif
 
 }
 
-public sealed partial class IngredientDTO : pb::IMessage<IngredientDTO> {
+public sealed partial class IngredientDTO : pb::IMessage<IngredientDTO>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    , pb::IBufferMessage
+#endif
+{
   private static readonly pb::MessageParser<IngredientDTO> _parser = new pb::MessageParser<IngredientDTO>(() => new IngredientDTO());
   private pb::UnknownFieldSet _unknownFields;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -256,6 +300,9 @@ public sealed partial class IngredientDTO : pb::IMessage<IngredientDTO> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public void WriteTo(pb::CodedOutputStream output) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    output.WriteRawMessage(this);
+  #else
     if (Id.Length != 0) {
       output.WriteRawTag(10);
       output.WriteString(Id);
@@ -267,7 +314,25 @@ public sealed partial class IngredientDTO : pb::IMessage<IngredientDTO> {
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
+  #endif
   }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (Id.Length != 0) {
+      output.WriteRawTag(10);
+      output.WriteString(Id);
+    }
+    if (Category != global::IngredientDTO.Types.CategoryEnum.Basic) {
+      output.WriteRawTag(16);
+      output.WriteEnum((int) Category);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(ref output);
+    }
+  }
+  #endif
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public int CalculateSize() {
@@ -300,6 +365,9 @@ public sealed partial class IngredientDTO : pb::IMessage<IngredientDTO> {
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public void MergeFrom(pb::CodedInputStream input) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    input.ReadRawMessage(this);
+  #else
     uint tag;
     while ((tag = input.ReadTag()) != 0) {
       switch(tag) {
@@ -316,7 +384,30 @@ public sealed partial class IngredientDTO : pb::IMessage<IngredientDTO> {
         }
       }
     }
+  #endif
   }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+          break;
+        case 10: {
+          Id = input.ReadString();
+          break;
+        }
+        case 16: {
+          Category = (global::IngredientDTO.Types.CategoryEnum) input.ReadEnum();
+          break;
+        }
+      }
+    }
+  }
+  #endif
 
   #region Nested types
   /// <summary>Container for nested types declared in the IngredientDTO message type.</summary>
@@ -333,7 +424,11 @@ public sealed partial class IngredientDTO : pb::IMessage<IngredientDTO> {
 
 }
 
-public sealed partial class IngredientResponse : pb::IMessage<IngredientResponse> {
+public sealed partial class IngredientResponse : pb::IMessage<IngredientResponse>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    , pb::IBufferMessage
+#endif
+{
   private static readonly pb::MessageParser<IngredientResponse> _parser = new pb::MessageParser<IngredientResponse>(() => new IngredientResponse());
   private pb::UnknownFieldSet _unknownFields;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -412,6 +507,9 @@ public sealed partial class IngredientResponse : pb::IMessage<IngredientResponse
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public void WriteTo(pb::CodedOutputStream output) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    output.WriteRawMessage(this);
+  #else
     if (ingredient_ != null) {
       output.WriteRawTag(10);
       output.WriteMessage(Ingredient);
@@ -419,7 +517,21 @@ public sealed partial class IngredientResponse : pb::IMessage<IngredientResponse
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
     }
+  #endif
   }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (ingredient_ != null) {
+      output.WriteRawTag(10);
+      output.WriteMessage(Ingredient);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(ref output);
+    }
+  }
+  #endif
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public int CalculateSize() {
@@ -449,6 +561,9 @@ public sealed partial class IngredientResponse : pb::IMessage<IngredientResponse
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public void MergeFrom(pb::CodedInputStream input) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    input.ReadRawMessage(this);
+  #else
     uint tag;
     while ((tag = input.ReadTag()) != 0) {
       switch(tag) {
@@ -464,7 +579,29 @@ public sealed partial class IngredientResponse : pb::IMessage<IngredientResponse
         }
       }
     }
+  #endif
   }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+          break;
+        case 10: {
+          if (ingredient_ == null) {
+            Ingredient = new global::IngredientDTO();
+          }
+          input.ReadMessage(Ingredient);
+          break;
+        }
+      }
+    }
+  }
+  #endif
 
 }
 
