@@ -4,6 +4,13 @@ plugins {
 
 allprojects {
     repositories {
+        maven {
+            url "${artifactoryLocalRepoUrl}"
+            credentials {
+                username = "${artifactoryUser}"
+                password = "${artifactoryPassword}"
+            }
+        }
         mavenLocal()
         jcenter()
     }

@@ -9,7 +9,7 @@ namespace Com.Example.Game.Scripts.GameAutoload
         public override void _Ready()
         {
             Console.WriteLine("Starting New SoSe");
-            AsyncCommunicationFactory.CreateQueuesAndBindToExchange();
+            AsyncCommunicationFactory.CreateQueuesAndBindToExchangeForPlayerId(54321);
         }
     }
 }
