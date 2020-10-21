@@ -1,16 +1,14 @@
 using System;
 using System.Diagnostics;
-using System.Threading.Tasks;
 using Com.Example.Common.Attributes;
 using Com.Example.Common.Network;
-using Com.Example.Common.Services.Protobuf;
+using Com.Example.Common.Services.Messageq;
 using Com.Example.Common.Services.Protobuf.Grpc;
-using Com.Example.Common.Services.Socket;
 using Com.Example.Demo.Protobuf.Socket;
 using Com.Example.Game.Scripts.GameStartup;
 using Godot;
 
-namespace Com.Example.Game.Scripts.Socket
+namespace Com.Example.Game.Scripts.GameAutoload
 {
     public class UDPSocketServerAutoload : Node
     {
@@ -20,7 +18,7 @@ namespace Com.Example.Game.Scripts.Socket
 
         [InjectedProperty] private IProtobufSerializerService ProtobufSerializerService { get; set; }
 
-        [InjectedProperty] private ISocketServerService SocketServerService { get; set; }
+        [InjectedProperty] private IMessageQueueConnectionService MessageQueueConnectionService { get; set; }
 
         [InjectedProperty] private IGrpcChannelService GrpcChannelService { get; set; }
 
@@ -32,7 +30,7 @@ namespace Com.Example.Game.Scripts.Socket
             RegisterProtobufParsers();
             SocketServerRegisterEvents();
             SocketServerStart();
-            
+
             // TODO: should this be awaited for?
             SignalBackendSocketServerConnectionPossible();
         }
@@ -63,12 +61,12 @@ namespace Com.Example.Game.Scripts.Socket
             Console.WriteLine($"Socket Server listening on port {Port}");
         }
 
-        private async Task SignalBackendSocketServerConnectionPossible()
+        private void SignalBackendSocketServerConnectionPossible()
         {
-            Task connectToServerTask = SocketServerService.ClientCanConnectToServer();
+            /*Task connectToServerTask = MessageQueueConnectionService.ConnectPlayerToMessageQueue();
             // TODO: What happens if the back end is not up at the time this request is fired. 
             await connectToServerTask.ContinueWith(ancestor =>
-                Console.WriteLine("Finish signaling the Back End that a connection to Socket Server is possible..."));
+                Console.WriteLine("Finish signaling the Back End that a connection to Socket Server is possible..."));*/
         }
 
         private void OnConnected(int id, string protocol)

@@ -5,8 +5,12 @@ namespace Com.Example.Common.Network.Grpc
 {
     public static class GrpcChannelSingleton
     {
+        private const string Address = "localhost";
+        
+        private const int Port = 6566;
+        
         private static readonly Lazy<Channel> GrpcChannel = new Lazy<Channel>(() =>
-            new Channel("127.0.0.1:6565", ChannelCredentials.Insecure));
+            new Channel($"{Address}:{Port}", ChannelCredentials.Insecure));
 
         public static Channel ChannelInstance => GrpcChannel.Value;
 

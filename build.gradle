@@ -4,13 +4,21 @@ plugins {
 
 allprojects {
     repositories {
-        maven {
-            url "${artifactoryLocalRepoUrl}"
-            credentials {
-                username = "${artifactoryUser}"
-                password = "${artifactoryPassword}"
+        boolean localArtifactoryActive = System.getenv("ENABLE_LOCAL_ARTIFACTORY") != null ? Boolean.valueOf(System.getenv("ENABLE_LOCAL_ARTIFACTORY")) : false;
+        if(localArtifactoryActive) {
+            println "> localArtifactoryActive IS active."
+
+            maven {
+                url "${artifactoryLocalRepoUrl}"
+                credentials {
+                    username = "${artifactoryUser}"
+                    password = "${artifactoryPassword}"
+                }
             }
+        } else {
+            println "> localArtifactoryActive is NOT active. Please consider running gradle with i.e. ENABLE_LOCAL_ARTIFACTORY=true ./gradlew [COMMAND]"
         }
+
         mavenLocal()
         jcenter()
     }

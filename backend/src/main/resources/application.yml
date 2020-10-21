@@ -31,9 +31,13 @@ springdoc:
     path: /demo-api
   packages-to-scan: com.example.demo.controller
 
-
 demo:
   definition:
     base-package: com.example.demo.domain
   migration:
     default-output-folder: src/main/resources/db/migration/
+  messageq:
+    address: localhost
+    port: 6566
+    exchanges:
+      push-notification: push-notification

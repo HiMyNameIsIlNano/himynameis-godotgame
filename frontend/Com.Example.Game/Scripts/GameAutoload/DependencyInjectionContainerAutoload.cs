@@ -2,7 +2,7 @@ using System;
 using Com.Example.Common.DependencyInjection;
 using Godot;
 
-namespace Com.Example.Game.Scripts.GameStartup
+namespace Com.Example.Game.Scripts.GameAutoload
 {
     public class DependencyInjectionContainerAutoload : Node
     {
