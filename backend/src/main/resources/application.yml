@@ -14,6 +14,11 @@ spring:
     sql-migration-separator: __
     sql-migration-suffixes: .sql
     baseline-on-migrate: true
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: override-in-application-local
+    password: override-in-application-local
 server:
   port: 8071
 
@@ -30,4 +35,9 @@ demo:
   definition:
     base-package: com.example.demo.domain
   migration:
-    default-output-folder: backend/src/main/resources/db/migration/
+    default-output-folder: src/main/resources/db/migration/
+  messageq:
+    address: localhost
+    port: 6566
+    exchanges:
+      push-notification: push-notification

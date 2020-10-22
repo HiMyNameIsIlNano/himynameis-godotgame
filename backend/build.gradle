@@ -1,9 +1,3 @@
-buildscript {
-    /*dependencies {
-        classpath "org.jsonschema2pojo:jsonschema2pojo-gradle-plugin:${js2pVersion}"
-    }*/
-}
-
 plugins {
     id 'org.springframework.boot' version "$springBootVersion"
     id 'io.spring.dependency-management' version "$springDependencyManagentVersion"
@@ -70,10 +64,14 @@ dependencies {
     // Postgres
     runtimeOnly 'org.postgresql:postgresql'
 
+    // Socket Server
+    implementation 'org.springframework.boot:spring-boot-starter-amqp'
+    testImplementation 'org.springframework.amqp:spring-rabbit-test'
+
     // Definition Generator
     runtime group: 'com.example.demo', name: 'definition-generator', version: generatorVersion
 
-    implementation group: 'org.jsoup', name: 'jsoup', version: jsoupVersion
+    implementation(group: 'com.example', name: 'messageq-grpc-api-schema', version: '0.0.2-SNAPSHOT')
 
     // Test
     testCompile group: 'org.testcontainers', name: 'junit-jupiter', version: testContainersVersion

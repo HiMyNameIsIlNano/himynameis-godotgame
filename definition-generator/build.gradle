@@ -4,7 +4,6 @@ apply plugin: 'maven-publish'
 
 dependencies {
     compile group: 'com.jayway.jsonpath', name: 'json-path', version: '2.4.0'
-    // compile "org.slf4j:slf4j-simple:1.7.30"
 
     compileOnly 'org.projectlombok:lombok:1.18.12'
     annotationProcessor 'org.projectlombok:lombok:1.18.12'
@@ -25,7 +24,7 @@ jar {
 publishing {
     publications {
         maven(MavenPublication) {
-            // the artifactId and version are not necessary as they are define above
+            // the artifactId and version are not necessary as they are defined above
             groupId = 'com.example.demo'
 
             from components.java
