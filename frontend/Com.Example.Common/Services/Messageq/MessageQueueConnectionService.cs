@@ -13,9 +13,10 @@ namespace Com.Example.Common.Services.Messageq
             _grpcChannelService = grpcChannelService;
         }
 
-        public CreatePlayerQueueResponse ConnectPlayerToMessageQueue(int playerId, string exchangeName, string queueName)
+        public CreatePlayerQueueResponse ConnectPlayerToMessageQueue(int playerId, string exchangeName,
+            string queueName)
         {
-            Console.WriteLine($"Connecting to Player ${playerId} to queue ${queueName}...");
+            Console.WriteLine($"Connecting Player ${playerId} to queue ${queueName}...");
 
             ManageQueueGrpcServiceClient queueGrpcClient =
                 new ManageQueueGrpcServiceClient(_grpcChannelService.OpenOrGet());
@@ -26,7 +27,7 @@ namespace Com.Example.Common.Services.Messageq
                 PlayerId = playerId,
                 QueueName = queueName
             };
-            
+
             return queueGrpcClient.ConnectPlayerToQueue(createPlayerQueueRequest);
         }
     }

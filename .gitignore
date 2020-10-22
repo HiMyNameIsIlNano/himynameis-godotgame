@@ -45,5 +45,7 @@ frontend/Com.Example.Common/obj
 frontend/Com.Example.Game/.import
 frontend/Com.Example.Game/.mono
 frontend/Com.Example.Game/packages
+frontend/Com.Example.Game/.vs
+*.user
 *.old
 
