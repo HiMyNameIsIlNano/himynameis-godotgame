@@ -1,16 +1,16 @@
 ﻿using System;
-using Com.Example.Common.Services.Protobuf.Grpc;
+using Com.Example.Common.Services.Protobuf.Grpc.Messageq;
 using static ManageQueueGrpcService;
 
 namespace Com.Example.Common.Services.Messageq
 {
     public class MessageQueueConnectionService : IMessageQueueConnectionService
     {
-        private readonly IGrpcChannelService _grpcChannelService;
+        private readonly IMessageQueueGrpcChannelService _messageQueueGrpcChannelService;
 
-        public MessageQueueConnectionService(IGrpcChannelService grpcChannelService)
+        public MessageQueueConnectionService(IMessageQueueGrpcChannelService messageQueueGrpcChannelService)
         {
-            _grpcChannelService = grpcChannelService;
+            _messageQueueGrpcChannelService = messageQueueGrpcChannelService;
         }
 
         public CreatePlayerQueueResponse ConnectPlayerToMessageQueue(int playerId, string exchangeName,
@@ -19,7 +19,7 @@ namespace Com.Example.Common.Services.Messageq
             Console.WriteLine($"Connecting Player ${playerId} to queue ${queueName}...");
 
             ManageQueueGrpcServiceClient queueGrpcClient =
-                new ManageQueueGrpcServiceClient(_grpcChannelService.OpenOrGet());
+                new ManageQueueGrpcServiceClient(_messageQueueGrpcChannelService.OpenOrGet());
 
             CreatePlayerQueueRequest createPlayerQueueRequest = new CreatePlayerQueueRequest
             {

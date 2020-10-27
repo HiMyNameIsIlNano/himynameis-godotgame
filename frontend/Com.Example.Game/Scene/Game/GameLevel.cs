@@ -1,12 +1,15 @@
 using System.Linq;
 using Com.Example.Common.Attributes;
+using Com.Example.Common.Services.Reward;
+using Com.Example.Game.Scene.Game;
 using Com.Example.Game.Scripts.GameStartup;
-using Com.Example.Game.Scripts.Test;
 using Godot;
 using Godot.Collections;
 
 public class GameLevel : Node2D
 {
+    [InjectedProperty] private IRewardService RewardService { set; get; }
+
     private Node2D goals;
 
     private int levelGoals;
@@ -14,8 +17,6 @@ public class GameLevel : Node2D
     private int stillFreeGoals;
 
     private bool gameEnd;
-
-    [InjectedProperty] private ITestService TestService { get; set; }
 
     public override void _Ready()
     {
@@ -39,7 +40,7 @@ public class GameLevel : Node2D
             return;
         }
 
-        TestService.DoTerminate();
+        RewardService.GenerateRandomEventOnLevelCleared();
         GetTree().ReloadCurrentScene();
     }
 

@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+option java_package = "com.example.demo.protobuf";
+option java_outer_classname = "PlanetServiceProto";
+
+option csharp_namespace = "Com.Example.Common.Network.Protobuf.Planet.Grpc";
+
+import "planet.proto";
+import "google/protobuf/empty.proto";
+
+service PlanetGrpcService {
+  rpc FindAll(google.protobuf.Empty) returns (PlanetResearchResponse) {}
+
+  rpc Init(PlanetInitRequest) returns (google.protobuf.Empty) {}
+
+  rpc RemoveAllPlanets(google.protobuf.Empty) returns (google.protobuf.Empty) {}
+
+  rpc RemovePlanet(PlanetRemoveRequest) returns (google.protobuf.Empty) {}
+}

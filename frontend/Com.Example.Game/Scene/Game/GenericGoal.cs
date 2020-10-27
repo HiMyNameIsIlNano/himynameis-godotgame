@@ -1,38 +1,40 @@
 using Com.Example.Common.Attributes;
-using Com.Example.Game.Scene.Game;
+using Com.Example.Common.Services.Reward;
 using Com.Example.Game.Scripts.GameStartup;
-using Com.Example.Game.Scripts.Test;
 using Godot;
 
-public class GenericGoal : Area2D
+namespace Com.Example.Game.Scene.Game
 {
-    [InjectedProperty] private ITestService TestService { get; set; }
-
-    public bool Occupied { get; private set; }
-
-    public override void _Ready()
+    public class GenericGoal : Area2D
     {
-        InjectedPropertyResolver.Resolve(this);
-    }
+        [InjectedProperty] private IRewardService RewardService { set; get; }
 
-    public void _OnGoalBodyEntered(Node node)
-    {
-        if (!node.IsInGroup(GenericBox.GetMovableBoxGroup()))
+        public bool Occupied { get; private set; }
+
+        public override void _Ready()
         {
-            return;
+            InjectedPropertyResolver.Resolve(this);
         }
 
-        TestService.DoSomething();
-        Occupied = true;
-    }
-
-    public void _OnGoalBodyExited(Node node)
-    {
-        if (!node.IsInGroup(GenericBox.GetMovableBoxGroup()))
+        public void _OnGoalBodyEntered(Node node)
         {
-            return;
+            if (!node.IsInGroup(GenericBox.GetMovableBoxGroup()))
+            {
+                return;
+            }
+
+            RewardService.GetRewardOnBoxFilled();
+            Occupied = true;
         }
 
-        Occupied = false;
+        public void _OnGoalBodyExited(Node node)
+        {
+            if (!node.IsInGroup(GenericBox.GetMovableBoxGroup()))
+            {
+                return;
+            }
+
+            Occupied = false;
+        }
     }
 }

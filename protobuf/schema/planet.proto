@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+option java_package = "com.example.demo.protobuf";
+option java_outer_classname = "PlanetProto";
+
+option csharp_namespace = "Com.Example.Common.Network.Protobuf.Planet";
+
+message PlanetResearchResponse {
+  repeated PlanetDTO planets = 1;
+}
+
+message PlanetDTO {
+  string name = 1;
+  string difficulty = 2;
+  string category = 3;
+  repeated MissionAmountDTO mission_amount = 4;
+}
+
+message MissionAmountDTO {
+  string mission_id = 1;
+  AmountDTO amount = 2;
+}
+
+message AmountDTO {
+    int32 amount = 1;
+    string unit_of_measure = 2;
+}
+
+message PlanetInitRequest {
+  int32 amount = 1;
+}
+
+message PlanetRemoveRequest {
+  string name = 1;
+}

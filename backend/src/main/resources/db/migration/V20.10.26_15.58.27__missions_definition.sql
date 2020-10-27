@@ -1,0 +1,6 @@
+DO $$
+	BEGIN
+	IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = 'missions_definition') THEN
+		CREATE TYPE missions_definition AS ENUM('CATCH_THE_DIAMOND', 'ESCAPE_THE_GIANT_SQUID', 'SAVE_THE_PUPPIES', 'PROTECT_THE_GRANNY');
+	END IF;
+ END$$;

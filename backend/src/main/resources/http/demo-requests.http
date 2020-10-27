@@ -1,5 +1,5 @@
 ### Send POST init request for 5 recipes
-POST http://localhost:8071/recipes/init
+POST http://localhost:8071/planets/init
 Content-Type: application/json
 
 {
@@ -21,6 +21,6 @@ POST http://localhost:8071/socket/close
 #}
 
 ### Send GET to retrieve all the recipes
-GET http://localhost:8071/recipes/find-all
+GET http://localhost:8071/planets/find-all
 
 ###

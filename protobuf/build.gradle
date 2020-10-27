@@ -3,12 +3,10 @@ import com.google.protobuf.gradle.GenerateProtoTask;
 buildscript {
     dependencies {
         classpath "com.google.protobuf:protobuf-gradle-plugin:$protobufGradleVersion"
-        classpath "com.google.gradle:osdetector-gradle-plugin:$osDetectorVersion"
     }
 }
 
 apply plugin: 'com.google.protobuf'
-apply plugin: 'com.google.osdetector'
 
 dependencies {
     compile group: 'com.google.protobuf', name: 'protobuf-java', version: protobufVersion
@@ -25,27 +23,7 @@ sourceSets {
     }
 }
 
-def osFamily = osdetector.os
-def osArch = 'x64'
 def configs = []
-
-def execute(cmd) {
-    def proc =  cmd.execute()
-    proc.waitFor()
-}
-
-def downloadGrpcToCsharpCompiler(String path, osFamily) {
-    def outFolder = new File(path)
-
-    if (!outFolder.exists()) {
-        outFolder.mkdirs()
-        if ("${osFamily}".contains('windows')) {
-            execute(['cmd', '/c', 'csharp-grpc-downloader.bat'])
-        } else if ("${osFamily}".contains('linux')) {
-            execute(['sh', 'csharp-grpc-downloader.sh'])
-        }
-    }
-}
 
 protobuf {
     // Download protoc from the repositories
@@ -57,32 +35,18 @@ protobuf {
         grpc_java {
             artifact = "io.grpc:protoc-gen-grpc-java:$grpcVersion"
         }
-
-        grpc_csharp {
-            def outPath = "$projectDir/generator/tools/${osFamily}_${osArch}"
-            // TODO: this is just a workaround
-            downloadGrpcToCsharpCompiler(outPath, osFamily)
-            path = ant.path {
-                fileset(dir: "$outPath", includes: 'grpc_csharp_plugin*')
-            }
-        }
     }
 
     generateProtoTasks {
         all().each { task ->
             task.plugins {
                 grpc_java {}
-                grpc_csharp {}
             }
 
             task.builtins {
-                csharp {
-                    outputSubDir = 'csharp'
-                }
                 java {
                     outputSubDir = 'java'
                 }
-                configs += csharp
                 configs += java
             }
 
@@ -96,20 +60,7 @@ protobuf {
 
 tasks.register('copyGenerated') {
     mustRunAfter 'generateProto'
-    dependsOn 'copyGeneratedCSharp'
     dependsOn 'copyGeneratedJava'
-}
-tasks.register('copyGeneratedCSharp', Sync) {
-    from "$projectDir/build/generated/main/csharp"
-    into "$rootDir/frontend/Com.Example.Common/Network/Protobuf"
-
-    from "$projectDir/build/generated/main/grpc_csharp"
-    into "$rootDir/frontend/Com.Example.Common/Network/Protobuf"
-
-    preserve {
-        // Keep (i.e. do not delete) the meta files in the destination directory
-        include '*.meta'
-    }
 }
 tasks.register('copyGeneratedJava', Sync) {
     from "$projectDir/build/generated/main/java"

@@ -1,0 +1,21 @@
+{
+  "id": "missions.base",
+  "definitions": [
+    {
+      "id": "catch_the_diamond",
+      "category": "BASIC"
+    },
+    {
+      "id": "escape_the_giant_squid",
+      "category": "BASIC"
+    },
+    {
+      "id": "save_the_puppies",
+      "category": "BASIC"
+    },
+    {
+      "id": "protect_the_granny",
+      "category": "BASIC"
+    }
+  ]
+}

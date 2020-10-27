@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+option java_package = "com.example.demo.protobuf";
+option java_outer_classname = "MissionProto";
+
+option csharp_namespace = "Com.Example.Common.Network.Protobuf.Mission";
+
+message MissionListResponse {
+  repeated MissionDTO missions = 1;
+}
+
+message MissionDTO {
+  string id = 1;
+  CategoryEnum category = 2;
+
+  enum CategoryEnum {
+    BASIC = 0;
+    SPICE = 1;
+    MEAT = 2;
+  }
+}
+
+message MissionResponse {
+  MissionDTO mission = 1;
+}
+
+message RewardResponse {
+  string description = 1;
+}

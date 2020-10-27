@@ -1,15 +1,16 @@
 package com.example.demo.network;
 
+import com.example.demo.grpc.GrpcChannelService;
 import com.messageq.config.ExchangeCreationRequest;
 import com.messageq.config.ExchangeCreationResponse;
 import com.messageq.config.ManageQueueGrpcServiceGrpc;
 import com.messageq.config.ManageQueueGrpcServiceGrpc.ManageQueueGrpcServiceBlockingStub;
 import com.messageq.config.ManageQueueGrpcServiceGrpc.ManageQueueGrpcServiceStub;
 import io.grpc.Channel;
-import io.grpc.ManagedChannelBuilder;
 import io.grpc.StatusRuntimeException;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -20,11 +21,8 @@ import javax.annotation.PostConstruct;
 @Slf4j
 public class MessageQueueStartupService {
 
-    @Value("${demo.messageq.address:localhost}")
-    private String host;
-
-    @Value("${demo.messageq.port:6565}")
-    private int port;
+    @Autowired
+    private GrpcChannelService grpcChannelService;
 
     @Value("${demo.messageq.exchanges.push-notification}")
     private String pushNotificationExchangeName;
@@ -40,8 +38,7 @@ public class MessageQueueStartupService {
 
     @PostConstruct
     private void initChannelAndStub() {
-        ManagedChannelBuilder<?> channelBuilder = ManagedChannelBuilder.forAddress(host, port).usePlaintext();
-        Channel channel = channelBuilder.build();
+        Channel channel = grpcChannelService.getChannel();
         this.blockingStub = ManageQueueGrpcServiceGrpc.newBlockingStub(channel);
         this.asyncStub = ManageQueueGrpcServiceGrpc.newStub(channel);
     }

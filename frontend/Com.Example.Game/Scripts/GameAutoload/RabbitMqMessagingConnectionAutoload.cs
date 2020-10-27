@@ -1,8 +1,8 @@
 using System;
 using Com.Example.Common.Attributes;
 using Com.Example.Common.Network;
+using Com.Example.Common.Network.Protobuf.Mission;
 using Com.Example.Common.Services.Messageq;
-using Com.Example.Demo.Protobuf.Socket;
 using Com.Example.Game.Scripts.GameStartup;
 using Godot;
 
@@ -36,7 +36,7 @@ namespace Com.Example.Game.Scripts.GameAutoload
         // TODO: this needs to be moved somewhere else
         private void RegisterProtobufParsers()
         {
-            ProtobufSerializerService.RegisterSerializer(typeof(SocketPushMessage), SocketPushMessage.Parser);
+            ProtobufSerializerService.RegisterSerializer(typeof(RewardResponse), RewardResponse.Parser);
         }
     }
 }

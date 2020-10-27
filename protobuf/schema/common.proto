@@ -3,6 +3,8 @@ syntax = "proto3";
 option java_package = "com.example.demo.protobuf";
 option java_outer_classname = "CommonProto";
 
+option csharp_namespace = "Com.Example.Common.Network.Protobuf.Common";
+
 message EmptyResponse {
 
 }
