@@ -446,9 +446,10 @@ public final class CommonProto {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\014common.proto\"\017\n\rEmptyResponseB(\n\031com.e" +
-      "xample.demo.protobufB\013CommonProtob\006proto" +
-      "3"
+      "\n\014common.proto\"\017\n\rEmptyResponseBU\n\031com.e" +
+      "xample.demo.protobufB\013CommonProto\252\002*Com." +
+      "Example.Common.Network.Protobuf.Commonb\006" +
+      "proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

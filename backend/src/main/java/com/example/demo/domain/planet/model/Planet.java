@@ -1,8 +1,8 @@
 package com.example.demo.domain.planet.model;
 
 import com.example.demo.common.model.BaseEntity;
-import com.example.demo.domain.planet.definition.PlanetEnum;
 import com.example.demo.domain.planet.definition.DifficultyEnum;
+import com.example.demo.domain.planet.definition.PlanetEnum;
 import com.example.demo.domain.planet.mission.model.Mission;
 import java.util.List;
 import javax.persistence.*;

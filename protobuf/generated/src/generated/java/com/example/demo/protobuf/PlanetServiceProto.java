@@ -31,8 +31,10 @@ public final class PlanetServiceProto {
       "mpty\"\000\022D\n\020RemoveAllPlanets\022\026.google.prot" +
       "obuf.Empty\032\026.google.protobuf.Empty\"\000\022>\n\014" +
       "RemovePlanet\022\024.PlanetRemoveRequest\032\026.goo" +
-      "gle.protobuf.Empty\"\000B/\n\031com.example.demo" +
-      ".protobufB\022PlanetServiceProtob\006proto3"
+      "gle.protobuf.Empty\"\000Ba\n\031com.example.demo" +
+      ".protobufB\022PlanetServiceProto\252\002/Com.Exam" +
+      "ple.Common.Network.Protobuf.Planet.Grpcb" +
+      "\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

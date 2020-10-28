@@ -23,7 +23,3 @@ message MissionDTO {
 message MissionResponse {
   MissionDTO mission = 1;
 }
-
-message RewardResponse {
-  string description = 1;
-}

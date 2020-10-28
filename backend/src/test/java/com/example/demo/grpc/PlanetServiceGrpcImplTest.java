@@ -9,10 +9,11 @@ import com.example.demo.BaseGrpcIntegrationTest;
 import com.example.demo.domain.planet.PlanetService;
 import com.example.demo.grpc.planet.DeleteAllEvent;
 import com.example.demo.grpc.planet.DeleteOneEvent;
-import com.example.demo.protobuf.RecipeGrpcServiceGrpc.RecipeGrpcServiceBlockingStub;
-import com.example.demo.protobuf.RecipeProto.RecipeDTO;
-import com.example.demo.protobuf.RecipeProto.RecipeRemoveRequest;
-import com.example.demo.protobuf.RecipeProto.RecipeResearchResponse;
+import com.example.demo.protobuf.PlanetGrpcServiceGrpc.PlanetGrpcServiceBlockingStub;
+import com.example.demo.protobuf.PlanetProto;
+import com.example.demo.protobuf.PlanetProto.PlanetDTO;
+import com.example.demo.protobuf.PlanetProto.PlanetRemoveRequest;
+import com.example.demo.protobuf.PlanetProto.PlanetResearchResponse;
 import com.google.protobuf.Empty;
 import net.devh.boot.grpc.client.inject.GrpcClient;
 import org.junit.Assert;
@@ -27,50 +28,50 @@ import org.springframework.transaction.event.TransactionalEventListener;
 
 class PlanetServiceGrpcImplTest extends BaseGrpcIntegrationTest {
 
-    private static final int RECIPE_AMOUNT = 1;
+    private static final int PLANET_AMOUNT = 1;
 
     @Autowired private PlanetService planetService;
 
-    @MockBean private RecipeEventListenerMock consumer;
+    @MockBean private PlanetEventListenerMock consumer;
 
     @GrpcClient("inProcess")
-    private RecipeGrpcServiceBlockingStub recipeServiceBlockingStub;
+    private PlanetGrpcServiceBlockingStub planetServiceBlockingStub;
 
     @BeforeEach
     public void init() {
-        planetService.initRecipes(RECIPE_AMOUNT);
+        planetService.initPlanets(PLANET_AMOUNT);
     }
 
     @AfterEach
     public void clean() {
-        planetService.removeAllRecipes();
-        await().until(() -> planetService.findRecipes().isEmpty());
+        planetService.removeAllPlanets();
+        await().until(() -> planetService.findAllPlanets().isEmpty());
     }
 
     @Test
-    public void getAllRecipes() {
-        RecipeResearchResponse recipeResearchResponse =
-                recipeServiceBlockingStub.findAll(Empty.newBuilder().build());
-        Assert.assertNotNull(recipeResearchResponse);
-        Assert.assertEquals(RECIPE_AMOUNT, recipeResearchResponse.getRecipesCount());
+    public void getAllPlanets() {
+        PlanetResearchResponse planetResearchResponse =
+                planetServiceBlockingStub.findAll(Empty.newBuilder().build());
+        Assert.assertNotNull(planetResearchResponse);
+        Assert.assertEquals(PLANET_AMOUNT, planetResearchResponse.getPlanetsCount());
     }
 
     @Test
-    public void deleteAllRecipes() {
-        RecipeResearchResponse recipeResearchResponse =
-                recipeServiceBlockingStub.findAll(Empty.newBuilder().build());
-        Assert.assertNotNull(recipeResearchResponse);
-        Assert.assertEquals(RECIPE_AMOUNT, recipeResearchResponse.getRecipesCount());
+    public void deleteAllPlanets() {
+        PlanetResearchResponse planetResearchResponse =
+                planetServiceBlockingStub.findAll(Empty.newBuilder().build());
+        Assert.assertNotNull(planetResearchResponse);
+        Assert.assertEquals(PLANET_AMOUNT, planetResearchResponse.getPlanetsCount());
 
         Empty emptyRequest = Empty.newBuilder().build();
-        recipeServiceBlockingStub.removeAllRecipes(emptyRequest);
+        planetServiceBlockingStub.removeAllPlanets(emptyRequest);
 
         waitForDeleteAllEventBeforeContinuing();
 
-        RecipeResearchResponse afterDeletionResearchResponse =
-                recipeServiceBlockingStub.findAll(emptyRequest);
+        PlanetResearchResponse afterDeletionResearchResponse =
+                planetServiceBlockingStub.findAll(emptyRequest);
         Assert.assertNotNull(afterDeletionResearchResponse);
-        Assert.assertEquals(0, afterDeletionResearchResponse.getRecipesCount());
+        Assert.assertEquals(0, afterDeletionResearchResponse.getPlanetsCount());
     }
 
     private void waitForDeleteAllEventBeforeContinuing() {
@@ -79,19 +80,19 @@ class PlanetServiceGrpcImplTest extends BaseGrpcIntegrationTest {
     }
 
     @Test
-    public void deleteOneRecipe() {
+    public void deleteOnePlanet() {
         Empty request = Empty.newBuilder().build();
-        RecipeDTO recipe = recipeServiceBlockingStub.findAll(request).getRecipes(0);
+        PlanetDTO Planet = planetServiceBlockingStub.findAll(request).getPlanets(0);
 
-        RecipeRemoveRequest recipeRemoveRequest =
-                RecipeRemoveRequest.newBuilder().setName(recipe.getName()).build();
-        recipeServiceBlockingStub.removeRecipe(recipeRemoveRequest);
+        PlanetRemoveRequest planetRemoveRequest =
+                PlanetProto.PlanetRemoveRequest.newBuilder().setName(Planet.getName()).build();
+        planetServiceBlockingStub.removePlanet(planetRemoveRequest);
 
         waitForDeleteOneEventBeforeContinuing();
 
-        RecipeResearchResponse recipeResearchResponse = recipeServiceBlockingStub.findAll(request);
-        Assert.assertNotNull(recipeResearchResponse);
-        Assert.assertEquals(RECIPE_AMOUNT - 1, recipeResearchResponse.getRecipesCount());
+        PlanetResearchResponse planetResearchResponse = planetServiceBlockingStub.findAll(request);
+        Assert.assertNotNull(planetResearchResponse);
+        Assert.assertEquals(PLANET_AMOUNT - 1, planetResearchResponse.getPlanetsCount());
     }
 
     private void waitForDeleteOneEventBeforeContinuing() {
@@ -100,7 +101,7 @@ class PlanetServiceGrpcImplTest extends BaseGrpcIntegrationTest {
     }
 
     @TestComponent
-    private static class RecipeEventListenerMock {
+    private static class PlanetEventListenerMock {
 
         @TransactionalEventListener
         public void listenToDeleteAll(DeleteAllEvent deleteAllEvent) {}

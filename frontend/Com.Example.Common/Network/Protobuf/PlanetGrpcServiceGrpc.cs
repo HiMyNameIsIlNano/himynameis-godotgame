@@ -81,32 +81,6 @@ namespace Com.Example.Common.Network.Protobuf.Planet.Grpc {
       get { return global::Com.Example.Common.Network.Protobuf.Planet.Grpc.PlanetGrpcServiceReflection.Descriptor.Services[0]; }
     }
 
-    /// <summary>Base class for server-side implementations of PlanetGrpcService</summary>
-    [grpc::BindServiceMethod(typeof(PlanetGrpcService), "BindService")]
-    public abstract partial class PlanetGrpcServiceBase
-    {
-      public virtual global::System.Threading.Tasks.Task<global::Com.Example.Common.Network.Protobuf.Planet.PlanetResearchResponse> FindAll(global::Google.Protobuf.WellKnownTypes.Empty request, grpc::ServerCallContext context)
-      {
-        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
-      }
-
-      public virtual global::System.Threading.Tasks.Task<global::Google.Protobuf.WellKnownTypes.Empty> Init(global::Com.Example.Common.Network.Protobuf.Planet.PlanetInitRequest request, grpc::ServerCallContext context)
-      {
-        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
-      }
-
-      public virtual global::System.Threading.Tasks.Task<global::Google.Protobuf.WellKnownTypes.Empty> RemoveAllPlanets(global::Google.Protobuf.WellKnownTypes.Empty request, grpc::ServerCallContext context)
-      {
-        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
-      }
-
-      public virtual global::System.Threading.Tasks.Task<global::Google.Protobuf.WellKnownTypes.Empty> RemovePlanet(global::Com.Example.Common.Network.Protobuf.Planet.PlanetRemoveRequest request, grpc::ServerCallContext context)
-      {
-        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
-      }
-
-    }
-
     /// <summary>Client for PlanetGrpcService</summary>
     public partial class PlanetGrpcServiceClient : grpc::ClientBase<PlanetGrpcServiceClient>
     {
@@ -199,29 +173,6 @@ namespace Com.Example.Common.Network.Protobuf.Planet.Grpc {
       {
         return new PlanetGrpcServiceClient(configuration);
       }
-    }
-
-    /// <summary>Creates service definition that can be registered with a server</summary>
-    /// <param name="serviceImpl">An object implementing the server-side handling logic.</param>
-    public static grpc::ServerServiceDefinition BindService(PlanetGrpcServiceBase serviceImpl)
-    {
-      return grpc::ServerServiceDefinition.CreateBuilder()
-          .AddMethod(__Method_FindAll, serviceImpl.FindAll)
-          .AddMethod(__Method_Init, serviceImpl.Init)
-          .AddMethod(__Method_RemoveAllPlanets, serviceImpl.RemoveAllPlanets)
-          .AddMethod(__Method_RemovePlanet, serviceImpl.RemovePlanet).Build();
-    }
-
-    /// <summary>Register service method with a service binder with or without implementation. Useful when customizing the  service binding logic.
-    /// Note: this method is part of an experimental API that can change or be removed without any prior notice.</summary>
-    /// <param name="serviceBinder">Service methods will be bound by calling <c>AddMethod</c> on this object.</param>
-    /// <param name="serviceImpl">An object implementing the server-side handling logic.</param>
-    public static void BindService(grpc::ServiceBinderBase serviceBinder, PlanetGrpcServiceBase serviceImpl)
-    {
-      serviceBinder.AddMethod(__Method_FindAll, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Google.Protobuf.WellKnownTypes.Empty, global::Com.Example.Common.Network.Protobuf.Planet.PlanetResearchResponse>(serviceImpl.FindAll));
-      serviceBinder.AddMethod(__Method_Init, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Com.Example.Common.Network.Protobuf.Planet.PlanetInitRequest, global::Google.Protobuf.WellKnownTypes.Empty>(serviceImpl.Init));
-      serviceBinder.AddMethod(__Method_RemoveAllPlanets, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Google.Protobuf.WellKnownTypes.Empty, global::Google.Protobuf.WellKnownTypes.Empty>(serviceImpl.RemoveAllPlanets));
-      serviceBinder.AddMethod(__Method_RemovePlanet, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Com.Example.Common.Network.Protobuf.Planet.PlanetRemoveRequest, global::Google.Protobuf.WellKnownTypes.Empty>(serviceImpl.RemovePlanet));
     }
 
   }

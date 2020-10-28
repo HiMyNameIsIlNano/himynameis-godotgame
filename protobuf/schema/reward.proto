@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+option java_package = "com.example.demo.protobuf";
+option java_outer_classname = "RewardProto";
+
+option csharp_namespace = "Com.Example.Common.Network.Protobuf.Reward";
+
+message RewardRequest {
+  repeated RewardDTO rewards = 1;
+}
+
+message RewardResponse {
+  repeated RewardDTO rewards = 1;
+}
+
+message RewardDTO {
+  string reward_id = 1;
+  int32 amount = 2;
+}

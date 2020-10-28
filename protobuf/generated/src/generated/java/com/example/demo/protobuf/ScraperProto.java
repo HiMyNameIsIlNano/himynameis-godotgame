@@ -2059,8 +2059,9 @@ public final class ScraperProto {
       "_element\030\003 \003(\0132\014.ListItemDTO\022\027\n\017number_o" +
       "f_items\030\004 \001(\005\022\023\n\013total_pages\030\005 \001(\005\":\n\013Li" +
       "stItemDTO\022\014\n\004type\030\001 \001(\t\022\020\n\010position\030\002 \001(" +
-      "\005\022\013\n\003url\030\003 \001(\tB)\n\031com.example.demo.proto" +
-      "bufB\014ScraperProtob\006proto3"
+      "\005\022\013\n\003url\030\003 \001(\tBW\n\031com.example.demo.proto" +
+      "bufB\014ScraperProto\252\002+Com.Example.Common.N" +
+      "etwork.Protobuf.Scraperb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

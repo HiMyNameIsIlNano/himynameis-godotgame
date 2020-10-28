@@ -4563,9 +4563,9 @@ public final class PlanetProto {
       "ntDTO\"4\n\tAmountDTO\022\016\n\006amount\030\001 \001(\005\022\027\n\017un" +
       "it_of_measure\030\002 \001(\t\"#\n\021PlanetInitRequest" +
       "\022\016\n\006amount\030\001 \001(\005\"#\n\023PlanetRemoveRequest\022" +
-      "\014\n\004name\030\001 \001(\tBK\n\031com.example.demo.protob" +
-      "ufB\013PlanetProto\252\002 Com.Example.Demo.Proto" +
-      "buf.Planetb\006proto3"
+      "\014\n\004name\030\001 \001(\tBU\n\031com.example.demo.protob" +
+      "ufB\013PlanetProto\252\002*Com.Example.Common.Net" +
+      "work.Protobuf.Planetb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

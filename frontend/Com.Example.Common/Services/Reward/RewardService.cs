@@ -7,6 +7,7 @@ namespace Com.Example.Common.Services.Reward
     {
         public RewardResponse GetRewardOnBoxFilled()
         {
+            
             throw new NotImplementedException();
         }
 

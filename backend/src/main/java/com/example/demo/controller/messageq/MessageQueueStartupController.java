@@ -17,5 +17,4 @@ public class MessageQueueStartupController {
     public void connect() {
         messageQueueStartupService.buildMessagePushQueueExchange();
     }
-
 }

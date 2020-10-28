@@ -7,13 +7,12 @@ import com.example.demo.domain.planet.definition.UnitOfMeasureEnum;
 import com.example.demo.domain.planet.mission.model.Mission;
 import com.example.demo.domain.planet.mission.model.MissionDefinitionEnum;
 import com.example.demo.domain.planet.model.Planet;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.ThreadLocalRandom;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
 @Service
@@ -21,20 +20,17 @@ public class PlanetService {
 
     private final PlanetRepository planetRepository;
 
-    public void initRecipes(int amount) {
+    public void initPlanets(int amount) {
         while (amount > 0) {
-            mockAndPersistRecipe(amount);
+            mockAndPersistPlanet(amount);
             amount--;
         }
     }
 
-    private void mockAndPersistRecipe(int index) {
+    private void mockAndPersistPlanet(int index) {
         Planet planet =
                 new Planet(
-                        "Planet_" + index,
-                        DifficultyEnum.EASY,
-                        PlanetEnum.EARTH,
-                        mockMissions());
+                        "Planet_" + index, DifficultyEnum.EASY, PlanetEnum.EARTH, mockMissions());
 
         planetRepository.save(planet);
     }
@@ -53,20 +49,20 @@ public class PlanetService {
         return new Mission(MissionDefinitionEnum.ESCAPE_THE_GIANT_SQUID, amount);
     }
 
-    public List<Planet> findRecipes() {
+    public List<Planet> findAllPlanets() {
         return planetRepository.findAll();
     }
 
-    public void removeAllRecipes() {
+    public void removeAllPlanets() {
         planetRepository.deleteAll();
     }
 
-    public void removeRecipe(String name) {
-        Optional<Planet> recipe = planetRepository.findByName(name);
-        if (recipe.isEmpty()) {
+    public void removePlanet(String name) {
+        Optional<Planet> planet = planetRepository.findByName(name);
+        if (planet.isEmpty()) {
             return;
         }
 
-        planetRepository.delete(recipe.get());
+        planetRepository.delete(planet.get());
     }
 }

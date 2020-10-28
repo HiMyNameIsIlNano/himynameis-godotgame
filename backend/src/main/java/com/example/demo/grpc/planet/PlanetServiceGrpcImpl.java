@@ -1,10 +1,10 @@
 package com.example.demo.grpc.planet;
 
 import com.example.demo.domain.planet.PlanetService;
-import com.example.demo.protobuf.RecipeGrpcServiceGrpc;
-import com.example.demo.protobuf.RecipeProto.RecipeInitRequest;
-import com.example.demo.protobuf.RecipeProto.RecipeRemoveRequest;
-import com.example.demo.protobuf.RecipeProto.RecipeResearchResponse;
+import com.example.demo.protobuf.PlanetGrpcServiceGrpc;
+import com.example.demo.protobuf.PlanetProto.PlanetInitRequest;
+import com.example.demo.protobuf.PlanetProto.PlanetRemoveRequest;
+import com.example.demo.protobuf.PlanetProto.PlanetResearchResponse;
 import com.example.demo.protobuf.recipe.PlanetResponseFactory;
 import com.google.protobuf.Empty;
 import io.grpc.Status;
@@ -19,7 +19,7 @@ import org.springframework.context.ApplicationEventPublisher;
 @RequiredArgsConstructor
 @Transactional
 @Slf4j
-public class RecipeServiceGrpcImpl extends RecipeGrpcServiceGrpc.RecipeGrpcServiceImplBase {
+public class PlanetServiceGrpcImpl extends PlanetGrpcServiceGrpc.PlanetGrpcServiceImplBase {
 
     private final PlanetService planetService;
 
@@ -28,9 +28,9 @@ public class RecipeServiceGrpcImpl extends RecipeGrpcServiceGrpc.RecipeGrpcServi
     private final ApplicationEventPublisher applicationEventPublisher;
 
     @Override
-    public void init(RecipeInitRequest request, StreamObserver<Empty> responseObserver) {
+    public void init(PlanetInitRequest request, StreamObserver<Empty> responseObserver) {
         try {
-            planetService.initRecipes(request.getAmount());
+            planetService.initPlanets(request.getAmount());
         } catch (Exception e) {
             responseObserver.onError(Status.ABORTED.asRuntimeException());
         }
@@ -43,19 +43,19 @@ public class RecipeServiceGrpcImpl extends RecipeGrpcServiceGrpc.RecipeGrpcServi
 
     @Override
     @Transactional
-    public void findAll(Empty request, StreamObserver<RecipeResearchResponse> responseObserver) {
-        RecipeResearchResponse recipeResearchResponse =
-                planetResponseFactory.toRecipeResponse(planetService.findRecipes());
+    public void findAll(Empty request, StreamObserver<PlanetResearchResponse> responseObserver) {
+        PlanetResearchResponse PlanetResearchResponse =
+                planetResponseFactory.toPlanetResponse(planetService.findAllPlanets());
 
-        responseObserver.onNext(recipeResearchResponse);
+        responseObserver.onNext(PlanetResearchResponse);
         responseObserver.onCompleted();
     }
 
     @Override
     @Transactional
-    public void removeAllRecipes(Empty request, StreamObserver<Empty> responseObserver) {
+    public void removeAllPlanets(Empty request, StreamObserver<Empty> responseObserver) {
         try {
-            planetService.removeAllRecipes();
+            planetService.removeAllPlanets();
         } catch (Exception e) {
             responseObserver.onError(Status.ABORTED.asRuntimeException());
         }
@@ -67,9 +67,9 @@ public class RecipeServiceGrpcImpl extends RecipeGrpcServiceGrpc.RecipeGrpcServi
     }
 
     @Override
-    public void removeRecipe(RecipeRemoveRequest request, StreamObserver<Empty> responseObserver) {
+    public void removePlanet(PlanetRemoveRequest request, StreamObserver<Empty> responseObserver) {
         try {
-            planetService.removeRecipe(request.getName());
+            planetService.removePlanet(request.getName());
         } catch (Exception e) {
             responseObserver.onError(Status.ABORTED.asRuntimeException());
         }
