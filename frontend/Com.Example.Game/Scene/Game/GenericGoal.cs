@@ -2,6 +2,7 @@ using Com.Example.Common.Attributes;
 using Com.Example.Common.Services.Reward;
 using Com.Example.Game.Scripts.GameStartup;
 using Godot;
+using static Com.Example.Common.Network.Protobuf.Reward.RewardRequest.Types;
 
 namespace Com.Example.Game.Scene.Game
 {
@@ -23,7 +24,7 @@ namespace Com.Example.Game.Scene.Game
                 return;
             }
 
-            RewardService.GetRewardOnBoxFilled();
+            RewardService.GetRewardOnBoxFilled(1, BoxType.Blue);
             Occupied = true;
         }
 

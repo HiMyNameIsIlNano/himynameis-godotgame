@@ -7,7 +7,7 @@ option csharp_namespace = "Com.Example.Common.Network.Protobuf.Reward.Grpc";
 
 import "reward.proto";
 
-service RewardServiceGrpc {
+service RewardService {
   rpc GetRewardsOnGoal(RewardRequest) returns (RewardResponse);
   rpc GetRewardsOnLevelCleared(RewardRequest) returns (RewardResponse);
 }

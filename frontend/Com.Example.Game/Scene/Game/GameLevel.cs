@@ -40,7 +40,7 @@ public class GameLevel : Node2D
             return;
         }
 
-        RewardService.GenerateRandomEventOnLevelCleared();
+        RewardService.GenerateRandomEventOnLevelCleared(1);
         GetTree().ReloadCurrentScene();
     }
 

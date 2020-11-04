@@ -22,7 +22,7 @@ namespace Com.Example.Game.Scripts.GameAutoload
             CreateQueuesAndBindToExchangeForPlayerId(54321);
         }
 
-        public void CreateQueuesAndBindToExchangeForPlayerId(int playerId)
+        private void CreateQueuesAndBindToExchangeForPlayerId(int playerId)
         {
             string queueName = $"{playerId}.{FrontEndNotificationQueueName}";
             MessageQueueConnectionService.ConnectPlayerToMessageQueue(playerId, MessageQueueExchangeName, queueName);

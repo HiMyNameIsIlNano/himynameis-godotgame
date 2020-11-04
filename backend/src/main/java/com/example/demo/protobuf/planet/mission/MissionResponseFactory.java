@@ -1,4 +1,4 @@
-package com.example.demo.protobuf.recipe.ingredient;
+package com.example.demo.protobuf.planet.mission;
 
 import com.example.demo.domain.planet.mission.definition.MissionDefinition;
 import com.example.demo.protobuf.MissionProto.MissionDTO;

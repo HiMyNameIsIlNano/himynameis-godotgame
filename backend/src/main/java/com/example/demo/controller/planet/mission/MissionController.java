@@ -3,7 +3,7 @@ package com.example.demo.controller.planet.mission;
 import com.example.demo.domain.planet.mission.MissionDefinitionLoader;
 import com.example.demo.protobuf.MissionProto.MissionListResponse;
 import com.example.demo.protobuf.MissionProto.MissionResponse;
-import com.example.demo.protobuf.recipe.ingredient.MissionResponseFactory;
+import com.example.demo.protobuf.planet.mission.MissionResponseFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

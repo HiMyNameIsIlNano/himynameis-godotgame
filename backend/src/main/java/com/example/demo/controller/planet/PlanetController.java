@@ -5,7 +5,7 @@ import com.example.demo.domain.planet.model.Planet;
 import com.example.demo.protobuf.PlanetProto.PlanetInitRequest;
 import com.example.demo.protobuf.PlanetProto.PlanetRemoveRequest;
 import com.example.demo.protobuf.PlanetProto.PlanetResearchResponse;
-import com.example.demo.protobuf.recipe.PlanetResponseFactory;
+import com.example.demo.protobuf.planet.PlanetResponseFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

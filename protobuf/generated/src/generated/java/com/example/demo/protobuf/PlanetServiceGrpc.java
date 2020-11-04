@@ -20,11 +20,11 @@ import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
 @javax.annotation.Generated(
     value = "by gRPC proto compiler (version 1.32.1)",
     comments = "Source: planetGrpcService.proto")
-public final class PlanetGrpcServiceGrpc {
+public final class PlanetServiceGrpc {
 
-  private PlanetGrpcServiceGrpc() {}
+  private PlanetServiceGrpc() {}
 
-  public static final String SERVICE_NAME = "PlanetGrpcService";
+  public static final String SERVICE_NAME = "PlanetService";
 
   // Static method descriptors that strictly reflect the proto.
   private static volatile io.grpc.MethodDescriptor<com.google.protobuf.Empty,
@@ -38,10 +38,10 @@ public final class PlanetGrpcServiceGrpc {
   public static io.grpc.MethodDescriptor<com.google.protobuf.Empty,
       com.example.demo.protobuf.PlanetProto.PlanetResearchResponse> getFindAllMethod() {
     io.grpc.MethodDescriptor<com.google.protobuf.Empty, com.example.demo.protobuf.PlanetProto.PlanetResearchResponse> getFindAllMethod;
-    if ((getFindAllMethod = PlanetGrpcServiceGrpc.getFindAllMethod) == null) {
-      synchronized (PlanetGrpcServiceGrpc.class) {
-        if ((getFindAllMethod = PlanetGrpcServiceGrpc.getFindAllMethod) == null) {
-          PlanetGrpcServiceGrpc.getFindAllMethod = getFindAllMethod =
+    if ((getFindAllMethod = PlanetServiceGrpc.getFindAllMethod) == null) {
+      synchronized (PlanetServiceGrpc.class) {
+        if ((getFindAllMethod = PlanetServiceGrpc.getFindAllMethod) == null) {
+          PlanetServiceGrpc.getFindAllMethod = getFindAllMethod =
               io.grpc.MethodDescriptor.<com.google.protobuf.Empty, com.example.demo.protobuf.PlanetProto.PlanetResearchResponse>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "FindAll"))
@@ -50,7 +50,7 @@ public final class PlanetGrpcServiceGrpc {
                   com.google.protobuf.Empty.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   com.example.demo.protobuf.PlanetProto.PlanetResearchResponse.getDefaultInstance()))
-              .setSchemaDescriptor(new PlanetGrpcServiceMethodDescriptorSupplier("FindAll"))
+              .setSchemaDescriptor(new PlanetServiceMethodDescriptorSupplier("FindAll"))
               .build();
         }
       }
@@ -69,10 +69,10 @@ public final class PlanetGrpcServiceGrpc {
   public static io.grpc.MethodDescriptor<com.example.demo.protobuf.PlanetProto.PlanetInitRequest,
       com.google.protobuf.Empty> getInitMethod() {
     io.grpc.MethodDescriptor<com.example.demo.protobuf.PlanetProto.PlanetInitRequest, com.google.protobuf.Empty> getInitMethod;
-    if ((getInitMethod = PlanetGrpcServiceGrpc.getInitMethod) == null) {
-      synchronized (PlanetGrpcServiceGrpc.class) {
-        if ((getInitMethod = PlanetGrpcServiceGrpc.getInitMethod) == null) {
-          PlanetGrpcServiceGrpc.getInitMethod = getInitMethod =
+    if ((getInitMethod = PlanetServiceGrpc.getInitMethod) == null) {
+      synchronized (PlanetServiceGrpc.class) {
+        if ((getInitMethod = PlanetServiceGrpc.getInitMethod) == null) {
+          PlanetServiceGrpc.getInitMethod = getInitMethod =
               io.grpc.MethodDescriptor.<com.example.demo.protobuf.PlanetProto.PlanetInitRequest, com.google.protobuf.Empty>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "Init"))
@@ -81,7 +81,7 @@ public final class PlanetGrpcServiceGrpc {
                   com.example.demo.protobuf.PlanetProto.PlanetInitRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   com.google.protobuf.Empty.getDefaultInstance()))
-              .setSchemaDescriptor(new PlanetGrpcServiceMethodDescriptorSupplier("Init"))
+              .setSchemaDescriptor(new PlanetServiceMethodDescriptorSupplier("Init"))
               .build();
         }
       }
@@ -100,10 +100,10 @@ public final class PlanetGrpcServiceGrpc {
   public static io.grpc.MethodDescriptor<com.google.protobuf.Empty,
       com.google.protobuf.Empty> getRemoveAllPlanetsMethod() {
     io.grpc.MethodDescriptor<com.google.protobuf.Empty, com.google.protobuf.Empty> getRemoveAllPlanetsMethod;
-    if ((getRemoveAllPlanetsMethod = PlanetGrpcServiceGrpc.getRemoveAllPlanetsMethod) == null) {
-      synchronized (PlanetGrpcServiceGrpc.class) {
-        if ((getRemoveAllPlanetsMethod = PlanetGrpcServiceGrpc.getRemoveAllPlanetsMethod) == null) {
-          PlanetGrpcServiceGrpc.getRemoveAllPlanetsMethod = getRemoveAllPlanetsMethod =
+    if ((getRemoveAllPlanetsMethod = PlanetServiceGrpc.getRemoveAllPlanetsMethod) == null) {
+      synchronized (PlanetServiceGrpc.class) {
+        if ((getRemoveAllPlanetsMethod = PlanetServiceGrpc.getRemoveAllPlanetsMethod) == null) {
+          PlanetServiceGrpc.getRemoveAllPlanetsMethod = getRemoveAllPlanetsMethod =
               io.grpc.MethodDescriptor.<com.google.protobuf.Empty, com.google.protobuf.Empty>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "RemoveAllPlanets"))
@@ -112,7 +112,7 @@ public final class PlanetGrpcServiceGrpc {
                   com.google.protobuf.Empty.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   com.google.protobuf.Empty.getDefaultInstance()))
-              .setSchemaDescriptor(new PlanetGrpcServiceMethodDescriptorSupplier("RemoveAllPlanets"))
+              .setSchemaDescriptor(new PlanetServiceMethodDescriptorSupplier("RemoveAllPlanets"))
               .build();
         }
       }
@@ -131,10 +131,10 @@ public final class PlanetGrpcServiceGrpc {
   public static io.grpc.MethodDescriptor<com.example.demo.protobuf.PlanetProto.PlanetRemoveRequest,
       com.google.protobuf.Empty> getRemovePlanetMethod() {
     io.grpc.MethodDescriptor<com.example.demo.protobuf.PlanetProto.PlanetRemoveRequest, com.google.protobuf.Empty> getRemovePlanetMethod;
-    if ((getRemovePlanetMethod = PlanetGrpcServiceGrpc.getRemovePlanetMethod) == null) {
-      synchronized (PlanetGrpcServiceGrpc.class) {
-        if ((getRemovePlanetMethod = PlanetGrpcServiceGrpc.getRemovePlanetMethod) == null) {
-          PlanetGrpcServiceGrpc.getRemovePlanetMethod = getRemovePlanetMethod =
+    if ((getRemovePlanetMethod = PlanetServiceGrpc.getRemovePlanetMethod) == null) {
+      synchronized (PlanetServiceGrpc.class) {
+        if ((getRemovePlanetMethod = PlanetServiceGrpc.getRemovePlanetMethod) == null) {
+          PlanetServiceGrpc.getRemovePlanetMethod = getRemovePlanetMethod =
               io.grpc.MethodDescriptor.<com.example.demo.protobuf.PlanetProto.PlanetRemoveRequest, com.google.protobuf.Empty>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "RemovePlanet"))
@@ -143,7 +143,7 @@ public final class PlanetGrpcServiceGrpc {
                   com.example.demo.protobuf.PlanetProto.PlanetRemoveRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   com.google.protobuf.Empty.getDefaultInstance()))
-              .setSchemaDescriptor(new PlanetGrpcServiceMethodDescriptorSupplier("RemovePlanet"))
+              .setSchemaDescriptor(new PlanetServiceMethodDescriptorSupplier("RemovePlanet"))
               .build();
         }
       }
@@ -154,50 +154,50 @@ public final class PlanetGrpcServiceGrpc {
   /**
    * Creates a new async stub that supports all call types for the service
    */
-  public static PlanetGrpcServiceStub newStub(io.grpc.Channel channel) {
-    io.grpc.stub.AbstractStub.StubFactory<PlanetGrpcServiceStub> factory =
-      new io.grpc.stub.AbstractStub.StubFactory<PlanetGrpcServiceStub>() {
+  public static PlanetServiceStub newStub(io.grpc.Channel channel) {
+    io.grpc.stub.AbstractStub.StubFactory<PlanetServiceStub> factory =
+      new io.grpc.stub.AbstractStub.StubFactory<PlanetServiceStub>() {
         @java.lang.Override
-        public PlanetGrpcServiceStub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
-          return new PlanetGrpcServiceStub(channel, callOptions);
+        public PlanetServiceStub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+          return new PlanetServiceStub(channel, callOptions);
         }
       };
-    return PlanetGrpcServiceStub.newStub(factory, channel);
+    return PlanetServiceStub.newStub(factory, channel);
   }
 
   /**
    * Creates a new blocking-style stub that supports unary and streaming output calls on the service
    */
-  public static PlanetGrpcServiceBlockingStub newBlockingStub(
+  public static PlanetServiceBlockingStub newBlockingStub(
       io.grpc.Channel channel) {
-    io.grpc.stub.AbstractStub.StubFactory<PlanetGrpcServiceBlockingStub> factory =
-      new io.grpc.stub.AbstractStub.StubFactory<PlanetGrpcServiceBlockingStub>() {
+    io.grpc.stub.AbstractStub.StubFactory<PlanetServiceBlockingStub> factory =
+      new io.grpc.stub.AbstractStub.StubFactory<PlanetServiceBlockingStub>() {
         @java.lang.Override
-        public PlanetGrpcServiceBlockingStub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
-          return new PlanetGrpcServiceBlockingStub(channel, callOptions);
+        public PlanetServiceBlockingStub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+          return new PlanetServiceBlockingStub(channel, callOptions);
         }
       };
-    return PlanetGrpcServiceBlockingStub.newStub(factory, channel);
+    return PlanetServiceBlockingStub.newStub(factory, channel);
   }
 
   /**
    * Creates a new ListenableFuture-style stub that supports unary calls on the service
    */
-  public static PlanetGrpcServiceFutureStub newFutureStub(
+  public static PlanetServiceFutureStub newFutureStub(
       io.grpc.Channel channel) {
-    io.grpc.stub.AbstractStub.StubFactory<PlanetGrpcServiceFutureStub> factory =
-      new io.grpc.stub.AbstractStub.StubFactory<PlanetGrpcServiceFutureStub>() {
+    io.grpc.stub.AbstractStub.StubFactory<PlanetServiceFutureStub> factory =
+      new io.grpc.stub.AbstractStub.StubFactory<PlanetServiceFutureStub>() {
         @java.lang.Override
-        public PlanetGrpcServiceFutureStub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
-          return new PlanetGrpcServiceFutureStub(channel, callOptions);
+        public PlanetServiceFutureStub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+          return new PlanetServiceFutureStub(channel, callOptions);
         }
       };
-    return PlanetGrpcServiceFutureStub.newStub(factory, channel);
+    return PlanetServiceFutureStub.newStub(factory, channel);
   }
 
   /**
    */
-  public static abstract class PlanetGrpcServiceImplBase implements io.grpc.BindableService {
+  public static abstract class PlanetServiceImplBase implements io.grpc.BindableService {
 
     /**
      */
@@ -263,16 +263,16 @@ public final class PlanetGrpcServiceGrpc {
 
   /**
    */
-  public static final class PlanetGrpcServiceStub extends io.grpc.stub.AbstractAsyncStub<PlanetGrpcServiceStub> {
-    private PlanetGrpcServiceStub(
+  public static final class PlanetServiceStub extends io.grpc.stub.AbstractAsyncStub<PlanetServiceStub> {
+    private PlanetServiceStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
     }
 
     @java.lang.Override
-    protected PlanetGrpcServiceStub build(
+    protected PlanetServiceStub build(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
-      return new PlanetGrpcServiceStub(channel, callOptions);
+      return new PlanetServiceStub(channel, callOptions);
     }
 
     /**
@@ -310,16 +310,16 @@ public final class PlanetGrpcServiceGrpc {
 
   /**
    */
-  public static final class PlanetGrpcServiceBlockingStub extends io.grpc.stub.AbstractBlockingStub<PlanetGrpcServiceBlockingStub> {
-    private PlanetGrpcServiceBlockingStub(
+  public static final class PlanetServiceBlockingStub extends io.grpc.stub.AbstractBlockingStub<PlanetServiceBlockingStub> {
+    private PlanetServiceBlockingStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
     }
 
     @java.lang.Override
-    protected PlanetGrpcServiceBlockingStub build(
+    protected PlanetServiceBlockingStub build(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
-      return new PlanetGrpcServiceBlockingStub(channel, callOptions);
+      return new PlanetServiceBlockingStub(channel, callOptions);
     }
 
     /**
@@ -353,16 +353,16 @@ public final class PlanetGrpcServiceGrpc {
 
   /**
    */
-  public static final class PlanetGrpcServiceFutureStub extends io.grpc.stub.AbstractFutureStub<PlanetGrpcServiceFutureStub> {
-    private PlanetGrpcServiceFutureStub(
+  public static final class PlanetServiceFutureStub extends io.grpc.stub.AbstractFutureStub<PlanetServiceFutureStub> {
+    private PlanetServiceFutureStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
     }
 
     @java.lang.Override
-    protected PlanetGrpcServiceFutureStub build(
+    protected PlanetServiceFutureStub build(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
-      return new PlanetGrpcServiceFutureStub(channel, callOptions);
+      return new PlanetServiceFutureStub(channel, callOptions);
     }
 
     /**
@@ -408,10 +408,10 @@ public final class PlanetGrpcServiceGrpc {
       io.grpc.stub.ServerCalls.ServerStreamingMethod<Req, Resp>,
       io.grpc.stub.ServerCalls.ClientStreamingMethod<Req, Resp>,
       io.grpc.stub.ServerCalls.BidiStreamingMethod<Req, Resp> {
-    private final PlanetGrpcServiceImplBase serviceImpl;
+    private final PlanetServiceImplBase serviceImpl;
     private final int methodId;
 
-    MethodHandlers(PlanetGrpcServiceImplBase serviceImpl, int methodId) {
+    MethodHandlers(PlanetServiceImplBase serviceImpl, int methodId) {
       this.serviceImpl = serviceImpl;
       this.methodId = methodId;
     }
@@ -452,9 +452,9 @@ public final class PlanetGrpcServiceGrpc {
     }
   }
 
-  private static abstract class PlanetGrpcServiceBaseDescriptorSupplier
+  private static abstract class PlanetServiceBaseDescriptorSupplier
       implements io.grpc.protobuf.ProtoFileDescriptorSupplier, io.grpc.protobuf.ProtoServiceDescriptorSupplier {
-    PlanetGrpcServiceBaseDescriptorSupplier() {}
+    PlanetServiceBaseDescriptorSupplier() {}
 
     @java.lang.Override
     public com.google.protobuf.Descriptors.FileDescriptor getFileDescriptor() {
@@ -463,21 +463,21 @@ public final class PlanetGrpcServiceGrpc {
 
     @java.lang.Override
     public com.google.protobuf.Descriptors.ServiceDescriptor getServiceDescriptor() {
-      return getFileDescriptor().findServiceByName("PlanetGrpcService");
+      return getFileDescriptor().findServiceByName("PlanetService");
     }
   }
 
-  private static final class PlanetGrpcServiceFileDescriptorSupplier
-      extends PlanetGrpcServiceBaseDescriptorSupplier {
-    PlanetGrpcServiceFileDescriptorSupplier() {}
+  private static final class PlanetServiceFileDescriptorSupplier
+      extends PlanetServiceBaseDescriptorSupplier {
+    PlanetServiceFileDescriptorSupplier() {}
   }
 
-  private static final class PlanetGrpcServiceMethodDescriptorSupplier
-      extends PlanetGrpcServiceBaseDescriptorSupplier
+  private static final class PlanetServiceMethodDescriptorSupplier
+      extends PlanetServiceBaseDescriptorSupplier
       implements io.grpc.protobuf.ProtoMethodDescriptorSupplier {
     private final String methodName;
 
-    PlanetGrpcServiceMethodDescriptorSupplier(String methodName) {
+    PlanetServiceMethodDescriptorSupplier(String methodName) {
       this.methodName = methodName;
     }
 
@@ -492,11 +492,11 @@ public final class PlanetGrpcServiceGrpc {
   public static io.grpc.ServiceDescriptor getServiceDescriptor() {
     io.grpc.ServiceDescriptor result = serviceDescriptor;
     if (result == null) {
-      synchronized (PlanetGrpcServiceGrpc.class) {
+      synchronized (PlanetServiceGrpc.class) {
         result = serviceDescriptor;
         if (result == null) {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
-              .setSchemaDescriptor(new PlanetGrpcServiceFileDescriptorSupplier())
+              .setSchemaDescriptor(new PlanetServiceFileDescriptorSupplier())
               .addMethod(getFindAllMethod())
               .addMethod(getInitMethod())
               .addMethod(getRemoveAllPlanetsMethod())

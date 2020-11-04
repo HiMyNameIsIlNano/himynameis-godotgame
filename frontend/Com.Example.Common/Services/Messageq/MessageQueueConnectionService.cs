@@ -1,11 +1,13 @@
 ﻿using System;
 using Com.Example.Common.Services.Protobuf.Grpc.Messageq;
+using Com.Example.Game.Scripts.GameStartup;
 using static ManageQueueGrpcService;
 
 namespace Com.Example.Common.Services.Messageq
 {
     public class MessageQueueConnectionService : IMessageQueueConnectionService
     {
+        
         private readonly IMessageQueueGrpcChannelService _messageQueueGrpcChannelService;
 
         public MessageQueueConnectionService(IMessageQueueGrpcChannelService messageQueueGrpcChannelService)

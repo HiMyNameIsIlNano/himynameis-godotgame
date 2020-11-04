@@ -1,7 +1,7 @@
 ﻿using System;
 using Com.Example.Common.Attributes;
 using Com.Example.Common.Network;
-using Com.Example.Common.Network.Protobuf.Mission;
+using Com.Example.Common.Network.Protobuf.Reward;
 using Com.Example.Game.Scripts.GameStartup;
 using Godot;
 

@@ -8,7 +8,7 @@ option csharp_namespace = "Com.Example.Common.Network.Protobuf.Planet.Grpc";
 import "planet.proto";
 import "google/protobuf/empty.proto";
 
-service PlanetGrpcService {
+service PlanetService {
   rpc FindAll(google.protobuf.Empty) returns (PlanetResearchResponse) {}
 
   rpc Init(PlanetInitRequest) returns (google.protobuf.Empty) {}

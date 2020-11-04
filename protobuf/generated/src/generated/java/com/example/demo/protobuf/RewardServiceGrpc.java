@@ -20,11 +20,11 @@ import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
 @javax.annotation.Generated(
     value = "by gRPC proto compiler (version 1.32.1)",
     comments = "Source: rewardGrpcService.proto")
-public final class RewardServiceGrpcGrpc {
+public final class RewardServiceGrpc {
 
-  private RewardServiceGrpcGrpc() {}
+  private RewardServiceGrpc() {}
 
-  public static final String SERVICE_NAME = "RewardServiceGrpc";
+  public static final String SERVICE_NAME = "RewardService";
 
   // Static method descriptors that strictly reflect the proto.
   private static volatile io.grpc.MethodDescriptor<com.example.demo.protobuf.RewardProto.RewardRequest,
@@ -38,10 +38,10 @@ public final class RewardServiceGrpcGrpc {
   public static io.grpc.MethodDescriptor<com.example.demo.protobuf.RewardProto.RewardRequest,
       com.example.demo.protobuf.RewardProto.RewardResponse> getGetRewardsOnGoalMethod() {
     io.grpc.MethodDescriptor<com.example.demo.protobuf.RewardProto.RewardRequest, com.example.demo.protobuf.RewardProto.RewardResponse> getGetRewardsOnGoalMethod;
-    if ((getGetRewardsOnGoalMethod = RewardServiceGrpcGrpc.getGetRewardsOnGoalMethod) == null) {
-      synchronized (RewardServiceGrpcGrpc.class) {
-        if ((getGetRewardsOnGoalMethod = RewardServiceGrpcGrpc.getGetRewardsOnGoalMethod) == null) {
-          RewardServiceGrpcGrpc.getGetRewardsOnGoalMethod = getGetRewardsOnGoalMethod =
+    if ((getGetRewardsOnGoalMethod = RewardServiceGrpc.getGetRewardsOnGoalMethod) == null) {
+      synchronized (RewardServiceGrpc.class) {
+        if ((getGetRewardsOnGoalMethod = RewardServiceGrpc.getGetRewardsOnGoalMethod) == null) {
+          RewardServiceGrpc.getGetRewardsOnGoalMethod = getGetRewardsOnGoalMethod =
               io.grpc.MethodDescriptor.<com.example.demo.protobuf.RewardProto.RewardRequest, com.example.demo.protobuf.RewardProto.RewardResponse>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "GetRewardsOnGoal"))
@@ -50,7 +50,7 @@ public final class RewardServiceGrpcGrpc {
                   com.example.demo.protobuf.RewardProto.RewardRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   com.example.demo.protobuf.RewardProto.RewardResponse.getDefaultInstance()))
-              .setSchemaDescriptor(new RewardServiceGrpcMethodDescriptorSupplier("GetRewardsOnGoal"))
+              .setSchemaDescriptor(new RewardServiceMethodDescriptorSupplier("GetRewardsOnGoal"))
               .build();
         }
       }
@@ -69,10 +69,10 @@ public final class RewardServiceGrpcGrpc {
   public static io.grpc.MethodDescriptor<com.example.demo.protobuf.RewardProto.RewardRequest,
       com.example.demo.protobuf.RewardProto.RewardResponse> getGetRewardsOnLevelClearedMethod() {
     io.grpc.MethodDescriptor<com.example.demo.protobuf.RewardProto.RewardRequest, com.example.demo.protobuf.RewardProto.RewardResponse> getGetRewardsOnLevelClearedMethod;
-    if ((getGetRewardsOnLevelClearedMethod = RewardServiceGrpcGrpc.getGetRewardsOnLevelClearedMethod) == null) {
-      synchronized (RewardServiceGrpcGrpc.class) {
-        if ((getGetRewardsOnLevelClearedMethod = RewardServiceGrpcGrpc.getGetRewardsOnLevelClearedMethod) == null) {
-          RewardServiceGrpcGrpc.getGetRewardsOnLevelClearedMethod = getGetRewardsOnLevelClearedMethod =
+    if ((getGetRewardsOnLevelClearedMethod = RewardServiceGrpc.getGetRewardsOnLevelClearedMethod) == null) {
+      synchronized (RewardServiceGrpc.class) {
+        if ((getGetRewardsOnLevelClearedMethod = RewardServiceGrpc.getGetRewardsOnLevelClearedMethod) == null) {
+          RewardServiceGrpc.getGetRewardsOnLevelClearedMethod = getGetRewardsOnLevelClearedMethod =
               io.grpc.MethodDescriptor.<com.example.demo.protobuf.RewardProto.RewardRequest, com.example.demo.protobuf.RewardProto.RewardResponse>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "GetRewardsOnLevelCleared"))
@@ -81,7 +81,7 @@ public final class RewardServiceGrpcGrpc {
                   com.example.demo.protobuf.RewardProto.RewardRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   com.example.demo.protobuf.RewardProto.RewardResponse.getDefaultInstance()))
-              .setSchemaDescriptor(new RewardServiceGrpcMethodDescriptorSupplier("GetRewardsOnLevelCleared"))
+              .setSchemaDescriptor(new RewardServiceMethodDescriptorSupplier("GetRewardsOnLevelCleared"))
               .build();
         }
       }
@@ -92,50 +92,50 @@ public final class RewardServiceGrpcGrpc {
   /**
    * Creates a new async stub that supports all call types for the service
    */
-  public static RewardServiceGrpcStub newStub(io.grpc.Channel channel) {
-    io.grpc.stub.AbstractStub.StubFactory<RewardServiceGrpcStub> factory =
-      new io.grpc.stub.AbstractStub.StubFactory<RewardServiceGrpcStub>() {
+  public static RewardServiceStub newStub(io.grpc.Channel channel) {
+    io.grpc.stub.AbstractStub.StubFactory<RewardServiceStub> factory =
+      new io.grpc.stub.AbstractStub.StubFactory<RewardServiceStub>() {
         @java.lang.Override
-        public RewardServiceGrpcStub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
-          return new RewardServiceGrpcStub(channel, callOptions);
+        public RewardServiceStub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+          return new RewardServiceStub(channel, callOptions);
         }
       };
-    return RewardServiceGrpcStub.newStub(factory, channel);
+    return RewardServiceStub.newStub(factory, channel);
   }
 
   /**
    * Creates a new blocking-style stub that supports unary and streaming output calls on the service
    */
-  public static RewardServiceGrpcBlockingStub newBlockingStub(
+  public static RewardServiceBlockingStub newBlockingStub(
       io.grpc.Channel channel) {
-    io.grpc.stub.AbstractStub.StubFactory<RewardServiceGrpcBlockingStub> factory =
-      new io.grpc.stub.AbstractStub.StubFactory<RewardServiceGrpcBlockingStub>() {
+    io.grpc.stub.AbstractStub.StubFactory<RewardServiceBlockingStub> factory =
+      new io.grpc.stub.AbstractStub.StubFactory<RewardServiceBlockingStub>() {
         @java.lang.Override
-        public RewardServiceGrpcBlockingStub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
-          return new RewardServiceGrpcBlockingStub(channel, callOptions);
+        public RewardServiceBlockingStub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+          return new RewardServiceBlockingStub(channel, callOptions);
         }
       };
-    return RewardServiceGrpcBlockingStub.newStub(factory, channel);
+    return RewardServiceBlockingStub.newStub(factory, channel);
   }
 
   /**
    * Creates a new ListenableFuture-style stub that supports unary calls on the service
    */
-  public static RewardServiceGrpcFutureStub newFutureStub(
+  public static RewardServiceFutureStub newFutureStub(
       io.grpc.Channel channel) {
-    io.grpc.stub.AbstractStub.StubFactory<RewardServiceGrpcFutureStub> factory =
-      new io.grpc.stub.AbstractStub.StubFactory<RewardServiceGrpcFutureStub>() {
+    io.grpc.stub.AbstractStub.StubFactory<RewardServiceFutureStub> factory =
+      new io.grpc.stub.AbstractStub.StubFactory<RewardServiceFutureStub>() {
         @java.lang.Override
-        public RewardServiceGrpcFutureStub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
-          return new RewardServiceGrpcFutureStub(channel, callOptions);
+        public RewardServiceFutureStub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+          return new RewardServiceFutureStub(channel, callOptions);
         }
       };
-    return RewardServiceGrpcFutureStub.newStub(factory, channel);
+    return RewardServiceFutureStub.newStub(factory, channel);
   }
 
   /**
    */
-  public static abstract class RewardServiceGrpcImplBase implements io.grpc.BindableService {
+  public static abstract class RewardServiceImplBase implements io.grpc.BindableService {
 
     /**
      */
@@ -173,16 +173,16 @@ public final class RewardServiceGrpcGrpc {
 
   /**
    */
-  public static final class RewardServiceGrpcStub extends io.grpc.stub.AbstractAsyncStub<RewardServiceGrpcStub> {
-    private RewardServiceGrpcStub(
+  public static final class RewardServiceStub extends io.grpc.stub.AbstractAsyncStub<RewardServiceStub> {
+    private RewardServiceStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
     }
 
     @java.lang.Override
-    protected RewardServiceGrpcStub build(
+    protected RewardServiceStub build(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
-      return new RewardServiceGrpcStub(channel, callOptions);
+      return new RewardServiceStub(channel, callOptions);
     }
 
     /**
@@ -204,16 +204,16 @@ public final class RewardServiceGrpcGrpc {
 
   /**
    */
-  public static final class RewardServiceGrpcBlockingStub extends io.grpc.stub.AbstractBlockingStub<RewardServiceGrpcBlockingStub> {
-    private RewardServiceGrpcBlockingStub(
+  public static final class RewardServiceBlockingStub extends io.grpc.stub.AbstractBlockingStub<RewardServiceBlockingStub> {
+    private RewardServiceBlockingStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
     }
 
     @java.lang.Override
-    protected RewardServiceGrpcBlockingStub build(
+    protected RewardServiceBlockingStub build(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
-      return new RewardServiceGrpcBlockingStub(channel, callOptions);
+      return new RewardServiceBlockingStub(channel, callOptions);
     }
 
     /**
@@ -233,16 +233,16 @@ public final class RewardServiceGrpcGrpc {
 
   /**
    */
-  public static final class RewardServiceGrpcFutureStub extends io.grpc.stub.AbstractFutureStub<RewardServiceGrpcFutureStub> {
-    private RewardServiceGrpcFutureStub(
+  public static final class RewardServiceFutureStub extends io.grpc.stub.AbstractFutureStub<RewardServiceFutureStub> {
+    private RewardServiceFutureStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
     }
 
     @java.lang.Override
-    protected RewardServiceGrpcFutureStub build(
+    protected RewardServiceFutureStub build(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
-      return new RewardServiceGrpcFutureStub(channel, callOptions);
+      return new RewardServiceFutureStub(channel, callOptions);
     }
 
     /**
@@ -270,10 +270,10 @@ public final class RewardServiceGrpcGrpc {
       io.grpc.stub.ServerCalls.ServerStreamingMethod<Req, Resp>,
       io.grpc.stub.ServerCalls.ClientStreamingMethod<Req, Resp>,
       io.grpc.stub.ServerCalls.BidiStreamingMethod<Req, Resp> {
-    private final RewardServiceGrpcImplBase serviceImpl;
+    private final RewardServiceImplBase serviceImpl;
     private final int methodId;
 
-    MethodHandlers(RewardServiceGrpcImplBase serviceImpl, int methodId) {
+    MethodHandlers(RewardServiceImplBase serviceImpl, int methodId) {
       this.serviceImpl = serviceImpl;
       this.methodId = methodId;
     }
@@ -306,9 +306,9 @@ public final class RewardServiceGrpcGrpc {
     }
   }
 
-  private static abstract class RewardServiceGrpcBaseDescriptorSupplier
+  private static abstract class RewardServiceBaseDescriptorSupplier
       implements io.grpc.protobuf.ProtoFileDescriptorSupplier, io.grpc.protobuf.ProtoServiceDescriptorSupplier {
-    RewardServiceGrpcBaseDescriptorSupplier() {}
+    RewardServiceBaseDescriptorSupplier() {}
 
     @java.lang.Override
     public com.google.protobuf.Descriptors.FileDescriptor getFileDescriptor() {
@@ -317,21 +317,21 @@ public final class RewardServiceGrpcGrpc {
 
     @java.lang.Override
     public com.google.protobuf.Descriptors.ServiceDescriptor getServiceDescriptor() {
-      return getFileDescriptor().findServiceByName("RewardServiceGrpc");
+      return getFileDescriptor().findServiceByName("RewardService");
     }
   }
 
-  private static final class RewardServiceGrpcFileDescriptorSupplier
-      extends RewardServiceGrpcBaseDescriptorSupplier {
-    RewardServiceGrpcFileDescriptorSupplier() {}
+  private static final class RewardServiceFileDescriptorSupplier
+      extends RewardServiceBaseDescriptorSupplier {
+    RewardServiceFileDescriptorSupplier() {}
   }
 
-  private static final class RewardServiceGrpcMethodDescriptorSupplier
-      extends RewardServiceGrpcBaseDescriptorSupplier
+  private static final class RewardServiceMethodDescriptorSupplier
+      extends RewardServiceBaseDescriptorSupplier
       implements io.grpc.protobuf.ProtoMethodDescriptorSupplier {
     private final String methodName;
 
-    RewardServiceGrpcMethodDescriptorSupplier(String methodName) {
+    RewardServiceMethodDescriptorSupplier(String methodName) {
       this.methodName = methodName;
     }
 
@@ -346,11 +346,11 @@ public final class RewardServiceGrpcGrpc {
   public static io.grpc.ServiceDescriptor getServiceDescriptor() {
     io.grpc.ServiceDescriptor result = serviceDescriptor;
     if (result == null) {
-      synchronized (RewardServiceGrpcGrpc.class) {
+      synchronized (RewardServiceGrpc.class) {
         result = serviceDescriptor;
         if (result == null) {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
-              .setSchemaDescriptor(new RewardServiceGrpcFileDescriptorSupplier())
+              .setSchemaDescriptor(new RewardServiceFileDescriptorSupplier())
               .addMethod(getGetRewardsOnGoalMethod())
               .addMethod(getGetRewardsOnLevelClearedMethod())
               .build();

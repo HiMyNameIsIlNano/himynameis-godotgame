@@ -25,15 +25,15 @@ namespace Com.Example.Common.Network.Protobuf.Planet.Grpc {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
             "ChdwbGFuZXRHcnBjU2VydmljZS5wcm90bxoMcGxhbmV0LnByb3RvGhtnb29n",
-            "bGUvcHJvdG9idWYvZW1wdHkucHJvdG8yjQIKEVBsYW5ldEdycGNTZXJ2aWNl",
-            "EjwKB0ZpbmRBbGwSFi5nb29nbGUucHJvdG9idWYuRW1wdHkaFy5QbGFuZXRS",
-            "ZXNlYXJjaFJlc3BvbnNlIgASNAoESW5pdBISLlBsYW5ldEluaXRSZXF1ZXN0",
-            "GhYuZ29vZ2xlLnByb3RvYnVmLkVtcHR5IgASRAoQUmVtb3ZlQWxsUGxhbmV0",
-            "cxIWLmdvb2dsZS5wcm90b2J1Zi5FbXB0eRoWLmdvb2dsZS5wcm90b2J1Zi5F",
-            "bXB0eSIAEj4KDFJlbW92ZVBsYW5ldBIULlBsYW5ldFJlbW92ZVJlcXVlc3Qa",
-            "Fi5nb29nbGUucHJvdG9idWYuRW1wdHkiAEJhChljb20uZXhhbXBsZS5kZW1v",
-            "LnByb3RvYnVmQhJQbGFuZXRTZXJ2aWNlUHJvdG+qAi9Db20uRXhhbXBsZS5D",
-            "b21tb24uTmV0d29yay5Qcm90b2J1Zi5QbGFuZXQuR3JwY2IGcHJvdG8z"));
+            "bGUvcHJvdG9idWYvZW1wdHkucHJvdG8yiQIKDVBsYW5ldFNlcnZpY2USPAoH",
+            "RmluZEFsbBIWLmdvb2dsZS5wcm90b2J1Zi5FbXB0eRoXLlBsYW5ldFJlc2Vh",
+            "cmNoUmVzcG9uc2UiABI0CgRJbml0EhIuUGxhbmV0SW5pdFJlcXVlc3QaFi5n",
+            "b29nbGUucHJvdG9idWYuRW1wdHkiABJEChBSZW1vdmVBbGxQbGFuZXRzEhYu",
+            "Z29vZ2xlLnByb3RvYnVmLkVtcHR5GhYuZ29vZ2xlLnByb3RvYnVmLkVtcHR5",
+            "IgASPgoMUmVtb3ZlUGxhbmV0EhQuUGxhbmV0UmVtb3ZlUmVxdWVzdBoWLmdv",
+            "b2dsZS5wcm90b2J1Zi5FbXB0eSIAQmEKGWNvbS5leGFtcGxlLmRlbW8ucHJv",
+            "dG9idWZCElBsYW5ldFNlcnZpY2VQcm90b6oCL0NvbS5FeGFtcGxlLkNvbW1v",
+            "bi5OZXR3b3JrLlByb3RvYnVmLlBsYW5ldC5HcnBjYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Com.Example.Common.Network.Protobuf.Planet.PlanetReflection.Descriptor, global::Google.Protobuf.WellKnownTypes.EmptyReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, null));

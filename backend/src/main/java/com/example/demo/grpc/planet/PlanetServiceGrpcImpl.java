@@ -1,25 +1,26 @@
 package com.example.demo.grpc.planet;
 
 import com.example.demo.domain.planet.PlanetService;
-import com.example.demo.protobuf.PlanetGrpcServiceGrpc;
 import com.example.demo.protobuf.PlanetProto.PlanetInitRequest;
 import com.example.demo.protobuf.PlanetProto.PlanetRemoveRequest;
 import com.example.demo.protobuf.PlanetProto.PlanetResearchResponse;
-import com.example.demo.protobuf.recipe.PlanetResponseFactory;
+import com.example.demo.protobuf.PlanetServiceGrpc;
+import com.example.demo.protobuf.planet.PlanetResponseFactory;
 import com.google.protobuf.Empty;
 import io.grpc.Status;
 import io.grpc.stub.StreamObserver;
-import javax.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.devh.boot.grpc.server.service.GrpcService;
 import org.springframework.context.ApplicationEventPublisher;
 
+import javax.transaction.Transactional;
+
 @GrpcService
 @RequiredArgsConstructor
 @Transactional
 @Slf4j
-public class PlanetServiceGrpcImpl extends PlanetGrpcServiceGrpc.PlanetGrpcServiceImplBase {
+public class PlanetServiceGrpcImpl extends PlanetServiceGrpc.PlanetServiceImplBase {
 
     private final PlanetService planetService;
 

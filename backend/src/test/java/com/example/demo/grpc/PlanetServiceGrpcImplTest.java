@@ -1,19 +1,14 @@
 package com.example.demo.grpc;
 
-import static org.awaitility.Awaitility.await;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-
 import com.example.demo.BaseGrpcIntegrationTest;
 import com.example.demo.domain.planet.PlanetService;
 import com.example.demo.grpc.planet.DeleteAllEvent;
 import com.example.demo.grpc.planet.DeleteOneEvent;
-import com.example.demo.protobuf.PlanetGrpcServiceGrpc.PlanetGrpcServiceBlockingStub;
 import com.example.demo.protobuf.PlanetProto;
 import com.example.demo.protobuf.PlanetProto.PlanetDTO;
 import com.example.demo.protobuf.PlanetProto.PlanetRemoveRequest;
 import com.example.demo.protobuf.PlanetProto.PlanetResearchResponse;
+import com.example.demo.protobuf.PlanetServiceGrpc.PlanetServiceBlockingStub;
 import com.google.protobuf.Empty;
 import net.devh.boot.grpc.client.inject.GrpcClient;
 import org.junit.Assert;
@@ -26,16 +21,23 @@ import org.springframework.boot.test.context.TestComponent;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.transaction.event.TransactionalEventListener;
 
+import static org.awaitility.Awaitility.await;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+
 class PlanetServiceGrpcImplTest extends BaseGrpcIntegrationTest {
 
     private static final int PLANET_AMOUNT = 1;
 
-    @Autowired private PlanetService planetService;
+    @Autowired
+    private PlanetService planetService;
 
-    @MockBean private PlanetEventListenerMock consumer;
+    @MockBean
+    private PlanetEventListenerMock consumer;
 
     @GrpcClient("inProcess")
-    private PlanetGrpcServiceBlockingStub planetServiceBlockingStub;
+    private PlanetServiceBlockingStub planetServiceBlockingStub;
 
     @BeforeEach
     public void init() {
@@ -104,9 +106,11 @@ class PlanetServiceGrpcImplTest extends BaseGrpcIntegrationTest {
     private static class PlanetEventListenerMock {
 
         @TransactionalEventListener
-        public void listenToDeleteAll(DeleteAllEvent deleteAllEvent) {}
+        public void listenToDeleteAll(DeleteAllEvent deleteAllEvent) {
+        }
 
         @TransactionalEventListener
-        public void listenToDeleteOne(DeleteOneEvent deleteOneEvent) {}
+        public void listenToDeleteOne(DeleteOneEvent deleteOneEvent) {
+        }
     }
 }

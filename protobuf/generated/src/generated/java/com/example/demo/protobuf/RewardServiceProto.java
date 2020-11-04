@@ -24,13 +24,12 @@ public final class RewardServiceProto {
   static {
     java.lang.String[] descriptorData = {
       "\n\027rewardGrpcService.proto\032\014reward.proto2" +
-      "\205\001\n\021RewardServiceGrpc\0223\n\020GetRewardsOnGoa" +
-      "l\022\016.RewardRequest\032\017.RewardResponse\022;\n\030Ge" +
-      "tRewardsOnLevelCleared\022\016.RewardRequest\032\017" +
-      ".RewardResponseBa\n\031com.example.demo.prot" +
-      "obufB\022RewardServiceProto\252\002/Com.Example.C" +
-      "ommon.Network.Protobuf.Reward.Grpcb\006prot" +
-      "o3"
+      "\201\001\n\rRewardService\0223\n\020GetRewardsOnGoal\022\016." +
+      "RewardRequest\032\017.RewardResponse\022;\n\030GetRew" +
+      "ardsOnLevelCleared\022\016.RewardRequest\032\017.Rew" +
+      "ardResponseBa\n\031com.example.demo.protobuf" +
+      "B\022RewardServiceProto\252\002/Com.Example.Commo" +
+      "n.Network.Protobuf.Reward.Grpcb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

@@ -8,9 +8,9 @@
 using grpc = global::Grpc.Core;
 
 namespace Com.Example.Common.Network.Protobuf.Planet.Grpc {
-  public static partial class PlanetGrpcService
+  public static partial class PlanetService
   {
-    static readonly string __ServiceName = "PlanetGrpcService";
+    static readonly string __ServiceName = "PlanetService";
 
     static void __Helper_SerializeMessage(global::Google.Protobuf.IMessage message, grpc::SerializationContext context)
     {
@@ -81,26 +81,26 @@ namespace Com.Example.Common.Network.Protobuf.Planet.Grpc {
       get { return global::Com.Example.Common.Network.Protobuf.Planet.Grpc.PlanetGrpcServiceReflection.Descriptor.Services[0]; }
     }
 
-    /// <summary>Client for PlanetGrpcService</summary>
-    public partial class PlanetGrpcServiceClient : grpc::ClientBase<PlanetGrpcServiceClient>
+    /// <summary>Client for PlanetService</summary>
+    public partial class PlanetServiceClient : grpc::ClientBase<PlanetServiceClient>
     {
-      /// <summary>Creates a new client for PlanetGrpcService</summary>
+      /// <summary>Creates a new client for PlanetService</summary>
       /// <param name="channel">The channel to use to make remote calls.</param>
-      public PlanetGrpcServiceClient(grpc::ChannelBase channel) : base(channel)
+      public PlanetServiceClient(grpc::ChannelBase channel) : base(channel)
       {
       }
-      /// <summary>Creates a new client for PlanetGrpcService that uses a custom <c>CallInvoker</c>.</summary>
+      /// <summary>Creates a new client for PlanetService that uses a custom <c>CallInvoker</c>.</summary>
       /// <param name="callInvoker">The callInvoker to use to make remote calls.</param>
-      public PlanetGrpcServiceClient(grpc::CallInvoker callInvoker) : base(callInvoker)
+      public PlanetServiceClient(grpc::CallInvoker callInvoker) : base(callInvoker)
       {
       }
       /// <summary>Protected parameterless constructor to allow creation of test doubles.</summary>
-      protected PlanetGrpcServiceClient() : base()
+      protected PlanetServiceClient() : base()
       {
       }
       /// <summary>Protected constructor to allow creation of configured clients.</summary>
       /// <param name="configuration">The client configuration.</param>
-      protected PlanetGrpcServiceClient(ClientBaseConfiguration configuration) : base(configuration)
+      protected PlanetServiceClient(ClientBaseConfiguration configuration) : base(configuration)
       {
       }
 
@@ -169,9 +169,9 @@ namespace Com.Example.Common.Network.Protobuf.Planet.Grpc {
         return CallInvoker.AsyncUnaryCall(__Method_RemovePlanet, null, options, request);
       }
       /// <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
-      protected override PlanetGrpcServiceClient NewInstance(ClientBaseConfiguration configuration)
+      protected override PlanetServiceClient NewInstance(ClientBaseConfiguration configuration)
       {
-        return new PlanetGrpcServiceClient(configuration);
+        return new PlanetServiceClient(configuration);
       }
     }
 

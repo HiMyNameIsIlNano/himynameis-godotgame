@@ -19,28 +19,21 @@ public final class RewardProto {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>repeated .RewardDTO rewards = 1;</code>
+     * <code>int32 level = 1;</code>
+     * @return The level.
      */
-    java.util.List<com.example.demo.protobuf.RewardProto.RewardDTO> 
-        getRewardsList();
+    int getLevel();
+
     /**
-     * <code>repeated .RewardDTO rewards = 1;</code>
+     * <code>.RewardRequest.BoxType box_type = 2;</code>
+     * @return The enum numeric value on the wire for boxType.
      */
-    com.example.demo.protobuf.RewardProto.RewardDTO getRewards(int index);
+    int getBoxTypeValue();
     /**
-     * <code>repeated .RewardDTO rewards = 1;</code>
+     * <code>.RewardRequest.BoxType box_type = 2;</code>
+     * @return The boxType.
      */
-    int getRewardsCount();
-    /**
-     * <code>repeated .RewardDTO rewards = 1;</code>
-     */
-    java.util.List<? extends com.example.demo.protobuf.RewardProto.RewardDTOOrBuilder> 
-        getRewardsOrBuilderList();
-    /**
-     * <code>repeated .RewardDTO rewards = 1;</code>
-     */
-    com.example.demo.protobuf.RewardProto.RewardDTOOrBuilder getRewardsOrBuilder(
-        int index);
+    com.example.demo.protobuf.RewardProto.RewardRequest.BoxType getBoxType();
   }
   /**
    * Protobuf type {@code RewardRequest}
@@ -55,7 +48,7 @@ public final class RewardProto {
       super(builder);
     }
     private RewardRequest() {
-      rewards_ = java.util.Collections.emptyList();
+      boxType_ = 0;
     }
 
     @java.lang.Override
@@ -78,7 +71,6 @@ public final class RewardProto {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
-      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -89,13 +81,15 @@ public final class RewardProto {
             case 0:
               done = true;
               break;
-            case 10: {
-              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                rewards_ = new java.util.ArrayList<com.example.demo.protobuf.RewardProto.RewardDTO>();
-                mutable_bitField0_ |= 0x00000001;
-              }
-              rewards_.add(
-                  input.readMessage(com.example.demo.protobuf.RewardProto.RewardDTO.parser(), extensionRegistry));
+            case 8: {
+
+              level_ = input.readInt32();
+              break;
+            }
+            case 16: {
+              int rawValue = input.readEnum();
+
+              boxType_ = rawValue;
               break;
             }
             default: {
@@ -113,9 +107,6 @@ public final class RewardProto {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
-        if (((mutable_bitField0_ & 0x00000001) != 0)) {
-          rewards_ = java.util.Collections.unmodifiableList(rewards_);
-        }
         this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
@@ -133,44 +124,151 @@ public final class RewardProto {
               com.example.demo.protobuf.RewardProto.RewardRequest.class, com.example.demo.protobuf.RewardProto.RewardRequest.Builder.class);
     }
 
-    public static final int REWARDS_FIELD_NUMBER = 1;
-    private java.util.List<com.example.demo.protobuf.RewardProto.RewardDTO> rewards_;
     /**
-     * <code>repeated .RewardDTO rewards = 1;</code>
+     * Protobuf enum {@code RewardRequest.BoxType}
+     */
+    public enum BoxType
+        implements com.google.protobuf.ProtocolMessageEnum {
+      /**
+       * <code>RED = 0;</code>
+       */
+      RED(0),
+      /**
+       * <code>BLUE = 1;</code>
+       */
+      BLUE(1),
+      /**
+       * <code>GREEN = 2;</code>
+       */
+      GREEN(2),
+      UNRECOGNIZED(-1),
+      ;
+
+      /**
+       * <code>RED = 0;</code>
+       */
+      public static final int RED_VALUE = 0;
+      /**
+       * <code>BLUE = 1;</code>
+       */
+      public static final int BLUE_VALUE = 1;
+      /**
+       * <code>GREEN = 2;</code>
+       */
+      public static final int GREEN_VALUE = 2;
+
+
+      public final int getNumber() {
+        if (this == UNRECOGNIZED) {
+          throw new java.lang.IllegalArgumentException(
+              "Can't get the number of an unknown enum value.");
+        }
+        return value;
+      }
+
+      /**
+       * @param value The numeric wire value of the corresponding enum entry.
+       * @return The enum associated with the given numeric wire value.
+       * @deprecated Use {@link #forNumber(int)} instead.
+       */
+      @java.lang.Deprecated
+      public static BoxType valueOf(int value) {
+        return forNumber(value);
+      }
+
+      /**
+       * @param value The numeric wire value of the corresponding enum entry.
+       * @return The enum associated with the given numeric wire value.
+       */
+      public static BoxType forNumber(int value) {
+        switch (value) {
+          case 0: return RED;
+          case 1: return BLUE;
+          case 2: return GREEN;
+          default: return null;
+        }
+      }
+
+      public static com.google.protobuf.Internal.EnumLiteMap<BoxType>
+          internalGetValueMap() {
+        return internalValueMap;
+      }
+      private static final com.google.protobuf.Internal.EnumLiteMap<
+          BoxType> internalValueMap =
+            new com.google.protobuf.Internal.EnumLiteMap<BoxType>() {
+              public BoxType findValueByNumber(int number) {
+                return BoxType.forNumber(number);
+              }
+            };
+
+      public final com.google.protobuf.Descriptors.EnumValueDescriptor
+          getValueDescriptor() {
+        if (this == UNRECOGNIZED) {
+          throw new java.lang.IllegalStateException(
+              "Can't get the descriptor of an unrecognized enum value.");
+        }
+        return getDescriptor().getValues().get(ordinal());
+      }
+      public final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptorForType() {
+        return getDescriptor();
+      }
+      public static final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptor() {
+        return com.example.demo.protobuf.RewardProto.RewardRequest.getDescriptor().getEnumTypes().get(0);
+      }
+
+      private static final BoxType[] VALUES = values();
+
+      public static BoxType valueOf(
+          com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+        if (desc.getType() != getDescriptor()) {
+          throw new java.lang.IllegalArgumentException(
+            "EnumValueDescriptor is not for this type.");
+        }
+        if (desc.getIndex() == -1) {
+          return UNRECOGNIZED;
+        }
+        return VALUES[desc.getIndex()];
+      }
+
+      private final int value;
+
+      private BoxType(int value) {
+        this.value = value;
+      }
+
+      // @@protoc_insertion_point(enum_scope:RewardRequest.BoxType)
+    }
+
+    public static final int LEVEL_FIELD_NUMBER = 1;
+    private int level_;
+    /**
+     * <code>int32 level = 1;</code>
+     * @return The level.
      */
     @java.lang.Override
-    public java.util.List<com.example.demo.protobuf.RewardProto.RewardDTO> getRewardsList() {
-      return rewards_;
+    public int getLevel() {
+      return level_;
+    }
+
+    public static final int BOX_TYPE_FIELD_NUMBER = 2;
+    private int boxType_;
+    /**
+     * <code>.RewardRequest.BoxType box_type = 2;</code>
+     * @return The enum numeric value on the wire for boxType.
+     */
+    @java.lang.Override public int getBoxTypeValue() {
+      return boxType_;
     }
     /**
-     * <code>repeated .RewardDTO rewards = 1;</code>
+     * <code>.RewardRequest.BoxType box_type = 2;</code>
+     * @return The boxType.
      */
-    @java.lang.Override
-    public java.util.List<? extends com.example.demo.protobuf.RewardProto.RewardDTOOrBuilder> 
-        getRewardsOrBuilderList() {
-      return rewards_;
-    }
-    /**
-     * <code>repeated .RewardDTO rewards = 1;</code>
-     */
-    @java.lang.Override
-    public int getRewardsCount() {
-      return rewards_.size();
-    }
-    /**
-     * <code>repeated .RewardDTO rewards = 1;</code>
-     */
-    @java.lang.Override
-    public com.example.demo.protobuf.RewardProto.RewardDTO getRewards(int index) {
-      return rewards_.get(index);
-    }
-    /**
-     * <code>repeated .RewardDTO rewards = 1;</code>
-     */
-    @java.lang.Override
-    public com.example.demo.protobuf.RewardProto.RewardDTOOrBuilder getRewardsOrBuilder(
-        int index) {
-      return rewards_.get(index);
+    @java.lang.Override public com.example.demo.protobuf.RewardProto.RewardRequest.BoxType getBoxType() {
+      @SuppressWarnings("deprecation")
+      com.example.demo.protobuf.RewardProto.RewardRequest.BoxType result = com.example.demo.protobuf.RewardProto.RewardRequest.BoxType.valueOf(boxType_);
+      return result == null ? com.example.demo.protobuf.RewardProto.RewardRequest.BoxType.UNRECOGNIZED : result;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -187,8 +285,11 @@ public final class RewardProto {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      for (int i = 0; i < rewards_.size(); i++) {
-        output.writeMessage(1, rewards_.get(i));
+      if (level_ != 0) {
+        output.writeInt32(1, level_);
+      }
+      if (boxType_ != com.example.demo.protobuf.RewardProto.RewardRequest.BoxType.RED.getNumber()) {
+        output.writeEnum(2, boxType_);
       }
       unknownFields.writeTo(output);
     }
@@ -199,9 +300,13 @@ public final class RewardProto {
       if (size != -1) return size;
 
       size = 0;
-      for (int i = 0; i < rewards_.size(); i++) {
+      if (level_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(1, rewards_.get(i));
+          .computeInt32Size(1, level_);
+      }
+      if (boxType_ != com.example.demo.protobuf.RewardProto.RewardRequest.BoxType.RED.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(2, boxType_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -218,8 +323,9 @@ public final class RewardProto {
       }
       com.example.demo.protobuf.RewardProto.RewardRequest other = (com.example.demo.protobuf.RewardProto.RewardRequest) obj;
 
-      if (!getRewardsList()
-          .equals(other.getRewardsList())) return false;
+      if (getLevel()
+          != other.getLevel()) return false;
+      if (boxType_ != other.boxType_) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -231,10 +337,10 @@ public final class RewardProto {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      if (getRewardsCount() > 0) {
-        hash = (37 * hash) + REWARDS_FIELD_NUMBER;
-        hash = (53 * hash) + getRewardsList().hashCode();
-      }
+      hash = (37 * hash) + LEVEL_FIELD_NUMBER;
+      hash = (53 * hash) + getLevel();
+      hash = (37 * hash) + BOX_TYPE_FIELD_NUMBER;
+      hash = (53 * hash) + boxType_;
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -363,18 +469,15 @@ public final class RewardProto {
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessageV3
                 .alwaysUseFieldBuilders) {
-          getRewardsFieldBuilder();
         }
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        if (rewardsBuilder_ == null) {
-          rewards_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
-        } else {
-          rewardsBuilder_.clear();
-        }
+        level_ = 0;
+
+        boxType_ = 0;
+
         return this;
       }
 
@@ -401,16 +504,8 @@ public final class RewardProto {
       @java.lang.Override
       public com.example.demo.protobuf.RewardProto.RewardRequest buildPartial() {
         com.example.demo.protobuf.RewardProto.RewardRequest result = new com.example.demo.protobuf.RewardProto.RewardRequest(this);
-        int from_bitField0_ = bitField0_;
-        if (rewardsBuilder_ == null) {
-          if (((bitField0_ & 0x00000001) != 0)) {
-            rewards_ = java.util.Collections.unmodifiableList(rewards_);
-            bitField0_ = (bitField0_ & ~0x00000001);
-          }
-          result.rewards_ = rewards_;
-        } else {
-          result.rewards_ = rewardsBuilder_.build();
-        }
+        result.level_ = level_;
+        result.boxType_ = boxType_;
         onBuilt();
         return result;
       }
@@ -459,31 +554,11 @@ public final class RewardProto {
 
       public Builder mergeFrom(com.example.demo.protobuf.RewardProto.RewardRequest other) {
         if (other == com.example.demo.protobuf.RewardProto.RewardRequest.getDefaultInstance()) return this;
-        if (rewardsBuilder_ == null) {
-          if (!other.rewards_.isEmpty()) {
-            if (rewards_.isEmpty()) {
-              rewards_ = other.rewards_;
-              bitField0_ = (bitField0_ & ~0x00000001);
-            } else {
-              ensureRewardsIsMutable();
-              rewards_.addAll(other.rewards_);
-            }
-            onChanged();
-          }
-        } else {
-          if (!other.rewards_.isEmpty()) {
-            if (rewardsBuilder_.isEmpty()) {
-              rewardsBuilder_.dispose();
-              rewardsBuilder_ = null;
-              rewards_ = other.rewards_;
-              bitField0_ = (bitField0_ & ~0x00000001);
-              rewardsBuilder_ = 
-                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
-                   getRewardsFieldBuilder() : null;
-            } else {
-              rewardsBuilder_.addAllMessages(other.rewards_);
-            }
-          }
+        if (other.getLevel() != 0) {
+          setLevel(other.getLevel());
+        }
+        if (other.boxType_ != 0) {
+          setBoxTypeValue(other.getBoxTypeValue());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -513,246 +588,90 @@ public final class RewardProto {
         }
         return this;
       }
-      private int bitField0_;
 
-      private java.util.List<com.example.demo.protobuf.RewardProto.RewardDTO> rewards_ =
-        java.util.Collections.emptyList();
-      private void ensureRewardsIsMutable() {
-        if (!((bitField0_ & 0x00000001) != 0)) {
-          rewards_ = new java.util.ArrayList<com.example.demo.protobuf.RewardProto.RewardDTO>(rewards_);
-          bitField0_ |= 0x00000001;
-         }
+      private int level_ ;
+      /**
+       * <code>int32 level = 1;</code>
+       * @return The level.
+       */
+      @java.lang.Override
+      public int getLevel() {
+        return level_;
+      }
+      /**
+       * <code>int32 level = 1;</code>
+       * @param value The level to set.
+       * @return This builder for chaining.
+       */
+      public Builder setLevel(int value) {
+        
+        level_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 level = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearLevel() {
+        
+        level_ = 0;
+        onChanged();
+        return this;
       }
 
-      private com.google.protobuf.RepeatedFieldBuilderV3<
-          com.example.demo.protobuf.RewardProto.RewardDTO, com.example.demo.protobuf.RewardProto.RewardDTO.Builder, com.example.demo.protobuf.RewardProto.RewardDTOOrBuilder> rewardsBuilder_;
-
+      private int boxType_ = 0;
       /**
-       * <code>repeated .RewardDTO rewards = 1;</code>
+       * <code>.RewardRequest.BoxType box_type = 2;</code>
+       * @return The enum numeric value on the wire for boxType.
        */
-      public java.util.List<com.example.demo.protobuf.RewardProto.RewardDTO> getRewardsList() {
-        if (rewardsBuilder_ == null) {
-          return java.util.Collections.unmodifiableList(rewards_);
-        } else {
-          return rewardsBuilder_.getMessageList();
-        }
+      @java.lang.Override public int getBoxTypeValue() {
+        return boxType_;
       }
       /**
-       * <code>repeated .RewardDTO rewards = 1;</code>
+       * <code>.RewardRequest.BoxType box_type = 2;</code>
+       * @param value The enum numeric value on the wire for boxType to set.
+       * @return This builder for chaining.
        */
-      public int getRewardsCount() {
-        if (rewardsBuilder_ == null) {
-          return rewards_.size();
-        } else {
-          return rewardsBuilder_.getCount();
-        }
-      }
-      /**
-       * <code>repeated .RewardDTO rewards = 1;</code>
-       */
-      public com.example.demo.protobuf.RewardProto.RewardDTO getRewards(int index) {
-        if (rewardsBuilder_ == null) {
-          return rewards_.get(index);
-        } else {
-          return rewardsBuilder_.getMessage(index);
-        }
-      }
-      /**
-       * <code>repeated .RewardDTO rewards = 1;</code>
-       */
-      public Builder setRewards(
-          int index, com.example.demo.protobuf.RewardProto.RewardDTO value) {
-        if (rewardsBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureRewardsIsMutable();
-          rewards_.set(index, value);
-          onChanged();
-        } else {
-          rewardsBuilder_.setMessage(index, value);
-        }
+      public Builder setBoxTypeValue(int value) {
+        
+        boxType_ = value;
+        onChanged();
         return this;
       }
       /**
-       * <code>repeated .RewardDTO rewards = 1;</code>
+       * <code>.RewardRequest.BoxType box_type = 2;</code>
+       * @return The boxType.
        */
-      public Builder setRewards(
-          int index, com.example.demo.protobuf.RewardProto.RewardDTO.Builder builderForValue) {
-        if (rewardsBuilder_ == null) {
-          ensureRewardsIsMutable();
-          rewards_.set(index, builderForValue.build());
-          onChanged();
-        } else {
-          rewardsBuilder_.setMessage(index, builderForValue.build());
+      @java.lang.Override
+      public com.example.demo.protobuf.RewardProto.RewardRequest.BoxType getBoxType() {
+        @SuppressWarnings("deprecation")
+        com.example.demo.protobuf.RewardProto.RewardRequest.BoxType result = com.example.demo.protobuf.RewardProto.RewardRequest.BoxType.valueOf(boxType_);
+        return result == null ? com.example.demo.protobuf.RewardProto.RewardRequest.BoxType.UNRECOGNIZED : result;
+      }
+      /**
+       * <code>.RewardRequest.BoxType box_type = 2;</code>
+       * @param value The boxType to set.
+       * @return This builder for chaining.
+       */
+      public Builder setBoxType(com.example.demo.protobuf.RewardProto.RewardRequest.BoxType value) {
+        if (value == null) {
+          throw new NullPointerException();
         }
+        
+        boxType_ = value.getNumber();
+        onChanged();
         return this;
       }
       /**
-       * <code>repeated .RewardDTO rewards = 1;</code>
+       * <code>.RewardRequest.BoxType box_type = 2;</code>
+       * @return This builder for chaining.
        */
-      public Builder addRewards(com.example.demo.protobuf.RewardProto.RewardDTO value) {
-        if (rewardsBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureRewardsIsMutable();
-          rewards_.add(value);
-          onChanged();
-        } else {
-          rewardsBuilder_.addMessage(value);
-        }
+      public Builder clearBoxType() {
+        
+        boxType_ = 0;
+        onChanged();
         return this;
-      }
-      /**
-       * <code>repeated .RewardDTO rewards = 1;</code>
-       */
-      public Builder addRewards(
-          int index, com.example.demo.protobuf.RewardProto.RewardDTO value) {
-        if (rewardsBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureRewardsIsMutable();
-          rewards_.add(index, value);
-          onChanged();
-        } else {
-          rewardsBuilder_.addMessage(index, value);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .RewardDTO rewards = 1;</code>
-       */
-      public Builder addRewards(
-          com.example.demo.protobuf.RewardProto.RewardDTO.Builder builderForValue) {
-        if (rewardsBuilder_ == null) {
-          ensureRewardsIsMutable();
-          rewards_.add(builderForValue.build());
-          onChanged();
-        } else {
-          rewardsBuilder_.addMessage(builderForValue.build());
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .RewardDTO rewards = 1;</code>
-       */
-      public Builder addRewards(
-          int index, com.example.demo.protobuf.RewardProto.RewardDTO.Builder builderForValue) {
-        if (rewardsBuilder_ == null) {
-          ensureRewardsIsMutable();
-          rewards_.add(index, builderForValue.build());
-          onChanged();
-        } else {
-          rewardsBuilder_.addMessage(index, builderForValue.build());
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .RewardDTO rewards = 1;</code>
-       */
-      public Builder addAllRewards(
-          java.lang.Iterable<? extends com.example.demo.protobuf.RewardProto.RewardDTO> values) {
-        if (rewardsBuilder_ == null) {
-          ensureRewardsIsMutable();
-          com.google.protobuf.AbstractMessageLite.Builder.addAll(
-              values, rewards_);
-          onChanged();
-        } else {
-          rewardsBuilder_.addAllMessages(values);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .RewardDTO rewards = 1;</code>
-       */
-      public Builder clearRewards() {
-        if (rewardsBuilder_ == null) {
-          rewards_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
-          onChanged();
-        } else {
-          rewardsBuilder_.clear();
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .RewardDTO rewards = 1;</code>
-       */
-      public Builder removeRewards(int index) {
-        if (rewardsBuilder_ == null) {
-          ensureRewardsIsMutable();
-          rewards_.remove(index);
-          onChanged();
-        } else {
-          rewardsBuilder_.remove(index);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .RewardDTO rewards = 1;</code>
-       */
-      public com.example.demo.protobuf.RewardProto.RewardDTO.Builder getRewardsBuilder(
-          int index) {
-        return getRewardsFieldBuilder().getBuilder(index);
-      }
-      /**
-       * <code>repeated .RewardDTO rewards = 1;</code>
-       */
-      public com.example.demo.protobuf.RewardProto.RewardDTOOrBuilder getRewardsOrBuilder(
-          int index) {
-        if (rewardsBuilder_ == null) {
-          return rewards_.get(index);  } else {
-          return rewardsBuilder_.getMessageOrBuilder(index);
-        }
-      }
-      /**
-       * <code>repeated .RewardDTO rewards = 1;</code>
-       */
-      public java.util.List<? extends com.example.demo.protobuf.RewardProto.RewardDTOOrBuilder> 
-           getRewardsOrBuilderList() {
-        if (rewardsBuilder_ != null) {
-          return rewardsBuilder_.getMessageOrBuilderList();
-        } else {
-          return java.util.Collections.unmodifiableList(rewards_);
-        }
-      }
-      /**
-       * <code>repeated .RewardDTO rewards = 1;</code>
-       */
-      public com.example.demo.protobuf.RewardProto.RewardDTO.Builder addRewardsBuilder() {
-        return getRewardsFieldBuilder().addBuilder(
-            com.example.demo.protobuf.RewardProto.RewardDTO.getDefaultInstance());
-      }
-      /**
-       * <code>repeated .RewardDTO rewards = 1;</code>
-       */
-      public com.example.demo.protobuf.RewardProto.RewardDTO.Builder addRewardsBuilder(
-          int index) {
-        return getRewardsFieldBuilder().addBuilder(
-            index, com.example.demo.protobuf.RewardProto.RewardDTO.getDefaultInstance());
-      }
-      /**
-       * <code>repeated .RewardDTO rewards = 1;</code>
-       */
-      public java.util.List<com.example.demo.protobuf.RewardProto.RewardDTO.Builder> 
-           getRewardsBuilderList() {
-        return getRewardsFieldBuilder().getBuilderList();
-      }
-      private com.google.protobuf.RepeatedFieldBuilderV3<
-          com.example.demo.protobuf.RewardProto.RewardDTO, com.example.demo.protobuf.RewardProto.RewardDTO.Builder, com.example.demo.protobuf.RewardProto.RewardDTOOrBuilder> 
-          getRewardsFieldBuilder() {
-        if (rewardsBuilder_ == null) {
-          rewardsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              com.example.demo.protobuf.RewardProto.RewardDTO, com.example.demo.protobuf.RewardProto.RewardDTO.Builder, com.example.demo.protobuf.RewardProto.RewardDTOOrBuilder>(
-                  rewards_,
-                  ((bitField0_ & 0x00000001) != 0),
-                  getParentForChildren(),
-                  isClean());
-          rewards_ = null;
-        }
-        return rewardsBuilder_;
       }
       @java.lang.Override
       public final Builder setUnknownFields(
@@ -2262,13 +2181,14 @@ public final class RewardProto {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\014reward.proto\",\n\rRewardRequest\022\033\n\007rewar" +
-      "ds\030\001 \003(\0132\n.RewardDTO\"-\n\016RewardResponse\022\033" +
-      "\n\007rewards\030\001 \003(\0132\n.RewardDTO\".\n\tRewardDTO" +
-      "\022\021\n\treward_id\030\001 \001(\t\022\016\n\006amount\030\002 \001(\005BU\n\031c" +
-      "om.example.demo.protobufB\013RewardProto\252\002*" +
-      "Com.Example.Common.Network.Protobuf.Rewa" +
-      "rdb\006proto3"
+      "\n\014reward.proto\"q\n\rRewardRequest\022\r\n\005level" +
+      "\030\001 \001(\005\022(\n\010box_type\030\002 \001(\0162\026.RewardRequest" +
+      ".BoxType\"\'\n\007BoxType\022\007\n\003RED\020\000\022\010\n\004BLUE\020\001\022\t" +
+      "\n\005GREEN\020\002\"-\n\016RewardResponse\022\033\n\007rewards\030\001" +
+      " \003(\0132\n.RewardDTO\".\n\tRewardDTO\022\021\n\treward_" +
+      "id\030\001 \001(\t\022\016\n\006amount\030\002 \001(\005BU\n\031com.example." +
+      "demo.protobufB\013RewardProto\252\002*Com.Example" +
+      ".Common.Network.Protobuf.Rewardb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -2279,7 +2199,7 @@ public final class RewardProto {
     internal_static_RewardRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_RewardRequest_descriptor,
-        new java.lang.String[] { "Rewards", });
+        new java.lang.String[] { "Level", "BoxType", });
     internal_static_RewardResponse_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_RewardResponse_fieldAccessorTable = new

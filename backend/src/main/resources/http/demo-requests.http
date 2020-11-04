@@ -23,4 +23,5 @@ POST http://localhost:8071/socket/close
 ### Send GET to retrieve all the recipes
 GET http://localhost:8071/planets/find-all
 
-###
+### Send GET to retrieve all the recipes
+POST http://localhost:8071/message-queue/connect
