@@ -1,4 +1,4 @@
-package com.example.demo.grpc.planet;
+package com.example.demo.grpc.game.planet;
 
 import com.example.demo.domain.planet.PlanetService;
 import com.example.demo.protobuf.PlanetProto.PlanetInitRequest;
@@ -9,12 +9,11 @@ import com.example.demo.protobuf.planet.PlanetResponseFactory;
 import com.google.protobuf.Empty;
 import io.grpc.Status;
 import io.grpc.stub.StreamObserver;
+import javax.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.devh.boot.grpc.server.service.GrpcService;
 import org.springframework.context.ApplicationEventPublisher;
-
-import javax.transaction.Transactional;
 
 @GrpcService
 @RequiredArgsConstructor

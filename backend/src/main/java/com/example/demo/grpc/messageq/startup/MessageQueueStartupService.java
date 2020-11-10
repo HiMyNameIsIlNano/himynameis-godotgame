@@ -1,11 +1,11 @@
-package com.example.demo.network;
+package com.example.demo.grpc.messageq.startup;
 
-import com.example.demo.grpc.GrpcChannelService;
-import com.messageq.config.ExchangeCreationRequest;
-import com.messageq.config.ExchangeCreationResponse;
-import com.messageq.config.ManageQueueGrpcServiceGrpc;
-import com.messageq.config.ManageQueueGrpcServiceGrpc.ManageQueueGrpcServiceBlockingStub;
-import com.messageq.config.ManageQueueGrpcServiceGrpc.ManageQueueGrpcServiceStub;
+import com.example.demo.grpc.messageq.GrpcChannelService;
+import com.messageq.api.creation.ExchangeCreationRequest;
+import com.messageq.api.creation.ExchangeCreationResponse;
+import com.messageq.api.creation.ManageQueueGrpcServiceGrpc;
+import com.messageq.api.creation.ManageQueueGrpcServiceGrpc.ManageQueueGrpcServiceBlockingStub;
+import com.messageq.api.creation.ManageQueueGrpcServiceGrpc.ManageQueueGrpcServiceStub;
 import io.grpc.Channel;
 import io.grpc.StatusRuntimeException;
 import javax.annotation.PostConstruct;
@@ -22,7 +22,7 @@ public class MessageQueueStartupService {
 
     @Autowired private GrpcChannelService grpcChannelService;
 
-    @Value("${demo.messageq.exchanges.push-notification}")
+    @Value("${demo.messageq.exchanges.push-notification.exchange-name}")
     private String pushNotificationExchangeName;
 
     private ManageQueueGrpcServiceBlockingStub blockingStub;
@@ -36,7 +36,7 @@ public class MessageQueueStartupService {
     }
 
     @PostConstruct
-    private void initChannelAndStub() {
+    private void initStubs() {
         Channel channel = grpcChannelService.getChannel();
         this.blockingStub = ManageQueueGrpcServiceGrpc.newBlockingStub(channel);
         this.asyncStub = ManageQueueGrpcServiceGrpc.newStub(channel);

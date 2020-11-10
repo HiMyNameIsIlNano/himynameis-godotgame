@@ -12,7 +12,9 @@ namespace Com.Example.Common.Services.Protobuf.Grpc.Backend
 
         public Channel CloseAsync()
         {
-            return BackEndQueueGrpcChannelSingleton.CloseAsync();
+            Channel channelInstance = BackEndQueueGrpcChannelSingleton.ChannelInstance;
+            channelInstance.ShutdownAsync().Wait();
+            return channelInstance;
         }
     }
 }

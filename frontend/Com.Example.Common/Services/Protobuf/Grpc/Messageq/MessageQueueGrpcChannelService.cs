@@ -1,8 +1,7 @@
 ﻿using Com.Example.Common.Network.Grpc;
-using Com.Example.Common.Services.Protobuf.Grpc.Messageq;
 using Grpc.Core;
 
-namespace Com.Example.Common.Services.Protobuf.Grpc
+namespace Com.Example.Common.Services.Protobuf.Grpc.Messageq
 {
     public class MessageQueueGrpcChannelService : IMessageQueueGrpcChannelService
     {
@@ -13,7 +12,9 @@ namespace Com.Example.Common.Services.Protobuf.Grpc
 
         public Channel CloseAsync()
         {
-            return MessageQueueGrpcChannelSingleton.CloseAsync();
+            Channel channelInstance = MessageQueueGrpcChannelSingleton.ChannelInstance;
+            channelInstance.ShutdownAsync().Wait();
+            return channelInstance;
         }
     }
 }

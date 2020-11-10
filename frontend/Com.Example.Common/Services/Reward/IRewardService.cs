@@ -7,7 +7,9 @@ namespace Com.Example.Common.Services.Reward
 {
     public interface IRewardService
     {
-        Task<RewardResponse> GetRewardOnBoxFilled(int level, BoxType boxType);
+        Task<RewardResponse> GetRewardOnBoxFilledAsync(int level, BoxType boxType);
+        
+        RewardResponse GetRewardOnBoxFilled(int level, BoxType boxType);
 
         Task<RewardResponse> GenerateRandomEventOnLevelCleared(int level);
     }

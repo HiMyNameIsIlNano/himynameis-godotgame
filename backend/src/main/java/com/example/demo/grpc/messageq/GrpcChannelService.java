@@ -1,4 +1,4 @@
-package com.example.demo.grpc;
+package com.example.demo.grpc.messageq;
 
 import io.grpc.Channel;
 import io.grpc.ManagedChannelBuilder;

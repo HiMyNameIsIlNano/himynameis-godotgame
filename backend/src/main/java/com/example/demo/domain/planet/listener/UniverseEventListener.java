@@ -1,8 +1,8 @@
 package com.example.demo.domain.planet.listener;
 
-import com.example.demo.grpc.planet.DeleteAllEvent;
-import com.example.demo.grpc.planet.DeleteOneEvent;
-import com.example.demo.grpc.planet.InitEvent;
+import com.example.demo.grpc.game.planet.DeleteAllEvent;
+import com.example.demo.grpc.game.planet.DeleteOneEvent;
+import com.example.demo.grpc.game.planet.InitEvent;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.event.TransactionPhase;

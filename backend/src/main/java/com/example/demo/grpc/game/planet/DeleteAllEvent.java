@@ -1,6 +1,6 @@
-package com.example.demo.grpc.planet;
+package com.example.demo.grpc.game.planet;
 
-import com.example.demo.grpc.planet.InitEvent.Reason;
+import com.example.demo.grpc.game.planet.InitEvent.Reason;
 import lombok.Getter;
 import org.springframework.context.ApplicationEvent;
 

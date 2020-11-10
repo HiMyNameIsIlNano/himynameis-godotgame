@@ -1,36 +1,39 @@
 ﻿using System;
 using Com.Example.Common.Services.Protobuf.Grpc.Messageq;
-using Com.Example.Game.Scripts.GameStartup;
+using Com.Example.Common.VO.MessageQueue;
 using static ManageQueueGrpcService;
 
 namespace Com.Example.Common.Services.Messageq
 {
     public class MessageQueueConnectionService : IMessageQueueConnectionService
     {
-        
         private readonly IMessageQueueGrpcChannelService _messageQueueGrpcChannelService;
+
+        private readonly ManageQueueGrpcServiceClient _queueGrpcClient;
 
         public MessageQueueConnectionService(IMessageQueueGrpcChannelService messageQueueGrpcChannelService)
         {
             _messageQueueGrpcChannelService = messageQueueGrpcChannelService;
+            _queueGrpcClient = new ManageQueueGrpcServiceClient(_messageQueueGrpcChannelService.OpenOrGet());
         }
 
-        public CreatePlayerQueueResponse ConnectPlayerToMessageQueue(int playerId, string exchangeName,
-            string queueName)
+        public CreatePlayerQueueResponseVo ConnectPlayerToMessageQueue(int playerId, string exchangeName,
+            string routingKey, string queueName)
         {
             Console.WriteLine($"Connecting Player ${playerId} to queue ${queueName}...");
-
-            ManageQueueGrpcServiceClient queueGrpcClient =
-                new ManageQueueGrpcServiceClient(_messageQueueGrpcChannelService.OpenOrGet());
 
             CreatePlayerQueueRequest createPlayerQueueRequest = new CreatePlayerQueueRequest
             {
                 ExchangeName = exchangeName,
                 PlayerId = playerId,
-                QueueName = queueName
+                QueueName = queueName,
+                RoutingKey = routingKey
             };
 
-            return queueGrpcClient.ConnectPlayerToQueue(createPlayerQueueRequest);
+            CreatePlayerQueueResponse createPlayerQueueResponse =
+                _queueGrpcClient.ConnectPlayerToQueue(createPlayerQueueRequest);
+
+            return CreatePlayerQueueResponseVo.ToCreatePlayerQueueResponseVo(createPlayerQueueResponse);
         }
     }
 }

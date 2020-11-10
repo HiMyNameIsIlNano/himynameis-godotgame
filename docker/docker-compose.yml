@@ -25,7 +25,6 @@ services:
       restart: unless-stopped
       depends_on:
         - demo-db
-        - demo-socket-server
       links:
         - demo-db
 volumes:

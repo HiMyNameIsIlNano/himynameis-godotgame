@@ -15,9 +15,7 @@ public class GameLevel : Node2D
     private int levelGoals;
 
     private int stillFreeGoals;
-
-    private bool gameEnd;
-
+    
     public override void _Ready()
     {
         goals = GetNode<Node2D>("Goals");
@@ -34,8 +32,7 @@ public class GameLevel : Node2D
 
     private void CheckIfGameEnded()
     {
-        gameEnd = stillFreeGoals <= 0;
-        if (!gameEnd)
+        if (stillFreeGoals > 0)
         {
             return;
         }

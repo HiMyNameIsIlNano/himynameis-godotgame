@@ -13,11 +13,6 @@ namespace Com.Example.Common.Network.Grpc
             new Channel($"{Address}:{Port}", ChannelCredentials.Insecure));
 
         public static Channel ChannelInstance => GrpcChannel.Value;
-
-        public static Channel CloseAsync()
-        {
-            GrpcChannel.Value.ShutdownAsync().Wait();
-            return GrpcChannel.Value;
-        }
+        
     }
 }

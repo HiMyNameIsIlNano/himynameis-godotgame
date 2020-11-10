@@ -1,6 +1,6 @@
 package com.example.demo.controller.messageq;
 
-import com.example.demo.network.MessageQueueStartupService;
+import com.example.demo.grpc.messageq.startup.MessageQueueStartupService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

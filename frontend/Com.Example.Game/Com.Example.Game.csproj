@@ -22,9 +22,6 @@
     <PackageReference Include="Grpc.Core">
       <Version>2.33.1</Version>
     </PackageReference>
-    <PackageReference Include="MessageqGrpcCsharp">
-      <Version>0.0.2</Version>
-    </PackageReference>
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>

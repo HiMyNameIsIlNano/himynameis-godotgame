@@ -1,6 +1,7 @@
 using System;
 using Com.Example.Common.Attributes;
 using Com.Example.Common.Services.Messageq;
+using Com.Example.Common.VO.MessageQueue;
 using Com.Example.Game.Scripts.GameStartup;
 using Godot;
 
@@ -25,7 +26,15 @@ namespace Com.Example.Game.Scripts.GameAutoload
         private void CreateQueuesAndBindToExchangeForPlayerId(int playerId)
         {
             string queueName = $"{playerId}.{FrontEndNotificationQueueName}";
-            MessageQueueConnectionService.ConnectPlayerToMessageQueue(playerId, MessageQueueExchangeName, queueName);
+            CreatePlayerQueueResponseVo responseVo = MessageQueueConnectionService.ConnectPlayerToMessageQueue(playerId,
+                MessageQueueExchangeName, "",
+                queueName);
+
+            if (!responseVo.Created)
+            {
+                Console.WriteLine(
+                    $"An Error occurred while connecting the player {responseVo.PlayerId} to {responseVo.QueueName} on exchange {responseVo.ExchangeName}. Error {responseVo.ErrorMessage}");
+            }
         }
     }
 }

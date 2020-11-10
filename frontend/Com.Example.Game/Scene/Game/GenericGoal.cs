@@ -1,4 +1,6 @@
+using System;
 using Com.Example.Common.Attributes;
+using Com.Example.Common.Network.Protobuf.Reward;
 using Com.Example.Common.Services.Reward;
 using Com.Example.Game.Scripts.GameStartup;
 using Godot;
@@ -24,7 +26,8 @@ namespace Com.Example.Game.Scene.Game
                 return;
             }
 
-            RewardService.GetRewardOnBoxFilled(1, BoxType.Blue);
+            RewardResponse rewardOnBoxFilled = RewardService.GetRewardOnBoxFilled(1, BoxType.Blue);
+            Console.WriteLine(rewardOnBoxFilled.ToString());
             Occupied = true;
         }
 

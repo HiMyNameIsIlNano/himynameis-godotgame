@@ -10,24 +10,30 @@ namespace Com.Example.Common.Services.Reward
     {
         private readonly IBackEndGrpcChannelService _backEndGrpcChannelService;
 
+        private readonly RewardServiceClient _rewardServiceClient;
+
         public RewardService(IBackEndGrpcChannelService backEndGrpcChannelService)
         {
             _backEndGrpcChannelService = backEndGrpcChannelService;
+            _rewardServiceClient = new RewardServiceClient(_backEndGrpcChannelService.OpenOrGet());
         }
 
-        public async Task<RewardResponse> GetRewardOnBoxFilled(int level, BoxType boxType)
+        public async Task<RewardResponse> GetRewardOnBoxFilledAsync(int level, BoxType boxType)
         {
-            RewardServiceClient client = new RewardServiceClient(_backEndGrpcChannelService.OpenOrGet());
             RewardResponse rewardResponse =
-                await client.GetRewardsOnGoalAsync(new RewardRequest {Level = level, BoxType = boxType});
+                await _rewardServiceClient.GetRewardsOnGoalAsync(new RewardRequest {Level = level, BoxType = boxType});
             return rewardResponse;
+        }
+
+        public RewardResponse GetRewardOnBoxFilled(int level, BoxType boxType)
+        {
+            return _rewardServiceClient.GetRewardsOnGoal(new RewardRequest {Level = level, BoxType = boxType});
         }
 
         public async Task<RewardResponse> GenerateRandomEventOnLevelCleared(int level)
         {
-            RewardServiceClient client = new RewardServiceClient(_backEndGrpcChannelService.OpenOrGet());
             RewardResponse rewardResponse =
-                await client.GetRewardsOnLevelClearedAsync(new RewardRequest {Level = level});
+                await _rewardServiceClient.GetRewardsOnLevelClearedAsync(new RewardRequest {Level = level});
             return rewardResponse;
         }
     }

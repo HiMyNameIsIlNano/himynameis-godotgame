@@ -6,11 +6,10 @@ import com.example.demo.protobuf.PlanetProto.PlanetInitRequest;
 import com.example.demo.protobuf.PlanetProto.PlanetRemoveRequest;
 import com.example.demo.protobuf.PlanetProto.PlanetResearchResponse;
 import com.example.demo.protobuf.planet.PlanetResponseFactory;
+import java.util.List;
+import javax.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-
-import javax.transaction.Transactional;
-import java.util.List;
 
 @RequiredArgsConstructor
 @RestController

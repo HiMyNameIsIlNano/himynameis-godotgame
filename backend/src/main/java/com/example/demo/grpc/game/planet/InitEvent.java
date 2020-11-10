@@ -1,4 +1,4 @@
-package com.example.demo.grpc.planet;
+package com.example.demo.grpc.game.planet;
 
 import lombok.Getter;
 import org.springframework.context.ApplicationEvent;

@@ -52,7 +52,8 @@
             <Private>True</Private>
         </Reference>
         <Reference Include="MessageqGrpcCsharp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
-            <HintPath>..\Com.Example.Game\packages\MessageqGrpcCsharp.0.0.2\lib\net47\MessageqGrpcCsharp.dll</HintPath>
+          <HintPath>..\Com.Example.Game\packages\MessageqGrpcCsharp.0.0.3\lib\net47\MessageqGrpcCsharp.dll</HintPath>
+          <Private>True</Private>
         </Reference>
         <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51">
             <HintPath>..\Com.Example.Game\packages\Microsoft.Bcl.AsyncInterfaces.1.1.1\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
