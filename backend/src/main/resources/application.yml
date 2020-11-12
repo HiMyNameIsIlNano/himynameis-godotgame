@@ -41,5 +41,6 @@ demo:
     port: 6566
     exchanges:
       push-notification:
-        exchange-name: push-notification
-        routing-key: ''
+        rewards:
+          exchange-name: rewards.push-notification.exchange
+          routing-key: ''

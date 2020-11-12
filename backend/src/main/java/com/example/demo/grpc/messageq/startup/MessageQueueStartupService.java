@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+// TODO: this is not called by the Back End at startup
 @NoArgsConstructor
 @Service
 @Slf4j
@@ -22,7 +23,7 @@ public class MessageQueueStartupService {
 
     @Autowired private GrpcChannelService grpcChannelService;
 
-    @Value("${demo.messageq.exchanges.push-notification.exchange-name}")
+    @Value("${demo.messageq.exchanges.push-notification.rewards.exchange-name}")
     private String pushNotificationExchangeName;
 
     private ManageQueueGrpcServiceBlockingStub blockingStub;

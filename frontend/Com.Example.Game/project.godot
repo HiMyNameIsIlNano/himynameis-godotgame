@@ -23,7 +23,6 @@ config/icon="res://icon.png"
 
 DependencyInjectionContainer="*res://Scripts/GameAutoload/DependencyInjectionContainerAutoload.cs"
 RabbitMqMessagingConnection="*res://Scripts/GameAutoload/RabbitMqMessagingConnectionAutoload.cs"
-ProtobufSerializerRegistration="*res://Scripts/GameAutoload/ProtobufSerializerRegistrationAutoload.cs"
 
 [display]
 

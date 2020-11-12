@@ -38,10 +38,10 @@ public class MessageQueueApiService {
         this.asyncStub = QueueActionsGrpcServiceGrpc.newStub(channel);
     }
 
-    public void pushMessage(String ecxchangeName, String routingKey, QueueMessage message) {
+    public void pushMessage(String exchangeName, String routingKey, QueueMessage message) {
         blockingStub.pushMessage(
                 PushMessageRequest.newBuilder()
-                        .setExchangeName(ecxchangeName)
+                        .setExchangeName(exchangeName)
                         .setRoutingKey(routingKey)
                         .setMessage(message)
                         .build());

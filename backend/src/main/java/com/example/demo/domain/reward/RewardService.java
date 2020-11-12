@@ -3,6 +3,7 @@ package com.example.demo.domain.reward;
 import com.example.demo.grpc.messageq.api.MessageQueueApiService;
 import com.example.demo.protobuf.RewardProto.RewardDTO;
 import com.example.demo.protobuf.RewardProto.RewardRequest.BoxType;
+import com.example.demo.protobuf.RewardProto.RewardResponse;
 import com.example.demo.protobuf.reward.RewardResponseFactory;
 import com.google.protobuf.Any;
 import com.messageq.api.actions.QueueMessage;
@@ -17,10 +18,10 @@ import java.util.List;
 @Service
 public class RewardService {
 
-    @Value("${demo.messageq.exchanges.push-notification.exchange-name}")
+    @Value("${demo.messageq.exchanges.push-notification.rewards.exchange-name}")
     private String pushNotificationExchangeName;
 
-    @Value("${demo.messageq.exchanges.push-notification.routing-key}")
+    @Value("${demo.messageq.exchanges.push-notification.rewards.routing-key}")
     private String pushNotificationRoutingKey;
 
     private final MessageQueueApiService messageQueueApiService;

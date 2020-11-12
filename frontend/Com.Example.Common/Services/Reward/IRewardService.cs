@@ -1,6 +1,8 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Com.Example.Common.Network.Protobuf.Mission;
 using Com.Example.Common.Network.Protobuf.Reward;
+using Com.Example.Common.VO.MessageQueue;
 using static Com.Example.Common.Network.Protobuf.Reward.RewardRequest.Types;
 
 namespace Com.Example.Common.Services.Reward
@@ -12,5 +14,7 @@ namespace Com.Example.Common.Services.Reward
         RewardResponse GetRewardOnBoxFilled(int level, BoxType boxType);
 
         Task<RewardResponse> GenerateRandomEventOnLevelCleared(int level);
+
+        List<RewardVO> GetRewardFromQueueForPlayer(int playerId);
     }
 }

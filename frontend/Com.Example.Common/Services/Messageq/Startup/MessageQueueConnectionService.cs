@@ -3,10 +3,11 @@ using Com.Example.Common.Services.Protobuf.Grpc.Messageq;
 using Com.Example.Common.VO.MessageQueue;
 using static ManageQueueGrpcService;
 
-namespace Com.Example.Common.Services.Messageq
+namespace Com.Example.Common.Services.Messageq.Startup
 {
     public class MessageQueueConnectionService : IMessageQueueConnectionService
     {
+
         private readonly IMessageQueueGrpcChannelService _messageQueueGrpcChannelService;
 
         private readonly ManageQueueGrpcServiceClient _queueGrpcClient;
@@ -17,10 +18,10 @@ namespace Com.Example.Common.Services.Messageq
             _queueGrpcClient = new ManageQueueGrpcServiceClient(_messageQueueGrpcChannelService.OpenOrGet());
         }
 
-        public CreatePlayerQueueResponseVo ConnectPlayerToMessageQueue(int playerId, string exchangeName,
+        public CreatePlayerQueueResponseVO ConnectPlayerToMessageQueue(int playerId, string exchangeName,
             string routingKey, string queueName)
         {
-            Console.WriteLine($"Connecting Player ${playerId} to queue ${queueName}...");
+            Console.WriteLine($"Connecting Player {playerId} to queue {queueName}...");
 
             CreatePlayerQueueRequest createPlayerQueueRequest = new CreatePlayerQueueRequest
             {
@@ -33,7 +34,7 @@ namespace Com.Example.Common.Services.Messageq
             CreatePlayerQueueResponse createPlayerQueueResponse =
                 _queueGrpcClient.ConnectPlayerToQueue(createPlayerQueueRequest);
 
-            return CreatePlayerQueueResponseVo.ToCreatePlayerQueueResponseVo(createPlayerQueueResponse);
+            return CreatePlayerQueueResponseVO.FromCreatePlayerQueueResponse(createPlayerQueueResponse);
         }
     }
 }
