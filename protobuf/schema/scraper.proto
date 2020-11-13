@@ -3,12 +3,14 @@ syntax = "proto3";
 option java_package = "com.example.demo.protobuf";
 option java_outer_classname = "ScraperProto";
 
+option csharp_namespace = "Com.Example.Common.Network.Protobuf.Scraper";
+
 message ItemListResponse {
-    string context = 1;
-    string type = 2;
-    repeated ListItemDTO item_list_element = 3;
-    int32 number_of_items = 4;
-    int32 total_pages = 5;
+  string context = 1;
+  string type = 2;
+  repeated ListItemDTO item_list_element = 3;
+  int32 number_of_items = 4;
+  int32 total_pages = 5;
 }
 
 message ListItemDTO {

@@ -1,6 +1,6 @@
 package com.example.demo.common.definition;
 
-import com.example.demo.domain.recipe.definition.StringBasedDefinition;
+import com.example.demo.domain.planet.definition.StringBasedDefinition;
 import java.io.Serializable;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

@@ -40,4 +40,7 @@ demo:
     address: localhost
     port: 6566
     exchanges:
-      push-notification: push-notification
+      push-notification:
+        rewards:
+          exchange-name: rewards.push-notification.exchange
+          routing-key: ''

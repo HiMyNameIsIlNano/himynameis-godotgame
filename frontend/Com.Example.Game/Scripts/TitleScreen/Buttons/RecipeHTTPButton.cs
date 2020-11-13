@@ -3,8 +3,8 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Com.Example.Common.Attributes;
-using Com.Example.Common.Services.Recipe;
-using Com.Example.Demo.Protobuf.Recipe;
+using Com.Example.Common.Network.Protobuf.Planet;
+using Com.Example.Common.Services.Planet;
 using Com.Example.Game.Scripts.GameStartup;
 using Godot;
 
@@ -12,7 +12,7 @@ namespace Com.Example.Game.Scripts.TitleScreen.Buttons
 {
     public class RecipeHTTPButton : Button
     {
-        [InjectedProperty] private IRecipeService RecipeService { get; set; }
+        [InjectedProperty] private IPlanetService PlanetService { get; set; }
 
         public override void _Ready()
         {
@@ -20,16 +20,16 @@ namespace Com.Example.Game.Scripts.TitleScreen.Buttons
         }
 
         // It is absolutely fine to return void in this case, because this is the reaction to an event/signal in Godot
-        public async void OnGetAllRecipes()
+        public async void OnGetAllPlanets()
         {
-            Debug.Assert(RecipeService != null, "RecipeService IS null");
-            Task<RecipeResearchResponse> recipesTask = RecipeService.GetAllRecipes();
-            await recipesTask.ContinueWith(PrintResult);
+            Debug.Assert(PlanetService != null, "RecipeService IS null");
+            Task<PlanetResearchResponse> missions = PlanetService.GetAllMissions();
+            await missions.ContinueWith(PrintResult);
         }
 
-        private void PrintResult(Task<RecipeResearchResponse> task)
+        private void PrintResult(Task<PlanetResearchResponse> task)
         {
-            task.Result.Recipes.ToList().ForEach(recipe => Console.WriteLine(recipe.ToString()));
+            task.Result.Planets.ToList().ForEach(recipe => Console.WriteLine(recipe.ToString()));
         }
     }
 }

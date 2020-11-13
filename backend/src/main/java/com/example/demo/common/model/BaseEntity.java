@@ -13,7 +13,7 @@ import org.hibernate.annotations.TypeDef;
 import org.hibernate.annotations.TypeDefs;
 
 @TypeDefs({
-    @TypeDef(name = "ingredient-enum", typeClass = EnumDefinitionType.class),
+    @TypeDef(name = "mission-enum", typeClass = EnumDefinitionType.class),
     @TypeDef(
             name = "string-list",
             typeClass = StringListType.class,

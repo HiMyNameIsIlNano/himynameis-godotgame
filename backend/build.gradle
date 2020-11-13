@@ -71,7 +71,7 @@ dependencies {
     // Definition Generator
     runtime group: 'com.example.demo', name: 'definition-generator', version: generatorVersion
 
-    implementation(group: 'com.example', name: 'messageq-grpc-api-schema', version: '0.0.2-SNAPSHOT')
+    implementation(group: 'com.example', name: 'messageq-grpc-api-schema', version: '0.0.3-SNAPSHOT')
 
     // Test
     testCompile group: 'org.testcontainers', name: 'junit-jupiter', version: testContainersVersion
@@ -105,9 +105,9 @@ googleJavaFormat {
 def outputPackage = 'com.example.demo.domain'
 def enumExporterArgs = [
         '--inputFileDirectory', "${project.projectDir}/src/main/resources/json",
-        '--inputFile', 'ingredients.json',
-        '--outputClassName', 'IngredientDefinitionEnum',
-        '--outputDomain', "${outputPackage}.recipe.ingredient.model",
+        '--inputFile', 'missions.json',
+        '--outputClassName', 'MissionDefinitionEnum',
+        '--outputDomain', "${outputPackage}.planet.mission.model",
         '--filterFunction', '$.definitions[*].id',
         '--updateDbEnum',
         '--dbEnumOutputFolder', "${project.projectDir}/src/main/resources/db/migration"

@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "com.example.demo.protobuf";
+option java_outer_classname = "RewardServiceProto";
+
+option csharp_namespace = "Com.Example.Common.Network.Protobuf.Reward.Grpc";
+
+import "reward.proto";
+
+service RewardService {
+  rpc GetRewardsOnGoal(RewardRequest) returns (RewardResponse);
+  rpc GetRewardsOnLevelCleared(RewardRequest) returns (RewardResponse);
+}
