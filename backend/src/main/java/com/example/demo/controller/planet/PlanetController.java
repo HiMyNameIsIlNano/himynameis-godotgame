@@ -9,8 +9,10 @@ import com.example.demo.protobuf.planet.PlanetResponseFactory;
 import java.util.List;
 import javax.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Profile;
 import org.springframework.web.bind.annotation.*;
 
+@Profile("enable-rest")
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/planets")

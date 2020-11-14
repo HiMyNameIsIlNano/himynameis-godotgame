@@ -1,0 +1,13 @@
+demo:
+  definition:
+    base-package: com.example.demo.domain
+  migration:
+    default-output-folder: src/main/resources/db/migration/
+  messageq:
+    address: localhost
+    port: 6566
+    exchanges:
+      push-notification:
+        rewards:
+          exchange-name: rewards.push-notification.exchange
+          routing-key: ''
