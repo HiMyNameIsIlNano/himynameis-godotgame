@@ -1,0 +1,6 @@
+spring:
+  profiles:
+    include:
+      - integration-test
+      - no-security
+      - rabbitmq-exchanges

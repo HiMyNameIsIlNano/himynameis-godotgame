@@ -6,11 +6,13 @@ import com.example.demo.protobuf.MissionProto.MissionResponse;
 import com.example.demo.protobuf.planet.mission.MissionResponseFactory;
 import java.io.IOException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Profile;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+@Profile("enable-rest")
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/missions")

@@ -9,3 +9,8 @@ spring:
 
 spring:
   profiles: no-security
+
+---
+
+spring:
+  profiles: enable-rest
