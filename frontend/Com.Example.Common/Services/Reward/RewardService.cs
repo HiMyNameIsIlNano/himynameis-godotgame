@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Linq;
 using System.Threading.Tasks;
 using Com.Example.Common.Network;
@@ -58,15 +59,25 @@ namespace Com.Example.Common.Services.Reward
             return rewardResponse;
         }
 
-        public List<RewardVO> GetRewardFromQueueForPlayer(int playerId)
+        // TODO: This should only be called by an event...
+        public ImmutableList<RewardVO> GetRewardFromQueueForPlayer(int playerId)
         {
+            ImmutableList<RewardVO> rewardVos = ImmutableList<RewardVO>.Empty;
             QueueDetailsWrapper queueDetailsWrapper = QueueDetailsWrapper.__Rewards;
             string playerQueueName = queueDetailsWrapper.PlayerQueueName(playerId);
             QueueMessage queueMessage = _messageQueueApiService.PopMessage(playerQueueName);
-            RewardResponse rewardResponse =
-                _protobufNetworkUtilsService.UnpackResponse<RewardResponse>(queueMessage.Message,
-                    RewardResponse.Descriptor);
-            return RewardVO.FromRewardResponse(rewardResponse);
+
+            if (queueMessage?.Payload == null)
+            {
+                Console.WriteLine($"Tried to read RewardResponse message from empty queue {playerQueueName}");
+                return rewardVos;
+            }
+
+            RewardResponse rewardResponse = _protobufNetworkUtilsService.UnpackResponse<RewardResponse>(
+                queueMessage.Payload,
+                RewardResponse.Descriptor);
+
+            return rewardVos.AddRange(RewardVO.FromRewardResponse(rewardResponse));
         }
     }
 }

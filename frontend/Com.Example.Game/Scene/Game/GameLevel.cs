@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Linq;
 using System.Threading.Tasks;
+using Com.Example.Common.Annotations;
 using Com.Example.Common.Attributes;
 using Com.Example.Common.Network.Protobuf.Reward;
 using Com.Example.Common.Services.Event;
@@ -48,7 +50,7 @@ public class GameLevel : Node2D
         Task<RewardResponse> randomEventOnLevelCleared = RewardService.GenerateRandomEventOnLevelCleared(1);
         randomEventOnLevelCleared.ContinueWith(task => HandleRewards(randomEventOnLevelCleared.Result));
         
-        List<RewardVO> rewardVos = RewardService.GetRewardFromQueueForPlayer(54321);
+        ImmutableList<RewardVO> rewardVos = RewardService.GetRewardFromQueueForPlayer(54321);
         EventHandlerService.HandleGameEvent(rewardVos);
         
         GetTree().ReloadCurrentScene();
