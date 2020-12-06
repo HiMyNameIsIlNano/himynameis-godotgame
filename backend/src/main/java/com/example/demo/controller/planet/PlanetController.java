@@ -40,6 +40,6 @@ public class PlanetController {
 
     @PostMapping("/remove-single")
     public void removeRecipe(@RequestBody PlanetRemoveRequest request) {
-        planetService.removePlanet(request.getName());
+        planetService.removeByName(request.getName());
     }
 }

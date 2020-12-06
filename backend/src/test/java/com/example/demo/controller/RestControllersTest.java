@@ -18,7 +18,7 @@ class RestControllersTest extends BaseIntegrationTest {
             new WebApplicationContextRunner().withBean(PlanetController.class);
 
     @Test
-    void testControllerIsNotCreated() {
+    void testServiceIsInContextWhileControllerIsNotCreated() {
         contextRunner.run(
                 context ->
                         assertAll(

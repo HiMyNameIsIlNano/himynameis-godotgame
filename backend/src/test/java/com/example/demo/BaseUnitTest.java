@@ -1,12 +1,9 @@
 package com.example.demo;
 
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.annotation.DirtiesContext;
+import org.junit.runner.RunWith;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.junit4.SpringRunner;
 
-@SpringBootTest(
-        webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
-        classes = DemoApplication.class)
-@DirtiesContext
+@RunWith(SpringRunner.class)
 @ActiveProfiles({"no-embedded-db"}) // This activates the bootstrap-no-embedded-db.properties
 public abstract class BaseUnitTest {}

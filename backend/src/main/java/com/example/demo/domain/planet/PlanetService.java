@@ -22,16 +22,19 @@ public class PlanetService {
 
     public void initPlanets(int amount) {
         while (amount > 0) {
-            mockAndPersistPlanet(amount);
+            Planet planet =
+                    new Planet(
+                            "Planet_" + amount,
+                            DifficultyEnum.EASY,
+                            PlanetEnum.EARTH,
+                            mockMissions());
+
+            save(planet);
             amount--;
         }
     }
 
-    private void mockAndPersistPlanet(int index) {
-        Planet planet =
-                new Planet(
-                        "Planet_" + index, DifficultyEnum.EASY, PlanetEnum.EARTH, mockMissions());
-
+    public void save(Planet planet) {
         planetRepository.save(planet);
     }
 
@@ -57,12 +60,16 @@ public class PlanetService {
         planetRepository.deleteAll();
     }
 
-    public void removePlanet(String name) {
-        Optional<Planet> planet = planetRepository.findByName(name);
+    public void removeByName(String planetName) {
+        Optional<Planet> planet = planetRepository.findByName(planetName);
         if (planet.isEmpty()) {
             return;
         }
 
         planetRepository.delete(planet.get());
+    }
+
+    public boolean existsByPlanetName(String planetName) {
+        return planetRepository.existsByName(planetName);
     }
 }

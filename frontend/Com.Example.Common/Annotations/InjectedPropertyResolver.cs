@@ -3,8 +3,8 @@ using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using Autofac;
+using Com.Example.Common.Annotations;
 using Com.Example.Common.DependencyInjection;
-using Com.Example.Game.Scripts.GameStartup;
 
 namespace Com.Example.Common.Attributes
 {

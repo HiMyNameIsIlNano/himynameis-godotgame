@@ -69,7 +69,7 @@ public class PlanetServiceGrpcImpl extends PlanetServiceGrpc.PlanetServiceImplBa
     @Override
     public void removePlanet(PlanetRemoveRequest request, StreamObserver<Empty> responseObserver) {
         try {
-            planetService.removePlanet(request.getName());
+            planetService.removeByName(request.getName());
         } catch (Exception e) {
             responseObserver.onError(Status.ABORTED.asRuntimeException());
         }

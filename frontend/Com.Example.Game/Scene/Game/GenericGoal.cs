@@ -1,5 +1,6 @@
 using System;
 using System.Threading.Tasks;
+using Com.Example.Common.Annotations;
 using Com.Example.Common.Attributes;
 using Com.Example.Common.Network.Protobuf.Reward;
 using Com.Example.Common.Services.Event;

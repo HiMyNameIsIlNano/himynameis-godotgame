@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Com.Example.Game.Scripts.GameStartup
+namespace Com.Example.Common.Annotations
 {
     [Serializable]
     [AttributeUsage(AttributeTargets.Property)]

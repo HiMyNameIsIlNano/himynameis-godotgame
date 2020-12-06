@@ -4,3 +4,7 @@ spring:
       - integration-test
       - no-security
       - rabbitmq-exchanges
+logging:
+  level:
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type: TRACE

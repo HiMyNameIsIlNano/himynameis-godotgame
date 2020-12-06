@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Com.Example.Common.Network.Protobuf.Mission;
 using Com.Example.Common.Network.Protobuf.Reward;
@@ -15,6 +16,6 @@ namespace Com.Example.Common.Services.Reward
 
         Task<RewardResponse> GenerateRandomEventOnLevelCleared(int level);
 
-        List<RewardVO> GetRewardFromQueueForPlayer(int playerId);
+        ImmutableList<RewardVO> GetRewardFromQueueForPlayer(int playerId);
     }
 }

@@ -5,7 +5,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
-import com.example.demo.BaseGrpcIntegrationTest;
+import com.example.demo.BaseIntegrationTest;
 import com.example.demo.domain.planet.PlanetService;
 import com.example.demo.grpc.game.planet.DeleteAllEvent;
 import com.example.demo.grpc.game.planet.DeleteOneEvent;
@@ -26,7 +26,7 @@ import org.springframework.boot.test.context.TestComponent;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.transaction.event.TransactionalEventListener;
 
-class PlanetServiceGrpcImplTest extends BaseGrpcIntegrationTest {
+class PlanetServiceGrpcImplTest extends BaseIntegrationTest {
 
     private static final int PLANET_AMOUNT = 1;
 
