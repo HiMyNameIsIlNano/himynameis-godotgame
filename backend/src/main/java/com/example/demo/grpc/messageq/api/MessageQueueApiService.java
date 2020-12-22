@@ -7,32 +7,18 @@ import com.messageq.api.actions.QueueActionsGrpcServiceGrpc.QueueActionsGrpcServ
 import com.messageq.api.actions.QueueActionsGrpcServiceGrpc.QueueActionsGrpcServiceStub;
 import com.messageq.api.actions.QueueMessage;
 import io.grpc.Channel;
-import javax.annotation.PostConstruct;
-import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@NoArgsConstructor
 @Slf4j
 @Service
 public class MessageQueueApiService {
 
-    @Autowired private GrpcChannelService grpcChannelService;
+    private final QueueActionsGrpcServiceBlockingStub blockingStub;
 
-    private QueueActionsGrpcServiceBlockingStub blockingStub;
+    private final QueueActionsGrpcServiceStub asyncStub;
 
-    private QueueActionsGrpcServiceStub asyncStub;
-
-    public MessageQueueApiService(
-            QueueActionsGrpcServiceBlockingStub blockingStub,
-            QueueActionsGrpcServiceStub asyncStub) {
-        this.blockingStub = blockingStub;
-        this.asyncStub = asyncStub;
-    }
-
-    @PostConstruct
-    private void initStubs() {
+    public MessageQueueApiService(GrpcChannelService grpcChannelService) {
         Channel channel = grpcChannelService.getChannel();
         this.blockingStub = QueueActionsGrpcServiceGrpc.newBlockingStub(channel);
         this.asyncStub = QueueActionsGrpcServiceGrpc.newStub(channel);

@@ -7,7 +7,7 @@ import org.springframework.context.ApplicationEvent;
 @Getter
 public class DeleteAllEvent extends ApplicationEvent {
 
-    private Reason description;
+    private final Reason description;
 
     public DeleteAllEvent(Object source) {
         super(source);

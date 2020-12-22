@@ -1,10 +1,5 @@
 package com.example.demo.grpc;
 
-import static org.awaitility.Awaitility.await;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-
 import com.example.demo.BaseIntegrationTest;
 import com.example.demo.domain.planet.PlanetService;
 import com.example.demo.grpc.game.planet.DeleteAllEvent;
@@ -16,8 +11,8 @@ import com.example.demo.protobuf.PlanetProto.PlanetResearchResponse;
 import com.example.demo.protobuf.PlanetServiceGrpc.PlanetServiceBlockingStub;
 import com.google.protobuf.Empty;
 import net.devh.boot.grpc.client.inject.GrpcClient;
-import org.junit.Assert;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -26,7 +21,12 @@ import org.springframework.boot.test.context.TestComponent;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.transaction.event.TransactionalEventListener;
 
-class PlanetServiceGrpcImplTest extends BaseIntegrationTest {
+import static org.awaitility.Awaitility.await;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+
+class PlanetServiceGrpcImplIntegrationTest extends BaseIntegrationTest {
 
     private static final int PLANET_AMOUNT = 1;
 
@@ -50,28 +50,29 @@ class PlanetServiceGrpcImplTest extends BaseIntegrationTest {
 
     @Test
     public void getAllPlanets() {
-        PlanetResearchResponse planetResearchResponse =
+        final PlanetResearchResponse planetResearchResponse =
                 planetServiceBlockingStub.findAll(Empty.newBuilder().build());
-        Assert.assertNotNull(planetResearchResponse);
-        Assert.assertEquals(PLANET_AMOUNT, planetResearchResponse.getPlanetsCount());
+
+        Assertions.assertNotNull(planetResearchResponse);
+        Assertions.assertEquals(PLANET_AMOUNT, planetResearchResponse.getPlanetsCount());
     }
 
     @Test
     public void deleteAllPlanets() {
-        PlanetResearchResponse planetResearchResponse =
+        final PlanetResearchResponse planetResearchResponse =
                 planetServiceBlockingStub.findAll(Empty.newBuilder().build());
-        Assert.assertNotNull(planetResearchResponse);
-        Assert.assertEquals(PLANET_AMOUNT, planetResearchResponse.getPlanetsCount());
+        Assertions.assertNotNull(planetResearchResponse);
+        Assertions.assertEquals(PLANET_AMOUNT, planetResearchResponse.getPlanetsCount());
 
-        Empty emptyRequest = Empty.newBuilder().build();
+        final Empty emptyRequest = Empty.newBuilder().build();
         planetServiceBlockingStub.removeAllPlanets(emptyRequest);
 
         waitForDeleteAllEventBeforeContinuing();
 
-        PlanetResearchResponse afterDeletionResearchResponse =
+        final PlanetResearchResponse afterDeletionResearchResponse =
                 planetServiceBlockingStub.findAll(emptyRequest);
-        Assert.assertNotNull(afterDeletionResearchResponse);
-        Assert.assertEquals(0, afterDeletionResearchResponse.getPlanetsCount());
+        Assertions.assertNotNull(afterDeletionResearchResponse);
+        Assertions.assertEquals(0, afterDeletionResearchResponse.getPlanetsCount());
     }
 
     private void waitForDeleteAllEventBeforeContinuing() {
@@ -81,18 +82,19 @@ class PlanetServiceGrpcImplTest extends BaseIntegrationTest {
 
     @Test
     public void deleteOnePlanet() {
-        Empty request = Empty.newBuilder().build();
-        PlanetDTO Planet = planetServiceBlockingStub.findAll(request).getPlanets(0);
+        final Empty request = Empty.newBuilder().build();
+        final PlanetDTO Planet = planetServiceBlockingStub.findAll(request).getPlanets(0);
 
-        PlanetRemoveRequest planetRemoveRequest =
+        final PlanetRemoveRequest planetRemoveRequest =
                 PlanetProto.PlanetRemoveRequest.newBuilder().setName(Planet.getName()).build();
         planetServiceBlockingStub.removePlanet(planetRemoveRequest);
 
         waitForDeleteOneEventBeforeContinuing();
 
-        PlanetResearchResponse planetResearchResponse = planetServiceBlockingStub.findAll(request);
-        Assert.assertNotNull(planetResearchResponse);
-        Assert.assertEquals(PLANET_AMOUNT - 1, planetResearchResponse.getPlanetsCount());
+        final PlanetResearchResponse planetResearchResponse =
+                planetServiceBlockingStub.findAll(request);
+        Assertions.assertNotNull(planetResearchResponse);
+        Assertions.assertEquals(PLANET_AMOUNT - 1, planetResearchResponse.getPlanetsCount());
     }
 
     private void waitForDeleteOneEventBeforeContinuing() {

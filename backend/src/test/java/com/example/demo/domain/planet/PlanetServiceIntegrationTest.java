@@ -1,23 +1,24 @@
 package com.example.demo.domain.planet;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import com.example.demo.BaseIntegrationTest;
 import com.example.demo.domain.planet.definition.DifficultyEnum;
 import com.example.demo.domain.planet.definition.PlanetEnum;
 import com.example.demo.domain.planet.model.Planet;
-import java.util.List;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-class PlanetServiceTest extends BaseIntegrationTest {
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+class PlanetServiceIntegrationTest extends BaseIntegrationTest {
 
     public static final String TEST_PLANET_NAME = "IExist";
 
-    @Autowired PlanetService planetService;
+    @Autowired private PlanetService planetService;
 
     @BeforeEach
     public void initDb() {
@@ -32,13 +33,13 @@ class PlanetServiceTest extends BaseIntegrationTest {
 
     @Test
     void planetExists() {
-        boolean exists = planetService.existsByPlanetName(TEST_PLANET_NAME);
+        final boolean exists = planetService.existsByPlanetName(TEST_PLANET_NAME);
         assertTrue(exists);
     }
 
     @Test
     void planetDoesNotExist() {
-        boolean exists = planetService.existsByPlanetName(TEST_PLANET_NAME + "Not");
+        final boolean exists = planetService.existsByPlanetName(TEST_PLANET_NAME + "Not");
         assertFalse(exists);
     }
 }

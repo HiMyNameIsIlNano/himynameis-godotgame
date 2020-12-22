@@ -1,15 +1,7 @@
-buildscript {
-    dependencies {
-        classpath "org.jsonschema2pojo:jsonschema2pojo-gradle-plugin:${jsonToPojoVersion}"
-    }
-}
-
 plugins {
     id 'org.springframework.boot' version "$springBootVersion"
     id 'io.spring.dependency-management' version "$springDependencyManagentVersion"
 }
-
-apply plugin: 'jsonschema2pojo'
 
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
@@ -56,8 +48,6 @@ dependencies {
     // grpc server
     compile group: 'net.devh', name: 'grpc-server-spring-boot-starter', version: grpcSpringBootVersion
 
-    compile group: 'org.jsonschema2pojo', name: 'jsonschema2pojo-gradle-plugin', version: jsonToPojoVersion
-
     implementation group: 'org.springdoc', name: 'springdoc-openapi-ui', version: openApiVersion
 
     implementation group: 'org.springframework.retry', name: 'spring-retry', version: springRetryVersion
@@ -77,7 +67,7 @@ dependencies {
     // Definition Generator
     runtime group: 'com.example.demo', name: 'definition-generator', version: generatorVersion
 
-    implementation(group: 'com.example', name: 'messageq-grpc-api-schema', version: '0.0.3-SNAPSHOT')
+    implementation(group: 'com.example', name: 'messageq-grpc-api-schema', version: messageqApiVersion)
 
     // Test
     testCompile group: 'org.testcontainers', name: 'junit-jupiter', version: testContainersVersion
@@ -95,17 +85,6 @@ dependencies {
 
 googleJavaFormat {
     options style: 'AOSP'
-}
-
-jsonSchema2Pojo {
-    annotationStyle = 'jackson2'
-    source = files("${project.projectDir}/src/main/resources/json")
-    targetDirectory = file("${project.buildDir}/generated/sources/generated-definition")
-    sourceType = 'json'
-    classNameSuffix = 'Definition'
-    includeAdditionalProperties = false
-    includeToString = false
-    targetPackage = 'com.example.demo.domain.generated'
 }
 
 def outputPackage = 'com.example.demo.domain'

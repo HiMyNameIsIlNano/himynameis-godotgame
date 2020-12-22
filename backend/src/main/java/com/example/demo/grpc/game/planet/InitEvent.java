@@ -12,7 +12,7 @@ public class InitEvent extends ApplicationEvent {
         DELETE_ALL;
     }
 
-    private Reason description;
+    private final Reason description;
 
     public InitEvent(Object source) {
         super(source);

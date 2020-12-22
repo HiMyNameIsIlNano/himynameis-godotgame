@@ -1,0 +1,48 @@
+{
+  "id": "rewards.all",
+  "definitions": [
+    {
+      "id": "rewards.on_occupied",
+      "assignable_resources": [
+        {
+          "from_level_greater_or_equal_to": 1,
+          "to_level_smaller_or_equal_to": 5,
+          "awarded_resource_id": "resource.coins.silver",
+          "for_object_id": "box.red",
+          "amount": 5
+        },
+        {
+          "from_level_greater_or_equal_to": 1,
+          "to_level_smaller_or_equal_to": 5,
+          "awarded_resource_id": "resource.coins.silver",
+          "for_object_id": "box.green",
+          "amount": 10
+        },
+        {
+          "from_level_greater_or_equal_to": 1,
+          "to_level_smaller_or_equal_to": 5,
+          "awarded_resource_id": "resource.coins.silver",
+          "for_object_id": "box.blue",
+          "amount": 15
+        }
+      ]
+    },
+    {
+      "id": "rewards.on_level_cleared",
+      "assignable_resources": [
+        {
+          "from_level_greater_or_equal_to": 1,
+          "to_level_smaller_or_equal_to": 5,
+          "awarded_resource_id": "resource.coins.silver",
+          "amount": 5
+        },
+        {
+          "from_level_greater_or_equal_to": 6,
+          "to_level_smaller_or_equal_to": 10,
+          "awarded_resource_id": "resource.coins.silver",
+          "amount": 10
+        }
+      ]
+    }
+  ]
+}

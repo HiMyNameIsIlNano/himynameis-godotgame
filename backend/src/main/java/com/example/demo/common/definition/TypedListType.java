@@ -1,5 +1,11 @@
 package com.example.demo.common.definition;
 
+import org.apache.commons.lang3.ArrayUtils;
+import org.hibernate.HibernateException;
+import org.hibernate.engine.spi.SharedSessionContractImplementor;
+import org.hibernate.usertype.DynamicParameterizedType;
+import org.hibernate.usertype.UserType;
+
 import java.io.Serializable;
 import java.sql.Array;
 import java.sql.Connection;
@@ -14,11 +20,6 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Properties;
 import java.util.stream.Collectors;
-import org.apache.commons.lang3.ArrayUtils;
-import org.hibernate.HibernateException;
-import org.hibernate.engine.spi.SharedSessionContractImplementor;
-import org.hibernate.usertype.DynamicParameterizedType;
-import org.hibernate.usertype.UserType;
 
 public class TypedListType<T extends BaseDefinition> implements UserType, DynamicParameterizedType {
 
@@ -81,6 +82,7 @@ public class TypedListType<T extends BaseDefinition> implements UserType, Dynami
         }
 
         Connection connection = st.getConnection();
+        // noinspection unchecked
         Array array = connection.createArrayOf(type, getDefinitionsArray((Collection<T>) value));
         st.setArray(index, array);
     }
@@ -103,6 +105,7 @@ public class TypedListType<T extends BaseDefinition> implements UserType, Dynami
             return null;
         }
 
+        // noinspection unchecked
         return new ArrayList<>((Collection<T>) value);
     }
 

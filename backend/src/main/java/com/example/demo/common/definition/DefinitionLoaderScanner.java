@@ -1,9 +1,6 @@
 package com.example.demo.common.definition;
 
 import com.example.demo.common.DefinitionLoaderService;
-import java.util.HashMap;
-import java.util.Map;
-import javax.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanDefinition;
@@ -13,6 +10,10 @@ import org.springframework.context.annotation.ClassPathScanningCandidateComponen
 import org.springframework.core.type.filter.AnnotationTypeFilter;
 import org.springframework.core.type.filter.AssignableTypeFilter;
 import org.springframework.stereotype.Service;
+
+import javax.annotation.PostConstruct;
+import java.util.HashMap;
+import java.util.Map;
 
 @Slf4j
 @Service
@@ -34,10 +35,6 @@ public class DefinitionLoaderScanner extends DefinitionScanner implements Applic
         return _SELF;
     }
 
-    private Class<?> getLoaderForDefinition(Class<?> definition) {
-        return DEFINITION_TO_LOADER.get(definition);
-    }
-
     public BaseDefinition getDefinitionByIdForType(String id, Class<?> definition) {
         Object bean = applicationContext.getBean(getLoaderForDefinition(definition));
         if (bean instanceof DefinitionLoader) {
@@ -46,6 +43,10 @@ public class DefinitionLoaderScanner extends DefinitionScanner implements Applic
         }
 
         return null;
+    }
+
+    private Class<?> getLoaderForDefinition(Class<?> definition) {
+        return DEFINITION_TO_LOADER.get(definition);
     }
 
     private void initDefinitionToLoaderMap() {
