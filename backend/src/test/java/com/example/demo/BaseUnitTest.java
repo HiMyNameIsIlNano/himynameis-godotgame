@@ -1,9 +1,7 @@
 package com.example.demo;
 
 import org.junit.runner.RunWith;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.mockito.junit.MockitoJUnitRunner;
 
-@RunWith(SpringRunner.class)
-@ActiveProfiles({"no-embedded-db"}) // This activates the bootstrap-no-embedded-db.properties
+@RunWith(MockitoJUnitRunner.class)
 public abstract class BaseUnitTest {}

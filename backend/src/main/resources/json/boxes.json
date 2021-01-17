@@ -1,0 +1,20 @@
+{
+  "id": "boxes.all",
+  "definitions": [
+    {
+      "id": "box.red",
+      "boxType": "RED",
+      "factor": -1
+    },
+    {
+      "id": "box.green",
+      "boxType": "GREEN",
+      "factor": 1
+    },
+    {
+      "id": "box.blue",
+      "boxType": "BLUE",
+      "factor": 2
+    }
+  ]
+}

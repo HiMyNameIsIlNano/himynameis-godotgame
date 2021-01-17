@@ -6,8 +6,6 @@ allprojects {
     repositories {
         boolean localArtifactoryActive = System.getenv("ENABLE_LOCAL_ARTIFACTORY") != null ? Boolean.valueOf(System.getenv("ENABLE_LOCAL_ARTIFACTORY")) : false;
         if(localArtifactoryActive) {
-            println "> localArtifactoryActive IS active."
-
             maven {
                 url "${artifactoryLocalRepoUrl}"
                 credentials {
@@ -27,8 +25,22 @@ allprojects {
 subprojects {
     apply plugin: 'java'
 
+    // TODO: As I do not know exactly what I need yet, I am activating the preview feature for all subprojects and for
+    //  the tests, run and compile targets.
+    tasks.withType(JavaCompile).all {
+        options.compilerArgs += ['--enable-preview']
+    }
+    tasks.withType(Test).all {
+        jvmArgs += '--enable-preview'
+    }
+    tasks.withType(JavaExec) {
+        jvmArgs += '--enable-preview'
+    }
+
     if (name.equals('backend') || name.equals('definition-generator')) {
         apply plugin: 'com.github.sherter.google-java-format'
+
+        verifyGoogleJavaFormat.dependsOn(tasks.googleJavaFormat)
     }
 
     if (name.contains('protobuf')) {
