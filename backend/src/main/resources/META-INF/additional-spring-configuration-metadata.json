@@ -1,0 +1,33 @@
+{
+  "properties": [
+    {
+      "name": "demo.definition.base-package",
+      "type": "java.lang.String",
+      "description": "Description for demo.definition.base-package."
+    },
+    {
+      "name": "demo.migration.default-output-folder",
+      "type": "java.lang.String",
+      "description": "Description for demo.migration.default-output-folder."
+    },
+    {
+      "name": "demo.messageq.exchanges.push-notification.rewards.routing-key",
+      "type": "java.lang.String",
+      "description": "Description for demo.messageq.exchanges.push-notification.rewards.routing-key."
+    },
+    {
+      "name": "demo.messageq.exchanges.push-notification.rewards.exchange-name",
+      "type": "java.lang.String",
+      "description": "Description for demo.messageq.exchanges.push-notification.rewards.exchange-name."
+    },
+    {
+      "name": "demo.messageq.address",
+      "type": "java.lang.String",
+      "description": "Description for demo.messageq.address."
+    },
+    {
+      "name": "demo.messageq.port",
+      "type": "java.lang.String",
+      "description": "Description for demo.messageq.port."
+    }
+  ] }

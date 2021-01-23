@@ -32,7 +32,10 @@ dependencies {
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-websocket'
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-actuator'
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-undertow'
-    implementation group: 'org.flywaydb', name: 'flyway-core'
+    implementation group: 'org.flywaydb', name: 'flyway-core', version: flywayCoreVersion
+
+    // This dependency is necessary to be able to identify the custom properties in my property files
+    annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
 
     // Devtools
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
@@ -54,8 +57,8 @@ dependencies {
     implementation group: 'org.springframework', name: 'spring-aspects', version: springAopVersion
 
     // Lombok
-    compileOnly 'org.projectlombok:lombok'
-    annotationProcessor 'org.projectlombok:lombok'
+    compileOnly group: 'org.projectlombok', name: 'lombok'
+    annotationProcessor group: 'org.projectlombok', name: 'lombok'
 
     // Postgres
     runtimeOnly 'org.postgresql:postgresql'
@@ -81,10 +84,6 @@ dependencies {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
     testImplementation 'org.springframework.security:spring-security-test'
-}
-
-googleJavaFormat {
-    options style: 'AOSP'
 }
 
 def outputPackage = 'com.example.demo.domain'

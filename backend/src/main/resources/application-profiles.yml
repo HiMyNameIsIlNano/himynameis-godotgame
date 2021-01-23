@@ -1,16 +1,18 @@
 spring:
-  profiles: auto-generate-ddl
   jpa:
     hibernate:
       ddl-auto: none
     generate-ddl: false
-
+  config:
+    activate:
+      on-profile: auto-generate-ddl
 ---
-
 spring:
-  profiles: no-security
-
+  config:
+    activate:
+      on-profile: no-security
 ---
-
 spring:
-  profiles: enable-rest
+  config:
+    activate:
+      on-profile: enable-rest

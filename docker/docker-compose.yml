@@ -8,7 +8,7 @@ services:
     network_mode: bridge
     container_name: demo-db
     expose:
-      - 127.0.0.1:5454
+      - 5454
     ports:
       - 127.0.0.1:5454:5432
     volumes:
@@ -19,7 +19,7 @@ services:
       container_name: recipe-planner
       network_mode: bridge
       expose:
-        - 127.0.0.1:8071
+        - 8071
       ports:
         - 127.0.0.1:8071:8071
       restart: unless-stopped
