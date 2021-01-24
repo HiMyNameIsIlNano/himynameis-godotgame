@@ -4,7 +4,6 @@ import com.example.demo.BaseUnitTest;
 import com.example.demo.domain.reward.definition.BoxDefinition;
 import com.example.demo.domain.reward.definition.RewardDefinition;
 import com.example.demo.protobuf.RewardProto.RewardRequest.BoxType;
-import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -74,7 +73,6 @@ class RewardServiceUnitTest extends BaseUnitTest {
         assertEquals(expectedAmount, calculationResultToTest.amount());
     }
 
-    @NotNull
     private BoxDefinition getRedBoxDefinition() {
         return RewardTestDataHelper.getBoxDefinition("box.red", BoxType.RED, -1);
     }
@@ -108,7 +106,6 @@ class RewardServiceUnitTest extends BaseUnitTest {
         assertEquals(expectedAmount, calculationResultToTest.amount());
     }
 
-    @NotNull
     private BoxDefinition getBlueBoxDefinition() {
         return RewardTestDataHelper.getBoxDefinition("box.blue", BoxType.BLUE, 2);
     }
@@ -130,7 +127,6 @@ class RewardServiceUnitTest extends BaseUnitTest {
         assertEquals(expectedAmount, calculationResultToTest.amount());
     }
 
-    @NotNull
     private BoxDefinition getGreenBoxDefinition() {
         return RewardTestDataHelper.getBoxDefinition("box.green", BoxType.GREEN, 1);
     }

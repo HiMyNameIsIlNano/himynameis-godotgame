@@ -4,7 +4,6 @@ import com.example.demo.domain.reward.definition.AssignableResourceDefinition;
 import com.example.demo.domain.reward.definition.BoxDefinition;
 import com.example.demo.domain.reward.definition.RewardDefinition;
 import com.example.demo.protobuf.RewardProto.RewardRequest.BoxType;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
