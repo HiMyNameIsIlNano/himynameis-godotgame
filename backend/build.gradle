@@ -74,7 +74,9 @@ dependencies {
 
     // Test
     testCompile group: 'org.testcontainers', name: 'junit-jupiter', version: testContainersVersion
-    testImplementation group: 'org.springframework.cloud', name: 'spring-cloud-starter', version: springBootCloudVersion
+
+    testImplementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-bootstrap', version: springCloudStarterBootstrapVersion
+
     testCompile group: 'com.playtika.testcontainers', name: 'embedded-postgresql', version: embeddedPostgresContainerVersion
     testImplementation group: 'io.grpc', name: 'grpc-testing', version: grpcTestingVersion
     testImplementation group: 'net.devh', name: 'grpc-client-spring-boot-starter', version: grpcSpringBootVersion

@@ -2,10 +2,11 @@ package com.example.demo.grpc.messageq;
 
 import io.grpc.Channel;
 import io.grpc.ManagedChannelBuilder;
-import javax.annotation.PostConstruct;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+
+import javax.annotation.PostConstruct;
 
 @Getter
 @Service

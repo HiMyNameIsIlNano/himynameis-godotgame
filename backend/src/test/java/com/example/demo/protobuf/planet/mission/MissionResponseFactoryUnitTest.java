@@ -22,19 +22,20 @@ class MissionResponseFactoryUnitTest extends BaseUnitTest {
         missionResponseFactory = new MissionResponseFactory();
     }
 
+    @SuppressWarnings("ConstantConditions")
     @Test
     void expectNullPointerExceptionWhenMissionDefinitionListIsNull() {
-        // noinspection ConstantConditions
         Assertions.assertThrows(
                 NullPointerException.class,
                 () -> missionResponseFactory.toMissionListResponse(null));
     }
 
+    @SuppressWarnings("ConstantConditions")
     @Test
     void expectNullPointerExceptionWhenMissionIsNull() {
         Assertions.assertThrows(
                 NullPointerException.class,
-                () -> missionResponseFactory.toMissionListResponse(List.of(null)));
+                () -> missionResponseFactory.toMissionListResponse(List.of((MissionDefinition) null)));
     }
 
     @Test
@@ -64,9 +65,9 @@ class MissionResponseFactoryUnitTest extends BaseUnitTest {
         Assertions.assertEquals(CategoryEnum.BASIC, missionToTest.getCategory());
     }
 
+    @SuppressWarnings("ConstantConditions")
     @Test
     public void toNullMissionResponse() {
-        // noinspection ConstantConditions
         Assertions.assertThrows(
                 NullPointerException.class, () -> missionResponseFactory.toMissionResponse(null));
     }

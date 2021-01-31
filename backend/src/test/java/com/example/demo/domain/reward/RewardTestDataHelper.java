@@ -58,7 +58,6 @@ public class RewardTestDataHelper {
                 .build();
     }
 
-    @NotNull
     public static RewardDefinition getRewardDefinition() {
         final RewardDefinition rewardDefinition = new RewardDefinition();
         rewardDefinition.setId("rewards.on_level_cleared");
